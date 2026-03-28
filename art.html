@@ -122,9 +122,20 @@
     /* Placeholder swatches before real images are added */
     .art-swatch.placeholder {
       aspect-ratio: 1;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      line-height: 1.4;
+      text-decoration: none;
     }
 
     /* Cara section */
@@ -156,6 +167,9 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .art-gallery { columns: 2; }
+    }
+    @media (max-width: 380px) {
+      .art-gallery { columns: 1; }
     }
 
     /* ── Hamburger nav ── */
@@ -281,16 +295,16 @@
         </div>
       </div>
 
-      <!-- To add artwork: replace <a class="art-swatch placeholder"> with <a class="art-swatch"><img src="assets/art/filename.jpg" alt="Description" /></a> -->
+      <!-- To add artwork images: replace the inner text with <img src="assets/art/art-01.jpg" alt="..." /> -->
       <div class="art-gallery" aria-label="Art preview gallery">
-        <a href="https://cara.app/post/59fccc36-0987-452b-8226-ee056960e8ff" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="View artwork on Cara">Artwork 1 ↗</a>
-        <a href="https://cara.app/post/cd828d22-0dd9-4f16-8e72-689d78177f62" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="View artwork on Cara">Artwork 2 ↗</a>
-        <a href="https://cara.app/post/7d1b6ec3-85fe-46e5-8584-81ed458e6ea1" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="View artwork on Cara">Artwork 3 ↗</a>
-        <div class="art-swatch placeholder">Artwork 4</div>
-        <div class="art-swatch placeholder">Artwork 5</div>
-        <div class="art-swatch placeholder">Artwork 6</div>
-        <div class="art-swatch placeholder">Artwork 7</div>
-        <div class="art-swatch placeholder">Artwork 8</div>
+        <a href="https://www.redbubble.com/shop/ap/134947471" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Rainbow Cheetah on Redbubble">Rainbow Cheetah<br><span style="font-size:0.6rem;opacity:0.6;">big cats love to play in rainbows</span></a>
+        <a href="https://www.redbubble.com/shop/ap/134468522" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Big Moon Over Pines on Redbubble">Big Moon Over Pines<br><span style="font-size:0.6rem;opacity:0.6;">mega super moon over the forest</span></a>
+        <a href="https://www.redbubble.com/shop/ap/135612841" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Aframe in the Forest on Redbubble">Aframe in the Forest<br><span style="font-size:0.6rem;opacity:0.6;">a simple little get-away in the woods</span></a>
+        <a href="https://www.redbubble.com/shop/ap/133395783" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Night Bison on Redbubble">Night Bison<br><span style="font-size:0.6rem;opacity:0.6;">moonlit stroll through the Black Hills</span></a>
+        <a href="https://www.redbubble.com/shop/ap/133310846" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Back When Tigers Used to Smoke on Redbubble">Back When Tigers Used to Smoke<br><span style="font-size:0.6rem;opacity:0.6;">when tigers used to smoke</span></a>
+        <a href="https://www.redbubble.com/shop/ap/131680991" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Night Swimmer's Sky on Redbubble">Night Swimmer's Sky<br><span style="font-size:0.6rem;opacity:0.6;">whale shark waiting to taste that cheese</span></a>
+        <a href="https://www.redbubble.com/shop/ap/132738834" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Saguaro Cacti Lines on Redbubble">Saguaro Cacti Lines<br><span style="font-size:0.6rem;opacity:0.6;">desert cacti under a celestial sky</span></a>
+        <a href="https://www.redbubble.com/shop/ap/122874410" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Oct Nouveau on Redbubble">Oct Nouveau<br><span style="font-size:0.6rem;opacity:0.6;">purple octopus does art nouveau space ballet</span></a>
       </div>
     </div>
   </div>
