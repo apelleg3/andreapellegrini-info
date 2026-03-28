@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects: Andrea Pellegrini</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:             #0d0a14;
+      --bg-card:        #16112a;
+      --bg-lift:        #1d1635;
+      --purple-bright:  #c4b5fd;
+      --purple-mid:     #a78bfa;
+      --purple-soft:    #7c5cbf;
+      --purple-dim:     rgba(167,139,250,0.12);
+      --purple-border:  rgba(167,139,250,0.22);
+      --sage:           #86b89a;
+      --sage-dim:       rgba(134,184,154,0.1);
+      --sage-border:    rgba(134,184,154,0.2);
+      --text:           #f0edf8;
+      --text-soft:      #c8c2dc;
+      --text-muted:     #8a82a0;
+      --border:         rgba(196,181,253,0.16);
+      --radius:         6px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+
+    .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .stars::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1.2px 1.2px at  8% 12%, rgba(255,255,255,0.55) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 22%  5%, rgba(255,255,255,0.35) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 38% 22%, rgba(196,181,253,0.5)  0%, transparent 100%),
+        radial-gradient(1px   1px   at 51% 40%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 66%  8%, rgba(255,255,255,0.4)  0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 80% 28%, rgba(196,181,253,0.45) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 14% 55%, rgba(255,255,255,0.3)  0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 72% 62%, rgba(196,181,253,0.35) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 88% 75%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 30% 85%, rgba(255,255,255,0.3)  0%, transparent 100%);
+    }
+    .stars::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 75% 20%, rgba(124,92,191,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 20% 70%, rgba(134,184,154,0.05) 0%, transparent 70%);
+    }
+
+    .skip-link { position: absolute; top: -100%; left: 1rem; background: var(--purple-mid); color: var(--bg); font-weight: 700; padding: 0.5rem 1rem; border-radius: 4px; z-index: 9999; text-decoration: none; font-size: 0.85rem; }
+    .skip-link:focus { top: 1rem; }
+
+    nav { position: fixed; inset: 0 0 auto 0; z-index: 200; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; background: rgba(13,10,20,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-brand { text-decoration: none; line-height: 1.2; }
+    .nav-brand-name { font-family: 'Josefin Sans', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text); display: block; }
+    .nav-brand-sub { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-bright); display: block; }
+    .nav-links { list-style: none; display: flex; gap: 0.15rem; }
+    .nav-links a { text-decoration: none; font-family: 'Josefin Sans', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; color: var(--text-soft); padding: 0.35rem 0.7rem; border-radius: 4px; transition: background 0.15s, color 0.15s; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--purple-bright); background: var(--purple-dim); outline: none; }
+    .nav-links a[aria-current="page"] { color: var(--purple-bright); }
+
+    /* ── Page header band ── */
+    .page-header-band { position: relative; z-index: 1; padding-top: 64px; }
+    .page-header-inner { max-width: 1140px; margin: 0 auto; padding: 4rem 2.5rem 3rem; border-bottom: 1px solid var(--border); }
+
+    /* ── Band system (identical to homepage) ── */
+    .band { position: relative; z-index: 1; }
+    .band-inner { max-width: 1140px; margin: 0 auto; padding: 5rem 2.5rem; }
+    .band-card { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    /* ── Section header (identical to homepage) ── */
+    .s-kicker {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Josefin Sans', sans-serif; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--purple-bright);
+      margin-bottom: 0.6rem;
+    }
+    .s-kicker::before { content: '✦'; font-size: 0.54rem; opacity: 0.7; }
+
+    h1 { font-family: 'Josefin Sans', sans-serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); line-height: 1.1; margin-bottom: 0.75rem; }
+    h1 .hl { color: var(--purple-bright); }
+
+    h2 {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+      font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text); line-height: 1.2; margin-bottom: 0.85rem;
+    }
+    h2 .hl { color: var(--purple-bright); }
+    h2 .hl-sage { color: var(--sage); }
+
+    .s-lead { font-size: 1rem; color: var(--text-soft); max-width: 580px; margin-bottom: 3rem; line-height: 1.8; }
+
+    /* ── Cards (identical to homepage) ── */
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover { border-color: var(--purple-soft); transform: translateY(-2px); }
+    .card.featured {
+      grid-column: 1/-1;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem;
+      background: linear-gradient(135deg, var(--bg-card), var(--bg-lift));
+      border-color: rgba(167,139,250,0.3); padding: 2.25rem;
+    }
+    .card-kicker {
+      font-family: 'Josefin Sans', sans-serif; font-size: 0.64rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-mid); margin-bottom: 0.6rem;
+    }
+    h3 {
+      font-family: 'Josefin Sans', sans-serif; font-size: 1.08rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--text); line-height: 1.35; margin-bottom: 0.65rem;
+    }
+    .card p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.8; margin-bottom: 0.6rem; }
+    .card-link {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-family: 'Josefin Sans', sans-serif; font-size: 0.78rem; font-weight: 700;
+      color: var(--purple-bright); text-decoration: none; margin-top: 0.5rem;
+      transition: gap 0.15s;
+    }
+    .card-link:hover { gap: 0.6rem; }
+    .card-link:focus-visible { outline: 2px solid var(--purple-bright); border-radius: 2px; }
+    .card-link::after { content: '→'; }
+
+    /* ── Research grid (reused for defense + outreach) ── */
+    .research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+
+    /* Dissertation meta (identical to homepage) */
+    .dis-meta { display: flex; flex-direction: column; gap: 1.1rem; padding-top: 0.25rem; }
+    .dis-meta dt { font-family: 'Josefin Sans', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .dis-meta dd { font-size: 0.88rem; color: var(--text-soft); line-height: 1.65; }
+    .dis-meta dd strong { color: var(--text); font-weight: 600; }
+
+    /* Defense CTA row */
+    .card-ctas { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.25rem; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.65rem 1.4rem;
+      font-family: 'Josefin Sans', sans-serif; font-size: 0.78rem;
+      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; border-radius: 100px;
+      transition: transform 0.15s, background 0.15s, border-color 0.15s;
+    }
+    .btn:focus-visible { outline: 3px solid var(--purple-bright); outline-offset: 3px; }
+    .btn-filled { background: var(--purple-mid); color: #0d0a14; border: 1.5px solid transparent; }
+    .btn-filled:hover { background: var(--purple-bright); transform: translateY(-1px); }
+    .btn-ghost { background: transparent; border: 1.5px solid var(--purple-border); color: var(--purple-bright); }
+    .btn-ghost:hover { background: var(--purple-dim); border-color: var(--purple-mid); transform: translateY(-1px); }
+
+    /* Podcast platform icon buttons */
+    .podcast-platforms { display: flex; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
+    .platform-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 10px;
+      text-decoration: none; font-size: 1.25rem;
+      border: 1px solid var(--border);
+      background: var(--bg-lift);
+      transition: transform 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .platform-btn:focus-visible { outline: 3px solid var(--purple-bright); outline-offset: 3px; }
+    .platform-btn.soundcloud { color: #ff5500; }
+    .platform-btn.soundcloud:hover { border-color: #ff5500; background: rgba(255,85,0,0.1); transform: translateY(-2px); }
+    .platform-btn.apple { color: #fc3c44; }
+    .platform-btn.apple:hover { border-color: #fc3c44; background: rgba(252,60,68,0.1); transform: translateY(-2px); }
+    .platform-btn.spotify { color: #1db954; }
+    .platform-btn.spotify:hover { border-color: #1db954; background: rgba(29,185,84,0.1); transform: translateY(-2px); }
+    .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+    .proj-card {
+      background: var(--bg); border: 1px solid var(--sage-border);
+      border-radius: var(--radius); padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .proj-card:hover { border-color: var(--sage); transform: translateY(-2px); }
+    .proj-icon { font-size: 1.6rem; margin-bottom: 0.85rem; display: block; line-height: 1; }
+    .proj-card .card-kicker { color: var(--sage); }
+    .proj-card h3 { font-size: 1rem; }
+    .proj-card p { font-size: 0.85rem; }
+    .proj-card .card-link { color: var(--sage); }
+    .proj-card .card-link:focus-visible { outline-color: var(--sage); }
+
+    /* ── Footer (identical to homepage) ── */
+    footer { position: relative; z-index: 1; background: var(--bg-card); border-top: 1px solid var(--border); padding: 3rem 2.5rem; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-brand { font-family: 'Josefin Sans', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); }
+    .footer-brand span { display: block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-bright); margin-top: 0.25rem; }
+    .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 0.2rem; }
+    .footer-links a { text-decoration: none; font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; color: var(--text-muted); padding: 0.25rem 0.6rem; border-radius: 4px; transition: color 0.15s, background 0.15s; }
+    .footer-links a:hover { color: var(--purple-bright); background: var(--purple-dim); }
+    .footer-copy { font-size: 0.72rem; color: var(--text-muted); }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links a { font-size: 0.72rem; padding: 0.3rem 0.5rem; }
+      .page-header-inner { padding: 3rem 1.25rem 2.5rem; }
+      .band-inner { padding: 4rem 1.25rem; }
+      .research-grid { grid-template-columns: 1fr; }
+      .card.featured { grid-template-columns: 1fr; gap: 2rem; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav aria-label="Main navigation">
+  <a href="index.html" class="nav-brand" aria-label="Andrea Pellegrini – home">
+    <span class="nav-brand-name">Andrea Pellegrini</span>
+    <span class="nav-brand-sub">Educator · Researcher · Wizard</span>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="projects.html" aria-current="page">Projects</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="art.html">Art</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="stars" aria-hidden="true"></div>
+
+<main id="main">
+
+  <!-- Page header -->
+  <div class="page-header-band">
+    <div class="page-header-inner">
+      <div class="s-kicker" aria-hidden="true">Projects</div>
+      <h1>Ongoing <span class="hl">Work</span></h1>
+      <p class="s-lead" style="margin-bottom:0;">A mix of educational outreach, interactive tools, and applied research. Some years in the making, some still evolving.</p>
+    </div>
+  </div>
+
+  <!-- Dissertation Defense -->
+  <div class="band" aria-labelledby="h-defense">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">Research</div>
+      <h2 id="h-defense">Dissertation <span class="hl">Defense</span></h2>
+      <p class="s-lead">Defending April 3, 2026 at the University of Illinois Urbana-Champaign.</p>
+
+      <div class="research-grid">
+        <div class="card featured">
+          <div>
+            <div class="card-kicker">Expected May 2026 · Defending April 3</div>
+            <h3>Goal Framing &amp; Visualizations' Influence on Self-Regulated Learning of Compound Interest: An Explanatory Mixed Methods Study</h3>
+            <p>My research explores how visual media (data visualizations, visual metaphors, and UI design elements) affecting self-regulated learning in adult financial education.</p>
+            <p>For my dissertation, I used an explanatory mixed-methods design to investigate data visualizations in learning compound interest, with an LLM conducting follow-up participant interviews.</p>
+            <div class="card-ctas">
+              <!-- Replace # with your actual defense watch link -->
+              <a href="#" class="btn btn-filled">Watch My Defense on April 3 ↗</a>
+            </div>
+          </div>
+          <dl class="dis-meta">
+            <div>
+              <dt>Institution</dt>
+              <dd><strong>University of Illinois Urbana-Champaign</strong></dd>
+            </div>
+            <div>
+              <dt>Program</dt>
+              <dd>PhD, Educational Psychology<br><em>Cognitive Science of Teaching &amp; Learning</em></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Outreach Projects -->
+  <div class="band band-card" aria-labelledby="h-outreach">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">Outreach</div>
+      <h2 id="h-outreach">Educational <span class="hl">Outreach</span></h2>
+      <p class="s-lead">Long-running programs bringing financial education to students, educators, and the public across Illinois and beyond.</p>
+
+      <div class="research-grid">
+        <div class="card">
+          <div class="card-kicker">Webinar Series · 2013–Present</div>
+          <h3>Get Savvy: Grow Your Green Stuff</h3>
+          <p>A free, public statewide webinar series coordinated with financial educators across Illinois, updated each academic year. Live sessions held Wednesdays at 12:00 PM CT via Zoom, with recordings available on YouTube.</p>
+          <p>Produced in collaboration with partners across state government, higher education, and financial regulation.</p>
+          <a href="https://go.uillinois.edu/getsavvywebinars" target="_blank" rel="noopener noreferrer" class="card-link">Register for upcoming webinars</a>
+          <br>
+          <a href="https://www.youtube.com/ILStudentMoney" target="_blank" rel="noopener noreferrer" class="card-link">Watch recordings on YouTube</a>
+        </div>
+
+        <div class="card">
+          <div class="card-kicker">Podcast · 2020–Present</div>
+          <h3>Making Cents of Money</h3>
+          <p>Co-host of over 100 episodes of the Making Cents of Money podcast, produced through a partnership between the Illinois Department of Financial &amp; Professional Regulation and the University of Illinois System. Covers financial topics relevant to Illinois consumers.</p>
+          <a href="https://www.studentmoney.uillinois.edu/podcasts" target="_blank" rel="noopener noreferrer" class="card-link">All episodes</a>
+          <div class="podcast-platforms">
+            <a href="http://soundcloud.com/idfpr" target="_blank" rel="noopener noreferrer" class="platform-btn soundcloud" aria-label="Listen on SoundCloud"><i class="fa-brands fa-soundcloud"></i></a>
+            <a href="https://podcasts.apple.com/us/podcast/making-cents-of-money/id1529891389" target="_blank" rel="noopener noreferrer" class="platform-btn apple" aria-label="Listen on Apple Podcasts"><i class="fa-brands fa-apple"></i></a>
+            <a href="https://open.spotify.com/show/6ZE7y9V85mBSB1dDbeaR1l?si=BGl99FAHTCeVa3xuwL89QA&dl_branch=1" target="_blank" rel="noopener noreferrer" class="platform-btn spotify" aria-label="Listen on Spotify"><i class="fa-brands fa-spotify"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Tools -->
+  <div class="band" aria-labelledby="h-tools">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">Tools</div>
+      <h2 id="h-tools">Interactive <span class="hl-sage">Tools</span></h2>
+      <p class="s-lead">Practical tools built to make financial concepts more accessible, informed by years of financial education practice and research.</p>
+
+      <div class="projects-grid">
+        <div class="proj-card" id="calculator">
+          <span class="proj-icon" aria-hidden="true">🏦</span>
+          <h3>Compound Interest Calculator</h3>
+          <p>An interactive visualization tool designed to make compound interest intuitive, directly informed by my dissertation research on how visual media affects learning in financial education.</p>
+          <a href="tools/compound-interest.html" class="card-link">Try the calculator</a>
+        </div>
+
+        <div class="proj-card" id="checkup">
+          <span class="proj-icon" aria-hidden="true">✅</span>
+          <h3>Financial Wellness Checkup</h3>
+          <p>A guided self-assessment to help users evaluate and reflect on their financial health across multiple dimensions: budgeting, saving, debt, and planning.</p>
+          <a href="tools/wellness-checkup.html" class="card-link">Take the checkup</a>
+        </div>
+
+        <div class="proj-card" id="loan-wizard">
+          <span class="proj-icon" aria-hidden="true">🎓</span>
+          <h3>Student Loan Repayment Wizard</h3>
+          <p>A step-by-step wizard to help students and borrowers navigate repayment options, forgiveness programs, and refinancing decisions, built on years of student loan education research.</p>
+          <a href="tools/loan-wizard.html" class="card-link">Launch the wizard</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Andrea Pellegrini<span>Educator · Researcher · Wizard</span></div>
+    <ul class="footer-links" role="list">
+      <li><a href="about.html">About</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="art.html">Art</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="mailto:andrea.n.pellegrini@gmail.com">Email</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Andrea Pellegrini · Champaign, Illinois</p>
+  </div>
+</footer>
+
+</body>
+</html>

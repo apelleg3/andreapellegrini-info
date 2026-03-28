@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About: Andrea Pellegrini</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:             #0d0a14;
+      --bg-card:        #16112a;
+      --bg-lift:        #1d1635;
+      --purple-bright:  #c4b5fd;
+      --purple-mid:     #a78bfa;
+      --purple-soft:    #7c5cbf;
+      --purple-dim:     rgba(167,139,250,0.12);
+      --purple-border:  rgba(167,139,250,0.22);
+      --sage:           #86b89a;
+      --sage-dim:       rgba(134,184,154,0.1);
+      --sage-border:    rgba(134,184,154,0.2);
+      --text:           #f0edf8;
+      --text-soft:      #c8c2dc;
+      --text-muted:     #8a82a0;
+      --border:         rgba(196,181,253,0.16);
+      --radius:         6px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+
+    .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .stars::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1.2px 1.2px at  8% 12%, rgba(255,255,255,0.55) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 22%  5%, rgba(255,255,255,0.35) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 38% 22%, rgba(196,181,253,0.5)  0%, transparent 100%),
+        radial-gradient(1px   1px   at 51% 40%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 66%  8%, rgba(255,255,255,0.4)  0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 80% 28%, rgba(196,181,253,0.45) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 14% 55%, rgba(255,255,255,0.3)  0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 72% 62%, rgba(196,181,253,0.35) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 88% 75%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 30% 85%, rgba(255,255,255,0.3)  0%, transparent 100%);
+    }
+    .stars::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 75% 20%, rgba(124,92,191,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 20% 70%, rgba(134,184,154,0.05) 0%, transparent 70%);
+    }
+
+    .skip-link { position: absolute; top: -100%; left: 1rem; background: var(--purple-mid); color: var(--bg); font-weight: 700; padding: 0.5rem 1rem; border-radius: 4px; z-index: 9999; text-decoration: none; font-size: 0.85rem; }
+    .skip-link:focus { top: 1rem; }
+
+    nav { position: fixed; inset: 0 0 auto 0; z-index: 200; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; background: rgba(13,10,20,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-brand { text-decoration: none; line-height: 1.2; }
+    .nav-brand-name { font-family: 'Josefin Sans', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text); display: block; }
+    .nav-brand-sub { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-bright); display: block; }
+    .nav-links { list-style: none; display: flex; gap: 0.15rem; }
+    .nav-links a { text-decoration: none; font-family: 'Josefin Sans', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; color: var(--text-soft); padding: 0.35rem 0.7rem; border-radius: 4px; transition: background 0.15s, color 0.15s; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--purple-bright); background: var(--purple-dim); outline: none; }
+    .nav-links a[aria-current="page"] { color: var(--purple-bright); }
+
+    /* Band system */
+    .band { position: relative; z-index: 1; }
+    .band-inner { max-width: 1140px; margin: 0 auto; padding: 5rem 2.5rem; }
+    .band-card { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    /* Page header */
+    .page-header-band { position: relative; z-index: 1; padding-top: 64px; }
+    .page-header-inner {
+      max-width: 1140px; margin: 0 auto; padding: 4rem 2.5rem 3rem;
+      border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 4rem; align-items: center;
+    }
+
+    .s-kicker { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Josefin Sans', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--purple-bright); margin-bottom: 0.6rem; }
+    .s-kicker::before { content: '✦'; font-size: 0.54rem; opacity: 0.7; }
+
+    h1 { font-family: 'Josefin Sans', sans-serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); line-height: 1.1; margin-bottom: 0.75rem; }
+    h1 .hl { color: var(--purple-bright); }
+
+    h2 { font-family: 'Josefin Sans', sans-serif; font-size: clamp(1.8rem, 2.8vw, 2.4rem); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); line-height: 1.2; margin-bottom: 0.85rem; }
+    h2 .hl { color: var(--purple-bright); }
+    h2 .hl-sage { color: var(--sage); }
+
+    .s-lead { font-size: 1rem; color: var(--text-soft); max-width: 580px; margin-bottom: 3rem; line-height: 1.8; }
+
+    /* Header photo */
+    .header-photo { flex-shrink: 0; }
+    .header-photo img {
+      width: 280px; height: 280px;
+      border-radius: var(--radius);
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--border);
+    }
+
+    /* Intro text */
+    .intro-text p { font-size: 1.05rem; color: var(--text-soft); line-height: 1.9; margin-bottom: 1.1rem; }
+    .intro-text p:last-child { margin-bottom: 0; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.65rem 1.4rem; font-family: 'Josefin Sans', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 100px; transition: transform 0.15s, background 0.15s, border-color 0.15s; }
+    .btn:focus-visible { outline: 3px solid var(--purple-bright); outline-offset: 3px; }
+    .btn-filled { background: var(--purple-mid); color: #0d0a14; border: 1.5px solid transparent; }
+    .btn-filled:hover { background: var(--purple-bright); transform: translateY(-1px); }
+    .btn-ghost { background: transparent; border: 1.5px solid var(--purple-border); color: var(--purple-bright); }
+    .btn-ghost:hover { background: var(--purple-dim); border-color: var(--purple-mid); transform: translateY(-1px); }
+
+    /* Values cards */
+    .research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; transition: border-color 0.2s, transform 0.2s; }
+    .card:hover { border-color: var(--purple-soft); transform: translateY(-2px); }
+    .card-kicker { font-family: 'Josefin Sans', sans-serif; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-mid); margin-bottom: 0.6rem; }
+    h3 { font-family: 'Josefin Sans', sans-serif; font-size: 1.08rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); line-height: 1.35; margin-bottom: 0.65rem; }
+    .card p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.8; margin-bottom: 0.6rem; }
+    .card p:last-child { margin-bottom: 0; }
+
+    /* Interests tags */
+    .interests-wrap { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .interest-tag {
+      font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.35rem 0.9rem; border-radius: 100px;
+      background: var(--sage-dim); border: 1px solid var(--sage-border); color: var(--sage);
+    }
+
+    /* CTA strip */
+    .cta-strip { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* Footer */
+    footer { position: relative; z-index: 1; background: var(--bg-card); border-top: 1px solid var(--border); padding: 3rem 2.5rem; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-brand { font-family: 'Josefin Sans', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); }
+    .footer-brand span { display: block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-bright); margin-top: 0.25rem; }
+    .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 0.2rem; }
+    .footer-links a { text-decoration: none; font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; color: var(--text-muted); padding: 0.25rem 0.6rem; border-radius: 4px; transition: color 0.15s, background 0.15s; }
+    .footer-links a:hover { color: var(--purple-bright); background: var(--purple-dim); }
+    .footer-copy { font-size: 0.72rem; color: var(--text-muted); }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links a { font-size: 0.72rem; padding: 0.3rem 0.5rem; }
+      .page-header-inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.25rem 2.5rem; }
+      .header-photo { order: -1; }
+      .header-photo img { width: 200px; height: 200px; }
+      .band-inner { padding: 4rem 1.25rem; }
+      .research-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav aria-label="Main navigation">
+  <a href="index.html" class="nav-brand" aria-label="Andrea Pellegrini – home">
+    <span class="nav-brand-name">Andrea Pellegrini</span>
+    <span class="nav-brand-sub">Educator · Researcher · Wizard</span>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" aria-current="page">About</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="art.html">Art</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="stars" aria-hidden="true"></div>
+
+<main id="main">
+
+  <div class="page-header-band">
+    <div class="page-header-inner">
+      <div class="intro-text">
+        <div class="s-kicker" aria-hidden="true">About</div>
+        <h1>Hi, I'm <span class="hl">Andrea.</span></h1>
+        <p>I have a lot of interests, and I like using them and my broad skill set to help others, whether through education, advocacy, or research.</p>
+        <p>As someone who values succinct, direct communication but is also a bit like a squirrel when it comes to experiences, interests, and identity, structuring an "about me" is genuinely difficult. So let's just focus on the basics.</p>
+      </div>
+      <div class="header-photo">
+        <img src="assets/andrea-about.jpg" alt="Andrea Pellegrini" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Professional -->
+  <div class="band" aria-labelledby="h-work">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">Work</div>
+      <h2 id="h-work">Professional <span class="hl">Background</span></h2>
+      <p class="s-lead">Practitioner, researcher, and educator.</p>
+
+      <div class="research-grid">
+        <div class="card">
+          <div class="card-kicker">Since 2010</div>
+          <h3>Financial Education</h3>
+          <p>I'm an Assistant Director in University Bursar and run the Student Money Management Center for the University of Illinois System. In that role I facilitate financial education in-person and online, and provide experiential learning opportunities for students in instructional design, assessment, marketing communications, and data analytics.</p>
+          <p>I like to use data to inform direction and strategy, which has led me to focus more on data analysis internships than the traditional peer mentoring model often associated with college financial wellness programs.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-kicker">PhD Candidate</div>
+          <h3>Educational Psychology</h3>
+          <p>My data-driven approach to practice is part of what pulled me toward research. I'm a PhD candidate in Educational Psychology at the University of Illinois Urbana-Champaign, with research interests in information visualizations, self-regulated learning, and user experience design in informal education for adults.</p>
+          <p>My background also includes an AA in Psychology from Richland Community College, a BS in Psychology, and an EdM in Human Resource Development from the University of Illinois Urbana-Champaign.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interests -->
+  <div class="band band-card" aria-labelledby="h-interests">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">Outside Work</div>
+      <h2 id="h-interests">Personal <span class="hl-sage">Interests</span></h2>
+      <p class="s-lead">Since interest is a precursor to engaging in informal learning, it only seems fair to share some of my own.</p>
+
+      <div class="interests-wrap" style="margin-bottom: 2.5rem;">
+        <span class="interest-tag">Studio Arts</span>
+        <span class="interest-tag">Videogames</span>
+        <span class="interest-tag">Psychology</span>
+        <span class="interest-tag">Animals &amp; Conservation</span>
+        <span class="interest-tag">Astronomy</span>
+        <span class="interest-tag">Medical History</span>
+        <span class="interest-tag">Travel</span>
+        <span class="interest-tag">Botany</span>
+      </div>
+
+      <p style="font-size:0.95rem; color:var(--text-soft); line-height:1.85; max-width:640px;">As an undergraduate I took studio arts courses across drawing, design, sculpture, ceramics, and photography, and that interest has never really left. It shapes how I think about visualizations and instructional design more than people might expect.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="band" aria-label="Next steps">
+    <div class="band-inner" style="padding-top:3.5rem; padding-bottom:3.5rem;">
+      <div class="cta-strip">
+        <a href="cv.html" class="btn btn-filled">View My CV</a>
+        <a href="research.html" class="btn btn-ghost">My Research</a>
+        <a href="projects.html" class="btn btn-ghost">Projects</a>
+        <a href="contact.html" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Andrea Pellegrini<span>Educator · Researcher · Wizard</span></div>
+    <ul class="footer-links" role="list">
+      <li><a href="about.html">About</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="art.html">Art</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#b0d1ded4c2d5d19ede9ec0d5dcdcd5d7c2d9ded9f0d7ddd1d9dc9ed3dfdd">Email</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Andrea Pellegrini · Champaig

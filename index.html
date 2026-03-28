@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrea Pellegrini — Educator, Researcher, Wizard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #0d0a14;
+      --bg-card:   #16112a;
+      --bg-lift:   #1d1635;
+      --purple-bright:  #c4b5fd;
+      --purple-mid:     #a78bfa;
+      --purple-soft:    #7c5cbf;
+      --purple-dim:     rgba(167,139,250,0.12);
+      --purple-border:  rgba(167,139,250,0.22);
+      --sage:       #86b89a;
+      --sage-dim:   rgba(134,184,154,0.1);
+      --sage-border:rgba(134,184,154,0.2);
+      --text:       #f0edf8;
+      --text-soft:  #c8c2dc;
+      --text-muted: #8a82a0;
+      --border:     rgba(196,181,253,0.16);
+      --radius: 6px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .stars::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1.2px 1.2px at  8% 12%, rgba(255,255,255,0.55) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 22%  5%, rgba(255,255,255,0.35) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 38% 22%, rgba(196,181,253,0.5)  0%, transparent 100%),
+        radial-gradient(1px   1px   at 51% 40%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 66%  8%, rgba(255,255,255,0.4)  0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 80% 28%, rgba(196,181,253,0.45) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 92% 15%, rgba(255,255,255,0.3)  0%, transparent 100%),
+        radial-gradient(1px   1px   at 14% 55%, rgba(255,255,255,0.3)  0%, transparent 100%),
+        radial-gradient(1px   1px   at 45% 68%, rgba(255,255,255,0.2)  0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 72% 62%, rgba(196,181,253,0.35) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 88% 75%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 30% 85%, rgba(255,255,255,0.3)  0%, transparent 100%),
+        radial-gradient(1px   1px   at 60% 90%, rgba(255,255,255,0.2)  0%, transparent 100%),
+        radial-gradient(1px   1px   at  5% 90%, rgba(196,181,253,0.25) 0%, transparent 100%);
+    }
+    .stars::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 75% 20%, rgba(124,92,191,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 20% 70%, rgba(134,184,154,0.05) 0%, transparent 70%);
+    }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--purple-mid);
+      color: var(--bg);
+      font-weight: 700;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      z-index: 9999;
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 200;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      background: rgba(13,10,20,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { text-decoration: none; line-height: 1.2; }
+    .nav-brand-name {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+      display: block;
+    }
+    .nav-brand-sub {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--purple-bright);
+      display: block;
+    }
+    .nav-links { list-style: none; display: flex; gap: 0.15rem; }
+    .nav-links a {
+      text-decoration: none;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text-soft);
+      padding: 0.35rem 0.7rem;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--purple-bright);
+      background: var(--purple-dim);
+      outline: none;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 2.5rem 4rem;
+    }
+    .hero-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 5rem;
+      align-items: center;
+    }
+    .hero-text { animation: fadeUp 0.7s ease both; }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--purple-bright);
+      margin-bottom: 1.25rem;
+    }
+    .hero-kicker::before { content: '✦'; font-size: 0.58rem; opacity: 0.7; }
+
+    h1 {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 1.4rem;
+    }
+    h1 .hl { color: var(--purple-bright); }
+
+    .hero-bio {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      max-width: 520px;
+      line-height: 1.85;
+      margin-bottom: 2rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.25rem; }
+    .tag {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.85rem;
+      border-radius: 100px;
+    }
+    .tag-purple { background: var(--purple-dim); border: 1px solid var(--purple-border); color: var(--purple-bright); }
+    .tag-sage   { background: var(--sage-dim);   border: 1px solid var(--sage-border);   color: var(--sage); }
+
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.7rem 1.5rem;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      border-radius: 100px;
+      transition: transform 0.15s, background 0.15s, border-color 0.15s;
+    }
+    .btn:focus-visible { outline: 3px solid var(--purple-bright); outline-offset: 3px; }
+    .btn-filled { background: var(--purple-mid); color: #0d0a14; border: 1.5px solid transparent; }
+    .btn-filled:hover { background: var(--purple-bright); transform: translateY(-1px); }
+    .btn-ghost  { background: transparent; border: 1.5px solid var(--purple-border); color: var(--purple-bright); }
+    .btn-ghost:hover  { background: var(--purple-dim); border-color: var(--purple-mid); transform: translateY(-1px); }
+    .btn-sage   { background: transparent; border: 1.5px solid var(--sage-border); color: var(--sage); }
+    .btn-sage:hover   { background: var(--sage-dim); border-color: var(--sage); transform: translateY(-1px); }
+
+    /* Photo */
+    .hero-photo-wrap { animation: fadeUp 0.7s 0.12s ease both; flex-shrink: 0; }
+    .photo-ring { position: relative; width: 320px; height: 320px; }
+    .photo-ring::before {
+      content: '';
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(196,181,253,0.28);
+      animation: spin 25s linear infinite;
+    }
+    .photo-ring::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 110deg,
+        var(--purple-soft) 0deg 70deg,
+        transparent 70deg 190deg,
+        var(--sage) 190deg 230deg,
+        transparent 230deg 360deg
+      );
+      opacity: 0.45;
+      mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #fff 0);
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #fff 0);
+    }
+    .photo-ring img {
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      border: 3px solid var(--bg-lift);
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Bands */
+    .band { position: relative; z-index: 1; }
+    .band-inner { max-width: 1140px; margin: 0 auto; padding: 5rem 2.5rem; }
+
+    .stats-band { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; text-align: center; max-width: 620px; margin: 0 auto; }
+    .stat-num {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--purple-bright);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* Section header */
+    .s-kicker {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Josefin Sans', sans-serif; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--purple-bright);
+      margin-bottom: 0.6rem;
+    }
+    .s-kicker::before { content: '✦'; font-size: 0.54rem; opacity: 0.7; }
+
+    h2 {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+      font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text); line-height: 1.2; margin-bottom: 0.85rem;
+    }
+    h2 .hl { color: var(--purple-bright); }
+    h2 .hl-sage { color: var(--sage); }
+
+    .s-lead { font-size: 1rem; color: var(--text-soft); max-width: 580px; margin-bottom: 3rem; line-height: 1.8; }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover { border-color: var(--purple-soft); transform: translateY(-2px); }
+    .card.featured {
+      grid-column: 1/-1;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem;
+      background: linear-gradient(135deg, var(--bg-card), var(--bg-lift));
+      border-color: rgba(167,139,250,0.3); padding: 2.25rem;
+    }
+    .card-kicker {
+      font-family: 'Josefin Sans', sans-serif; font-size: 0.64rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-mid); margin-bottom: 0.6rem;
+    }
+    h3 {
+      font-family: 'Josefin Sans', sans-serif; font-size: 1.08rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--text); line-height: 1.35; margin-bottom: 0.65rem;
+    }
+    .card p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.8; margin-bottom: 0.6rem; }
+
+    .card-link {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-family: 'Josefin Sans', sans-serif; font-size: 0.78rem; font-weight: 700;
+      color: var(--purple-bright); text-decoration: none; margin-top: 0.5rem;
+      transition: gap 0.15s;
+    }
+    .card-link:hover { gap: 0.6rem; }
+    .card-link:focus-visible { outline: 2px solid var(--purple-bright); border-radius: 2px; }
+    .card-link::after { content: '→'; }
+
+    .dis-meta { display: flex; flex-direction: column; gap: 1.1rem; padding-top: 0.25rem; }
+    .dis-meta dt { font-family: 'Josefin Sans', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .dis-meta dd { font-size: 0.88rem; color: var(--text-soft); line-height: 1.65; }
+    .dis-meta dd strong { color: var(--text); font-weight: 600; }
+
+    .research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+
+    /* Projects */
+    .projects-band { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+    .proj-card {
+      background: var(--bg); border: 1px solid var(--sage-border);
+      border-radius: var(--radius); padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .proj-card:hover { border-color: var(--sage); transform: translateY(-2px); }
+    .proj-icon { font-size: 1.6rem; margin-bottom: 0.85rem; display: block; line-height: 1; }
+    .proj-card .card-kicker { color: var(--sage); }
+    .proj-card h3 { font-size: 1rem; }
+    .proj-card p { font-size: 0.85rem; }
+    .proj-card .card-link { color: var(--sage); }
+    .proj-card .card-link:focus-visible { outline-color: var(--sage); }
+
+    /* Art */
+    .art-band { border-top: 1px solid var(--border); }
+    .art-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .art-text p { font-size: 0.95rem; color: var(--text-soft); line-height: 1.8; margin-bottom: 1.5rem; }
+    .art-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .art-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .art-swatch {
+      aspect-ratio: 1; border-radius: var(--radius);
+      background: var(--bg-lift); border: 1px solid var(--sage-border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
+      transition: border-color 0.2s;
+    }
+    .art-swatch:hover { border-color: var(--sage); }
+
+    /* Footer */
+    footer { position: relative; z-index: 1; background: var(--bg-card); border-top: 1px solid var(--border); padding: 3rem 2.5rem; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-brand { font-family: 'Josefin Sans', sans-serif; font-weight: 800; font-size: 1rem; color: var(--text); }
+    .footer-brand span { display: block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-bright); margin-top: 0.25rem; }
+    .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 0.2rem; }
+    .footer-links a { text-decoration: none; font-family: 'Josefin Sans', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); padding: 0.25rem 0.6rem; border-radius: 4px; transition: color 0.15s, background 0.15s; }
+    .footer-links a:hover { color: var(--purple-bright); background: var(--purple-dim); }
+    .footer-copy { font-size: 0.72rem; color: var(--text-muted); }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links a { font-size: 0.72rem; padding: 0.3rem 0.5rem; }
+      .hero { padding: 80px 1.25rem 3rem; }
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-photo-wrap { order: -1; display: flex; justify-content: center; }
+      .photo-ring, .photo-ring img { width: 240px; height: 240px; }
+      .hero-text { text-align: center; }
+      .hero-tags, .hero-ctas { justify-content: center; }
+      .hero-bio { margin: 0 auto 2rem; }
+      .band-inner { padding: 4rem 1.25rem; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .research-grid { grid-template-columns: 1fr; }
+      .card.featured { grid-template-columns: 1fr; gap: 2rem; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .art-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav aria-label="Main navigation">
+  <a href="index.html" class="nav-brand" aria-label="Andrea Pellegrini – home">
+    <span class="nav-brand-name">Andrea Pellegrini</span>
+    <span class="nav-brand-sub">Educator · Researcher · Wizard</span>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html" aria-current="page">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="art.html">Art</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="stars" aria-hidden="true"></div>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-kicker" aria-hidden="true">andreapellegrini.info</div>
+        <h1 id="hero-h">Hello, I'm<br><span class="hl">Andrea Pellegrini.</span></h1>
+        <p class="hero-bio">I have a lot of interests, and I like using them and my broad skill set to help others — be that through education, advocacy, or research. Financial educator, researcher, and PhD candidate at the University of Illinois Urbana-Champaign.</p>
+        <div class="hero-tags" role="list" aria-label="Areas of focus">
+          <span class="tag tag-purple" role="listitem">Higher Education</span>
+          <span class="tag tag-purple" role="listitem">Educational Psychology</span>
+          <span class="tag tag-purple" role="listitem">PhD Candidate</span>
+          <span class="tag tag-sage" role="listitem">Financial Literacy</span>
+          <span class="tag tag-sage" role="listitem">Instructional Design</span>
+          <span class="tag tag-sage" role="listitem">Data Visualization</span>
+        </div>
+        <div class="hero-ctas">
+          <a href="cv.html" class="btn btn-filled">View My CV</a>
+          <a href="research.html" class="btn btn-ghost">My Research</a>
+          <a href="projects.html" class="btn btn-ghost">Projects</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <div class="photo-ring">
+          <img src="assets/andrea-pellegrini.jpg" alt="Andrea Pellegrini, educator and researcher" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="band stats-band">
+    <div class="band-inner" style="padding-top:3.5rem;padding-bottom:3.5rem;">
+      <div class="stats-grid">
+        <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Years in Higher Ed</div></div>
+        <div class="stat"><div class="stat-num">150+</div><div class="stat-label">Webinars Coordinated</div></div>
+        <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Podcast Episodes</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Research -->
+  <div class="band" aria-labelledby="research-h">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">Research</div>
+      <h2 id="research-h">PhD Work &amp; <span class="hl">Dissertation</span></h2>
+      <p class="s-lead">My research connects cognitive science, visual media, and adult financial education — specifically how people learn and self-regulate when visuals are part of the experience.</p>
+
+      <div class="research-grid">
+        <div class="card featured">
+          <div>
+            <div class="card-kicker">Dissertation · Expected May 2026</div>
+            <h3>Goal Framing &amp; Visualizations' Influence on Self-Regulated Learning of Compound Interest: An Explanatory Mixed Methods Study</h3>
+            <p>Although I work full-time, I have been pursuing a PhD at the University of Illinois Urbana-Champaign. My research explores how visual media — such as data visualizations, visual metaphors, and user-interface design elements — affect self-regulated learning and related constructs in adult financial education.</p>
+            <p>For my dissertation, I used an explanatory mixed-methods design to investigate the use of data visualizations in learning compound interest, employing an LLM to interview participants about their experiences.</p>
+            <a href="research.html" class="card-link">Read more about my research</a>
+          </div>
+          <dl class="dis-meta">
+            <div><dt>Institution</dt><dd><strong>University of Illinois Urbana-Champaign</strong></dd></div>
+            <div><dt>Program</dt><dd>PhD, Educational Psychology<br><em>Cognitive Science of Teaching &amp; Learning</em></dd></div>
+            <div><dt>Advisors</dt><dd>Dr. H Chad Lane &amp; Dr. Robb Lindgren</dd></div>
+            <div><dt>Research Interests</dt><dd>Financial literacy · Cognitive science in financial education · Visualizations for self-regulated learning · Instructional design &amp; UX</dd></div>
+            <div><a href="cv.html#publications" class="card-link">View publications</a></div>
+          </dl>
+        </div>
+
+        <div class="card">
+          <div class="card-kicker">Publications</div>
+          <h3>Recent Work</h3>
+          <p>Most recent: <em>Making financial education accessible through cross-sector partnership: A podcast case study</em> — AFCPE Symposium, 2025, co-authored with K. Beckler.</p>
+          <a href="cv.html#publications" class="card-link">Full publications list</a>
+        </div>
+
+        <div class="card">
+          <div class="card-kicker">Presentations</div>
+          <h3>Conference &amp; Invited Speaker</h3>
+          <p>Presented at AFCPE, NACUBO, National Summit on Collegiate Financial Wellness, Higher Education Financial Wellness Summit, and other national venues since 2012.</p>
+          <a href="cv.html#presentations" class="card-link">Full presentations list</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projects -->
+  <div class="band projects-band" aria-labelledby="projects-h">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">Projects</div>
+      <h2 id="projects-h">Ongoing <span class="hl">Work</span></h2>
+      <p class="s-lead">Educational outreach, interactive tools, and applied research spanning financial wellness, higher education, and technology.</p>
+
+      <div class="projects-grid">
+        <div class="proj-card">
+          <span class="proj-icon" aria-hidden="true">🎙️</span>
+          <div class="card-kicker">Podcast · 2020–Present</div>
+          <h3>Making Cents of Money</h3>
+          <p>Co-host of a 100+ episode podcast produced in partnership with the Illinois Department of Financial &amp; Professional Regulation and the University of Illinois System.</p>
+          <a href="projects.html#podcast" class="card-link">Learn more</a>
+        </div>
+        <div class="proj-card">
+          <span class="proj-icon" aria-hidden="true">📡</span>
+          <div class="card-kicker">Webinar Series · 2013–Present</div>
+          <h3>Get Savvy: Grow Your Green Stuff</h3>
+          <p>Statewide webinar series for financial educators across Illinois — free, public, and updated with new topics each academic year.</p>
+          <a href="projects.html#webinar" class="card-link">Learn more</a>
+        </div>
+        <div class="proj-card">
+          <span class="proj-icon" aria-hidden="true">🏦</span>
+          <div class="card-kicker">Interactive Tool</div>
+          <h3>Compound Interest Calculator</h3>
+          <p>An interactive visualization tool designed to make compound interest intuitive — informed by my dissertation research on visual media in financial education.</p>
+          <a href="projects.html#calculator" class="card-link">Try the tool</a>
+        </div>
+        <div class="proj-card">
+          <span class="proj-icon" aria-hidden="true">✅</span>
+          <div class="card-kicker">Interactive Tool</div>
+          <h3>Financial Wellness Checkup</h3>
+          <p>A guided self-assessment to help users evaluate and reflect on their financial health across multiple dimensions.</p>
+          <a href="projects.html#checkup" class="card-link">Try the tool</a>
+        </div>
+        <div class="proj-card">
+          <span class="proj-icon" aria-hidden="true">🎓</span>
+          <div class="card-kicker">Interactive Tool</div>
+          <h3>Student Loan Repayment Wizard</h3>
+          <p>A step-by-step wizard to help students navigate repayment options, built on years of student loan education and research.</p>
+          <a href="projects.html#loan-wizard" class="card-link">Try the tool</a>
+        </div>
+        <div class="proj-card">
+          <span class="proj-icon" aria-hidden="true">🏅</span>
+          <div class="card-kicker">Program · 2014–Present</div>
+          <h3>Financial Literacy Badges</h3>
+          <p>Creator and manager of the University of Illinois Financial Literacy Badges Program — over 20,000 participants internationally through gamified financial education.</p>
+          <a href="projects.html#badges" class="card-link">Learn more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Art -->
+  <div class="band art-band" aria-labelledby="art-h">
+    <div class="band-inner">
+      <div class="art-inner">
+        <div class="art-text">
+          <div class="s-kicker" aria-hidden="true">Art</div>
+          <h2 id="art-h">A Creative <span class="hl-sage">Side</span></h2>
+          <p>Alongside my work in education and research, I make art. You can find prints and products from my work through my Redbubble shop.</p>
+          <div class="art-ctas">
+            <a href="art.html" class="btn btn-ghost">View Gallery</a>
+            <a href="https://www.redbubble.com" target="_blank" rel="noopener noreferrer" class="btn btn-sage">Shop on Redbubble ↗</a>
+          </div>
+        </div>
+        <div class="art-gallery" aria-label="Art preview thumbnails">
+          <div class="art-swatch">Artwork 1</div>
+          <div class="art-swatch">Artwork 2</div>
+          <div class="art-swatch">Artwork 3</div>
+          <div class="art-swatch">Artwork 4</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      Andrea Pellegrini
+      <span>Educator · Researcher · Wizard</span>
+    </div>
+    <ul class="footer-links" role="list">
+      <li><a href="about.html">About</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="art.html">Art</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#a6c7d6c3cacac3c195e6cfcacacfc8c9cfd588c3c2d3">Email</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Andrea Pellegrini · Champaign, Illin
