@@ -102,15 +102,14 @@
     .art-intro p:last-child { margin-bottom: 0; }
     .art-ctas { display: flex; flex-direction: column; gap: 0.75rem; flex-shrink: 0; }
 
-    /* Gallery grid - CSS grid for left-to-right flow */
+    /* Gallery grid - columns for natural masonry sizing */
     .art-gallery {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      align-items: start;
+      columns: 4;
+      column-gap: 1rem;
     }
     .art-swatch {
       break-inside: avoid;
+      margin-bottom: 1rem;
       border-radius: var(--radius);
       background: var(--bg-lift);
       border: 1px solid var(--sage-border);
@@ -176,16 +175,16 @@
       .band-inner { padding: 4rem 1.25rem; }
       .art-intro { grid-template-columns: 1fr; gap: 2rem; }
       .art-ctas { flex-direction: row; flex-wrap: wrap; }
-      .art-gallery { grid-template-columns: repeat(2, 1fr); }
+      .art-gallery { columns: 2; }
       .cara-inner { grid-template-columns: 1fr; gap: 2rem; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .art-gallery { grid-template-columns: repeat(2, 1fr); }
+      .art-gallery { columns: 2; }
     }
     @media (max-width: 380px) {
-      .art-gallery { grid-template-columns: 1fr; }
+      .art-gallery { columns: 1; }
     }
 
     /* ── Hamburger nav ── */
