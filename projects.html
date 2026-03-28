@@ -201,16 +201,90 @@
     /* ── Responsive ── */
     @media (max-width: 960px) {
       nav { padding: 0 1.25rem; }
-      .nav-links a { font-size: 0.72rem; padding: 0.3rem 0.5rem; }
       .page-header-inner { padding: 3rem 1.25rem 2.5rem; }
       .band-inner { padding: 4rem 1.25rem; }
       .research-grid { grid-template-columns: 1fr; }
       .card.featured { grid-template-columns: 1fr; gap: 2rem; }
       .projects-grid { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
       .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Hamburger nav ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .nav-hamburger:hover { background: var(--purple-dim); }
+    .nav-hamburger:focus-visible { outline: 3px solid var(--purple-bright); outline-offset: 3px; }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text-soft);
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(13,10,20,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 199;
+      padding: 1rem 1.25rem 1.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      padding: 0.65rem 0.75rem;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .mobile-menu a:hover,
+    .mobile-menu a:focus-visible { color: var(--purple-bright); background: var(--purple-dim); outline: none; }
+    .mobile-menu a[aria-current="page"] { color: var(--purple-bright); }
+
+    /* ── Mobile font & spacing fixes ── */
+    @media (max-width: 480px) {
+      body { font-size: 0.95rem; }
+      h1 { font-size: 1.8rem !important; }
+      h2 { font-size: 1.4rem !important; }
+      h3 { font-size: 0.95rem !important; }
+      .s-lead { font-size: 0.92rem; }
+      .hero-bio { font-size: 0.95rem; }
+      .band-inner { padding: 3rem 1rem; }
+      .card { padding: 1.25rem; }
+      .proj-card { padding: 1.1rem; }
+      .stat-num { font-size: 2rem; }
+      .cv-content { padding: 1.5rem 1rem 3rem; }
+      .page-header-inner { padding: 2rem 1rem 2rem; }
     }
   </style>
 </head>
@@ -264,7 +338,7 @@
             <p>For my dissertation, I used an explanatory mixed-methods design to investigate data visualizations in learning compound interest, with an LLM conducting follow-up participant interviews.</p>
             <div class="card-ctas">
               <!-- Replace # with your actual defense watch link -->
-              <a href="#" class="btn btn-filled">Watch My Defense on April 3 ↗</a>
+              <a href="https://uofi.box.com/s/5d9pftwjpzy2mbttetm42johzaoz35ir" target="_blank" rel="noopener noreferrer" class="btn btn-filled">Add to Calendar — April 3 ↗</a>
             </div>
           </div>
           <dl class="dis-meta">
@@ -290,7 +364,7 @@
       <p class="s-lead">Long-running programs bringing financial education to students, educators, and the public across Illinois and beyond.</p>
 
       <div class="research-grid">
-        <div class="card">
+        <div class="card" id="webinar">
           <div class="card-kicker">Webinar Series · 2013–Present</div>
           <h3>Get Savvy: Grow Your Green Stuff</h3>
           <p>A free, public statewide webinar series coordinated with financial educators across Illinois, updated each academic year. Live sessions held Wednesdays at 12:00 PM CT via Zoom, with recordings available on YouTube.</p>
@@ -300,7 +374,7 @@
           <a href="https://www.youtube.com/ILStudentMoney" target="_blank" rel="noopener noreferrer" class="card-link">Watch recordings on YouTube</a>
         </div>
 
-        <div class="card">
+        <div class="card" id="podcast">
           <div class="card-kicker">Podcast · 2020–Present</div>
           <h3>Making Cents of Money</h3>
           <p>Co-host of over 100 episodes of the Making Cents of Money podcast, produced through a partnership between the Illinois Department of Financial &amp; Professional Regulation and the University of Illinois System. Covers financial topics relevant to Illinois consumers.</p>
@@ -342,6 +416,14 @@
           <h3>Student Loan Repayment Wizard</h3>
           <p>A step-by-step wizard to help students and borrowers navigate repayment options, forgiveness programs, and refinancing decisions, built on years of student loan education research.</p>
           <a href="https://apelleg3.github.io/Federal_Loan_Repayment_Guide/" target="_blank" rel="noopener noreferrer" class="card-link">Launch the wizard</a>
+        </div>
+
+        <div class="proj-card" id="badges">
+          <span class="proj-icon" aria-hidden="true">🏅</span>
+          <div class="card-kicker">Program · 2014–Present</div>
+          <h3>Financial Literacy Badges</h3>
+          <p>Creator and manager of the University of Illinois Financial Literacy Badges Program, connecting over 20,000 participants internationally through gamified financial education.</p>
+          <a href="https://www.studentmoney.uillinois.edu/badges" target="_blank" rel="noopener noreferrer" class="card-link">Learn more</a>
         </div>
       </div>
     </div>
