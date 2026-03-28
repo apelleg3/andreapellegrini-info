@@ -178,14 +178,7 @@
       .art-gallery { columns: 2; }
       .cara-inner { grid-template-columns: 1fr; gap: 2rem; }
     }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-      .art-gallery { columns: 2; }
-    }
-    @media (max-width: 380px) {
-      .art-gallery { columns: 1; }
-    }
+    
 
     /* ── Hamburger nav ── */
     .nav-hamburger {
@@ -229,6 +222,15 @@
       gap: 0.25rem;
     }
     .mobile-menu.open { display: flex; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .art-gallery { columns: 2; }
+    }
+    @media (max-width: 380px) {
+      .art-gallery { columns: 1; }
+    }
     .mobile-menu a {
       text-decoration: none;
       font-family: 'Josefin Sans', sans-serif;
@@ -281,7 +283,20 @@
     <li><a href="art.html" aria-current="page">Art</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="cv.html">CV</a>
+  <a href="research.html">Research</a>
+  <a href="projects.html">Projects</a>
+  <a href="blog.html">Blog</a>
+  <a href="art.html" aria-current="page">Art</a>
+  <a href="contact.html">Contact</a>
+</div>
 
 <div class="stars" aria-hidden="true"></div>
 

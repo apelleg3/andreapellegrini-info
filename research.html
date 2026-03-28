@@ -71,6 +71,37 @@
 
     @media (max-width: 960px) { nav { padding: 0 1.25rem; } .nav-links a { font-size: 0.72rem; padding: 0.3rem 0.5rem; } }
     @media (max-width: 600px) { .nav-links { display: none; } }
+    .mobile-menu a {
+      text-decoration: none;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      padding: 0.65rem 0.75rem;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .mobile-menu a:hover,
+    .mobile-menu a:focus-visible { color: var(--purple-bright); background: var(--purple-dim); outline: none; }
+    .mobile-menu a[aria-current="page"] { color: var(--purple-bright); }
+
+    /* ── Mobile font & spacing fixes ── */
+    @media (max-width: 480px) {
+      body { font-size: 0.95rem; }
+      h1 { font-size: 1.8rem !important; }
+      h2 { font-size: 1.4rem !important; }
+      h3 { font-size: 0.95rem !important; }
+      .s-lead { font-size: 0.92rem; }
+      .hero-bio { font-size: 0.95rem; }
+      .band-inner { padding: 3rem 1rem; }
+      .card { padding: 1.25rem; }
+      .proj-card { padding: 1.1rem; }
+      .stat-num { font-size: 2rem; }
+      .cv-content { padding: 1.5rem 1rem 3rem; }
+      .page-header-inner { padding: 2rem 1rem 2rem; }
+    }
   </style>
 </head>
 <body>
@@ -90,7 +121,20 @@
     <li><a href="art.html">Art</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="cv.html">CV</a>
+  <a href="research.html" aria-current="page">Research</a>
+  <a href="projects.html">Projects</a>
+  <a href="blog.html">Blog</a>
+  <a href="art.html">Art</a>
+  <a href="contact.html">Contact</a>
+</div>
 
 <div class="stars" aria-hidden="true"></div>
 
@@ -115,11 +159,6 @@
       <li><a href="blog.html">Blog</a></li>
       <li><a href="art.html">Art</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="mailto:andrea.n.pellegrini@gmail.com">Email</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#5e3f303a2c3b3f7030702e3b32323b392c3730371e39333f3732703d3133">Email</a></li>
     </ul>
-    <p class="footer-copy">© 2025 Andrea Pellegrini · Champaign, Illinois</p>
-  </div>
-</footer>
-
-</body>
-</html>
+    <p class="footer-copy">© 2025 Andrea Pellegrini · Champai

@@ -71,49 +71,6 @@
 
     @media (max-width: 960px) { nav { padding: 0 1.25rem; } .nav-links a { font-size: 0.72rem; padding: 0.3rem 0.5rem; } }
     @media (max-width: 600px) { .nav-links { display: none; } }
-
-    /* ── Hamburger nav ── */
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.4rem;
-      border-radius: 4px;
-      transition: background 0.15s;
-    }
-    .nav-hamburger:hover { background: var(--purple-dim); }
-    .nav-hamburger:focus-visible { outline: 3px solid var(--purple-bright); outline-offset: 3px; }
-    .nav-hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--text-soft);
-      border-radius: 2px;
-      transition: transform 0.2s, opacity 0.2s;
-    }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 64px;
-      left: 0;
-      right: 0;
-      background: rgba(13,10,20,0.97);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      z-index: 199;
-      padding: 1rem 1.25rem 1.5rem;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-    .mobile-menu.open { display: flex; }
     .mobile-menu a {
       text-decoration: none;
       font-family: 'Josefin Sans', sans-serif;
@@ -250,7 +207,20 @@
     <li><a href="art.html">Art</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="cv.html">CV</a>
+  <a href="research.html">Research</a>
+  <a href="projects.html">Projects</a>
+  <a href="blog.html">Blog</a>
+  <a href="art.html">Art</a>
+  <a href="contact.html" aria-current="page">Contact</a>
+</div>
 
 <div class="stars" aria-hidden="true"></div>
 
@@ -262,7 +232,7 @@
       <h1>Get in <span class="hl">Touch</span></h1>
       <p class="s-lead">The best way to reach me is by email. You can also find me across a few platforms depending on what brings you here.</p>
 
-      <a href="mailto:apelleg3@illinois.edu" class="email-link" aria-label="Email Andrea Pellegrini">apelleg3@illinois.edu</a>
+      <a href="/cdn-cgi/l/email-protection#2a4b5a4f46464f4d196a4346464344454359044f4e5f" class="email-link" aria-label="Email Andrea Pellegrini"><span class="__cf_email__" data-cfemail="0e6f7e6b62626b693d4e676262676061677d206b6a7b">[email&#160;protected]</span></a>
 
       <div class="socials-grid">
         <div class="social-group">
@@ -314,6 +284,4 @@
       <li><a href="blog.html">Blog</a></li>
       <li><a href="art.html">Art</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="/cdn-cgi/l/email-protection#6b0a050f190e0a4505451b0e07070e0c190205022b0c060a020745080406">Email</a></li>
-    </ul>
-    <p class="footer-copy">© 2025 Andrea Pellegrini · Champai
+      <li><a href="/cdn-cgi/l/email-protection#6b0a050f190
