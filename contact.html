@@ -145,6 +145,92 @@
       .cv-content { padding: 1.5rem 1rem 3rem; }
       .page-header-inner { padding: 2rem 1rem 2rem; }
     }
+
+    /* ── Contact page ── */
+    .band { position: relative; z-index: 1; }
+    .band-inner { max-width: 1140px; margin: 0 auto; padding: 5rem 2.5rem; }
+    .page-kicker { font-family: "Josefin Sans", sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--purple-bright); display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; }
+    .page-kicker::before { content: "✦"; font-size: 0.54rem; opacity: 0.7; }
+    h1 { font-family: "Josefin Sans", sans-serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); line-height: 1.1; margin-bottom: 0.75rem; }
+    h1 .hl { color: var(--purple-bright); }
+    .s-lead { font-size: 1rem; color: var(--text-soft); max-width: 540px; margin-bottom: 2rem; line-height: 1.8; }
+
+    .email-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: "Josefin Sans", sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--purple-bright);
+      text-decoration: none;
+      border-bottom: 1px solid var(--purple-border);
+      padding-bottom: 0.1rem;
+      margin-bottom: 3rem;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .email-link:hover { color: var(--text); border-color: var(--text); }
+
+    .socials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 700px; }
+
+    .group-label {
+      font-family: "Josefin Sans", sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .social-group { display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .social-card {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.85rem 1.1rem;
+      text-decoration: none;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .social-card:hover { border-color: var(--purple-soft); transform: translateY(-1px); }
+    .social-card:focus-visible { outline: 3px solid var(--purple-bright); outline-offset: 3px; }
+    .social-card.sage:hover { border-color: var(--sage); }
+
+    .social-icon {
+      font-family: "Josefin Sans", sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--purple-mid);
+      width: 1.5rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .social-card.sage .social-icon { color: var(--sage); }
+
+    .social-name {
+      font-family: "Josefin Sans", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+      flex-shrink: 0;
+    }
+    .social-handle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-left: auto;
+    }
+
+    @media (max-width: 600px) {
+      .socials-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .band-inner { padding: 3rem 1.25rem; }
+    }
   </style>
 </head>
 <body>
@@ -168,13 +254,52 @@
 
 <div class="stars" aria-hidden="true"></div>
 
-<main>
-  <div class="construction-inner">
-    <span class="construction-icon" aria-hidden="true">🔭</span>
-    <div class="page-kicker" aria-hidden="true">Contact</div>
-    <h1><span class="hl">Contact</span></h1>
-    <p class="construction-desc">Get in touch for collaborations, speaking engagements, or just to say hello.</p>
-    <span class="construction-badge">Under Construction</span>
+<main id="main">
+  <div class="band" style="position:relative; z-index:1; width:100%;">
+    <div class="band-inner">
+
+      <div class="page-kicker" aria-hidden="true">Contact</div>
+      <h1>Get in <span class="hl">Touch</span></h1>
+      <p class="s-lead">The best way to reach me is by email. You can also find me across a few platforms depending on what brings you here.</p>
+
+      <a href="mailto:apelleg3@illinois.edu" class="email-link" aria-label="Email Andrea Pellegrini">apelleg3@illinois.edu</a>
+
+      <div class="socials-grid">
+        <div class="social-group">
+          <div class="group-label">Professional</div>
+          <a href="https://www.linkedin.com/in/andreapellegrini/" target="_blank" rel="noopener noreferrer" class="social-card">
+            <span class="social-icon" aria-hidden="true">in</span>
+            <span class="social-name">LinkedIn</span>
+            <span class="social-handle">andreapellegrini</span>
+          </a>
+          <a href="https://x.com/apelleg3" target="_blank" rel="noopener noreferrer" class="social-card">
+            <span class="social-icon" aria-hidden="true">𝕏</span>
+            <span class="social-name">X</span>
+            <span class="social-handle">@apelleg3</span>
+          </a>
+          <a href="https://bsky.app/profile/apellegrini.bsky.social" target="_blank" rel="noopener noreferrer" class="social-card">
+            <span class="social-icon" aria-hidden="true">🦋</span>
+            <span class="social-name">Bluesky</span>
+            <span class="social-handle">apellegrini.bsky.social</span>
+          </a>
+        </div>
+
+        <div class="social-group">
+          <div class="group-label">Art</div>
+          <a href="http://instagram.com/sillylittletpot" target="_blank" rel="noopener noreferrer" class="social-card sage">
+            <span class="social-icon" aria-hidden="true">◻</span>
+            <span class="social-name">Instagram</span>
+            <span class="social-handle">@sillylittletpot</span>
+          </a>
+          <a href="https://bsky.app/profile/sillylittletpot.bsky.social" target="_blank" rel="noopener noreferrer" class="social-card sage">
+            <span class="social-icon" aria-hidden="true">🦋</span>
+            <span class="social-name">Bluesky</span>
+            <span class="social-handle">sillylittletpot.bsky.social</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
   </div>
 </main>
 
