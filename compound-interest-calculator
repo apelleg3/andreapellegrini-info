@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Compound Interest Calculator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #13294b;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(19, 41, 75, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #13294b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .header p {
+            margin: 8px 0 0 0;
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .input-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #E8E9EA;
+            border-radius: 8px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .input-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #13294b;
+            font-size: 0.95rem;
+        }
+        
+        .input-group input, .input-group select {
+            padding: 12px;
+            border: 2px solid #A5A8AA;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: white;
+        }
+        
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #0455A4;
+            box-shadow: 0 0 0 3px rgba(4, 85, 164, 0.1);
+        }
+        
+        .input-group small {
+            margin-top: 4px;
+            color: #666;
+            font-size: 0.85rem;
+        }
+        
+        .calculate-btn {
+            grid-column: 1 / -1;
+            padding: 15px 30px;
+            background: #0455A4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .calculate-btn:hover {
+            background: #1F4096;
+        }
+        
+        .chart-container {
+            margin: 30px 0;
+            position: relative;
+            height: 500px;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #E8E9EA;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .summary-card {
+            background: #E8E9EA;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .summary-card h3 {
+            margin: 0 0 10px 0;
+            color: #13294b;
+            font-size: 1rem;
+        }
+        
+        .summary-card .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0455A4;
+        }
+        
+        .milestone-box {
+            background: linear-gradient(135deg, #bfd46d, rgba(191, 212, 109, 0.8));
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            color: #13294b;
+            border-left: 4px solid #0455A4;
+        }
+        
+        .milestone-box h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.1rem;
+        }
+        
+        .milestone-box p {
+            margin: 0 0 10px 0;
+            font-weight: 500;
+        }
+        
+        .milestone-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            display: none;
+            font-size: 0.95rem;
+        }
+        
+        .data-table.visible {
+            display: table;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 12px;
+            text-align: right;
+            border-bottom: 1px solid #E8E9EA;
+        }
+        
+        .data-table th {
+            background: #13294b;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .toggle-btn {
+            padding: 10px 20px;
+            background: #6fafc7;
+            color: #13294b;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .toggle-btn:hover {
+            background: #0d605e;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Enhanced Compound Interest Calculator</h1>
+            <p>Visualize savings growth and debt payoff progress over time</p>
+        </div>
+        
+        <div class="content">
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="calculatorMode">Calculator Mode</label>
+                    <select id="calculatorMode">
+                        <option value="growth">Savings Growth</option>
+                        <option value="payoff">Debt Payoff</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="principal">Initial Amount ($)</label>
+                    <input type="number" id="principal" value="10000" min="0" step="100">
+                    <small id="principalHelp">Starting amount already saved.</small>
+                </div>
+                
+                <div class="input-group">
+                    <label for="monthlyContribution">Monthly Contribution ($)</label>
+                    <input type="number" id="monthlyContribution" value="500" min="0" step="50">
+                    <small id="contributionHelp">Amount you plan to save each month.</small>
+                </div>
+                
+                <div class="input-group">
+                    <label for="interestRate">Annual Interest Rate (%)</label>
+                    <input type="number" id="interestRate" value="7" min="0" max="30" step="0.1">
+                </div>
+                
+                <div class="input-group">
+                    <label for="years" id="yearsLabel">Time Period (Years)</label>
+                    <input type="number" id="years" value="20" min="1" max="50" step="1">
+                    <small id="yearsHelp">How long you plan to save and invest.</small>
+                </div>
+                
+                <div class="input-group">
+                    <label for="compoundFreq">Compounding Frequency</label>
+                    <select id="compoundFreq">
+                        <option value="365">Daily</option>
+                        <option value="12">Monthly</option>
+                        <option value="4">Quarterly</option>
+                        <option value="1" selected>Annually</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="stopContributionsAfter">Stop Contributions After (Years)</label>
+                    <input type="number" id="stopContributionsAfter" value="" min="0" max="50" step="1" placeholder="Optional">
+                </div>
+                
+                <div class="input-group">
+                    <label for="targetAmount">Target Amount ($)</label>
+                    <input type="number" id="targetAmount" value="" min="0" step="1000" placeholder="Optional goal">
+                </div>
+                
+                <button class="calculate-btn" onclick="calculateAndVisualize()">Calculate & Visualize</button>
+            </div>
+            
+            <div class="legend" id="legendContainer"></div>
+            
+            <div class="chart-container">
+                <canvas id="compoundChart"></canvas>
+            </div>
+            
+            <div class="milestone-box" id="milestoneBox"></div>
+            
+            <div class="summary" id="summary"></div>
+            
+            <button class="toggle-btn" onclick="toggleTable()">Toggle Data Table</button>
+            
+            <table class="data-table" id="dataTable">
+                <thead>
+                    <tr id="tableHeader">
+                        <th>Year</th>
+                        <th>Amount</th>
+                        <th>Growth</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let chart = null;
+        
+        function calculateCompoundInterest() {
+            const principal = parseFloat(document.getElementById('principal').value) || 0;
+            const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value) || 0;
+            const annualRate = parseFloat(document.getElementById('interestRate').value) / 100 || 0;
+            const years = parseInt(document.getElementById('years').value) || 1;
+            const compoundFreq = parseInt(document.getElementById('compoundFreq').value) || 1;
+            const mode = document.getElementById('calculatorMode').value;
+            const stopContributionsAfter = parseInt(document.getElementById('stopContributionsAfter').value) || years;
+            const targetAmount = parseFloat(document.getElementById('targetAmount').value) || null;
+            
+            const data = [];
+            let targetReachedYear = null;
+            
+            if (mode === 'growth') {
+                const periodicRate = annualRate / compoundFreq;
+                const contributionPerPeriod = monthlyContribution * (12 / compoundFreq);
+                
+                let currentBalance = principal;
+                let totalContributions = principal;
+                
+                for (let year = 1; year <= years; year++) {
+                    for (let period = 0; period < compoundFreq; period++) {
+                        currentBalance = currentBalance * (1 + periodicRate);
+                        if (year <= stopContributionsAfter) {
+                            currentBalance += contributionPerPeriod;
+                            totalContributions += contributionPerPeriod;
+                        }
+                    }
+                    
+                    if (targetAmount && !targetReachedYear && currentBalance >= targetAmount) {
+                        targetReachedYear = year;
+                    }
+                    
+                    const interestEarned = Math.max(0, currentBalance - totalContributions);
+                    
+                    data.push({
+                        year: year,
+                        principalAndContributions: totalContributions,
+                        interestEarned: interestEarned,
+                        totalValue: currentBalance,
+                        targetReachedYear: targetReachedYear
+                    });
+                }
+            } else {
+                const monthlyRate = annualRate / 12;
+                let remainingDebt = principal;
+                let totalPaid = 0;
+                let totalInterestPaid = 0;
+                let totalPrincipalPaid = 0;
+                
+                for (let year = 1; year <= years; year++) {
+                    let interestPaidThisYear = 0;
+                    let principalPaidThisYear = 0;
+                    
+                    for (let month = 1; month <= 12; month++) {
+                        if (remainingDebt <= 0) break;
+                        
+                        const monthlyInterest = remainingDebt * monthlyRate;
+                        interestPaidThisYear += monthlyInterest;
+                        
+                        const principalPayment = Math.min(monthlyContribution - monthlyInterest, remainingDebt);
+                        
+                        if (monthlyContribution < monthlyInterest) {
+                            remainingDebt += (monthlyInterest - monthlyContribution);
+                        } else {
+                            remainingDebt -= principalPayment;
+                            principalPaidThisYear += principalPayment;
+                        }
+                        
+                        totalPaid += monthlyContribution;
+                        
+                        if (remainingDebt <= 0) {
+                            remainingDebt = 0;
+                            break;
+                        }
+                    }
+                    
+                    totalInterestPaid += interestPaidThisYear;
+                    totalPrincipalPaid += principalPaidThisYear;
+                    
+                    if (targetAmount && !targetReachedYear && remainingDebt <= targetAmount) {
+                        targetReachedYear = year;
+                    }
+                    
+                    data.push({
+                        year: year,
+                        remainingDebt: remainingDebt,
+                        totalPaid: totalPaid,
+                        interestPaidThisYear: interestPaidThisYear,
+                        principalPaidThisYear: principalPaidThisYear,
+                        totalInterestPaid: totalInterestPaid,
+                        totalPrincipalPaid: totalPrincipalPaid,
+                        targetReachedYear: targetReachedYear
+                    });
+                    
+                    if (remainingDebt <= 0) {
+                        break;
+                    }
+                }
+            }
+            
+            return data;
+        }
+        
+        function createChart(data) {
+            const ctx = document.getElementById('compoundChart').getContext('2d');
+            const mode = document.getElementById('calculatorMode').value;
+            
+            if (chart) {
+                chart.destroy();
+            }
+            
+            const years = data.map(d => 'Year ' + d.year);
+            
+            if (mode === 'growth') {
+                const principalData = data.map(d => d.principalAndContributions);
+                const interestData = data.map(d => d.interestEarned);
+                
+                chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: years,
+                        datasets: [{
+                            label: 'Principal & Contributions',
+                            data: principalData,
+                            backgroundColor: '#13294b'
+                        }, {
+                            label: 'Interest Earned',
+                            data: interestData,
+                            backgroundColor: '#6fafc7'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: { stacked: true },
+                            y: { 
+                                stacked: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return '$' + value.toLocaleString();
+                                    }
+                                }
+                            }
+                        },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            } else {
+                const remainingDebtData = data.map(d => d.remainingDebt);
+                
+                chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: years,
+                        datasets: [{
+                            label: 'Remaining Debt',
+                            data: remainingDebtData,
+                            backgroundColor: '#ff6b6b'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { 
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return '$' + value.toLocaleString();
+                                    }
+                                }
+                            }
+                        },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+        }
+        
+        function createTable(data) {
+            const tableBody = document.getElementById('tableBody');
+            const mode = document.getElementById('calculatorMode').value;
+            const tableHeader = document.getElementById('tableHeader');
+            
+            tableBody.innerHTML = '';
+            
+            if (mode === 'growth') {
+                tableHeader.innerHTML = '<th>Year</th><th>Principal & Contributions</th><th>Interest Earned</th><th>Total Value</th>';
+                
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = '<td>' + row.year + '</td>' +
+                        '<td>$' + Math.round(row.principalAndContributions).toLocaleString() + '</td>' +
+                        '<td>$' + Math.round(row.interestEarned).toLocaleString() + '</td>' +
+                        '<td><strong>$' + Math.round(row.totalValue).toLocaleString() + '</strong></td>';
+                    tableBody.appendChild(tr);
+                });
+            } else {
+                tableHeader.innerHTML = '<th>Year</th><th>Remaining Debt</th><th>Principal Paid (Year)</th><th>Interest Paid (Year)</th><th>Total Paid</th>';
+                
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = '<td>' + row.year + '</td>' +
+                        '<td><strong>$' + Math.round(row.remainingDebt).toLocaleString() + '</strong></td>' +
+                        '<td>$' + Math.round(row.principalPaidThisYear).toLocaleString() + '</td>' +
+                        '<td>$' + Math.round(row.interestPaidThisYear).toLocaleString() + '</td>' +
+                        '<td>$' + Math.round(row.totalPaid).toLocaleString() + '</td>';
+                    tableBody.appendChild(tr);
+                });
+            }
+        }
+        
+        function createSummary(data) {
+            const summaryDiv = document.getElementById('summary');
+            const mode = document.getElementById('calculatorMode').value;
+            const lastRow = data[data.length - 1];
+            
+            let summaryHTML = '';
+            
+            if (mode === 'growth') {
+                const totalContributed = lastRow.principalAndContributions;
+                const totalInterest = lastRow.interestEarned;
+                const finalValue = lastRow.totalValue;
+                
+                summaryHTML = '<div class="summary-card"><h3>Total Contributed</h3><div class="value">$' + Math.round(totalContributed).toLocaleString() + '</div></div>' +
+                    '<div class="summary-card"><h3>Interest Earned</h3><div class="value">$' + Math.round(totalInterest).toLocaleString() + '</div></div>' +
+                    '<div class="summary-card"><h3>Final Value</h3><div class="value">$' + Math.round(finalValue).toLocaleString() + '</div></div>';
+            } else {
+                const originalDebt = parseFloat(document.getElementById('principal').value) || 0;
+                const totalInterestPaid = lastRow.totalInterestPaid;
+                const totalPrincipalPaid = lastRow.totalPrincipalPaid;
+                const remainingDebt = lastRow.remainingDebt;
+                
+                summaryHTML = '<div class="summary-card"><h3>Original Debt</h3><div class="value">$' + Math.round(originalDebt).toLocaleString() + '</div></div>' +
+                    '<div class="summary-card"><h3>Principal Paid</h3><div class="value">$' + Math.round(totalPrincipalPaid).toLocaleString() + '</div></div>' +
+                    '<div class="summary-card"><h3>Interest Paid</h3><div class="value">$' + Math.round(totalInterestPaid).toLocaleString() + '</div></div>' +
+                    '<div class="summary-card"><h3>Remaining Debt</h3><div class="value">$' + Math.round(remainingDebt).toLocaleString() + '</div></div>';
+            }
+            
+            summaryDiv.innerHTML = summaryHTML;
+        }
+        
+        function createMilestone(data) {
+            const milestoneBox = document.getElementById('milestoneBox');
+            const mode = document.getElementById('calculatorMode').value;
+            const lastRow = data[data.length - 1];
+            
+            let milestoneText = '';
+            
+            if (mode === 'growth') {
+                const crossoverYear = data.find(d => d.interestEarned > d.principalAndContributions);
+                
+                if (crossoverYear) {
+                    milestoneText = '<h3>Compounding Milestone</h3><p>By year ' + crossoverYear.year + ', your interest earned exceeds your total contributions. This is when compound interest really takes off!</p>';
+                } else {
+                    milestoneText = '<h3>Building Momentum</h3><p>Continue saving to see when compound interest will exceed your contributions.</p>';
+                }
+            } else {
+                if (lastRow.remainingDebt <= 0) {
+                    const totalCost = lastRow.totalInterestPaid + lastRow.totalPrincipalPaid;
+                    milestoneText = '<h3>Debt Freedom Achieved!</h3><p>Your debt is completely paid off in year ' + lastRow.year + 
+                        '. Total cost: $' + Math.round(totalCost).toLocaleString() + 
+                        ' (Interest: $' + Math.round(lastRow.totalInterestPaid).toLocaleString() + ')</p>';
+                } else {
+                    const originalDebt = parseFloat(document.getElementById('principal').value) || 0;
+                    const percentPaidOff = ((originalDebt - lastRow.remainingDebt) / originalDebt) * 100;
+                    milestoneText = '<h3>Debt Payoff Progress</h3><p>After ' + lastRow.year + ' years, you have paid off ' + 
+                        percentPaidOff.toFixed(1) + '% of your original debt ($' + Math.round(lastRow.totalPrincipalPaid).toLocaleString() + 
+                        ' principal + $' + Math.round(lastRow.totalInterestPaid).toLocaleString() + ' interest).</p>';
+                }
+            }
+            
+            milestoneBox.innerHTML = milestoneText;
+        }
+        
+        function updateLegend() {
+            const mode = document.getElementById('calculatorMode').value;
+            const legend = document.getElementById('legendContainer');
+            
+            if (mode === 'growth') {
+                legend.innerHTML = '<div class="legend-item"><div class="legend-color" style="background: #13294b;"></div><span>Principal & Contributions</span></div>' +
+                    '<div class="legend-item"><div class="legend-color" style="background: #6fafc7;"></div><span>Interest Earned</span></div>';
+            } else {
+                legend.innerHTML = '<div class="legend-item"><div class="legend-color" style="background: #ff6b6b;"></div><span>Remaining Debt</span></div>';
+            }
+        }
+        
+        function updateInputLabels() {
+            const mode = document.getElementById('calculatorMode').value;
+            const principalHelp = document.getElementById('principalHelp');
+            const contributionHelp = document.getElementById('contributionHelp');
+            const yearsLabel = document.getElementById('yearsLabel');
+            const yearsHelp = document.getElementById('yearsHelp');
+            
+            if (mode === 'growth') {
+                principalHelp.textContent = 'Starting amount already saved.';
+                contributionHelp.textContent = 'Amount you plan to save each month.';
+                yearsLabel.textContent = 'Time Period (Years)';
+                yearsHelp.textContent = 'How long you plan to save and invest.';
+            } else {
+                principalHelp.textContent = 'Total debt amount you need to pay off.';
+                contributionHelp.textContent = 'Monthly payment you can make toward this debt.';
+                yearsLabel.textContent = 'Maximum Term (Years)';
+                yearsHelp.textContent = 'Maximum time to analyze. Debt may be paid off sooner.';
+            }
+        }
+        
+        function toggleTable() {
+            const table = document.getElementById('dataTable');
+            table.classList.toggle('visible');
+        }
+        
+        function calculateAndVisualize() {
+            updateLegend();
+            updateInputLabels();
+            const data = calculateCompoundInterest();
+            createChart(data);
+            createTable(data);
+            createSummary(data);
+            createMilestone(data);
+        }
+        
+        // Initialize calculator
+        calculateAndVisualize();
+        
+        // Add event listeners
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('input', calculateAndVisualize);
+        });
+        
+        document.getElementById('calculatorMode').addEventListener('change', function() {
+            const mode = this.value;
+            
+            if (mode === 'payoff') {
+                document.getElementById('principal').value = '25000';
+                document.getElementById('monthlyContribution').value = '300';
+                document.getElementById('interestRate').value = '6.5';
+                document.getElementById('years').value = '30';
+            } else {
+                document.getElementById('principal').value = '10000';
+                document.getElementById('monthlyContribution').value = '500';
+                document.getElementById('interestRate').value = '7';
+                document.getElementById('years').value = '20';
+            }
+            
+            updateInputLabels();
+            calculateAndVisualize();
+        });
+    </script>
+</body>
+</html>
