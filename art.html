@@ -118,7 +118,22 @@
       transition: border-color 0.2s, transform 0.2s;
     }
     .art-swatch:hover { border-color: var(--sage); transform: translateY(-2px); }
+    .art-swatch { position: relative; }
     .art-swatch img { width: 100%; height: auto; display: block; }
+    .art-swatch .wordmark {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.6rem;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.5);
+      pointer-events: none;
+      user-select: none;
+    }
     /* Placeholder swatches before real images are added */
     .art-swatch.placeholder {
       aspect-ratio: 1;
@@ -297,14 +312,38 @@
 
       <!-- To add artwork images: replace the inner text with <img src="assets/art/art-01.jpg" alt="..." /> -->
       <div class="art-gallery" aria-label="Art preview gallery">
-        <a href="https://www.redbubble.com/shop/ap/134947471" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Rainbow Cheetah on Redbubble">Rainbow Cheetah<br><span style="font-size:0.6rem;opacity:0.6;">big cats love to play in rainbows</span></a>
-        <a href="https://www.redbubble.com/shop/ap/134468522" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Big Moon Over Pines on Redbubble">Big Moon Over Pines<br><span style="font-size:0.6rem;opacity:0.6;">mega super moon over the forest</span></a>
-        <a href="https://www.redbubble.com/shop/ap/135612841" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Aframe in the Forest on Redbubble">Aframe in the Forest<br><span style="font-size:0.6rem;opacity:0.6;">a simple little get-away in the woods</span></a>
-        <a href="https://www.redbubble.com/shop/ap/133395783" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Night Bison on Redbubble">Night Bison<br><span style="font-size:0.6rem;opacity:0.6;">moonlit stroll through the Black Hills</span></a>
-        <a href="https://www.redbubble.com/shop/ap/133310846" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Back When Tigers Used to Smoke on Redbubble">Back When Tigers Used to Smoke<br><span style="font-size:0.6rem;opacity:0.6;">when tigers used to smoke</span></a>
-        <a href="https://www.redbubble.com/shop/ap/131680991" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Night Swimmer's Sky on Redbubble">Night Swimmer's Sky<br><span style="font-size:0.6rem;opacity:0.6;">whale shark waiting to taste that cheese</span></a>
-        <a href="https://www.redbubble.com/shop/ap/132738834" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Saguaro Cacti Lines on Redbubble">Saguaro Cacti Lines<br><span style="font-size:0.6rem;opacity:0.6;">desert cacti under a celestial sky</span></a>
-        <a href="https://www.redbubble.com/shop/ap/122874410" target="_blank" rel="noopener noreferrer" class="art-swatch placeholder" aria-label="Oct Nouveau on Redbubble">Oct Nouveau<br><span style="font-size:0.6rem;opacity:0.6;">purple octopus does art nouveau space ballet</span></a>
+        <a href="https://www.redbubble.com/shop/ap/134947471" target="_blank" rel="noopener noreferrer" class="art-swatch">
+          <img src="assets/art/art-01.jpg" alt="Rainbow Cheetah — big cats love to play in rainbows" />
+        <span class="wordmark" aria-hidden="true">@sillylittleTpot</span>
+        </a>
+        <a href="https://www.redbubble.com/shop/ap/134468522" target="_blank" rel="noopener noreferrer" class="art-swatch">
+          <img src="assets/art/art-02.jpg" alt="Big Moon Over Pines — mega super moon over the forest" />
+        <span class="wordmark" aria-hidden="true">@sillylittleTpot</span>
+        </a>
+        <a href="https://www.redbubble.com/shop/ap/135612841" target="_blank" rel="noopener noreferrer" class="art-swatch">
+          <img src="assets/art/art-03.jpg" alt="Aframe in the Forest — a simple little get-away in the woods" />
+        <span class="wordmark" aria-hidden="true">@sillylittleTpot</span>
+        </a>
+        <a href="https://www.redbubble.com/shop/ap/133395783" target="_blank" rel="noopener noreferrer" class="art-swatch">
+          <img src="assets/art/art-04.jpg" alt="Night Bison — moonlit stroll through the Black Hills" />
+        <span class="wordmark" aria-hidden="true">@sillylittleTpot</span>
+        </a>
+        <a href="https://www.redbubble.com/shop/ap/133310846" target="_blank" rel="noopener noreferrer" class="art-swatch">
+          <img src="assets/art/art-05.jpg" alt="Back When Tigers Used to Smoke — when tigers used to smoke" />
+        <span class="wordmark" aria-hidden="true">@sillylittleTpot</span>
+        </a>
+        <a href="https://www.redbubble.com/shop/ap/131680991" target="_blank" rel="noopener noreferrer" class="art-swatch">
+          <img src="assets/art/art-06.jpg" alt="Night Swimmer's Sky — whale shark waiting to taste that cheese" />
+        <span class="wordmark" aria-hidden="true">@sillylittleTpot</span>
+        </a>
+        <a href="https://www.redbubble.com/shop/ap/132738834" target="_blank" rel="noopener noreferrer" class="art-swatch">
+          <img src="assets/art/art-07.jpg" alt="Saguaro Cacti Lines — desert cacti under a celestial sky" />
+        <span class="wordmark" aria-hidden="true">@sillylittleTpot</span>
+        </a>
+        <a href="https://www.redbubble.com/shop/ap/122874410" target="_blank" rel="noopener noreferrer" class="art-swatch">
+          <img src="assets/art/art-08.jpg" alt="Oct Nouveau — purple octopus does art nouveau space ballet" />
+        <span class="wordmark" aria-hidden="true">@sillylittleTpot</span>
+        </a>
       </div>
     </div>
   </div>
