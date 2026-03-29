@@ -374,13 +374,12 @@
     .art-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
     .art-swatch {
       aspect-ratio: 1; border-radius: var(--radius);
-      background: var(--bg-lift); border: 1px solid var(--sage-border);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
-      transition: border-color 0.2s;
+      overflow: hidden; display: block;
+      border: 1px solid var(--sage-border);
+      transition: border-color 0.2s, transform 0.2s;
     }
-    .art-swatch:hover { border-color: var(--sage); }
+    .art-swatch:hover { border-color: var(--sage); transform: translateY(-2px); }
+    .art-swatch img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* Footer */
     footer { position: relative; z-index: 1; background: var(--bg-card); border-top: 1px solid var(--border); padding: 3rem 2.5rem; }
@@ -676,10 +675,10 @@
           </div>
         </div>
         <div class="art-gallery" aria-label="Art preview thumbnails">
-          <a href="art.html"><img src="assets/art/art-06.jpg" alt="Night Swimmer's Sky" style="width:100%;display:block;border-radius:var(--radius);" /></a>
-          <a href="art.html"><img src="assets/art/art-07.jpg" alt="Saguaro Cacti Lines" style="width:100%;display:block;border-radius:var(--radius);" /></a>
-          <a href="art.html"><img src="assets/art/art-02.jpg" alt="Big Moon Over Pines" style="width:100%;display:block;border-radius:var(--radius);" /></a>
-          <a href="art.html"><img src="assets/art/art-01.jpg" alt="Rainbow Cheetah" style="width:100%;display:block;border-radius:var(--radius);" /></a>
+          <a href="art.html" class="art-swatch"><img src="assets/art/art-06.jpg" alt="Night Swimmer's Sky" /></a>
+          <a href="art.html" class="art-swatch"><img src="assets/art/art-07.jpg" alt="Saguaro Cacti Lines" /></a>
+          <a href="art.html" class="art-swatch"><img src="assets/art/art-02.jpg" alt="Big Moon Over Pines" /></a>
+          <a href="art.html" class="art-swatch"><img src="assets/art/art-01.jpg" alt="Rainbow Cheetah" /></a>
         </div>
         </div>
       </div>
