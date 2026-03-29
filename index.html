@@ -493,6 +493,14 @@
       .page-header-inner { padding: 2rem 1rem 2rem; }
     }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBZP1CDF77"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FBZP1CDF77');
+  </script>
 </head>
 <body>
 
@@ -675,10 +683,11 @@
           </div>
         </div>
         <div class="art-gallery" aria-label="Art preview thumbnails">
-          <div class="art-swatch">Artwork 1</div>
-          <div class="art-swatch">Artwork 2</div>
-          <div class="art-swatch">Artwork 3</div>
-          <div class="art-swatch">Artwork 4</div>
+          <a href="art.html"><img src="assets/art/art-06.jpg" alt="Night Swimmer's Sky" style="width:100%;display:block;border-radius:var(--radius);" /></a>
+          <a href="art.html"><img src="assets/art/art-07.jpg" alt="Saguaro Cacti Lines" style="width:100%;display:block;border-radius:var(--radius);" /></a>
+          <a href="art.html"><img src="assets/art/art-02.jpg" alt="Big Moon Over Pines" style="width:100%;display:block;border-radius:var(--radius);" /></a>
+          <a href="art.html"><img src="assets/art/art-01.jpg" alt="Rainbow Cheetah" style="width:100%;display:block;border-radius:var(--radius);" /></a>
+        </div>
         </div>
       </div>
     </div>
@@ -700,13 +709,13 @@
       <li><a href="blog.html">Blog</a></li>
       <li><a href="art.html">Art</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="mailto:apelleg3@illinois.edu">Email</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#8aebfaefe6e6efedb9cae3e6e6e3e4e5e3f9a4efeeff">Email</a></li>
     </ul>
     <p class="footer-copy"> 2025 Andrea Pellegrini &middot; Champaign, Illinois</p>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   (function() {
     var btn = document.getElementById('nav-toggle');
     var menu = document.getElementById('mobile-menu');
@@ -719,12 +728,4 @@
     var links = menu.querySelectorAll('a');
     for (var i = 0; i < links.length; i++) {
       links[i].addEventListener('click', function() {
-        menu.classList.remove('open');
-        btn.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-      });
-    }
-  })();
-</script>
-</body>
-</html>
+        menu.classList.rem
