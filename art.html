@@ -55,7 +55,7 @@
     .skip-link { position: absolute; top: -100%; left: 1rem; background: var(--purple-mid); color: var(--bg); font-weight: 700; padding: 0.5rem 1rem; border-radius: 4px; z-index: 9999; text-decoration: none; font-size: 0.85rem; }
     .skip-link:focus { top: 1rem; }
 
-    nav { position: fixed; inset: 0 0 auto 0; z-index: 200; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; background: rgba(13,10,20,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    nav { position: fixed; inset: 0 0 auto 0; z-index: 200; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; background: rgba(13,10,20,0.85); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
     .nav-brand { text-decoration: none; line-height: 1.2; }
     .nav-brand-name { font-family: 'Josefin Sans', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text); display: block; }
     .nav-brand-sub { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-bright); display: block; }
@@ -193,6 +193,7 @@
       border-radius: 4px;
       transition: background 0.15s;
     }
+    .nav-hamburger { -webkit-appearance: none; }
     .nav-hamburger:hover { background: var(--purple-dim); }
     .nav-hamburger:focus-visible { outline: 3px solid var(--purple-bright); outline-offset: 3px; }
     .nav-hamburger span {
@@ -283,7 +284,7 @@
     <li><a href="art.html" aria-current="page">Art</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <button class="nav-hamburger" id="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
+  <button type="button" class="nav-hamburger" id="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
     <span></span><span></span><span></span>
   </button>
 </nav>

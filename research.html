@@ -170,7 +170,7 @@
     <li><a href="art.html">Art</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <button class="nav-hamburger" id="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
+  <button type="button" class="nav-hamburger" id="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -336,13 +336,13 @@
       <li><a href="blog.html">Blog</a></li>
       <li><a href="art.html">Art</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="mailto:apelleg3@illinois.edu">Email</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#a5c4d5c0c9c9c0c296e5ccc9c9cccbcaccd68bc0c1d0">Email</a></li>
     </ul>
     <p class="footer-copy">© 2025 Andrea Pellegrini · Champaign, Illinois</p>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const btn = document.getElementById('nav-toggle');
   const menu = document.getElementById('mobile-menu');
   if (btn && menu) {
@@ -353,13 +353,4 @@
     });
     menu.querySelectorAll('a').forEach(function(a) {
       a.addEventListener('click', () => {
-        menu.classList.remove('open');
-        btn.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
-</script>
-
-</body>
-</html>
+        menu.classList.rem
