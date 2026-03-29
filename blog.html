@@ -70,7 +70,7 @@
     .footer-copy { font-size: 0.72rem; color: var(--text-muted); }
 
     @media (max-width: 960px) { nav { padding: 0 1.25rem; } .nav-links a { font-size: 0.72rem; padding: 0.3rem 0.5rem; } }
-    @media (max-width: 600px) { .nav-links { display: none; } }
+    @media (max-width: 768px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
     .mobile-menu a {
       text-decoration: none;
       font-family: 'Josefin Sans', sans-serif;
@@ -103,6 +103,14 @@
       .page-header-inner { padding: 2rem 1rem 2rem; }
     }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBZP1CDF77"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FBZP1CDF77');
+  </script>
 </head>
 <body>
 
@@ -159,13 +167,13 @@
       <li><a href="blog.html">Blog</a></li>
       <li><a href="art.html">Art</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="mailto:apelleg3@illinois.edu">Email</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#bddccdd8d1d1d8da8efdd4d1d1d4d3d2d4ce93d8d9c8">Email</a></li>
     </ul>
     <p class="footer-copy">© 2025 Andrea Pellegrini · Champai 2025 Andrea Pellegrini &middot; Champaign, Illinois</p>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   (function() {
     var btn = document.getElementById('nav-toggle');
     var menu = document.getElementById('mobile-menu');
@@ -178,12 +186,4 @@
     var links = menu.querySelectorAll('a');
     for (var i = 0; i < links.length; i++) {
       links[i].addEventListener('click', function() {
-        menu.classList.remove('open');
-        btn.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-      });
-    }
-  })();
-</script>
-</body>
-</html>
+        menu.classList.rem
