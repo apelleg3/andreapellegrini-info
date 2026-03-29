@@ -416,6 +416,31 @@
       <li><a href="blog.html">Blog</a></li>
       <li><a href="art.html">Art</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="/cdn-cgi/l/email-protection#aacbc4ced8cfcb84c484dacfc6c6cfcdd8c3c4c3eacdc7cbc3c684c9c5c7">Email</a></li>
+      <li><a href="mailto:apelleg3@illinois.edu">Email</a></li>
     </ul>
-    <p class="footer-copy">© 2025 Andrea Pellegrini · Champaig
+    <p class="footer-copy">© 2025 Andrea Pellegrini · Champaig 2025 Andrea Pellegrini &middot; Champaign, Illinois</p>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var btn = document.getElementById('nav-toggle');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function() {
+      var isOpen = menu.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    var links = menu.querySelectorAll('a');
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', function() {
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+  })();
+</script>
+</body>
+</html>

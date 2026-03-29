@@ -621,7 +621,24 @@
 </footer>
 
 <script>
-  const sections = document.querySelectorAll('.cv-section');
-  const navLinks = document.querySelectorAll('.cv-nav a');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry 
+  (function() {
+    var btn = document.getElementById('nav-toggle');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function() {
+      var isOpen = menu.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    var links = menu.querySelectorAll('a');
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', function() {
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+  })();
+</script>
+</body>
+</html>
