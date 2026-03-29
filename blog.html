@@ -129,7 +129,7 @@
     <li><a href="art.html">Art</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <button type="button" class="nav-hamburger" id="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
+  <button type="button" class="nav-hamburger" id="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu" onclick="(function(){var m=document.getElementById('mobile-menu');var b=document.getElementById('nav-toggle');var o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');})();">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -167,23 +167,10 @@
       <li><a href="blog.html">Blog</a></li>
       <li><a href="art.html">Art</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="/cdn-cgi/l/email-protection#bddccdd8d1d1d8da8efdd4d1d1d4d3d2d4ce93d8d9c8">Email</a></li>
+      <li><a href="mailto:apelleg3@illinois.edu">Email</a></li>
     </ul>
-    <p class="footer-copy">© 2025 Andrea Pellegrini · Champai 2025 Andrea Pellegrini &middot; Champaign, Illinois</p>
+    <p class="footer-copy">&copy; 2025 Andrea Pellegrini · Champai 2025 Andrea Pellegrini &middot; Champaign, Illinois</p>
   </div>
 </footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  (function() {
-    var btn = document.getElementById('nav-toggle');
-    var menu = document.getElementById('mobile-menu');
-    if (!btn || !menu) return;
-    btn.addEventListener('click', function() {
-      var isOpen = menu.classList.toggle('open');
-      btn.classList.toggle('open', isOpen);
-      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-    var links = menu.querySelectorAll('a');
-    for (var i = 0; i < links.length; i++) {
-      links[i].addEventListener('click', function() {
-        menu.classList.rem
+</body>
+</html>
