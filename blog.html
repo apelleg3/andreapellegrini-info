@@ -17,6 +17,7 @@
       --border: rgba(196,181,253,0.16); --radius: 6px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body { font-family: "Raleway", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
 
     .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
@@ -35,6 +36,11 @@
       background: radial-gradient(ellipse 60% 40% at 75% 20%, rgba(124,92,191,0.08) 0%, transparent 70%);
     }
 
+    /* ── Skip link ── */
+    .skip-link { position: absolute; top: -100%; left: 1rem; background: var(--purple-mid); color: var(--bg); font-weight: 700; padding: 0.5rem 1rem; border-radius: 4px; z-index: 9999; text-decoration: none; font-size: 0.85rem; }
+    .skip-link:focus { top: 1rem; }
+
+    /* ── Nav ── */
     nav { position: fixed; inset: 0 0 auto 0; z-index: 200; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; background: rgba(13,10,20,0.85); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
     .nav-brand { text-decoration: none; line-height: 1.2; }
     .nav-brand-name { font-family: "Josefin Sans", sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text); display: block; }
@@ -44,6 +50,23 @@
     .nav-links a:hover, .nav-links a:focus-visible { color: var(--purple-bright); background: var(--purple-dim); outline: none; }
     .nav-links a[aria-current="page"] { color: var(--purple-bright); }
 
+    /* ── Hamburger button ── */
+    .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 0.4rem; border-radius: 4px; transition: background 0.15s; }
+    .nav-hamburger:hover { background: var(--purple-dim); }
+    .nav-hamburger:focus-visible { outline: 3px solid var(--purple-bright); outline-offset: 3px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-soft); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── Mobile menu ── */
+    .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(13,10,20,0.97); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); z-index: 199; padding: 1rem 1.25rem 1.5rem; flex-direction: column; gap: 0.25rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { text-decoration: none; font-family: 'Josefin Sans', sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); padding: 0.65rem 0.75rem; border-radius: 4px; transition: background 0.15s, color 0.15s; }
+    .mobile-menu a:hover, .mobile-menu a:focus-visible { color: var(--purple-bright); background: var(--purple-dim); outline: none; }
+    .mobile-menu a[aria-current="page"] { color: var(--purple-bright); }
+
+    /* ── Main ── */
     main { position: relative; z-index: 1; flex: 1; display: flex; align-items: center; justify-content: center; padding: 64px 2.5rem 0; }
     .construction-inner { max-width: 600px; text-align: center; padding: 4rem 0; }
     .construction-icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: block; }
@@ -60,6 +83,7 @@
       color: var(--purple-bright); padding: 0.4rem 1rem; border-radius: 100px;
     }
 
+    /* ── Footer ── */
     footer { position: relative; z-index: 1; background: var(--bg-card); border-top: 1px solid var(--border); padding: 3rem 2.5rem; }
     .footer-inner { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
     .footer-brand { font-family: "Josefin Sans", sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); }
@@ -69,38 +93,12 @@
     .footer-links a:hover { color: var(--purple-bright); background: var(--purple-dim); }
     .footer-copy { font-size: 0.72rem; color: var(--text-muted); }
 
+    /* ── Responsive ── */
     @media (max-width: 960px) { nav { padding: 0 1.25rem; } .nav-links a { font-size: 0.72rem; padding: 0.3rem 0.5rem; } }
     @media (max-width: 768px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
-    .mobile-menu a {
-      text-decoration: none;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-soft);
-      padding: 0.65rem 0.75rem;
-      border-radius: 4px;
-      transition: background 0.15s, color 0.15s;
-    }
-    .mobile-menu a:hover,
-    .mobile-menu a:focus-visible { color: var(--purple-bright); background: var(--purple-dim); outline: none; }
-    .mobile-menu a[aria-current="page"] { color: var(--purple-bright); }
-
-    /* ── Mobile font & spacing fixes ── */
     @media (max-width: 480px) {
       body { font-size: 0.95rem; }
       h1 { font-size: 1.8rem !important; }
-      h2 { font-size: 1.4rem !important; }
-      h3 { font-size: 0.95rem !important; }
-      .s-lead { font-size: 0.92rem; }
-      .hero-bio { font-size: 0.95rem; }
-      .band-inner { padding: 3rem 1rem; }
-      .card { padding: 1.25rem; }
-      .proj-card { padding: 1.1rem; }
-      .stat-num { font-size: 2rem; }
-      .cv-content { padding: 1.5rem 1rem 3rem; }
-      .page-header-inner { padding: 2rem 1rem 2rem; }
     }
   </style>
   <!-- Google tag (gtag.js) -->
@@ -114,6 +112,8 @@
 </head>
 <body>
 
+<a href="#main" class="skip-link">Skip to main content</a>
+
 <nav aria-label="Main navigation">
   <a href="index.html" class="nav-brand" aria-label="Andrea Pellegrini - home">
     <span class="nav-brand-name">Andrea Pellegrini</span>
@@ -125,7 +125,7 @@
     <li><a href="cv.html">CV</a></li>
     <li><a href="research.html">Research</a></li>
     <li><a href="projects.html">Projects</a></li>
-    <li><a href="blog.html">Blog</a></li>
+    <li><a href="blog.html" aria-current="page">Blog</a></li>
     <li><a href="art.html">Art</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
@@ -146,7 +146,7 @@
 
 <div class="stars" aria-hidden="true"></div>
 
-<main>
+<main id="main">
   <div class="construction-inner">
     <span class="construction-icon" aria-hidden="true">🔭</span>
     <div class="page-kicker" aria-hidden="true">Blog</div>
@@ -169,7 +169,7 @@
       <li><a href="contact.html">Contact</a></li>
       <li><a href="mailto:apelleg3@illinois.edu">Email</a></li>
     </ul>
-    <p class="footer-copy">&copy; 2025 Andrea Pellegrini · Champai 2025 Andrea Pellegrini &middot; Champaign, Illinois</p>
+    <p class="footer-copy">&copy; 2025 Andrea Pellegrini &middot; Champaign, Illinois</p>
   </div>
 </footer>
 </body>
