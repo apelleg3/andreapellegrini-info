@@ -91,8 +91,6 @@
     .demo-card:hover{transform:translateY(-2px);}
     .demo-card.claude-card{border-color:rgba(167,139,250,0.3);}
     .demo-card.claude-card:hover{border-color:var(--purple-mid);}
-    .demo-card.gpt-card{border-color:rgba(134,184,154,0.25);}
-    .demo-card.gpt-card:hover{border-color:var(--sage);}
     .demo-card-label{font-family:'Josefin Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);}
     .demo-card h3{font-family:'Josefin Sans',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text);margin:0;}
     .demo-card p{font-size:0.86rem;color:var(--text-soft);line-height:1.7;margin:0;}
@@ -225,27 +223,17 @@
     <div class="demo-inner">
       <div class="s-kicker" aria-hidden="true">Try It · ITEL Showcase Demo</div>
       <h2 id="h-demo">Experience the <span class="hl">Chatbot</span></h2>
-      <p class="s-lead">This showcase version will ask you about your experience at the ITEL Future Learning Technologies Showcase on May 11, 2026. Choose which AI model you'd like to be interviewed by.</p>
+      <p class="s-lead">This showcase version will ask you about your experience at the ITEL Future Learning Technologies Showcase on May 11, 2026.</p>
 
-      <div class="demo-choices">
-        <div class="demo-card claude-card">
-          <div class="demo-card-label">Anthropic</div>
-          <h3>🎓 Claude (Sonnet)</h3>
-          <!-- TODO: Replace # with your deployed Streamlit app URL for the Claude version -->
-          <a href="#" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Launch Claude Version ↗</a>
-        </div>
-        <div class="demo-card gpt-card">
-          <div class="demo-card-label">OpenAI</div>
-          <h3>🤖 ChatGPT (GPT-4o)</h3>
-          <!-- TODO: Replace # with your deployed Streamlit app URL for the GPT version -->
-          <a href="#" class="btn btn-sage" target="_blank" rel="noopener noreferrer">Launch ChatGPT Version ↗</a>
-        </div>
+      <div style="margin-top:1.75rem;">
+        <!-- TODO: Replace # with your deployed Streamlit app URL -->
+        <a href="https://itel-chatbot-claude.onrender.com" class="btn btn-filled" target="_blank" rel="noopener noreferrer">Launch the Chatbot ↗</a>
       </div>
 
       <div class="demo-launch-note">
-        <p>Both versions use the same structured interview protocol and ask one question at a time. Your responses in this demo are not connected to any prior research data.</p>
+        <p>The chatbot uses a structured interview protocol and asks one question at a time. Your responses in this demo are not connected to any prior research data.</p>
         <div class="demo-launch-links">
-          <a href="https://github.com/apelleg3/AI_Chatbot_Dissertation_Archive" target="_blank" rel="noopener noreferrer" class="demo-text-link">Source code on GitHub ↗</a>
+          <a href="https://github.com/apelleg3/ITEL_ChatBot_Claude" target="_blank" rel="noopener noreferrer" class="demo-text-link">Source code on GitHub ↗</a>
           <a href="https://itel.education.illinois.edu/home/future-learning-technologies-showcase" target="_blank" rel="noopener noreferrer" class="demo-text-link">ITEL Showcase ↗</a>
         </div>
       </div>
@@ -261,9 +249,9 @@
       <div class="prose" style="max-width:760px;">
         <p>This chatbot is a modification of open-source code developed by Geiecke &amp; Jaravel for AI-enabled qualitative interviewing. The original code was adapted to focus specifically on how visual media (data visualizations, visual metaphors, and interactive graphs) influences self-regulated learning, interest development, and engagement in the context of financial education.</p>
         <p>In the dissertation study, participants completed an online intervention on compound interest and were then immediately interviewed by the chatbot. The interview covered five areas: their learning experience with visual aids, how visuals affected engagement and interest, how visuals supported comprehension and self-regulated learning, their personal preferences for different visual formats, and practical applications and ideal design characteristics.</p>
-        <p>The chatbot was configured to ask one question at a time, follow up on participant responses, and stay on topic. Two versions were developed and compared: one using Anthropic's Claude and one using OpenAI's ChatGPT.</p>
+        <p>The chatbot was configured to ask one question at a time, follow up on participant responses, and stay on topic. It is powered by Anthropic's Claude.</p>
         <div class="attr-note" style="margin-top:1.75rem;">
-          <strong>Attribution:</strong> Based on open-source code by Geiecke &amp; Jaravel. Modified by Andrea Pellegrini for dissertation research at the University of Illinois Urbana-Champaign. &nbsp;<a href="https://github.com/apelleg3/AI_Chatbot_Dissertation_Archive" target="_blank" rel="noopener noreferrer">View source on GitHub ↗</a>
+          <strong>Attribution:</strong> Based on open-source code by Geiecke &amp; Jaravel. Modified by Andrea Pellegrini for dissertation research at the University of Illinois Urbana-Champaign. &nbsp;<a href="https://github.com/apelleg3/ITEL_ChatBot_Claude" target="_blank" rel="noopener noreferrer">View source on GitHub ↗</a>
         </div>
       </div>
     </div>
@@ -304,7 +292,7 @@
     <div class="band-inner" style="padding-top:3rem;padding-bottom:3rem;">
       <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
         <a href="research.html" class="btn btn-ghost">← Back to Research</a>
-        <a href="https://github.com/apelleg3/AI_Chatbot_Dissertation_Archive" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">View Source ↗</a>
+        <a href="https://github.com/apelleg3/ITEL_ChatBot_Claude" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">View Source ↗</a>
         <a href="contact.html" class="btn btn-ghost">Get in Touch</a>
       </div>
     </div>
