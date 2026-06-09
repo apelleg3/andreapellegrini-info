@@ -3,571 +3,623 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>40 Years of Giant Highlights | Interactive Timeline</title>
+    <title>40 Years of Beats, Atoms &amp; Abandoned Places — 1986 to 2026</title>
+
+    <!--
+      ============================================================
+        HOW TO PERSONALIZE THIS TIMELINE
+      ============================================================
+      1. EVENTS: scroll down to the `events` array in the <script>.
+         Each card is one object. Copy one to add a new event.
+
+      2. CATEGORIES / COLORS: see the `categories` object. Add or
+         recolor freely — the accent flows automatically into the
+         dot, tag, and link icons.
+
+      3. LINKS: every event has a `links` object with four optional
+         slots: wikipedia, maps, notion, photos.
+           - Put a real URL to show that icon.
+           - Leave it as ''  (empty)  to hide it.
+           - Put the word 'ADD' to show a dashed "add link" chip
+             (handy reminder for travel cards you'll fill in later).
+         So for a place he's visited / wants to visit, paste your
+         Notion page, Google Maps pin, and Google Photos album URLs
+         straight into notion / maps / photos.
+      ============================================================
+    -->
+
     <style>
         :root {
-            --jazz-teal: #00F0C2;
-            --jazz-purple: #B624FF;
-            --retro-orange: #FF5500;
-            --bg-dark: #0A0A0D;
-            --card-bg: #14141A;
+            --bg-dark: #0B0B0E;
+            --card-bg: #16161C;
             --text-light: #FFFFFF;
-            --text-muted: #D1D1D6;
+            --text-muted: #D6D6DC;            /* ~11:1 on card bg */
+            --hairline: rgba(255,255,255,0.10);
+            --hairline-strong: rgba(255,255,255,0.30);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
 
         body {
             background-color: var(--bg-dark);
             color: var(--text-light);
             overflow-x: hidden;
-            background-image: 
-                linear-gradient(rgba(0, 240, 194, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 85, 0, 0.03) 1px, transparent 1px);
-            background-size: 25px 25px;
+            background-image:
+                linear-gradient(rgba(255, 85, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 194, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
             padding-bottom: 5rem;
         }
 
+        .visually-hidden {
+            position: absolute; width: 1px; height: 1px; padding: 0;
+            margin: -1px; overflow: hidden; clip: rect(0 0 0 0);
+            white-space: nowrap; border: 0;
+        }
+
+        /* Visible keyboard focus everywhere */
+        a:focus-visible, button:focus-visible, input:focus-visible {
+            outline: 3px solid #FFFFFF;
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+
+        /* Skip link */
+        .skip-link {
+            position: absolute; left: 1rem; top: -3rem;
+            background: #fff; color: #000; padding: 0.6rem 1rem;
+            border-radius: 8px; font-weight: 700; z-index: 10;
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus { top: 1rem; }
+
         header {
             text-align: center;
-            padding: 5rem 1.5rem 3rem;
+            padding: 4.5rem 1.5rem 2rem;
+            position: relative;
         }
 
         header h1 {
-            font-size: clamp(2.2rem, 5vw, 4.2rem);
+            font-size: clamp(2.2rem, 6vw, 4.2rem);
             text-transform: uppercase;
             letter-spacing: -1px;
-            line-height: 1.1;
-            margin-bottom: 1.2rem;
-            background: linear-gradient(135deg, var(--retro-orange), var(--jazz-purple), var(--jazz-teal));
+            line-height: 1.05;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FF5500, #FF4D9D, #B624FF, #4DD0FF, #00F0C2);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
+            color: transparent;
         }
 
         header p {
             color: var(--text-muted);
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            max-width: 800px;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            max-width: 720px;
             margin: 0 auto;
             line-height: 1.5;
+        }
+
+        /* Color/category legend (text labels, never color alone) */
+        .legend {
+            list-style: none;
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 0.5rem 1.1rem;
+            max-width: 760px;
+            margin: 1.75rem auto 0;
+            padding: 0 1rem;
+        }
+        .legend li {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.82rem; color: var(--text-muted); font-weight: 600;
+        }
+        .legend .dot {
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--accent); flex: none;
+            box-shadow: 0 0 8px var(--accent);
         }
 
         /* Controls */
         .controls {
-            display: flex;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-bottom: 4rem;
-            flex-wrap: wrap;
-            padding: 0 1rem;
+            display: flex; justify-content: center; align-items: center;
+            gap: 0.6rem; margin: 2.5rem auto 3.5rem;
+            flex-wrap: wrap; padding: 0 1rem; max-width: 940px;
         }
-
+        .search-wrap { flex: 1 1 280px; max-width: 360px; }
         .search-bar {
-            padding: 0.8rem 1.2rem;
-            border-radius: 8px;
-            border: 2px solid var(--jazz-purple);
-            background: #000000;
-            color: white;
-            font-size: 1rem;
-            width: 100%;
-            max-width: 300px;
-            outline: none;
+            padding: 0.75rem 1.1rem; border-radius: 10px;
+            border: 2px solid #B624FF; background: #000;
+            color: #fff; font-size: 1rem; width: 100%; outline: none;
         }
+        .search-bar::placeholder { color: #9a9aa3; }
+        .search-bar:focus { border-color: #FF5500; box-shadow: 0 0 0 3px rgba(255,85,0,0.3); }
 
-        .search-bar:focus {
-            border-color: var(--retro-orange);
-            box-shadow: 0 0 0 3px rgba(255, 85, 0, 0.3);
-        }
-
+        .filter-group { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
         .filter-btn {
-            padding: 0.8rem 1.2rem;
-            border-radius: 8px;
-            border: 2px solid rgba(255,255,255,0.15);
-            background: var(--card-bg);
-            color: white;
-            cursor: pointer;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-            transition: all 0.2s ease;
+            padding: 0.6rem 1rem; border-radius: 999px;
+            border: 2px solid var(--hairline); background: var(--card-bg);
+            color: #fff; cursor: pointer; font-weight: 700;
+            text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.5px;
+            transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+            display: inline-flex; align-items: center; gap: 0.45rem;
         }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--text-light);
-            color: var(--bg-dark);
-            border-color: var(--text-light);
+        .filter-btn .swatch {
+            width: 9px; height: 9px; border-radius: 50%; background: var(--accent);
         }
+        .filter-btn:hover { border-color: var(--hairline-strong); }
+        .filter-btn[aria-pressed="true"] {
+            background: #fff; color: var(--bg-dark); border-color: #fff;
+        }
+        .filter-btn[aria-pressed="true"] .swatch { box-shadow: 0 0 0 2px rgba(0,0,0,0.15); }
 
-        /* Timeline & Jazz Cup Backdrop Track */
+        /* Timeline */
         .timeline-container {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+            position: relative; max-width: 920px; margin: 0 auto;
+            padding: 0 1.5rem; list-style: none;
         }
-
-        /* The central line mimics the iconic jagged brush stroke from the cup design */
         .timeline-container::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background: linear-gradient(135deg, 
-                var(--jazz-teal) 0%, 
-                var(--jazz-purple) 25%, 
-                var(--jazz-teal) 50%, 
-                var(--retro-orange) 75%, 
-                var(--jazz-purple) 100%);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-            border-radius: 10px;
+            content: ''; position: absolute; width: 4px;
+            background: linear-gradient(to bottom, #FF5500, #FF4D9D, #B624FF, #4DD0FF, #00F0C2);
+            top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 4px;
         }
+        .timeline-container.is-empty::after { display: none; }
 
         .timeline-item {
-            padding: 20px 0;
-            position: relative;
-            width: 50%;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.5s ease-out;
+            padding: 20px 0; position: relative; width: 50%;
+            opacity: 0; transform: translateY(28px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
+        .timeline-item.visible { opacity: 1; transform: translateY(0); }
+        .timeline-item.left  { left: 0;   padding-right: 42px; text-align: right; }
+        .timeline-item.right { left: 50%; padding-left: 42px;  text-align: left; }
+        .timeline-item.left .year-header,
+        .timeline-item.left .link-row { justify-content: flex-end; }
 
-        .timeline-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .timeline-item.left { left: 0; padding-right: 40px; }
-        .timeline-item.right { left: 50%; padding-left: 40px; }
-
-        /* Timeline Nodes */
+        /* Category-colored node */
         .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            right: -8px;
-            background-color: var(--bg-dark);
-            border: 4px solid var(--retro-orange);
-            top: 35px;
-            border-radius: 50%;
-            z-index: 2;
+            content: ''; position: absolute; width: 17px; height: 17px;
+            background-color: var(--bg-dark); border: 4px solid var(--accent);
+            top: 35px; border-radius: 50%; z-index: 2;
+            box-shadow: 0 0 10px var(--accent);
         }
-        .timeline-item.right::after { left: -8px; border-color: var(--jazz-teal); }
+        .timeline-item.left::after  { right: -8.5px; }
+        .timeline-item.right::after { left: -8.5px; }
 
         .content-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 2px solid transparent;
-            position: relative;
+            background: var(--card-bg); padding: 1.6rem 1.7rem; border-radius: 14px;
+            border: 1px solid var(--hairline); position: relative; text-align: left;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            transition: border-color 0.2s ease, transform 0.2s ease;
         }
+        .content-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 
-        /* Color Coding Profiles */
-        .content-card.music-card { border-left: 5px solid var(--retro-orange); }
-        .content-card.industrial-card { border-left: 5px solid var(--jazz-teal); }
-        .content-card.popculture-card { border-left: 5px solid var(--jazz-purple); }
-        .content-card.travel-card { border-left: 5px solid #FFCC00; }
-
-        .content-card:hover {
-            transform: translateY(-2px);
-            background: #1A1A22;
-        }
-
-        .year-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .year-badge {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: var(--text-light);
-        }
-
+        .year-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.85rem; flex-wrap: wrap; }
+        .year-badge { font-size: 1.55rem; font-weight: 900; line-height: 1; }
         .tag {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-        .tag.music { background-color: var(--retro-orange); color: #000; }
-        .tag.industrial { background-color: var(--jazz-teal); color: #000; }
-        .tag.popculture { background-color: var(--jazz-purple); color: #fff; }
-        .tag.travel { background-color: #FFCC00; color: #000; }
-
-        .content-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.6rem;
-            line-height: 1.3;
+            font-size: 0.7rem; text-transform: uppercase; padding: 0.28rem 0.65rem;
+            border-radius: 5px; font-weight: 800; letter-spacing: 0.5px;
+            background: var(--accent); color: #000;   /* black text -> AA contrast on all accents */
         }
 
-        .content-card p {
-            color: var(--text-muted);
-            line-height: 1.5;
-            font-size: 0.95rem;
-            margin-bottom: 1.25rem;
+        .content-card h3 { font-size: 1.18rem; margin-bottom: 0.6rem; line-height: 1.3; }
+        .content-card p.desc { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; margin-bottom: 1.1rem; }
+
+        /* Link icon row */
+        .link-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .link-chip {
+            width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 11px; border: 1px solid var(--hairline);
+            background: rgba(255,255,255,0.02); color: var(--text-muted);
+            cursor: pointer; transition: all 0.18s ease; text-decoration: none;
         }
+        .link-chip svg { width: 21px; height: 21px; }
+        .link-chip:hover { color: #000; background: var(--accent); border-color: var(--accent); }
+        .link-chip.ghost { border-style: dashed; opacity: 0.7; }
+        .link-chip.ghost:hover { opacity: 1; color: var(--accent); background: rgba(255,255,255,0.04); border-color: var(--accent); }
 
-        .wiki-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--jazz-teal);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s ease;
+        .hint {
+            margin-top: 0.85rem; font-size: 0.82rem; line-height: 1.5;
+            color: var(--text-muted); background: rgba(255,255,255,0.04);
+            border-left: 3px solid var(--accent); padding: 0.6rem 0.8rem; border-radius: 6px;
         }
+        .hint code { background: rgba(255,255,255,0.08); padding: 0.05rem 0.3rem; border-radius: 4px; }
 
-        .content-card.music-card .wiki-link { color: var(--retro-orange); }
-        .content-card.popculture-card .wiki-link { color: var(--jazz-purple); }
-        .content-card.travel-card .wiki-link { color: #FFCC00; }
-
-        .wiki-link:hover {
-            border-bottom-color: currentColor;
+        .empty-state {
+            text-align: center; color: var(--text-muted); padding: 3rem 1rem;
+            font-size: 1.05rem; line-height: 1.6;
         }
+        .empty-state strong { color: #fff; }
 
-        @media screen and (max-width: 768px) {
-            .timeline-container::after { left: 20px; }
-            .timeline-item { width: 100%; padding-left: 45px; padding-right: 0; }
+        /* Mobile: single column */
+        @media screen and (max-width: 760px) {
+            .timeline-container::after { left: 18px; }
+            .timeline-item { width: 100%; padding-left: 46px; padding-right: 0; text-align: left; }
             .timeline-item.right { left: 0; }
-            .timeline-item::after { left: 12px !important; right: auto !important; }
+            .timeline-item.left { left: 0; text-align: left; }
+            .timeline-item.left .year-header, .timeline-item.left .link-row { justify-content: flex-start; }
+            .timeline-item.left::after, .timeline-item.right::after { left: 10px; right: auto; }
+        }
+
+        /* Respect reduced-motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+            .timeline-item { opacity: 1; transform: none; }
+            .skip-link { transition: none; }
         }
     </style>
 </head>
 <body>
 
+    <a href="#timeline" class="skip-link">Skip to the timeline</a>
+
     <header>
-        <h1>40 Years of Giant Highlights</h1>
-        <p>A curated list of events catering to a nostalgic appreciation of the musical arts, nuclear energy, travel, and culture.</p>
+        <h1>40 Years of Beats, Atoms &amp; Abandoned Places</h1>
+        <p>A hand-picked run through rap, indie, nuclear milestones, abandoned places and the
+           cultural shifts from his birth year (1986) all the way to the big 4-0 in 2026.</p>
+        <ul class="legend" id="legend" aria-label="What the colors mean"></ul>
     </header>
 
-    <div class="controls">
-        <input type="text" id="search" class="search-bar" placeholder="Search milestones...">
-        <button class="filter-btn active" onclick="filterTimeline('all')">All Highlights</button>
-        <button class="filter-btn" onclick="filterTimeline('music')">Music</button>
-        <button class="filter-btn" onclick="filterTimeline('industrial')">Industrial/Nuclear</button>
-        <button class="filter-btn" onclick="filterTimeline('popculture')">Pop Culture</button>
-        <button class="filter-btn" onclick="filterTimeline('travel')">Travel Log</button>
-    </div>
+    <section class="controls" aria-label="Search and filter the timeline">
+        <div class="search-wrap">
+            <label for="search" class="visually-hidden">Filter events by artist, year, place or keyword</label>
+            <input type="text" id="search" class="search-bar" placeholder="Search artist, year, place…" autocomplete="off">
+        </div>
+        <div class="filter-group" role="group" aria-label="Filter by category" id="filters"></div>
+    </section>
 
-    <main class="timeline-container" id="timeline">
-        </main>
+    <p id="status" class="visually-hidden" role="status" aria-live="polite"></p>
+
+    <main>
+        <ol class="timeline-container" id="timeline" aria-label="Timeline of events from 1986 to 2026"></ol>
+    </main>
 
     <script>
-        const timelineData = [
+        /* ----------  CATEGORIES (label + accent color)  ---------- */
+        const categories = {
+            hiphop:    { label: 'Hip-Hop',     accent: '#FF5500' },
+            indie:     { label: 'Indie',       accent: '#4DD0FF' },
+            music:     { label: 'Music',       accent: '#B624FF' },
+            pop:       { label: 'Pop Culture', accent: '#FF4D9D' },
+            nuclear:   { label: 'Nuclear',     accent: '#C8FF1A' },
+            urbex:     { label: 'Abandoned',   accent: '#FF9E3D' },
+            milestone: { label: 'Personal',    accent: '#00F0C2' },
+        };
+
+        /* ----------  EVENTS  ----------
+           links slots: wikipedia / maps / notion / photos
+             - real URL  = shows that icon
+             - ''        = hidden
+             - 'ADD'     = dashed "add your link" reminder chip       */
+        const events = [
             {
-                year: 'Apr 1986',
-                type: 'industrial',
-                title: 'Chernobyl Nuclear Disaster',
-                desc: 'A catastrophic nuclear accident occurs at the No. 4 reactor in the Chernobyl Nuclear Power Plant, near the city of Pripyat in Ukraine, reshaping global nuclear energy policy.',
-                wikiText: 'Wikipedia: Chernobyl Disaster',
-                url: 'https://en.wikipedia.org/wiki/Chernobyl_disaster'
+                year: 1986, type: 'nuclear',
+                title: 'Reactor 4 Melts Down at Chernobyl',
+                desc: 'On April 26 the No. 4 reactor explodes, scattering fallout across Europe and freezing the city of Pripyat in time — the defining nuclear event of his birth year.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Chernobyl_disaster',
+                         maps: 'https://www.google.com/maps/search/?api=1&query=Pripyat%2C+Ukraine',
+                         notion: '', photos: '' }
             },
             {
-                year: 'Nov 1988',
-                type: 'popculture',
-                title: 'Release of Super Mario Bros. 3',
-                desc: 'Nintendo releases what would become one of the greatest video games of all time in Japan, sparking an international home gaming obsession.',
-                wikiText: 'Wikipedia: Super Mario Bros. 3',
-                url: 'https://en.wikipedia.org/wiki/Super_Mario_Bros._3'
+                year: 1986, type: 'hiphop',
+                title: 'Run-D.M.C. Crosses Over With "Walk This Way"',
+                desc: 'Teaming with Aerosmith, Run-D.M.C. break down racial and sonic barriers, exploding hip-hop onto mainstream pop charts and global radio.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Walk_This_Way#Run-D.M.C._version', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Sep 1991',
-                type: 'music',
-                title: 'Nirvana Releases "Nevermind"',
-                desc: 'The Pacific Northwest grunge movement crashes into the mainstream, completely altering the soundscape of rock music and ending the hair metal era.',
-                wikiText: 'Wikipedia: Nevermind',
-                url: 'https://en.wikipedia.org/wiki/Nevermind'
+                year: 1988, type: 'hiphop',
+                title: 'N.W.A Map Out West Coast Gangsta Rap',
+                desc: '"Straight Outta Compton" lands, dragging the genre\u2019s center of gravity from New York to California with raw socio-political commentary.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Straight_Outta_Compton', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Summer 1993',
-                type: 'industrial',
-                title: 'The Great Mississippi Flood (Quincy, IL)',
-                desc: 'A historic weather event floods the Midwest. Quincy, Illinois experiences critical bridge closures and levee breaks, highlighting local communities\' resilience.',
-                wikiText: 'Wikipedia: Great Flood of 1993',
-                url: 'https://en.wikipedia.org/wiki/Great_Flood_of_1993'
+                year: 1989, type: 'music',
+                title: 'The First Rap Grammy Is Awarded',
+                desc: 'DJ Jazzy Jeff & The Fresh Prince take the inaugural Best Rap Performance award for "Parents Just Don\u2019t Understand," cementing the genre\u2019s legitimacy.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Grammy_Award_for_Best_Rap_Performance', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Christmas 1993',
-                type: 'popculture',
-                title: 'Beanie Babies Toy Craze Begins',
-                desc: 'Ty Warner launches Beanie Babies, triggering the definitive, collect-them-all plush craze of the 1990s and creating an early pop-culture speculative market.',
-                wikiText: 'Wikipedia: Beanie Babies',
-                url: 'https://en.wikipedia.org/wiki/Beanie_Babies'
+                year: 1991, type: 'music',
+                title: 'Nirvana\u2019s "Nevermind" Detonates Grunge',
+                desc: 'Seattle\u2019s scruffy answer to the slick \u201980s rips up the charts; alt-rock becomes the new mainstream and the eclectic record collection starts here.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Nevermind', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'May 2007',
-                type: 'music',
-                title: 'Amy Winehouse Hits the US Charts',
-                desc: 'The album "Back to Black" finds massive commercial success in the United States, sparking a global resurgence of classic neo-soul and brass instrumentation.',
-                wikiText: 'Wikipedia: Back to Black',
-                url: 'https://en.wikipedia.org/wiki/Back_to_Black'
+                year: 1992, type: 'hiphop',
+                title: 'Dr. Dre Drops "The Chronic" & Defines G-Funk',
+                desc: 'Dre unleashes his masterwork, launching Snoop Dogg and building the funky, synth-soaked sound that ruled \u201990s hip-hop production.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/The_Chronic', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Jun 2013',
-                type: 'industrial',
-                title: 'Vogtle Electric Generating Plant Expansion',
-                desc: 'Construction formally kicks off for Reactors 3 and 4 in Georgia, marking the first major new commercial nuclear reactor construction approvals in the US in decades.',
-                wikiText: 'Wikipedia: Vogtle Electric Plant',
-                url: 'https://en.wikipedia.org/wiki/Vogtle_Electric_Generating_Plant'
+                year: 1992, type: 'urbex',
+                title: 'Centralia Is Condemned to the Fire Below',
+                desc: 'Pennsylvania seizes the whole town by eminent domain as an unstoppable coal-seam fire — burning since 1962 — hollows it out. The ZIP code is wiped off the map by 2002.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Centralia,_Pennsylvania',
+                         maps: 'https://www.google.com/maps/search/?api=1&query=Centralia%2C+Pennsylvania',
+                         notion: 'ADD', photos: 'ADD' }
             },
             {
-                year: '2014',
-                type: 'travel',
-                title: 'Seattle to Portland Adventure',
-                desc: 'A & L head northwest, journeying through the vibrant coffee, music, and coastal landscapes connecting Seattle to Portland.',
-                wikiText: 'Wikipedia: Pacific Northwest',
-                url: 'https://en.wikipedia.org/wiki/Pacific_Northwest'
+                year: 1994, type: 'music',
+                title: 'The Golden-Age Masterpiece: "Illmatic"',
+                desc: 'Nas releases his legendary debut, defining lyricism and the East Coast sound profile for a whole generation.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Illmatic', maps: '', notion: '', photos: '' }
             },
             {
-                year: '2015',
-                type: 'travel',
-                title: 'HoneyMoon Trip: Acadia',
-                desc: 'A gorgeous, unforgettable romantic honeymoon escape tracking the rugged coastline and granite peaks of Acadia National Park.',
-                wikiText: 'Wikipedia: Acadia National Park',
-                url: 'https://en.wikipedia.org/wiki/Acadia_National_Park'
+                year: 1996, type: 'hiphop',
+                title: '2Pac & Jay-Z Anchor a Legendary Year',
+                desc: '2Pac releases "All Eyez on Me" while Jay-Z steps up with "Reasonable Doubt" — a competitive peak for American rhyme-craft.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/All_Eyez_on_Me', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'May 2016',
-                type: 'travel',
-                title: 'Puerto Rico Getaway',
-                desc: 'Exploring the rich historic forts, crystal waters, and vibrant bioluminescent bays of tropical Puerto Rico.',
-                wikiText: 'Wikipedia: Puerto Rico',
-                url: 'https://en.wikipedia.org/wiki/Puerto_Rico'
+                year: 1998, type: 'music',
+                title: 'Lauryn Hill\u2019s Historic Grammy Sweep',
+                desc: '"The Miseducation of Lauryn Hill" fuses neo-soul and sharp rap verses, reshaping R&B and earning five Grammys in a single night.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/The_Miseducation_of_Lauryn_Hill', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Oct 2016',
-                type: 'travel',
-                title: 'Return to Acadia National Park',
-                desc: 'Chasing the crisp October autumn foliage during a return exploration of coastal Maine.',
-                wikiText: 'Wikipedia: Mount Desert Island',
-                url: 'https://en.wikipedia.org/wiki/Mount_Desert_Island'
+                year: 1999, type: 'pop',
+                title: 'Napster Cracks the Music Industry Open',
+                desc: 'Peer-to-peer file sharing rewires how a generation finds, hoards and trades music — kicking off two decades of format wars.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Napster', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Sep 2017',
-                type: 'travel',
-                title: 'Santa Fe Desert Expedition',
-                desc: 'Immersing in the high-desert southwest culture, adobe architecture, and world-class culinary scenes of Santa Fe.',
-                wikiText: 'Wikipedia: Santa Fe, New Mexico',
-                url: 'https://en.wikipedia.org/wiki/Santa_Fe,_New_Mexico'
+                year: 2001, type: 'pop',
+                title: '"1,000 Songs in Your Pocket"',
+                desc: 'Apple\u2019s iPod arrives in October and the whole library goes mobile — the road from burned CDs to the streaming era begins.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/IPod', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Jul 2018',
-                type: 'travel',
-                title: 'Portland for HEFW Summit',
-                desc: 'Mixing professional circles with incredible street food and local exploration during the HEFW gathering in Oregon.',
-                wikiText: 'Wikipedia: Portland, Oregon',
-                url: 'https://en.wikipedia.org/wiki/Portland,_Oregon'
+                year: 2003, type: 'hiphop',
+                title: 'The OutKast Double-Album Phenomenon',
+                desc: '"Speakerboxxx/The Love Below" goes cross-genre ubiquitous, gives the world "Hey Ya!", and shows just how vast Southern hip-hop can be.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Speakerboxxx/The_Love_Below', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Mar 2019',
-                type: 'travel',
-                title: 'Denver Mountain Trip',
-                desc: 'A & L head out to Colorado, taking on the high elevation, mountain views, and craft brewery hubs of Denver.',
-                wikiText: 'Wikipedia: Denver',
-                url: 'https://en.wikipedia.org/wiki/Denver'
+                year: 2004, type: 'music',
+                title: 'Kanye West Reinvents With "The College Dropout"',
+                desc: 'Stepping out from behind the boards, Kanye brings sped-up soul samples and conscious lyricism back to commercial success.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/The_College_Dropout', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Jan 2020',
-                type: 'travel',
-                title: 'TreeHouse Weekend: Shawnee National Forest',
-                desc: 'A cozy wilderness cabin retreat hidden inside the beautiful sandstone bluffs of southern Illinois.',
-                wikiText: 'Wikipedia: Shawnee National Forest',
-                url: 'https://en.wikipedia.org/wiki/Shawnee_National_Forest'
+                year: 2008, type: 'pop',
+                title: 'Spotify Launches the Streaming Age',
+                desc: 'Ownership gives way to access; suddenly every genre is one tap away — the perfect engine for an ever more eclectic palate.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Spotify', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'May 2021',
-                type: 'travel',
-                title: 'Pikeville, TN Exploration',
-                desc: 'Venturing out to rural Tennessee to uncover hidden hiking loops and scenic state park highlights.',
-                wikiText: 'Wikipedia: Pikeville, Tennessee',
-                url: 'https://en.wikipedia.org/wiki/Pikeville,_Tennessee'
+                year: 2010, type: 'indie',
+                title: 'Arcade Fire\u2019s "The Suburbs" Takes Indie Mainstream',
+                desc: 'The Montreal collective\u2019s sprawling third album wins Album of the Year, hauling indie rock into the bright lights.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/The_Suburbs', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Oct 2021',
-                type: 'travel',
-                title: 'Badlands National Park Journey',
-                desc: 'Witnessing the rugged, breath-taking geologic formations, wildlife paths, and fossil beds of South Dakota.',
-                wikiText: 'Wikipedia: Badlands National Park',
-                url: 'https://en.wikipedia.org/wiki/Badlands_National_Park'
+                year: 2011, type: 'nuclear',
+                title: 'The Fukushima Daiichi Disaster',
+                desc: 'A March 11 earthquake and tsunami trigger meltdowns at three reactors, reshaping global nuclear policy and reigniting the safety debate.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Fukushima_nuclear_accident',
+                         maps: 'https://www.google.com/maps/search/?api=1&query=Fukushima+Daiichi+Nuclear+Power+Plant',
+                         notion: '', photos: '' }
             },
             {
-                year: 'Jan 2022',
-                type: 'travel',
-                title: 'Virginia Road Excursion',
-                desc: 'An early winter road trip passing through the historical landmarks and mountain passes of Virginia.',
-                wikiText: 'Wikipedia: Virginia',
-                url: 'https://en.wikipedia.org/wiki/Virginia'
+                year: 2012, type: 'urbex',
+                title: 'Battleship Island Goes Global',
+                desc: 'Japan\u2019s abandoned Hashima (Gunkanjima) mining island stars as the villain\u2019s lair in "Skyfall"; it becomes a UNESCO World Heritage site in 2015.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Hashima_Island',
+                         maps: 'https://www.google.com/maps/search/?api=1&query=Hashima+Island+Japan',
+                         notion: 'ADD', photos: 'ADD' }
             },
             {
-                year: 'May 2022',
-                type: 'travel',
-                title: 'Michigan Spring Trip',
-                desc: 'Catching the crisp spring air, lake views, and coastal towns of the classic Michigan mitten.',
-                wikiText: 'Wikipedia: Michigan',
-                url: 'https://en.wikipedia.org/wiki/Michigan'
+                year: 2015, type: 'hiphop',
+                title: 'Kendrick Lamar Redefines Protest Art',
+                desc: '"To Pimp a Butterfly" blends jazz, funk and spoken word; the track "Alright" becomes a generational civil-rights rallying cry.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/To_Pimp_a_Butterfly', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Oct 2022',
-                type: 'travel',
-                title: 'Maine Autumn Escape',
-                desc: 'Chasing fall foliage, lighthouses, and local lobster shacks during a cozy crisp autumn tour in Maine.',
-                wikiText: 'Wikipedia: Maine',
-                url: 'https://en.wikipedia.org/wiki/Maine'
+                year: 2015, type: 'indie',
+                title: 'Tame Impala\u2019s "Currents" Reboots Indie',
+                desc: 'Kevin Parker swaps fuzz for synths and melancholy; the dreamy, danceable sound comes to define late-2010s indie crossover.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Currents_(Tame_Impala_album)', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'May 2023',
-                type: 'travel',
-                title: 'Florida Trip for Alli’s Graduation',
-                desc: 'Heading down south to celebrate a massive educational achievement under the sunshine state sky.',
-                wikiText: 'Wikipedia: Florida',
-                url: 'https://en.wikipedia.org/wiki/Florida'
+                year: 2016, type: 'indie',
+                title: 'Bon Iver Fractures the Format With "22, A Million"',
+                desc: 'Glitchy, sample-warped folk pushes indie into strange new shapes — peak era for the headphones-on, late-night listener.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/22,_a_Million', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Jul 2023',
-                type: 'travel',
-                title: 'Kalamazoo-Schaumburg Adventure',
-                desc: 'An excellent multi-state midwest sweep tracking regional highlights, fun stops, and local food.',
-                wikiText: 'Wikipedia: Kalamazoo, Michigan',
-                url: 'https://en.wikipedia.org/wiki/Kalamazoo,_Michigan'
+                year: 2018, type: 'music',
+                title: 'Hip-Hop\u2019s First Pulitzer Prize',
+                desc: 'Kendrick Lamar wins the Pulitzer Prize for Music for "DAMN." — the first time a non-classical, non-jazz artist takes the honor.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Damn_(Kendrick_Lamar_album)', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Oct 2023',
-                type: 'travel',
-                title: 'Michigan Fall Tour',
-                desc: 'A gorgeous drive deep through Michigan’s vibrant orchards and changing autumn canopy paths.',
-                wikiText: 'Wikipedia: Lower Peninsula of Michigan',
-                url: 'https://en.wikipedia.org/wiki/Lower_Peninsula_of_Michigan'
+                year: 2019, type: 'urbex',
+                title: 'Dark Tourism Surges Into the Zone',
+                desc: 'HBO\u2019s "Chernobyl" sends visitors flocking to the Exclusion Zone and Pripyat, turning a sealed disaster site into a bucket-list pilgrimage.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Chernobyl_Exclusion_Zone',
+                         maps: 'https://www.google.com/maps/search/?api=1&query=Chernobyl+Exclusion+Zone',
+                         notion: 'ADD', photos: 'ADD' }
             },
             {
-                year: 'Apr 2024',
-                type: 'travel',
-                title: 'Flagstaff, AZ High Desert Trip',
-                desc: 'Taking on mountain pines, stargazing clusters, and high-altitude canyon trials in northern Arizona.',
-                wikiText: 'Wikipedia: Flagstaff, Arizona',
-                url: 'https://en.wikipedia.org/wiki/Flagstaff,_Arizona'
+                year: 2022, type: 'nuclear',
+                title: 'Fusion Hits "Ignition" for the First Time',
+                desc: 'On December 5, Lawrence Livermore\u2019s National Ignition Facility gets more energy out than its lasers put in — the long-promised breakeven, finally real.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/National_Ignition_Facility',
+                         maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Oct 2024',
-                type: 'travel',
-                title: 'Michigan Autumn Respite',
-                desc: 'Unwinding amidst changing Great Lakes foliage and quiet lakeside seasonal communities.',
-                wikiText: 'Wikipedia: Great Lakes',
-                url: 'https://en.wikipedia.org/wiki/Great_Lakes'
+                year: 2023, type: 'nuclear',
+                title: 'America Switches On a New Reactor',
+                desc: 'Plant Vogtle Unit 3 in Georgia enters commercial operation on July 31 — the first newly built U.S. reactor in over 30 years. Unit 4 follows in 2024.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Vogtle_Electric_Generating_Plant',
+                         maps: 'https://www.google.com/maps/search/?api=1&query=Plant+Vogtle+Waynesboro+Georgia',
+                         notion: '', photos: '' }
             },
             {
-                year: 'Jan 2025',
-                type: 'travel',
-                title: 'Southeastern US Roadtrip',
-                desc: 'Cruising historic highways and sampling regional flavors across the American Southeast.',
-                wikiText: 'Wikipedia: Southern United States',
-                url: 'https://en.wikipedia.org/wiki/Southern_United States'
+                year: 2024, type: 'hiphop',
+                title: 'The Great Lyric Battle Era',
+                desc: 'The high-stakes showdown between Kendrick Lamar and Drake grips global pop culture, generating chart-topping, multi-platinum diss tracks.',
+                links: { wikipedia: 'https://en.wikipedia.org/wiki/Drake%E2%80%93Kendrick_Lamar_feud', maps: '', notion: '', photos: '' }
             },
             {
-                year: 'Jun 2025',
-                type: 'travel',
-                title: 'Utah National Parks Tour',
-                desc: 'Marveling at the monumental arches, deep canyons, and brilliant red rock landscapes of Utah.',
-                wikiText: 'Wikipedia: Nomad (ancient)',
-                url: 'https://en.wikipedia.org/wiki/Utah'
-            },
-            {
-                year: 'Oct 2025',
-                type: 'travel',
-                title: 'Maine (10th Anniversary) Trip',
-                desc: 'A decade of shared horizons celebrated right back where so many memories were forged along the coast of Maine.',
-                wikiText: 'Wikipedia: New England',
-                url: 'https://en.wikipedia.org/wiki/New_England'
-            },
-            {
-                year: '2026',
-                type: 'popculture',
-                title: 'The Big 40th Birthday Celebration!',
-                desc: 'An extraordinary milestone mapping 40 years of phenomenal cultural eras, industrial history, and an epic travel log.',
-                wikiText: 'Wikipedia: Milestone',
-                url: 'https://en.wikipedia.org/wiki/Milestone'
+                year: 2026, type: 'milestone',
+                title: 'Cheers to 40 Years of the Good Stuff',
+                desc: 'Four decades of iconic rhythm, world-changing sound, splitting atoms and beautifully abandoned places. The best chapter starts now.',
+                links: { wikipedia: '', maps: '', notion: 'ADD', photos: 'ADD' }
             }
         ];
 
-        const timelineContainer = document.getElementById('timeline');
+        /* ----------  ICONS  ---------- */
+        const ICONS = {
+            wikipedia: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/><text x="12" y="16.4" text-anchor="middle" font-size="12.5" font-family="Georgia, serif" font-weight="700" fill="currentColor">W</text></svg>',
+            maps:   '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+            notion: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg>',
+            photos: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16.5l-5-5-4 4-2-2-4 4"/></svg>'
+        };
+        const LINK_ORDER = [
+            { key: 'wikipedia', name: 'Wikipedia' },
+            { key: 'maps',      name: 'Google Maps' },
+            { key: 'notion',    name: 'Notion notes' },
+            { key: 'photos',    name: 'photo album' }
+        ];
 
-        function renderTimeline(data) {
-            timelineContainer.innerHTML = '';
-            data.forEach((item, index) => {
-                const side = index % 2 === 0 ? 'left' : 'right';
-                const itemEl = document.createElement('article');
-                itemEl.className = `timeline-item ${side}`;
-                
-                itemEl.innerHTML = `
-                    <div class="content-card ${item.type}-card">
-                        <div class="year-header">
-                            <span class="year-badge">${item.year}</span>
-                            <span class="tag ${item.type}">${item.type}</span>
-                        </div>
-                        <h3>${item.title}</h3>
-                        <p>${item.desc}</p>
-                        <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="wiki-link">
-                            Explore ${item.wikiText} &rarr;
-                        </a>
-                    </div>
-                `;
-                timelineContainer.appendChild(itemEl);
-            });
+        const timeline = document.getElementById('timeline');
+        const statusEl = document.getElementById('status');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            setTimeout(() => {
-                const items = document.querySelectorAll('.timeline-item');
-                items.forEach(item => item.classList.add('visible'));
-            }, 50);
-        }
+        /* ----------  Build legend + filter buttons from categories  ---------- */
+        const legendEl = document.getElementById('legend');
+        const filtersEl = document.getElementById('filters');
 
-        // Live text filter match
-        document.getElementById('search').addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase();
-            const filtered = timelineData.filter(item => 
-                item.title.toLowerCase().includes(query) || 
-                item.year.toLowerCase().includes(query) || 
-                item.desc.toLowerCase().includes(query)
-            );
-            renderTimeline(filtered);
+        Object.values(categories).forEach(c => {
+            const li = document.createElement('li');
+            li.style.setProperty('--accent', c.accent);
+            li.innerHTML = `<span class="dot" aria-hidden="true"></span>${c.label}`;
+            legendEl.appendChild(li);
         });
 
-        // Category filter layout toggler
-        function filterTimeline(type) {
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            // Safe fallback finding target element
-            if(window.event) {
-                window.event.target.classList.add('active');
-            }
+        const filterDefs = [{ id: 'all', label: 'All Eras', accent: '#FFFFFF' },
+            ...Object.entries(categories).map(([id, c]) => ({ id, label: c.label, accent: c.accent }))];
 
-            if (type === 'all') {
-                renderTimeline(timelineData);
-            } else {
-                const filtered = timelineData.filter(item => item.type === type);
-                renderTimeline(filtered);
-            }
+        filterDefs.forEach((f, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.dataset.filter = f.id;
+            btn.style.setProperty('--accent', f.accent);
+            btn.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+            const swatch = f.id === 'all' ? '' : '<span class="swatch" aria-hidden="true"></span>';
+            btn.innerHTML = `${swatch}${f.label}`;
+            filtersEl.appendChild(btn);
+        });
+
+        /* ----------  State + rendering  ---------- */
+        let state = { filter: 'all', query: '' };
+
+        function escapeAttr(s) { return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;'); }
+
+        function buildLinks(ev, idx) {
+            let chips = '';
+            LINK_ORDER.forEach(({ key, name }) => {
+                const val = ev.links ? ev.links[key] : '';
+                if (!val) return;
+                const icon = ICONS[key];
+                if (val === 'ADD') {
+                    chips += `<button type="button" class="link-chip ghost" data-hint="${idx}"
+                        aria-label="Add a ${name} link for ${escapeAttr(ev.title)}" title="Add ${name}">${icon}</button>`;
+                } else {
+                    chips += `<a class="link-chip" href="${escapeAttr(val)}" target="_blank" rel="noopener noreferrer"
+                        aria-label="Open ${name} for ${escapeAttr(ev.title)} (opens in a new tab)" title="${name}">${icon}</a>`;
+                }
+            });
+            return chips;
         }
 
-        // Initialize Timeline Core
-        renderTimeline(timelineData);
+        function render(list) {
+            timeline.innerHTML = '';
+            timeline.classList.toggle('is-empty', list.length === 0);
+
+            if (list.length === 0) {
+                const li = document.createElement('li');
+                li.className = 'empty-state';
+                li.innerHTML = '<strong>No events match that.</strong><br>Try another era or clear the search.';
+                timeline.appendChild(li);
+                statusEl.textContent = `No events match. ${events.length} total.`;
+                return;
+            }
+
+            list.forEach((ev, index) => {
+                const cat = categories[ev.type] || { label: ev.type, accent: '#fff' };
+                const side = index % 2 === 0 ? 'left' : 'right';
+                const headingId = `event-${ev.year}-${index}`;
+
+                const li = document.createElement('li');
+                li.className = `timeline-item ${side}`;
+                li.style.setProperty('--accent', cat.accent);
+                li.innerHTML = `
+                    <article class="content-card" aria-labelledby="${headingId}">
+                        <div class="year-header">
+                            <span class="year-badge">${ev.year}</span>
+                            <span class="tag">${cat.label}</span>
+                        </div>
+                        <h3 id="${headingId}">${ev.title}</h3>
+                        <p class="desc">${ev.desc}</p>
+                        <div class="link-row">${buildLinks(ev, index)}</div>
+                        <p class="hint" hidden>To wire this up, open the file, find the
+                            <code>"${escapeAttr(ev.title)}"</code> card and paste your URL into its
+                            <code>links</code> (Notion page, Google Maps pin, or Google Photos album).</p>
+                    </article>`;
+                timeline.appendChild(li);
+            });
+
+            // Reveal animation (skipped when reduced motion is on)
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.timeline-item').forEach(item => item.classList.add('visible'));
+            });
+
+            const label = state.filter === 'all' ? '' : ` in ${categories[state.filter]?.label || state.filter}`;
+            statusEl.textContent = `Showing ${list.length} of ${events.length} events${label}.`;
+        }
+
+        function applyFilters() {
+            const q = state.query.trim().toLowerCase();
+            const filtered = events.filter(ev => {
+                const matchType = state.filter === 'all' || ev.type === state.filter;
+                const matchText = !q ||
+                    ev.title.toLowerCase().includes(q) ||
+                    ev.desc.toLowerCase().includes(q) ||
+                    String(ev.year).includes(q) ||
+                    (categories[ev.type]?.label || '').toLowerCase().includes(q);
+                return matchType && matchText;
+            });
+            render(filtered);
+        }
+
+        /* ----------  Events  ---------- */
+        document.getElementById('search').addEventListener('input', e => {
+            state.query = e.target.value;
+            applyFilters();
+        });
+
+        filtersEl.addEventListener('click', e => {
+            const btn = e.target.closest('.filter-btn');
+            if (!btn) return;
+            state.filter = btn.dataset.filter;
+            filtersEl.querySelectorAll('.filter-btn').forEach(b =>
+                b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+            applyFilters();
+        });
+
+        // Toggle the "how to add a link" hint on ghost chips
+        timeline.addEventListener('click', e => {
+            const ghost = e.target.closest('.ghost');
+            if (!ghost) return;
+            const hint = ghost.closest('.content-card').querySelector('.hint');
+            const nowHidden = hint.hasAttribute('hidden');
+            if (nowHidden) hint.removeAttribute('hidden'); else hint.setAttribute('hidden', '');
+            ghost.setAttribute('aria-expanded', String(nowHidden));
+        });
+
+        applyFilters();
     </script>
 </body>
 </html>
