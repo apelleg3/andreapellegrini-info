@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music & Hip-Hop Evolution Since 1986 | 40th Birthday Timeline</title>
+    <title>40 Years of Giant Highlights | Interactive Timeline</title>
     <style>
         :root {
             --jazz-teal: #00F0C2;
             --jazz-purple: #B624FF;
             --retro-orange: #FF5500;
-            --bg-dark: #0B0B0E;
-            --card-bg: #16161C;
+            --bg-dark: #0A0A0D;
+            --card-bg: #14141A;
             --text-light: #FFFFFF;
             --text-muted: #D1D1D6;
         }
@@ -27,25 +27,23 @@
             color: var(--text-light);
             overflow-x: hidden;
             background-image: 
-                linear-gradient(rgba(255, 85, 0, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 194, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
+                linear-gradient(rgba(0, 240, 194, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 85, 0, 0.03) 1px, transparent 1px);
+            background-size: 25px 25px;
             padding-bottom: 5rem;
         }
 
-        /* Hero Header styled like the abstract brush strokes of 90s culture */
         header {
             text-align: center;
             padding: 5rem 1.5rem 3rem;
-            position: relative;
         }
 
         header h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2.2rem, 5vw, 4.2rem);
             text-transform: uppercase;
             letter-spacing: -1px;
             line-height: 1.1;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             background: linear-gradient(135deg, var(--retro-orange), var(--jazz-purple), var(--jazz-teal));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -53,12 +51,13 @@
 
         header p {
             color: var(--text-muted);
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            max-width: 700px;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            max-width: 800px;
             margin: 0 auto;
+            line-height: 1.5;
         }
 
-        /* Accessible Filters */
+        /* Controls */
         .controls {
             display: flex;
             justify-content: center;
@@ -69,14 +68,14 @@
         }
 
         .search-bar {
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 1.2rem;
             border-radius: 8px;
             border: 2px solid var(--jazz-purple);
             background: #000000;
             color: white;
             font-size: 1rem;
             width: 100%;
-            max-width: 350px;
+            max-width: 300px;
             outline: none;
         }
 
@@ -86,7 +85,7 @@
         }
 
         .filter-btn {
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 1.2rem;
             border-radius: 8px;
             border: 2px solid rgba(255,255,255,0.15);
             background: var(--card-bg);
@@ -94,7 +93,7 @@
             cursor: pointer;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 0.5px;
             transition: all 0.2s ease;
         }
@@ -105,7 +104,7 @@
             border-color: var(--text-light);
         }
 
-        /* Timeline Construct */
+        /* Timeline & Jazz Cup Backdrop Track */
         .timeline-container {
             position: relative;
             max-width: 900px;
@@ -113,15 +112,22 @@
             padding: 0 1.5rem;
         }
 
+        /* The central line mimics the iconic jagged brush stroke from the cup design */
         .timeline-container::after {
             content: '';
             position: absolute;
-            width: 4px;
-            background: linear-gradient(to bottom, var(--retro-orange), var(--jazz-purple), var(--jazz-teal));
+            width: 6px;
+            background: linear-gradient(135deg, 
+                var(--jazz-teal) 0%, 
+                var(--jazz-purple) 25%, 
+                var(--jazz-teal) 50%, 
+                var(--retro-orange) 75%, 
+                var(--jazz-purple) 100%);
             top: 0;
             bottom: 0;
             left: 50%;
-            margin-left: -2px;
+            margin-left: -3px;
+            border-radius: 10px;
         }
 
         .timeline-item {
@@ -160,13 +166,21 @@
             background: var(--card-bg);
             padding: 2rem;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 2px solid transparent;
             position: relative;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
+        /* Color Coding Profiles */
+        .content-card.music-card { border-left: 5px solid var(--retro-orange); }
+        .content-card.industrial-card { border-left: 5px solid var(--jazz-teal); }
+        .content-card.popculture-card { border-left: 5px solid var(--jazz-purple); }
+        .content-card.travel-card { border-left: 5px solid #FFCC00; }
+
         .content-card:hover {
-            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            background: #1A1A22;
         }
 
         .year-header {
@@ -179,32 +193,33 @@
         }
 
         .year-badge {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 900;
             color: var(--text-light);
         }
 
         .tag {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            padding: 0.3rem 0.7rem;
+            padding: 0.3rem 0.6rem;
             border-radius: 4px;
             font-weight: 800;
             letter-spacing: 0.5px;
         }
-        .tag.hiphop { background-color: var(--retro-orange); color: #000000; }
-        .tag.music { background-color: var(--jazz-purple); color: #FFFFFF; }
-        .tag.milestone { background-color: var(--jazz-teal); color: #000000; }
+        .tag.music { background-color: var(--retro-orange); color: #000; }
+        .tag.industrial { background-color: var(--jazz-teal); color: #000; }
+        .tag.popculture { background-color: var(--jazz-purple); color: #fff; }
+        .tag.travel { background-color: #FFCC00; color: #000; }
 
         .content-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
             line-height: 1.3;
         }
 
         .content-card p {
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.5;
             font-size: 0.95rem;
             margin-bottom: 1.25rem;
         }
@@ -215,19 +230,22 @@
             color: var(--jazz-teal);
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             border-bottom: 2px solid transparent;
-            transition: border 0.2s ease;
+            transition: all 0.2s ease;
         }
+
+        .content-card.music-card .wiki-link { color: var(--retro-orange); }
+        .content-card.popculture-card .wiki-link { color: var(--jazz-purple); }
+        .content-card.travel-card .wiki-link { color: #FFCC00; }
 
         .wiki-link:hover {
-            border-color: var(--jazz-teal);
+            border-bottom-color: currentColor;
         }
 
-        /* Responsive Layout Overrides */
         @media screen and (max-width: 768px) {
             .timeline-container::after { left: 20px; }
-            .timeline-item { width: 100%; padding-left: 45px; padding-right: 0; text-align: left !important; }
+            .timeline-item { width: 100%; padding-left: 45px; padding-right: 0; }
             .timeline-item.right { left: 0; }
             .timeline-item::after { left: 12px !important; right: auto !important; }
         }
@@ -236,16 +254,17 @@
 <body>
 
     <header>
-        <h1>40 Years of Beats &amp; Rhythm</h1>
-        <p>A curated history of game-changing US hip-hop movements and cultural shifts from your birth year (1986) up to 2026.</p>
+        <h1>40 Years of Giant Highlights</h1>
+        <p>A curated list of events catering to a nostalgic appreciation of the musical arts, nuclear energy, travel, and culture.</p>
     </header>
 
     <div class="controls">
-        <input type="text" id="search" class="search-bar" placeholder="Filter by artist, year, or track...">
-        <button class="filter-btn active" onclick="filterTimeline('all')">All Eras</button>
-        <button class="filter-btn" onclick="filterTimeline('hiphop')">Hip-Hop</button>
-        <button class="filter-btn" onclick="filterTimeline('music')">Music Core</button>
-        <button class="filter-btn" onclick="filterTimeline('milestone')">Personal</button>
+        <input type="text" id="search" class="search-bar" placeholder="Search milestones...">
+        <button class="filter-btn active" onclick="filterTimeline('all')">All Highlights</button>
+        <button class="filter-btn" onclick="filterTimeline('music')">Music</button>
+        <button class="filter-btn" onclick="filterTimeline('industrial')">Industrial/Nuclear</button>
+        <button class="filter-btn" onclick="filterTimeline('popculture')">Pop Culture</button>
+        <button class="filter-btn" onclick="filterTimeline('travel')">Travel Log</button>
     </div>
 
     <main class="timeline-container" id="timeline">
@@ -254,95 +273,236 @@
     <script>
         const timelineData = [
             {
-                year: '1986',
-                type: 'hiphop',
-                title: 'Run-D.M.C. Crosses Over With "Walk This Way"',
-                desc: 'Collaborating with Aerosmith, Run-D.M.C. breaks down racial and sonic barriers, exploding hip-hop into mainstream pop charts and global radio systems.',
-                wiki: 'https://en.wikipedia.org/wiki/Walk_This_Way#Run-D.M.C._version'
+                year: 'Apr 1986',
+                type: 'industrial',
+                title: 'Chernobyl Nuclear Disaster',
+                desc: 'A catastrophic nuclear accident occurs at the No. 4 reactor in the Chernobyl Nuclear Power Plant, near the city of Pripyat in Ukraine, reshaping global nuclear energy policy.',
+                wikiText: 'Wikipedia: Chernobyl Disaster',
+                url: 'https://en.wikipedia.org/wiki/Chernobyl_disaster'
             },
             {
-                year: '1988',
-                type: 'hiphop',
-                title: 'N.W.A Outlines West Coast Gangsta Rap',
-                desc: 'Straight Outta Compton lands, shifting American musical focus directly from New York to California with unmatched socio-political commentary.',
-                wiki: 'https://en.wikipedia.org/wiki/Straight_Outta_Compton'
+                year: 'Nov 1988',
+                type: 'popculture',
+                title: 'Release of Super Mario Bros. 3',
+                desc: 'Nintendo releases what would become one of the greatest video games of all time in Japan, sparking an international home gaming obsession.',
+                wikiText: 'Wikipedia: Super Mario Bros. 3',
+                url: 'https://en.wikipedia.org/wiki/Super_Mario_Bros._3'
             },
             {
-                year: '1989',
+                year: 'Sep 1991',
                 type: 'music',
-                title: 'First Rap Grammy Award Ever Presented',
-                desc: 'DJ Jazzy Jeff & The Fresh Prince grab the inaugural Best Rap Performance award for "Parents Just Don\'t Understand", cementing genre legitimacy.',
-                wiki: 'https://en.wikipedia.org/wiki/Grammy_Award_for_Best_Rap_Performance'
+                title: 'Nirvana Releases "Nevermind"',
+                desc: 'The Pacific Northwest grunge movement crashes into the mainstream, completely altering the soundscape of rock music and ending the hair metal era.',
+                wikiText: 'Wikipedia: Nevermind',
+                url: 'https://en.wikipedia.org/wiki/Nevermind'
             },
             {
-                year: '1992',
-                type: 'hiphop',
-                title: 'Dr. Dre Drops "The Chronic" & Defines G-Funk',
-                desc: 'Dr. Dre unleashes his masterwork, launching Snoop Dogg and structuring a funky, synthesized lifestyle soundscape that defined 90s hip-hop production.',
-                wiki: 'https://en.wikipedia.org/wiki/The_Chronic'
+                year: 'Summer 1993',
+                type: 'industrial',
+                title: 'The Great Mississippi Flood (Quincy, IL)',
+                desc: 'A historic weather event floods the Midwest. Quincy, Illinois experiences critical bridge closures and levee breaks, highlighting local communities\' resilience.',
+                wikiText: 'Wikipedia: Great Flood of 1993',
+                url: 'https://en.wikipedia.org/wiki/Great_Flood_of_1993'
             },
             {
-                year: '1994',
+                year: 'Christmas 1993',
+                type: 'popculture',
+                title: 'Beanie Babies Toy Craze Begins',
+                desc: 'Ty Warner launches Beanie Babies, triggering the definitive, collect-them-all plush craze of the 1990s and creating an early pop-culture speculative market.',
+                wikiText: 'Wikipedia: Beanie Babies',
+                url: 'https://en.wikipedia.org/wiki/Beanie_Babies'
+            },
+            {
+                year: 'May 2007',
                 type: 'music',
-                title: 'The Golden Age Masterpiece: Illmatic',
-                desc: 'Nas releases his legendary debut studio album, defining lyricism and the East Coast hip-hop sound profile for a generation.',
-                wiki: 'https://en.wikipedia.org/wiki/Illmatic'
+                title: 'Amy Winehouse Hits the US Charts',
+                desc: 'The album "Back to Black" finds massive commercial success in the United States, sparking a global resurgence of classic neo-soul and brass instrumentation.',
+                wikiText: 'Wikipedia: Back to Black',
+                url: 'https://en.wikipedia.org/wiki/Back_to_Black'
             },
             {
-                year: '1996',
-                type: 'hiphop',
-                title: '2Pac & Jay-Z Anchor a Legendary Year',
-                desc: '2Pac releases "All Eyez on Me" while Jay-Z steps forward with "Reasonable Doubt," highlighting a golden pinnacle of competitive American rhyme architecture.',
-                wiki: 'https://en.wikipedia.org/wiki/All_Eyez_on_Me'
+                year: 'Jun 2013',
+                type: 'industrial',
+                title: 'Vogtle Electric Generating Plant Expansion',
+                desc: 'Construction formally kicks off for Reactors 3 and 4 in Georgia, marking the first major new commercial nuclear reactor construction approvals in the US in decades.',
+                wikiText: 'Wikipedia: Vogtle Electric Plant',
+                url: 'https://en.wikipedia.org/wiki/Vogtle_Electric_Generating_Plant'
             },
             {
-                year: '1998',
-                type: 'music',
-                title: 'Lauryn Hill Achieves Historic Solo Sweep',
-                desc: 'The Miseducation of Lauryn Hill mixes neo-soul and sharp rap verses, transforming R&B and earning five Grammys in a single historic night.',
-                wiki: 'https://en.wikipedia.org/wiki/The_Miseducation_of_Lauryn_Hill'
-            },
-            {
-                year: '2003',
-                type: 'hiphop',
-                title: 'The OutKast Double-Album Phenomenon',
-                desc: 'Speakerboxxx/The Love Below climbs to cross-genre ubiquity, introducing "Hey Ya!" and showing the artistic vastness of Southern hip-hop.',
-                wiki: 'https://en.wikipedia.org/wiki/Speakerboxxx/The_Love_Below'
-            },
-            {
-                year: '2004',
-                type: 'music',
-                title: 'Kanye West Reinvents with "The College Dropout"',
-                desc: 'Stepping out from behind the production board, Kanye introduces sped-up soul samples and conscious lyricism back to commercial success.',
-                wiki: 'https://en.wikipedia.org/wiki/The_College_Dropout'
+                year: '2014',
+                type: 'travel',
+                title: 'Seattle to Portland Adventure',
+                desc: 'A & L head northwest, journeying through the vibrant coffee, music, and coastal landscapes connecting Seattle to Portland.',
+                wikiText: 'Wikipedia: Pacific Northwest',
+                url: 'https://en.wikipedia.org/wiki/Pacific_Northwest'
             },
             {
                 year: '2015',
-                type: 'hiphop',
-                title: 'Kendrick Lamar Redefines Modern Protest Art',
-                desc: 'To Pimp a Butterfly blends jazz, funk, and spoken word poetry. The track "Alright" becomes a generational civil rights rallying cry.',
-                wiki: 'https://en.wikipedia.org/wiki/To_Pimp_a_Butterfly'
+                type: 'travel',
+                title: 'HoneyMoon Trip: Acadia',
+                desc: 'A gorgeous, unforgettable romantic honeymoon escape tracking the rugged coastline and granite peaks of Acadia National Park.',
+                wikiText: 'Wikipedia: Acadia National Park',
+                url: 'https://en.wikipedia.org/wiki/Acadia_National_Park'
             },
             {
-                year: '2018',
-                type: 'music',
-                title: 'First Hip-Hop Pulitzer Prize Win',
-                desc: 'Kendrick Lamar wins the Pulitzer Prize for Music for his album DAMN., marking the first time a non-classical, non-jazz artist wins the honor.',
-                wiki: 'https://en.wikipedia.org/wiki/Damn_(Kendrick_Lamar_album)'
+                year: 'May 2016',
+                type: 'travel',
+                title: 'Puerto Rico Getaway',
+                desc: 'Exploring the rich historic forts, crystal waters, and vibrant bioluminescent bays of tropical Puerto Rico.',
+                wikiText: 'Wikipedia: Puerto Rico',
+                url: 'https://en.wikipedia.org/wiki/Puerto_Rico'
             },
             {
-                year: '2024',
-                type: 'hiphop',
-                title: 'The Great Lyric Battle Era',
-                desc: 'The ultimate high-stakes showdown between Kendrick Lamar and Drake grips global pop culture, generating chart-topping multi-platinum diss tracks.',
-                wiki: 'https://en.wikipedia.org/wiki/Drake%E2%80%93Kendrick_Lamar_feud'
+                year: 'Oct 2016',
+                type: 'travel',
+                title: 'Return to Acadia National Park',
+                desc: 'Chasing the crisp October autumn foliage during a return exploration of coastal Maine.',
+                wikiText: 'Wikipedia: Mount Desert Island',
+                url: 'https://en.wikipedia.org/wiki/Mount_Desert_Island'
+            },
+            {
+                year: 'Sep 2017',
+                type: 'travel',
+                title: 'Santa Fe Desert Expedition',
+                desc: 'Immersing in the high-desert southwest culture, adobe architecture, and world-class culinary scenes of Santa Fe.',
+                wikiText: 'Wikipedia: Santa Fe, New Mexico',
+                url: 'https://en.wikipedia.org/wiki/Santa_Fe,_New_Mexico'
+            },
+            {
+                year: 'Jul 2018',
+                type: 'travel',
+                title: 'Portland for HEFW Summit',
+                desc: 'Mixing professional circles with incredible street food and local exploration during the HEFW gathering in Oregon.',
+                wikiText: 'Wikipedia: Portland, Oregon',
+                url: 'https://en.wikipedia.org/wiki/Portland,_Oregon'
+            },
+            {
+                year: 'Mar 2019',
+                type: 'travel',
+                title: 'Denver Mountain Trip',
+                desc: 'A & L head out to Colorado, taking on the high elevation, mountain views, and craft brewery hubs of Denver.',
+                wikiText: 'Wikipedia: Denver',
+                url: 'https://en.wikipedia.org/wiki/Denver'
+            },
+            {
+                year: 'Jan 2020',
+                type: 'travel',
+                title: 'TreeHouse Weekend: Shawnee National Forest',
+                desc: 'A cozy wilderness cabin retreat hidden inside the beautiful sandstone bluffs of southern Illinois.',
+                wikiText: 'Wikipedia: Shawnee National Forest',
+                url: 'https://en.wikipedia.org/wiki/Shawnee_National_Forest'
+            },
+            {
+                year: 'May 2021',
+                type: 'travel',
+                title: 'Pikeville, TN Exploration',
+                desc: 'Venturing out to rural Tennessee to uncover hidden hiking loops and scenic state park highlights.',
+                wikiText: 'Wikipedia: Pikeville, Tennessee',
+                url: 'https://en.wikipedia.org/wiki/Pikeville,_Tennessee'
+            },
+            {
+                year: 'Oct 2021',
+                type: 'travel',
+                title: 'Badlands National Park Journey',
+                desc: 'Witnessing the rugged, breath-taking geologic formations, wildlife paths, and fossil beds of South Dakota.',
+                wikiText: 'Wikipedia: Badlands National Park',
+                url: 'https://en.wikipedia.org/wiki/Badlands_National_Park'
+            },
+            {
+                year: 'Jan 2022',
+                type: 'travel',
+                title: 'Virginia Road Excursion',
+                desc: 'An early winter road trip passing through the historical landmarks and mountain passes of Virginia.',
+                wikiText: 'Wikipedia: Virginia',
+                url: 'https://en.wikipedia.org/wiki/Virginia'
+            },
+            {
+                year: 'May 2022',
+                type: 'travel',
+                title: 'Michigan Spring Trip',
+                desc: 'Catching the crisp spring air, lake views, and coastal towns of the classic Michigan mitten.',
+                wikiText: 'Wikipedia: Michigan',
+                url: 'https://en.wikipedia.org/wiki/Michigan'
+            },
+            {
+                year: 'Oct 2022',
+                type: 'travel',
+                title: 'Maine Autumn Escape',
+                desc: 'Chasing fall foliage, lighthouses, and local lobster shacks during a cozy crisp autumn tour in Maine.',
+                wikiText: 'Wikipedia: Maine',
+                url: 'https://en.wikipedia.org/wiki/Maine'
+            },
+            {
+                year: 'May 2023',
+                type: 'travel',
+                title: 'Florida Trip for Alli’s Graduation',
+                desc: 'Heading down south to celebrate a massive educational achievement under the sunshine state sky.',
+                wikiText: 'Wikipedia: Florida',
+                url: 'https://en.wikipedia.org/wiki/Florida'
+            },
+            {
+                year: 'Jul 2023',
+                type: 'travel',
+                title: 'Kalamazoo-Schaumburg Adventure',
+                desc: 'An excellent multi-state midwest sweep tracking regional highlights, fun stops, and local food.',
+                wikiText: 'Wikipedia: Kalamazoo, Michigan',
+                url: 'https://en.wikipedia.org/wiki/Kalamazoo,_Michigan'
+            },
+            {
+                year: 'Oct 2023',
+                type: 'travel',
+                title: 'Michigan Fall Tour',
+                desc: 'A gorgeous drive deep through Michigan’s vibrant orchards and changing autumn canopy paths.',
+                wikiText: 'Wikipedia: Lower Peninsula of Michigan',
+                url: 'https://en.wikipedia.org/wiki/Lower_Peninsula_of_Michigan'
+            },
+            {
+                year: 'Apr 2024',
+                type: 'travel',
+                title: 'Flagstaff, AZ High Desert Trip',
+                desc: 'Taking on mountain pines, stargazing clusters, and high-altitude canyon trials in northern Arizona.',
+                wikiText: 'Wikipedia: Flagstaff, Arizona',
+                url: 'https://en.wikipedia.org/wiki/Flagstaff,_Arizona'
+            },
+            {
+                year: 'Oct 2024',
+                type: 'travel',
+                title: 'Michigan Autumn Respite',
+                desc: 'Unwinding amidst changing Great Lakes foliage and quiet lakeside seasonal communities.',
+                wikiText: 'Wikipedia: Great Lakes',
+                url: 'https://en.wikipedia.org/wiki/Great_Lakes'
+            },
+            {
+                year: 'Jan 2025',
+                type: 'travel',
+                title: 'Southeastern US Roadtrip',
+                desc: 'Cruising historic highways and sampling regional flavors across the American Southeast.',
+                wikiText: 'Wikipedia: Southern United States',
+                url: 'https://en.wikipedia.org/wiki/Southern_United States'
+            },
+            {
+                year: 'Jun 2025',
+                type: 'travel',
+                title: 'Utah National Parks Tour',
+                desc: 'Marveling at the monumental arches, deep canyons, and brilliant red rock landscapes of Utah.',
+                wikiText: 'Wikipedia: Nomad (ancient)',
+                url: 'https://en.wikipedia.org/wiki/Utah'
+            },
+            {
+                year: 'Oct 2025',
+                type: 'travel',
+                title: 'Maine (10th Anniversary) Trip',
+                desc: 'A decade of shared horizons celebrated right back where so many memories were forged along the coast of Maine.',
+                wikiText: 'Wikipedia: New England',
+                url: 'https://en.wikipedia.org/wiki/New_England'
             },
             {
                 year: '2026',
-                type: 'milestone',
-                title: 'Cheers to 40 Years of Modern Greatness!',
-                desc: 'Four full decades of iconic rhythm, world-changing sound evolution, and timeless personal history. The ultimate chapter begins now!',
-                wiki: 'https://en.wikipedia.org/wiki/Hip-hop_music'
+                type: 'popculture',
+                title: 'The Big 40th Birthday Celebration!',
+                desc: 'An extraordinary milestone mapping 40 years of phenomenal cultural eras, industrial history, and an epic travel log.',
+                wikiText: 'Wikipedia: Milestone',
+                url: 'https://en.wikipedia.org/wiki/Milestone'
             }
         ];
 
@@ -356,44 +516,47 @@
                 itemEl.className = `timeline-item ${side}`;
                 
                 itemEl.innerHTML = `
-                    <div class="content-card">
+                    <div class="content-card ${item.type}-card">
                         <div class="year-header">
                             <span class="year-badge">${item.year}</span>
-                            <span class="tag ${item.type}">${item.type === 'hiphop' ? 'Hip-Hop' : item.type === 'music' ? 'Music' : 'Milestone'}</span>
+                            <span class="tag ${item.type}">${item.type}</span>
                         </div>
                         <h3>${item.title}</h3>
                         <p>${item.desc}</p>
-                        <a href="${item.wiki}" target="_blank" rel="noopener noreferrer" class="wiki-link" aria-label="Read more about ${item.title} on Wikipedia">
-                            Explore History &rarr;
+                        <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="wiki-link">
+                            Explore ${item.wikiText} &rarr;
                         </a>
                     </div>
                 `;
                 timelineContainer.appendChild(itemEl);
             });
 
-            // Smooth fade-in observer logic
             setTimeout(() => {
                 const items = document.querySelectorAll('.timeline-item');
                 items.forEach(item => item.classList.add('visible'));
             }, 50);
         }
 
-        // Live text search matching filter
+        // Live text filter match
         document.getElementById('search').addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase();
             const filtered = timelineData.filter(item => 
                 item.title.toLowerCase().includes(query) || 
-                item.year.includes(query) || 
+                item.year.toLowerCase().includes(query) || 
                 item.desc.toLowerCase().includes(query)
             );
             renderTimeline(filtered);
         });
 
-        // Filter button switching mechanism
+        // Category filter layout toggler
         function filterTimeline(type) {
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            
+            // Safe fallback finding target element
+            if(window.event) {
+                window.event.target.classList.add('active');
+            }
 
             if (type === 'all') {
                 renderTimeline(timelineData);
@@ -403,7 +566,7 @@
             }
         }
 
-        // Run render on window start load
+        // Initialize Timeline Core
         renderTimeline(timelineData);
     </script>
 </body>
