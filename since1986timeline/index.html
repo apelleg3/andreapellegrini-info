@@ -196,6 +196,10 @@
 
         .year-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.85rem; flex-wrap: wrap; }
         .year-badge { font-size: 1.55rem; font-weight: 900; line-height: 1; }
+        .month-badge {
+            display: inline-block; font-size: 0.72rem; font-weight: 800; letter-spacing: 1px;
+            text-transform: uppercase; color: var(--accent); margin-right: 0.4rem; vertical-align: 0.18em;
+        }
         .tag {
             font-size: 0.7rem; text-transform: uppercase; padding: 0.28rem 0.65rem;
             border-radius: 5px; font-weight: 800; letter-spacing: 0.5px;
@@ -282,6 +286,7 @@
             music:     { label: 'Music',       accent: '#B624FF' },
             pop:       { label: 'Pop Culture', accent: '#FF4D9D' },
             midwest:   { label: 'Midwest',     accent: '#5B8CFF' },
+            space:     { label: 'Space',       accent: '#FFD23F' },
             nuclear:   { label: 'Nuclear',     accent: '#C8FF1A' },
             urbex:     { label: 'Abandoned',   accent: '#FF9E3D' },
             milestone: { label: 'Personal',    accent: '#00F0C2' },
@@ -293,256 +298,210 @@
              - ''        = hidden
              - 'ADD'     = dashed "add your link" reminder chip       */
         const events = [
-            {
-                year: 1986, type: 'nuclear',
-                title: 'Reactor 4 Melts Down at Chernobyl',
-                desc: 'On April 26 the No. 4 reactor explodes, scattering fallout across Europe and freezing the city of Pripyat in time — the defining nuclear event of his birth year.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Chernobyl_disaster',
-                         maps: 'https://www.google.com/maps/search/?api=1&query=Pripyat%2C+Ukraine',
-                         notion: '', photos: '' }
-            },
-            {
-                year: 1986, type: 'hiphop',
-                title: 'Run-D.M.C. Crosses Over With "Walk This Way"',
-                desc: 'Teaming with Aerosmith, Run-D.M.C. break down racial and sonic barriers, exploding hip-hop onto mainstream pop charts and global radio.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Walk_This_Way#Run-D.M.C._version', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 1988, type: 'hiphop',
-                title: 'N.W.A Map Out West Coast Gangsta Rap',
-                desc: '"Straight Outta Compton" lands, dragging the genre\u2019s center of gravity from New York to California with raw socio-political commentary.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Straight_Outta_Compton', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 1989, type: 'music',
-                title: 'The First Rap Grammy Is Awarded',
-                desc: 'DJ Jazzy Jeff & The Fresh Prince take the inaugural Best Rap Performance award for "Parents Just Don\u2019t Understand," cementing the genre\u2019s legitimacy.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Grammy_Award_for_Best_Rap_Performance', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 1991, type: 'music',
-                title: 'Nirvana\u2019s "Nevermind" Detonates Grunge',
-                desc: 'Seattle\u2019s scruffy answer to the slick \u201980s rips up the charts; alt-rock becomes the new mainstream and the eclectic record collection starts here.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Nevermind', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 1992, type: 'hiphop',
-                title: 'Dr. Dre Drops "The Chronic" & Defines G-Funk',
-                desc: 'Dre unleashes his masterwork, launching Snoop Dogg and building the funky, synth-soaked sound that ruled \u201990s hip-hop production.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/The_Chronic', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 1992, type: 'urbex',
-                title: 'Centralia Is Condemned to the Fire Below',
-                desc: 'Pennsylvania seizes the whole town by eminent domain as an unstoppable coal-seam fire — burning since 1962 — hollows it out. The ZIP code is wiped off the map by 2002.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Centralia,_Pennsylvania',
-                         maps: 'https://www.google.com/maps/search/?api=1&query=Centralia%2C+Pennsylvania',
-                         notion: 'ADD', photos: 'ADD' }
-            },
-            {
-                year: 1993, type: 'midwest',
-                title: 'The Great Flood of 1993 Swallows the Midwest',
-                desc: 'From spring into fall, the Mississippi and Missouri rivers burst their banks across nine states \u2014 one of the most destructive floods in U.S. history and a defining Midwest memory.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Great_Flood_of_1993',
-                         maps: '', notion: 'ADD', photos: 'ADD' }
-            },
-            {
-                year: 1994, type: 'music',
-                title: 'The Golden-Age Masterpiece: "Illmatic"',
-                desc: 'Nas releases his legendary debut, defining lyricism and the East Coast sound profile for a whole generation.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Illmatic', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 1996, type: 'hiphop',
-                title: '2Pac & Jay-Z Anchor a Legendary Year',
-                desc: '2Pac releases "All Eyez on Me" while Jay-Z steps up with "Reasonable Doubt" — a competitive peak for American rhyme-craft.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/All_Eyez_on_Me', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 1998, type: 'music',
-                title: 'Lauryn Hill\u2019s Historic Grammy Sweep',
-                desc: '"The Miseducation of Lauryn Hill" fuses neo-soul and sharp rap verses, reshaping R&B and earning five Grammys in a single night.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/The_Miseducation_of_Lauryn_Hill', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 1999, type: 'pop',
-                title: 'Napster Cracks the Music Industry Open',
-                desc: 'Peer-to-peer file sharing rewires how a generation finds, hoards and trades music — kicking off two decades of format wars.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Napster', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 2001, type: 'pop',
-                title: '"1,000 Songs in Your Pocket"',
-                desc: 'Apple\u2019s iPod arrives in October and the whole library goes mobile — the road from burned CDs to the streaming era begins.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/IPod', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 2003, type: 'hiphop',
-                title: 'The OutKast Double-Album Phenomenon',
-                desc: '"Speakerboxxx/The Love Below" goes cross-genre ubiquitous, gives the world "Hey Ya!", and shows just how vast Southern hip-hop can be.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Speakerboxxx/The_Love_Below', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 2004, type: 'music',
-                title: 'Kanye West Reinvents With "The College Dropout"',
-                desc: 'Stepping out from behind the boards, Kanye brings sped-up soul samples and conscious lyricism back to commercial success.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/The_College_Dropout', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 2008, type: 'pop',
-                title: 'Spotify Launches the Streaming Age',
-                desc: 'Ownership gives way to access; suddenly every genre is one tap away — the perfect engine for an ever more eclectic palate.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Spotify', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 2010, type: 'indie',
-                title: 'Arcade Fire\u2019s "The Suburbs" Takes Indie Mainstream',
-                desc: 'The Montreal collective\u2019s sprawling third album wins Album of the Year, hauling indie rock into the bright lights.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/The_Suburbs', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 2011, type: 'nuclear',
-                title: 'The Fukushima Daiichi Disaster',
-                desc: 'A March 11 earthquake and tsunami trigger meltdowns at three reactors, reshaping global nuclear policy and reigniting the safety debate.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Fukushima_nuclear_accident',
-                         maps: 'https://www.google.com/maps/search/?api=1&query=Fukushima+Daiichi+Nuclear+Power+Plant',
-                         notion: '', photos: '' }
-            },
-            {
-                year: 2012, type: 'urbex',
-                title: 'Battleship Island Goes Global',
-                desc: 'Japan\u2019s abandoned Hashima (Gunkanjima) mining island stars as the villain\u2019s lair in "Skyfall"; it becomes a UNESCO World Heritage site in 2015.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Hashima_Island',
-                         maps: 'https://www.google.com/maps/search/?api=1&query=Hashima+Island+Japan',
-                         notion: 'ADD', photos: 'ADD' }
-            },
-            {
-                year: 2015, type: 'hiphop',
-                title: 'Kendrick Lamar Redefines Protest Art',
-                desc: '"To Pimp a Butterfly" blends jazz, funk and spoken word; the track "Alright" becomes a generational civil-rights rallying cry.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/To_Pimp_a_Butterfly', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 2015, type: 'indie',
-                title: 'Tame Impala\u2019s "Currents" Reboots Indie',
-                desc: 'Kevin Parker swaps fuzz for synths and melancholy; the dreamy, danceable sound comes to define late-2010s indie crossover.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Currents_(Tame_Impala_album)', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 2016, type: 'indie',
-                title: 'Bon Iver Fractures the Format With "22, A Million"',
-                desc: 'Glitchy, sample-warped folk pushes indie into strange new shapes — peak era for the headphones-on, late-night listener.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/22,_a_Million', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 2018, type: 'music',
-                title: 'Hip-Hop\u2019s First Pulitzer Prize',
-                desc: 'Kendrick Lamar wins the Pulitzer Prize for Music for "DAMN." — the first time a non-classical, non-jazz artist takes the honor.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Damn_(Kendrick_Lamar_album)', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 2019, type: 'urbex',
-                title: 'Dark Tourism Surges Into the Zone',
-                desc: 'HBO\u2019s "Chernobyl" sends visitors flocking to the Exclusion Zone and Pripyat, turning a sealed disaster site into a bucket-list pilgrimage.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Chernobyl_Exclusion_Zone',
-                         maps: 'https://www.google.com/maps/search/?api=1&query=Chernobyl+Exclusion+Zone',
-                         notion: 'ADD', photos: 'ADD' }
-            },
-            {
-                year: 2022, type: 'nuclear',
-                title: 'Fusion Hits "Ignition" for the First Time',
-                desc: 'On December 5, Lawrence Livermore\u2019s National Ignition Facility gets more energy out than its lasers put in — the long-promised breakeven, finally real.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/National_Ignition_Facility',
-                         maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 2023, type: 'nuclear',
-                title: 'America Switches On a New Reactor',
-                desc: 'Plant Vogtle Unit 3 in Georgia enters commercial operation on July 31 — the first newly built U.S. reactor in over 30 years. Unit 4 follows in 2024.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Vogtle_Electric_Generating_Plant',
-                         maps: 'https://www.google.com/maps/search/?api=1&query=Plant+Vogtle+Waynesboro+Georgia',
-                         notion: '', photos: '' }
-            },
-            {
-                year: 2024, type: 'hiphop',
-                title: 'The Great Lyric Battle Era',
-                desc: 'The high-stakes showdown between Kendrick Lamar and Drake grips global pop culture, generating chart-topping, multi-platinum diss tracks.',
-                links: { wikipedia: 'https://en.wikipedia.org/wiki/Drake%E2%80%93Kendrick_Lamar_feud', maps: '', notion: '', photos: '' }
-            },
-            {
-                year: 2026, type: 'milestone',
-                title: 'Cheers to 40 Years of the Good Stuff',
-                desc: 'Four decades of iconic rhythm, world-changing sound, splitting atoms and beautifully abandoned places. The best chapter starts now.',
-                links: { wikipedia: '', maps: '', notion: 'ADD', photos: 'ADD' }
-            },
+            { year: 1986, month: 4, type: 'nuclear',
+              title: 'Reactor 4 Melts Down at Chernobyl',
+              desc: 'On April 26 the No. 4 reactor explodes, scattering fallout across Europe and freezing the city of Pripyat in time \u2014 the defining nuclear event of his birth year.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Chernobyl_disaster', maps: 'https://www.google.com/maps/search/?api=1&query=Pripyat%2C+Ukraine', notion: '', photos: '' } },
+            { year: 1986, month: 7, type: 'hiphop',
+              title: 'Run-D.M.C. Crosses Over With "Walk This Way"',
+              desc: 'Teaming with Aerosmith, Run-D.M.C. break down racial and sonic barriers, exploding hip-hop onto mainstream pop charts and global radio.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Walk_This_Way#Run-D.M.C._version', maps: '', notion: '', photos: '' } },
+            { year: 1988, month: 8, type: 'hiphop',
+              title: 'N.W.A Map Out West Coast Gangsta Rap',
+              desc: '"Straight Outta Compton" lands, dragging the genre\u2019s center of gravity from New York to California with raw socio-political commentary.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Straight_Outta_Compton', maps: '', notion: '', photos: '' } },
+            { year: 1989, month: 2, type: 'music',
+              title: 'The First Rap Grammy Is Awarded',
+              desc: 'DJ Jazzy Jeff & The Fresh Prince take the inaugural Best Rap Performance award for "Parents Just Don\u2019t Understand," cementing the genre\u2019s legitimacy.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Grammy_Award_for_Best_Rap_Performance', maps: '', notion: '', photos: '' } },
+            { year: 1991, month: 9, type: 'music',
+              title: 'Nirvana\u2019s "Nevermind" Detonates Grunge',
+              desc: 'Seattle\u2019s scruffy answer to the slick \u201980s rips up the charts; alt-rock becomes the new mainstream and the eclectic record collection starts here.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Nevermind', maps: '', notion: '', photos: '' } },
+            { year: 1992, month: 12, type: 'hiphop',
+              title: 'Dr. Dre Drops "The Chronic" & Defines G-Funk',
+              desc: 'Dre unleashes his masterwork, launching Snoop Dogg and building the funky, synth-soaked sound that ruled \u201990s hip-hop production.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/The_Chronic', maps: '', notion: '', photos: '' } },
+            { year: 1992, type: 'urbex',
+              title: 'Centralia Is Condemned to the Fire Below',
+              desc: 'Pennsylvania seizes the whole town by eminent domain as an unstoppable coal-seam fire \u2014 burning since 1962 \u2014 hollows it out. The ZIP code is wiped off the map by 2002.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Centralia,_Pennsylvania', maps: 'https://www.google.com/maps/search/?api=1&query=Centralia%2C+Pennsylvania', notion: '', photos: '' } },
+            { year: 1993, month: 7, type: 'midwest',
+              title: 'The Great Flood of 1993 Swallows the Midwest',
+              desc: 'From spring into fall, the Mississippi and Missouri rivers burst their banks across nine states \u2014 one of the most destructive floods in U.S. history and a defining Midwest memory.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Great_Flood_of_1993', maps: '', notion: '', photos: '' } },
+            { year: 1994, month: 4, type: 'music',
+              title: 'The Golden-Age Masterpiece: "Illmatic"',
+              desc: 'Nas releases his legendary debut, defining lyricism and the East Coast sound profile for a whole generation.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Illmatic', maps: '', notion: '', photos: '' } },
+            { year: 1996, month: 2, type: 'hiphop',
+              title: '2Pac & Jay-Z Anchor a Legendary Year',
+              desc: '2Pac releases "All Eyez on Me" while Jay-Z steps up with "Reasonable Doubt" \u2014 a competitive peak for American rhyme-craft.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/All_Eyez_on_Me', maps: '', notion: '', photos: '' } },
+            { year: 1998, month: 8, type: 'music',
+              title: 'Lauryn Hill\u2019s Historic Grammy Sweep',
+              desc: '"The Miseducation of Lauryn Hill" fuses neo-soul and sharp rap verses, reshaping R&B and earning five Grammys in a single night.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/The_Miseducation_of_Lauryn_Hill', maps: '', notion: '', photos: '' } },
+            { year: 1999, month: 6, type: 'pop',
+              title: 'Napster Cracks the Music Industry Open',
+              desc: 'Peer-to-peer file sharing rewires how a generation finds, hoards and trades music \u2014 kicking off two decades of format wars.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Napster', maps: '', notion: '', photos: '' } },
+            { year: 2001, month: 10, type: 'pop',
+              title: '"1,000 Songs in Your Pocket"',
+              desc: 'Apple\u2019s iPod arrives in October and the whole library goes mobile \u2014 the road from burned CDs to the streaming era begins.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/IPod', maps: '', notion: '', photos: '' } },
+            { year: 2003, month: 9, type: 'hiphop',
+              title: 'The OutKast Double-Album Phenomenon',
+              desc: '"Speakerboxxx/The Love Below" goes cross-genre ubiquitous, gives the world "Hey Ya!", and shows just how vast Southern hip-hop can be.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Speakerboxxx/The_Love_Below', maps: '', notion: '', photos: '' } },
+            { year: 2008, month: 10, type: 'pop',
+              title: 'Spotify Launches the Streaming Age',
+              desc: 'Ownership gives way to access; suddenly every genre is one tap away \u2014 the perfect engine for an ever more eclectic palate.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Spotify', maps: '', notion: '', photos: '' } },
+            { year: 2010, month: 8, type: 'indie',
+              title: 'Arcade Fire\u2019s "The Suburbs" Takes Indie Mainstream',
+              desc: 'The Montreal collective\u2019s sprawling third album wins Album of the Year, hauling indie rock into the bright lights.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/The_Suburbs', maps: '', notion: '', photos: '' } },
+            { year: 2011, month: 3, type: 'nuclear',
+              title: 'The Fukushima Daiichi Disaster',
+              desc: 'A March 11 earthquake and tsunami trigger meltdowns at three reactors, reshaping global nuclear policy and reigniting the safety debate.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Fukushima_nuclear_accident', maps: 'https://www.google.com/maps/search/?api=1&query=Fukushima+Daiichi+Nuclear+Power+Plant', notion: '', photos: '' } },
+            { year: 2012, month: 10, type: 'urbex',
+              title: 'Battleship Island Goes Global',
+              desc: 'Japan\u2019s abandoned Hashima (Gunkanjima) mining island stars as the villain\u2019s lair in "Skyfall"; it becomes a UNESCO World Heritage site in 2015.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Hashima_Island', maps: 'https://www.google.com/maps/search/?api=1&query=Hashima+Island+Japan', notion: '', photos: '' } },
+            { year: 2015, month: 3, type: 'hiphop',
+              title: 'Kendrick Lamar Redefines Protest Art',
+              desc: '"To Pimp a Butterfly" blends jazz, funk and spoken word; the track "Alright" becomes a generational civil-rights rallying cry.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/To_Pimp_a_Butterfly', maps: '', notion: '', photos: '' } },
+            { year: 2015, month: 7, type: 'indie',
+              title: 'Tame Impala\u2019s "Currents" Reboots Indie',
+              desc: 'Kevin Parker swaps fuzz for synths and melancholy; the dreamy, danceable sound comes to define late-2010s indie crossover.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Currents_(Tame_Impala_album)', maps: '', notion: '', photos: '' } },
+            { year: 2016, month: 9, type: 'indie',
+              title: 'Bon Iver Fractures the Format With "22, A Million"',
+              desc: 'Glitchy, sample-warped folk pushes indie into strange new shapes \u2014 peak era for the headphones-on, late-night listener.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/22,_a_Million', maps: '', notion: '', photos: '' } },
+            { year: 2018, month: 4, type: 'music',
+              title: 'Hip-Hop\u2019s First Pulitzer Prize',
+              desc: 'Kendrick Lamar wins the Pulitzer Prize for Music for "DAMN." \u2014 the first time a non-classical, non-jazz artist takes the honor.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Damn_(Kendrick_Lamar_album)', maps: '', notion: '', photos: '' } },
+            { year: 2019, month: 5, type: 'urbex',
+              title: 'Dark Tourism Surges Into the Zone',
+              desc: 'HBO\u2019s "Chernobyl" sends visitors flocking to the Exclusion Zone and Pripyat, turning a sealed disaster site into a bucket-list pilgrimage.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Chernobyl_Exclusion_Zone', maps: 'https://www.google.com/maps/search/?api=1&query=Chernobyl+Exclusion+Zone', notion: '', photos: '' } },
+            { year: 2022, month: 12, type: 'nuclear',
+              title: 'Fusion Hits "Ignition" for the First Time',
+              desc: 'On December 5, Lawrence Livermore\u2019s National Ignition Facility gets more energy out than its lasers put in \u2014 the long-promised breakeven, finally real.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/National_Ignition_Facility', maps: '', notion: '', photos: '' } },
+            { year: 2023, month: 7, type: 'nuclear',
+              title: 'America Switches On a New Reactor',
+              desc: 'Plant Vogtle Unit 3 in Georgia enters commercial operation on July 31 \u2014 the first newly built U.S. reactor in over 30 years. Unit 4 follows in 2024.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Vogtle_Electric_Generating_Plant', maps: 'https://www.google.com/maps/search/?api=1&query=Plant+Vogtle+Waynesboro+Georgia', notion: '', photos: '' } },
+            { year: 2024, month: 5, type: 'hiphop',
+              title: 'The Great Lyric Battle Era',
+              desc: 'The high-stakes showdown between Kendrick Lamar and Drake grips global pop culture, generating chart-topping, multi-platinum diss tracks.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Drake%E2%80%93Kendrick_Lamar_feud', maps: '', notion: '', photos: '' } },
+            { year: 2026, type: 'milestone',
+              title: 'Cheers to 40 Years of the Good Stuff',
+              desc: 'Four decades of iconic rhythm, world-changing sound, splitting atoms and beautifully abandoned places. The best chapter starts now.',
+              links: { wikipedia: '', maps: '', notion: 'ADD', photos: 'ADD' } },
 
-            /* ----------  PREVIOUS TRIPS (personal events)  ----------
-               maps points at the location where it's clear; 'ADD' where it
-               spans a route/multiple stops. notion + photos are 'ADD' so you
-               can drop in notes and a photo album per trip.                  */
-            { year: 2025, month: 10, type: 'milestone', emoji: '\uD83D\uDC96', title: 'Maine (10th Anniversary) Trip',
-              desc: 'October 2025.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Maine', notion: 'ADD', photos: 'ADD' } },
-            { year: 2025, month: 6, type: 'milestone', emoji: '\u2601\uFE0F', title: 'Utah Trip',
-              desc: 'June 2025.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Utah', notion: 'ADD', photos: 'ADD' } },
-            { year: 2025, month: 1, type: 'milestone', emoji: '\uD83C\uDF4A', title: 'Southeastern US Roadtrip',
-              desc: 'January 2025.',
-              links: { wikipedia: '', maps: 'ADD', notion: 'ADD', photos: 'ADD' } },
-            { year: 2024, month: 10, type: 'milestone', emoji: '\uD83C\uDF0C', title: 'Michigan Trip',
-              desc: 'October 2024.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Michigan', notion: 'ADD', photos: 'ADD' } },
-            { year: 2024, month: 4, type: 'milestone', emoji: '\uD83C\uDD98', title: 'Flagstaff, AZ',
-              desc: 'April 2024.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Flagstaff%2C+Arizona', notion: 'ADD', photos: 'ADD' } },
-            { year: 2023, month: 10, type: 'milestone', emoji: '\uD83C\uDF41', title: 'Michigan Trip',
-              desc: 'October 2023.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Michigan', notion: 'ADD', photos: 'ADD' } },
-            { year: 2023, month: 7, type: 'milestone', emoji: '\uD83D\uDC38', title: 'Kalamazoo\u2013Schaumburg Adventure',
-              desc: 'July 2023.',
-              links: { wikipedia: '', maps: 'ADD', notion: 'ADD', photos: 'ADD' } },
-            { year: 2023, month: 5, type: 'milestone', emoji: '\uD83D\uDC04', title: 'Florida Trip for Alli\u2019s Graduation',
-              desc: 'May 2023.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Florida', notion: 'ADD', photos: 'ADD' } },
-            { year: 2022, month: 10, type: 'milestone', emoji: '\uD83C\uDF0C', title: 'Maine Trip',
-              desc: 'October 2022.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Maine', notion: 'ADD', photos: 'ADD' } },
-            { year: 2022, month: 5, type: 'milestone', emoji: '\u2601\uFE0F', title: 'Michigan Trip',
-              desc: 'May 2022.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Michigan', notion: 'ADD', photos: 'ADD' } },
-            { year: 2022, month: 1, type: 'milestone', emoji: '\uD83D\uDE99', title: 'Virginia Trip',
-              desc: 'January 2022.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Virginia', notion: 'ADD', photos: 'ADD' } },
-            { year: 2021, month: 10, type: 'milestone', emoji: '\uD83C\uDFD5\uFE0F', title: 'Badlands Trip',
-              desc: 'October 2021.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Badlands+National+Park', notion: 'ADD', photos: 'ADD' } },
-            { year: 2021, month: 5, type: 'milestone', emoji: '\u26FA', title: 'Pikeville, TN Trip',
-              desc: 'May 2021.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Pikeville%2C+Tennessee', notion: 'ADD', photos: 'ADD' } },
-            { year: 2020, month: 1, type: 'milestone', emoji: '\uD83C\uDF33', title: 'TreeHouse Weekend in Shawnee National Forest',
-              desc: 'January 2020.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Shawnee+National+Forest', notion: 'ADD', photos: 'ADD' } },
-            { year: 2019, month: 3, type: 'milestone', emoji: '\uD83C\uDFD4\uFE0F', title: 'Denver Trip',
-              desc: 'March 2019.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Denver%2C+Colorado', notion: 'ADD', photos: 'ADD' } },
-            { year: 2018, month: 7, type: 'milestone', emoji: '\uD83D\uDCBC', title: 'Portland for HEFW Summit',
-              desc: 'July 2018.',
-              links: { wikipedia: '', maps: 'ADD', notion: 'ADD', photos: 'ADD' } },
-            { year: 2017, month: 9, type: 'milestone', emoji: '\uD83C\uDF35', title: 'Santa Fe Trip',
-              desc: 'September 2017.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Santa+Fe%2C+New+Mexico', notion: 'ADD', photos: 'ADD' } },
-            { year: 2016, month: 10, type: 'milestone', emoji: '\uD83E\uDD9E', title: 'Acadia National Park Trip',
-              desc: 'October 2016.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Acadia+National+Park', notion: 'ADD', photos: 'ADD' } },
+            { year: 1986, month: 1, type: 'music',
+              title: 'Rock & Roll Hall of Fame Inducts Its First Class',
+              desc: 'The very first induction ceremony, January 23 at NYC\u2019s Waldorf-Astoria, honors rock\u2019s founders \u2014 Chuck Berry, Elvis, Little Richard, Ray Charles and James Brown among them.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Rock_and_Roll_Hall_of_Fame', maps: '', notion: '', photos: '' } },
+            { year: 1986, month: 1, type: 'space',
+              title: 'Voyager 2 Sweeps Past Uranus',
+              desc: 'On January 24, Voyager 2 makes humanity\u2019s first \u2014 and still only \u2014 close flyby of Uranus, returning the first detailed images of the ice giant and its moons.',
+              links: { link: 'https://science.nasa.gov/mission/voyager/timeline/' } },
+            { year: 2010, month: 3, type: 'music',
+              title: 'Ana\u00EFs Mitchell Releases the \u201CHadestown\u201D Folk Opera',
+              desc: 'The concept album reworking the Orpheus myth \u2014 with guest turns from Justin Vernon and Ani DiFranco \u2014 arrives March 9, long before it conquers Broadway.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Hadestown_(album)', maps: '', notion: '', photos: '' } },
+            { year: 2012, month: 8, type: 'space',
+              title: 'Voyager 2 Becomes the Longest-Running Mission',
+              desc: 'In August, Voyager 2 \u2014 launched back in 1977 \u2014 becomes NASA\u2019s longest continuously operating spacecraft, still phoning home from the solar system\u2019s edge.',
+              links: { link: 'https://science.nasa.gov/mission/voyager/timeline/' } },
+            { year: 2017, month: 10, type: 'milestone',
+              title: 'Got Tattoos',
+              desc: '',
+              links: { wikipedia: '', maps: '', notion: '', photos: 'https://photos.app.goo.gl/9o7WME2rf467JwRh7' } },
+            { year: 2026, month: 2, type: 'music',
+              title: 'Bad Bunny Headlines the Super Bowl LX Halftime Show',
+              desc: 'On February 8 at Levi\u2019s Stadium, Bad Bunny becomes the first solo Latino, Spanish-language artist to headline the Super Bowl halftime show.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Super_Bowl_LX_halftime_show', maps: '', notion: '', photos: '' } },
+
+            /* ----------  PREVIOUS TRIPS (personal events)  ---------- */
+            { year: 2014, month: 10, type: 'milestone', emoji: '\uD83C\uDF32', title: 'Seattle to Portland',
+              desc: '',
+              links: { wikipedia: '', maps: 'ADD', notion: 'https://app.notion.com/p/Seattle-to-Portland-2014-bc84ab204ef44dd386457271d574bec1?source=copy_link', photos: 'https://photos.app.goo.gl/EGaWyan5buC3a9bz8' } },
+            { year: 2014, month: 10, type: 'milestone', emoji: '\uD83C\uDFDB\uFE0F', title: 'DC Trip',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Washington%2C+DC', notion: '', photos: 'https://photos.app.goo.gl/uG52NnQAJNmmhDnh6' } },
+            { year: 2015, month: 10, type: 'milestone', emoji: '\uD83E\uDDE1', title: 'HoneyMoon Acadia',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Acadia+National+Park', notion: 'https://app.notion.com/p/HoneyMoon-Acadia-2015-bace84da3f91475e859de912c829a458?source=copy_link', photos: 'https://photos.app.goo.gl/tB2LSmTbnc3Spy2R9' } },
             { year: 2016, month: 5, type: 'milestone', emoji: '\uD83C\uDFDD\uFE0F', title: 'Puerto Rico Trip',
-              desc: 'May 2016.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Puerto+Rico', notion: 'ADD', photos: 'ADD' } },
-            { year: 2015, type: 'milestone', emoji: '\uD83E\uDDE1', title: 'HoneyMoon Acadia',
-              desc: '2015.',
-              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Acadia+National+Park', notion: 'ADD', photos: 'ADD' } },
-            { year: 2014, type: 'milestone', emoji: '\uD83C\uDF32', title: 'Seattle to Portland',
-              desc: '2014.',
-              links: { wikipedia: '', maps: 'ADD', notion: 'ADD', photos: 'ADD' } }
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Puerto+Rico', notion: 'https://app.notion.com/p/Puerto-Rico-Trip-May-2016-2884c964dd80800187d8dafd80314d9d?source=copy_link', photos: 'https://photos.app.goo.gl/XiRTFK3W9j76MHWs8' } },
+            { year: 2016, month: 10, type: 'milestone', emoji: '\uD83E\uDD9E', title: 'Acadia Roadtrip',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Acadia+National+Park', notion: 'https://app.notion.com/p/Acadia-National-Park-Trip-October-2016-bf471884580b475088c7460a7e48169b?source=copy_link', photos: 'https://photos.app.goo.gl/gbskPozjMexKw8xX6' } },
+            { year: 2017, month: 9, type: 'milestone', emoji: '\uD83C\uDF35', title: 'Santa Fe Roadtrip',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Santa+Fe%2C+New+Mexico', notion: 'https://app.notion.com/p/Santa-Fe-Trip-September-2017-42b5ccd896484fb39042cd4ddb01202f?source=copy_link', photos: 'https://photos.app.goo.gl/eoajPp8ULuAVs1k9A' } },
+            { year: 2017, month: 10, type: 'milestone', emoji: '\uD83D\uDDA4', title: 'Got Tattoos',
+              desc: '',
+              links: { wikipedia: '', maps: '', notion: '', photos: 'https://photos.app.goo.gl/9o7WME2rf467JwRh7' } },
+            { year: 2018, month: 7, type: 'milestone', emoji: '\uD83D\uDCBC', title: 'Oregon Trail Roadtrip',
+              desc: '',
+              links: { wikipedia: '', maps: 'ADD', notion: 'https://app.notion.com/p/Portland-for-HEFW-Summit-July-2018-d410309dde8e4d7bb128aa32d69888d1?source=copy_link', photos: 'https://photos.app.goo.gl/AUqHNbpZZru5nXvt6' } },
+            { year: 2019, month: 3, type: 'milestone', emoji: '\uD83C\uDFD4\uFE0F', title: 'Denver Roadtrip',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Denver%2C+Colorado', notion: 'https://app.notion.com/p/Denver-Trip-March-2019-a4997353171148829d106f0c51289a1e?source=copy_link', photos: 'https://photos.app.goo.gl/VSu7egpUrw5F5PrJA' } },
+            { year: 2019, month: 10, type: 'milestone', emoji: '\uD83C\uDF42', title: 'Southern Illinois Adventure',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Southern+Illinois', notion: '', photos: 'https://photos.app.goo.gl/CpBAYkXAZbobRT1K9' } },
+            { year: 2020, month: 1, type: 'milestone', emoji: '\uD83C\uDF33', title: 'TreeHouse Weekend in Shawnee National Forest',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Shawnee+National+Forest', notion: 'https://app.notion.com/p/TreeHouse-Weekend-in-Shawnee-National-Forest-January-2020-75ec90a635984f3fb6ecf0aac223f3bd?source=copy_link', photos: 'https://photos.app.goo.gl/8tRVG1J3xRsjRpxe7' } },
+            { year: 2021, month: 5, type: 'milestone', emoji: '\u26FA', title: 'Pikeville, TN Roadtrip',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Pikeville%2C+Tennessee', notion: 'https://app.notion.com/p/Pikeville-TN-Trip-May-2021-48a9b588d9d8417ea8d96ef2fa60a2f0?source=copy_link', photos: 'https://photos.app.goo.gl/XctZMvZqLygA4bvf9' } },
+            { year: 2021, month: 10, type: 'milestone', emoji: '\uD83C\uDFD5\uFE0F', title: 'South Dakota Roadtrip',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Badlands+National+Park', notion: 'https://app.notion.com/p/Badlands-Trip-October-2021-e935114b5a6b4a3095d260141c7c6c09?source=copy_link', photos: 'https://photos.app.goo.gl/kzPFitN7eMfuX2Cd9' } },
+            { year: 2022, month: 1, type: 'milestone', emoji: '\uD83D\uDE99', title: 'Virginia Roadtrip',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Virginia', notion: 'https://app.notion.com/p/Virginia-Trip-January-2022-d931307529754d9582866665956e369e?source=copy_link', photos: 'https://photos.app.goo.gl/oKqDuKMN2uKfznTAA' } },
+            { year: 2022, month: 5, type: 'milestone', emoji: '\u2601\uFE0F', title: 'Michigan Mitten Roadtrip',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Michigan', notion: 'https://evanescent-smell-3d2.notion.site/Michigan-Trip-May-2022-128cb1a1f7764409abefe4d6f2c5ec5a?source=copy_link', photos: 'https://photos.app.goo.gl/9eBq7b5NSfwZB7U1A' } },
+            { year: 2022, month: 10, type: 'milestone', emoji: '\uD83C\uDF0C', title: 'Maine Roadtrip',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Maine', notion: 'https://evanescent-smell-3d2.notion.site/Maine-Trip-October-2022-5b78b5f82e5b4519b66aa838db7c9016?source=copy_link', photos: 'https://photos.app.goo.gl/yyex4xnVpHvbXeoY6' } },
+            { year: 2023, month: 5, type: 'milestone', emoji: '\uD83D\uDC04', title: 'Florida Roadtrip for Alli\u2019s Graduation',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Florida', notion: 'https://app.notion.com/p/Florida-Trip-for-Alli-s-Graduation-May-2023-6f014bd7e5b54b69978ff35f822d69cd?source=copy_link', photos: 'https://photos.app.goo.gl/Emy4zPpDpxdaYihq8' } },
+            { year: 2023, month: 10, type: 'milestone', emoji: '\uD83C\uDF41', title: 'Michigan Roadtrip for Uni',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Michigan', notion: 'https://app.notion.com/p/Michigan-Trip-October-2023-0c28a31dc0b7436cafec9dcbfb8175de?source=copy_link', photos: 'https://photos.app.goo.gl/wbMURX8NMExAtmV5A' } },
+            { year: 2024, month: 4, type: 'milestone', emoji: '\uD83C\uDD98', title: 'Flagstaff, AZ',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Flagstaff%2C+Arizona', notion: 'https://app.notion.com/p/Flagstaff-AZ-April-2024-2814c964dd8080c0adf3de152ea9f5e1?source=copy_link', photos: 'https://photos.app.goo.gl/XoLsvAhMFTPvyjf9A' } },
+            { year: 2024, month: 10, type: 'milestone', emoji: '\uD83C\uDF0C', title: 'U.P. Michigan Roadtrip',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Michigan', notion: 'https://app.notion.com/p/Michigan-Trip-October-2024-c0cb24a7b80647bd9a070e740f6646df?source=copy_link', photos: 'https://photos.app.goo.gl/qXRsAtZQ9ZLpV7sp8' } },
+            { year: 2025, month: 1, type: 'milestone', emoji: '\uD83C\uDF4A', title: 'Southeastern US Roadtrip',
+              desc: '',
+              links: { wikipedia: '', maps: 'ADD', notion: 'https://app.notion.com/p/Southeastern-US-Roadtrip-January-2025-1514c964dd80804e9335ea2a9da26fe8?source=copy_link', photos: 'https://photos.app.goo.gl/8njJhGmDHTKR674p7' } },
+            { year: 2025, month: 6, type: 'milestone', emoji: '\u2601\uFE0F', title: 'Utah Trip',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Utah', notion: 'https://app.notion.com/p/Utah-Trip-June-2025-18fc7009826e48ae8c233c8d9cc2570d?source=copy_link', photos: 'https://photos.app.goo.gl/xYF12fesMUbi1ejx8' } },
+            { year: 2025, month: 10, type: 'milestone', emoji: '\uD83D\uDC96', title: 'Midcoast Maine 10th Anniversary Trip',
+              desc: '',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Maine', notion: 'https://app.notion.com/p/Maine-10th-Anniversary-Trip-October-2025-2814c964dd808026a333dd5e9752f77d?source=copy_link', photos: 'https://photos.app.goo.gl/mf85wyKNy1hBZFZV6' } }
         ];
 
         /* ----------  ICONS  ---------- */
@@ -550,10 +509,12 @@
             wikipedia: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/><text x="12" y="16.4" text-anchor="middle" font-size="12.5" font-family="Georgia, serif" font-weight="700" fill="currentColor">W</text></svg>',
             maps:   '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>',
             notion: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg>',
-            photos: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16.5l-5-5-4 4-2-2-4 4"/></svg>'
+            photos: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16.5l-5-5-4 4-2-2-4 4"/></svg>',
+            link:   '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18c-2.6-2.7-2.6-15.3 0-18z"/></svg>'
         };
         const LINK_ORDER = [
             { key: 'wikipedia', name: 'Wikipedia' },
+            { key: 'link',      name: 'source page' },
             { key: 'maps',      name: 'Google Maps' },
             { key: 'notion',    name: 'Notion notes' },
             { key: 'photos',    name: 'photo album' }
@@ -562,6 +523,7 @@
         const timeline = document.getElementById('timeline');
         const statusEl = document.getElementById('status');
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const MONTHS = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
         /* ----------  Build legend + filter buttons from categories  ---------- */
         const legendEl = document.getElementById('legend');
@@ -634,11 +596,11 @@
                 li.innerHTML = `
                     <article class="content-card" aria-labelledby="${headingId}">
                         <div class="year-header">
-                            <span class="year-badge">${ev.year}</span>
+                            <span class="year-badge">${ev.month ? `<span class="month-badge">${MONTHS[ev.month]}</span>` : ''}${ev.year}</span>
                             <span class="tag">${cat.label}</span>
                         </div>
                         <h3 id="${headingId}">${ev.emoji ? `<span class="emoji" aria-hidden="true">${ev.emoji}</span>` : ''}${ev.title}</h3>
-                        <p class="desc">${ev.desc}</p>
+                        ${ev.desc ? `<p class="desc">${ev.desc}</p>` : ''}
                         <div class="link-row">${buildLinks(ev, index)}</div>
                         <p class="hint" hidden>To wire this up, open the file, find the
                             <code>"${escapeAttr(ev.title)}"</code> card and paste your URL into its
@@ -695,7 +657,7 @@
             ghost.setAttribute('aria-expanded', String(nowHidden));
         });
 
-        events.sort((a, b) => (a.year - b.year) || ((a.month || 0) - (b.month || 0)));
+        events.sort((a, b) => (a.year - b.year) || ((a.month || 13) - (b.month || 13)));
         applyFilters();
     </script>
 </body>
