@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Well-Being Check-In</title>
+<style>
+  :root {
+    --uiuc-blue: #13294B;
+    --uiuc-orange: #B33A19;
+    --ink: #1f2937;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --bg-soft: #f9fafb;
+    --bg-card: #ffffff;
+    --focus: #2563eb;
+    --band-very-low: #b91c1c;
+    --band-low: #d97706;
+    --band-medium-low: #ca8a04;
+    --band-medium-high: #65a30d;
+    --band-high: #16a34a;
+    --band-very-high: #047857;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg-soft);
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+  h1 { font-size: 1.6rem; margin: 0 0 6px; color: var(--uiuc-blue); }
+  h2 { font-size: 1.25rem; margin: 24px 0 10px; color: var(--uiuc-blue); }
+  h3 { font-size: 1.05rem; margin: 18px 0 8px; }
+  p  { margin: 0 0 12px; }
+  .lede { color: var(--muted); font-size: 0.98rem; }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px;
+    margin: 16px 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  .btn {
+    display: inline-block;
+    border: 0;
+    padding: 11px 18px;
+    border-radius: 8px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.05s ease, background 0.15s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary,
+  .btn-primary:link,
+  .btn-primary:visited { background: var(--uiuc-orange); color: white; }
+  .btn-primary:hover,
+  .btn-primary:focus { background: #8f2e14; color: white; }
+  .btn-secondary,
+  .btn-secondary:link,
+  .btn-secondary:visited { background: transparent; color: var(--uiuc-blue); border: 1px solid var(--uiuc-blue); }
+  .btn-secondary:hover { background: rgba(19,41,75,0.06); }
+  .btn-ghost { background: transparent; color: var(--muted); }
+  .btn-ghost:hover { color: var(--ink); }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  .step { display: none; }
+  .step.active { display: block; }
+
+  .progress {
+    height: 6px;
+    background: var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .progress-bar {
+    height: 100%;
+    background: var(--uiuc-orange);
+    width: 0%;
+    transition: width 0.25s ease;
+  }
+  .progress-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .q-block { padding: 14px 0; border-top: 1px solid var(--line); }
+  .q-block:first-child { border-top: 0; padding-top: 4px; }
+  .q-text { font-weight: 600; margin-bottom: 10px; }
+  .q-num { color: var(--muted); font-weight: 500; margin-right: 4px; }
+  .choices { display: grid; gap: 6px; }
+  .choice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    background: white;
+    transition: border-color 0.12s ease, background 0.12s ease;
+  }
+  .choice:hover { border-color: #94a3b8; background: #f8fafc; }
+  .choice input { margin: 0; }
+  .choice.selected {
+    border-color: var(--uiuc-orange);
+    background: #fff7ed;
+  }
+
+  .age-toggle {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin: 10px 0 4px;
+  }
+  .age-toggle label {
+    flex: 1 1 220px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 12px;
+    cursor: pointer;
+    background: white;
+  }
+  .age-toggle label.selected {
+    border-color: var(--uiuc-orange);
+    background: #fff7ed;
+  }
+  .age-toggle input { margin-right: 8px; }
+
+  .band-select {
+    display: grid; gap: 8px; margin-top: 10px;
+  }
+  .band-select button {
+    text-align: left;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-size: 0.98rem;
+  }
+  .band-select button:hover { border-color: #94a3b8; background: #f8fafc; }
+  .band-swatch {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 999px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .score-hero {
+    text-align: center;
+    padding: 20px 12px 4px;
+  }
+  .score-number {
+    font-size: 3.4rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: 6px 0;
+  }
+  .score-label {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+  .score-context {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+
+  .band-strip {
+    display: flex;
+    margin: 18px 0 8px;
+    border-radius: 6px;
+    overflow: hidden;
+    height: 14px;
+  }
+  .band-strip div { flex: 1; }
+  .band-strip-labels {
+    display: flex;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-align: center;
+  }
+  .band-strip-labels div { flex: 1; }
+
+  .feedback {
+    background: #f0f9ff;
+    border-left: 4px solid #0284c7;
+    padding: 14px 16px;
+    border-radius: 6px;
+    margin: 16px 0;
+  }
+  .feedback h3 { margin-top: 0; color: var(--uiuc-blue); }
+
+  .cta {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 10px;
+    padding: 18px;
+    margin: 18px 0;
+  }
+  .cta h3 { margin-top: 0; color: var(--uiuc-orange); }
+  .cta ul { margin: 8px 0 12px 20px; padding: 0; }
+  .cta li { margin: 4px 0; }
+  .cta a { color: var(--uiuc-blue); font-weight: 600; }
+
+  details { margin: 10px 0; }
+  summary { cursor: pointer; color: var(--muted); font-size: 0.9rem; }
+
+  .footnote {
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+    margin-top: 24px;
+  }
+  .footnote a { color: var(--muted); }
+
+  .warn {
+    background: #fef2f2;
+    border-left: 4px solid #dc2626;
+    padding: 10px 14px;
+    border-radius: 6px;
+    color: #7f1d1d;
+    font-size: 0.9rem;
+    margin: 10px 0;
+    display: none;
+  }
+  .warn.visible { display: block; }
+
+  @media print {
+    body { background: white; }
+    .no-print { display: none !important; }
+    .card { border: 1px solid #ccc; box-shadow: none; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- STEP 1: Intro / path choice -->
+  <section id="step-intro" class="step active">
+    <h1>Financial Well-Being Check-In</h1>
+    <p class="lede">A short, private check-in using the Consumer Financial Protection Bureau's Financial Well-Being Scale. Takes about 3 minutes.</p>
+
+    <div class="card">
+      <h2>What this measures</h2>
+      <p>How you <em>feel</em> about your financial security and freedom of choice &mdash; today and looking ahead. There are no right or wrong answers, and this isn't graded on your score.</p>
+      <p>You'll answer 10 statements, then get your Financial Well-Being score (0&ndash;100) and personalized next steps.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" data-goto="step-age">Start the check-in</button>
+      </div>
+    </div>
+
+    <p class="footnote">
+      Your responses stay in your browser. Nothing is sent anywhere. If you need a record of your results &mdash; for a course, a coaching session, or your own reference &mdash; use the &ldquo;Save as PDF / Print&rdquo; button on the results screen.
+    </p>
+
+    <details style="margin-top: 16px;">
+      <summary>About this activity &amp; how to use it in your course</summary>
+      <div style="font-size: 0.9rem; color: var(--muted); margin-top: 10px;">
+        <p>This activity uses the <strong>CFPB Financial Well-Being Scale</strong>, a free, validated, public-domain measure of financial well-being developed by the U.S. Consumer Financial Protection Bureau (2015, 2017). The 10 items, response options, and scoring tables come directly from the CFPB's published scoring guide.</p>
+        <p>The activity was built by <a href="https://andreapellegrini.info/" target="_blank" rel="noopener">Andrea Pellegrini</a> to be embedded in Canvas courses, orientation modules, or other educational experiences. The call-to-action points to the University of Illinois System's Student Money Management Center, but the underlying scale, scoring, and interpretation are the CFPB's work &mdash; not SMMC's.</p>
+        <p><strong>To embed in your own course or site:</strong> use an iframe pointing at this page. On mobile, a plain link often works better than an iframe.</p>
+<pre style="background: #f3f4f6; padding: 10px; border-radius: 6px; overflow-x: auto; font-size: 0.85rem;">&lt;iframe src="https://andreapellegrini.info/cfpb-financial-wellbeing-scale.html"
+        width="100%" height="100vh" style="min-height:600px; border:0;"&gt;
+&lt;/iframe&gt;</pre>
+      </div>
+    </details>
+  </section>
+
+  <!-- STEP 2: Age group (needed for correct CFPB scoring) -->
+  <section id="step-age" class="step">
+    <div class="progress"><div class="progress-bar" style="width: 8%"></div></div>
+    <div class="progress-label">Step 1 of 2</div>
+
+    <div class="card">
+      <h2>First: your age group</h2>
+      <p>The CFPB uses different scoring tables for adults 18&ndash;61 vs. 62+, because responses tend to differ across those groups. Pick one:</p>
+      <div class="age-toggle" id="age-toggle">
+        <label><input type="radio" name="age" value="18-61" checked> Age 18&ndash;61</label>
+        <label><input type="radio" name="age" value="62+"> Age 62 and older</label>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" data-goto="step-intro">Back</button>
+        <button class="btn btn-primary" data-goto="step-questions">Continue</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 3: The 10 questions -->
+  <section id="step-questions" class="step">
+    <div class="progress"><div class="progress-bar" id="q-progress" style="width: 0%"></div></div>
+    <div class="progress-label" id="q-progress-label">Step 2 of 2 &mdash; 0 of 10 answered</div>
+
+    <div class="card">
+      <h2>The 10 statements</h2>
+      <p class="lede">Pick the option that best describes you for each one.</p>
+      <div id="questions"></div>
+      <div class="warn" id="q-warn">Please answer all 10 items to see your score.</div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" data-goto="step-age">Back</button>
+        <button class="btn btn-primary" id="btn-submit">See my score</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 5: Results -->
+  <section id="step-results" class="step">
+    <div class="card">
+      <div class="score-hero">
+        <div style="color: var(--muted); font-size: 0.9rem;">Your CFPB Financial Well-Being Score</div>
+        <div class="score-number" id="score-number">--</div>
+        <div class="score-label" id="score-band">--</div>
+        <div class="score-context" id="score-context"></div>
+      </div>
+
+      <div class="band-strip">
+        <div style="background:var(--band-very-low)"></div>
+        <div style="background:var(--band-low)"></div>
+        <div style="background:var(--band-medium-low)"></div>
+        <div style="background:var(--band-medium-high)"></div>
+        <div style="background:var(--band-high)"></div>
+        <div style="background:var(--band-very-high)"></div>
+      </div>
+      <div class="band-strip-labels">
+        <div>0&ndash;29<br>Very Low</div>
+        <div>30&ndash;37<br>Low</div>
+        <div>38&ndash;49<br>Med Low</div>
+        <div>50&ndash;57<br>Med High</div>
+        <div>58&ndash;67<br>High</div>
+        <div>68&ndash;100<br>Very High</div>
+      </div>
+
+      <div class="feedback" id="feedback-block">
+        <h3 id="feedback-title">What this means</h3>
+        <div id="feedback-body"></div>
+      </div>
+
+      <div class="cta">
+        <h3>Keep going with SMMC</h3>
+        <div id="cta-body"></div>
+        <p style="margin-top:14px; margin-bottom: 6px;">
+          <a class="btn btn-primary" href="https://www.studentmoney.uillinois.edu/contact/subscribe" target="_blank" rel="noopener">
+            Subscribe to an SMMC e-newsletter &rarr;
+          </a>
+        </p>
+        <p style="font-size:0.85rem; color: var(--muted); margin-bottom:0;">
+          Bi-weekly emails with reminders, resources, and tips. Separate lists for students, parents, and staff/faculty.
+        </p>
+      </div>
+
+      <details>
+        <summary>See all SMMC financial education resources</summary>
+        <ul style="margin-top: 10px;">
+          <li>Live and recorded webinars &mdash; <a href="https://www.studentmoney.uillinois.edu/" target="_blank" rel="noopener">studentmoney.uillinois.edu</a></li>
+          <li>University of Illinois Financial Literacy Badges Program</li>
+          <li><em>Making Cents of Money</em> podcast (SoundCloud, Apple Podcasts, Spotify) &mdash; co-hosted by SMMC and IDFPR</li>
+          <li>Educational campaigns like <em>Know What You Owe</em> and <em>Understand Your Refund</em></li>
+          <li>SMMC News &amp; Events blog</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>What "financial well-being" means in this scale</summary>
+        <p style="margin-top: 10px;">The CFPB defines financial well-being as the extent to which your financial situation and financial capability give you security and freedom of choice, both now and in the future. It's a snapshot of how you feel &mdash; not a credit score, not a measure of income, and not a judgment. Within any band, individual circumstances vary widely.</p>
+      </details>
+
+      <div class="btn-row no-print">
+        <button class="btn btn-primary" id="btn-print">Save as PDF / Print</button>
+        <button class="btn btn-secondary" id="btn-restart">Start over</button>
+      </div>
+
+      <p class="footnote">
+        Score computed using the CFPB Financial Well-Being Scale standard 10-item version, self-administered scoring table.
+        Source: Consumer Financial Protection Bureau (2015, 2017). CFPB Financial Well-Being Scale. Public domain.
+        <a href="https://www.consumerfinance.gov/consumer-tools/financial-well-being/" target="_blank" rel="noopener">consumerfinance.gov/consumer-tools/financial-well-being</a>.
+        SMMC service descriptions and links from <a href="https://www.studentmoney.uillinois.edu/" target="_blank" rel="noopener">studentmoney.uillinois.edu</a>.
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // ---------- CFPB standard 10-item scale ----------
+  // direction "pos" -> options score 4,3,2,1,0
+  // direction "neg" -> options score 0,1,2,3,4
+  const scaleA = ["Completely", "Very well", "Somewhat", "Very little", "Not at all"];
+  const scaleB = ["Always", "Often", "Sometimes", "Rarely", "Never"];
+
+  const items = [
+    { text: "I could handle a major unexpected expense.", scale: "A", dir: "pos" },
+    { text: "I am securing my financial future.", scale: "A", dir: "pos" },
+    { text: "Because of my money situation, I feel like I will never have the things I want in life.", scale: "A", dir: "neg" },
+    { text: "I can enjoy life because of the way I'm managing my money.", scale: "A", dir: "pos" },
+    { text: "I am just getting by financially.", scale: "A", dir: "neg" },
+    { text: "I am concerned that the money I have or will save won't last.", scale: "A", dir: "neg" },
+    { text: "Giving a gift for a wedding, birthday or other occasion would put a strain on my finances for the month.", scale: "B", dir: "neg" },
+    { text: "I have money left over at the end of the month.", scale: "B", dir: "pos" },
+    { text: "I am behind with my finances.", scale: "B", dir: "neg" },
+    { text: "My finances control my life.", scale: "B", dir: "neg" }
+  ];
+
+  // Self-administered lookup: raw 0..40 -> scaled score
+  const rawToScaled = {
+    "18-61": [14,19,22,25,27,29,31,32,34,35,37,38,40,41,42,44,45,46,47,49,50,51,52,54,55,56,58,59,60,62,63,65,66,68,69,71,73,75,78,81,86],
+    "62+":   [14,20,24,26,29,31,33,35,36,38,39,41,42,44,45,46,48,49,50,52,53,54,56,57,58,60,61,63,64,66,67,69,71,73,75,77,79,82,84,88,95]
+  };
+
+  const bands = [
+    { name: "Very Low",    min: 0,  max: 29,  color: "var(--band-very-low)"     },
+    { name: "Low",         min: 30, max: 37,  color: "var(--band-low)"          },
+    { name: "Medium Low",  min: 38, max: 49,  color: "var(--band-medium-low)"   },
+    { name: "Medium High", min: 50, max: 57,  color: "var(--band-medium-high)"  },
+    { name: "High",        min: 58, max: 67,  color: "var(--band-high)"         },
+    { name: "Very High",   min: 68, max: 100, color: "var(--band-very-high)"    }
+  ];
+
+  // ---------- Feedback per band ----------
+  // Written to avoid overpromising. Grounded in CFPB's own characterizations
+  // (from the 2015 national survey) and points only to real SMMC resources.
+  const feedback = [
+    { // Very Low
+      title: "Your score reflects significant financial strain",
+      body: `<p>Scores in this range often go with high day-to-day money stress &mdash; things like difficulty covering an unexpected expense or making ends meet. That's a heavy load, and it's common among college students.</p>
+             <p>A useful next step is to focus on one small stabilizer at a time (tracking where money goes, understanding what you owe, or setting up even a tiny emergency buffer) rather than trying to fix everything at once. If you're facing an immediate crisis (rent, food, tuition), your campus's dean of students or financial aid office may have emergency resources worth asking about.</p>`,
+      cta:  `<p>SMMC's ongoing content is designed for exactly this kind of "start where you are" approach:</p>
+             <ul>
+               <li>The <strong>e-newsletter</strong> sends bite-sized tips and reminders you can act on without overhauling your life.</li>
+               <li>SMMC's <strong>recorded webinars</strong> cover fundamentals like budgeting basics and understanding your bill.</li>
+               <li>The <strong>Know What You Owe</strong> campaign is a good starting point if student debt is part of the picture.</li>
+             </ul>`
+    },
+    { // Low
+      title: "Your score suggests getting by is a struggle right now",
+      body: `<p>Scores in this range often mean money feels tight most months &mdash; there's little margin for a surprise expense, and financial choices feel constrained.</p>
+             <p>The most useful thing you can do here is build predictability: know what's coming in, what's going out, and what's due when. Small wins in that area tend to move the needle on how you <em>feel</em> about your finances, which is what this scale measures.</p>`,
+      cta:  `<p>Free ongoing resources from SMMC that fit this stage:</p>
+             <ul>
+               <li>The <strong>bi-weekly e-newsletter</strong> for regular tips and reminders.</li>
+               <li><strong>Live and recorded webinars</strong> on money management fundamentals.</li>
+               <li>The <strong>Financial Literacy Badges Program</strong> if you want structured learning you can point to on a resume.</li>
+             </ul>`
+    },
+    { // Medium Low
+      title: "Your score is in the most common range for adults in the U.S.",
+      body: `<p>Scores here are near the U.S. average. You're managing, but there's real room to feel more secure &mdash; the sort of place where building a specific habit (automatic savings, checking your credit, planning around irregular expenses) tends to pay off.</p>
+             <p>This is a good stage to pick <em>one</em> area to focus on for a semester rather than trying to overhaul everything.</p>`,
+      cta:  `<p>SMMC resources that fit ongoing skill-building:</p>
+             <ul>
+               <li>The <strong>e-newsletter</strong> for a steady drip of tips you don't have to seek out.</li>
+               <li>The <strong>Financial Literacy Badges Program</strong> for structured learning across topics.</li>
+               <li>The <strong>Making Cents of Money podcast</strong> (co-hosted with the Illinois Department of Financial and Professional Regulation) if audio fits your routine better.</li>
+             </ul>`
+    },
+    { // Medium High
+      title: "Your score reflects a relatively stable financial picture",
+      body: `<p>You likely feel reasonably in control &mdash; you can handle most typical expenses and have some room to plan ahead. The next tier of well-being usually comes from consistency: sticking to a plan over months, not weeks, and getting more deliberate about longer-term goals like debt payoff or savings targets.</p>`,
+      cta:  `<p>SMMC resources for staying on track and going deeper:</p>
+             <ul>
+               <li>The <strong>e-newsletter</strong> for periodic nudges and topical resources.</li>
+               <li>The <strong>Financial Literacy Badges Program</strong> for topics like credit, saving, and planning.</li>
+               <li>The <strong>Making Cents of Money podcast</strong> for ongoing engagement.</li>
+             </ul>`
+    },
+    { // High
+      title: "Your score reflects strong financial well-being",
+      body: `<p>You feel secure and have real freedom of choice with your money. Scores in this range typically come with habits like consistent saving, staying on top of debt, and having a cushion for the unexpected.</p>
+             <p>At this stage, the value of continued financial education is mostly in specialization &mdash; retirement planning, investing basics, or navigating major life transitions like a first job or grad school.</p>`,
+      cta:  `<p>SMMC resources worth keeping in your rotation:</p>
+             <ul>
+               <li>The <strong>e-newsletter</strong> for topical resources as life changes.</li>
+               <li>The <strong>Financial Literacy Badges Program</strong> for deeper topics.</li>
+               <li>The <strong>Making Cents of Money podcast</strong> for ongoing learning.</li>
+             </ul>`
+    },
+    { // Very High
+      title: "Your score is in the top range of financial well-being",
+      body: `<p>You feel highly in control of your finances and have substantial freedom of choice. Scores this high are relatively uncommon and reflect a strong foundation.</p>
+             <p>At this level, financial education often shifts toward planning for larger goals (home purchase, investing, family) and staying current on changes in tax law, benefits, and financial products.</p>`,
+      cta:  `<p>SMMC resources for staying current:</p>
+             <ul>
+               <li>The <strong>e-newsletter</strong> for periodic updates on topics that shift year to year.</li>
+               <li>The <strong>Making Cents of Money podcast</strong> for deeper dives.</li>
+               <li>Consider sharing SMMC resources with peers &mdash; strong financial well-being is easier to sustain in a community that talks about money openly.</li>
+             </ul>`
+    }
+  ];
+
+  // ---------- App state ----------
+  let ageGroup = "18-61";
+  let answers = new Array(items.length).fill(null); // stores response value (0-4)
+
+  // ---------- Render questions ----------
+  function renderQuestions() {
+    const container = document.getElementById('questions');
+    container.innerHTML = '';
+    items.forEach((it, i) => {
+      const opts = it.scale === "A" ? scaleA : scaleB;
+      const vals = it.dir === "pos" ? [4,3,2,1,0] : [0,1,2,3,4];
+
+      const block = document.createElement('div');
+      block.className = 'q-block';
+      block.innerHTML = `
+        <div class="q-text"><span class="q-num">${i+1}.</span>${escapeHtml(it.text)}</div>
+        <div class="choices" data-qi="${i}"></div>
+      `;
+      const choices = block.querySelector('.choices');
+      opts.forEach((label, oi) => {
+        const c = document.createElement('label');
+        c.className = 'choice';
+        c.innerHTML = `
+          <input type="radio" name="q${i}" value="${vals[oi]}">
+          <span>${label}</span>
+        `;
+        c.querySelector('input').addEventListener('change', (e) => {
+          answers[i] = parseInt(e.target.value, 10);
+          // update selected class
+          choices.querySelectorAll('.choice').forEach(x => x.classList.remove('selected'));
+          c.classList.add('selected');
+          updateProgress();
+        });
+        choices.appendChild(c);
+      });
+      container.appendChild(block);
+    });
+  }
+
+  function updateProgress() {
+    const done = answers.filter(a => a !== null).length;
+    const pct = Math.round((done / items.length) * 100);
+    document.getElementById('q-progress').style.width = pct + '%';
+    document.getElementById('q-progress-label').textContent =
+      `Step 2 of 2 — ${done} of ${items.length} answered`;
+  }
+
+  function submitAnswers() {
+    const warn = document.getElementById('q-warn');
+    const done = answers.filter(a => a !== null).length;
+    if (done < items.length) {
+      warn.classList.add('visible');
+      warn.scrollIntoView({behavior: 'smooth', block: 'center'});
+      return;
+    }
+    warn.classList.remove('visible');
+    const raw = answers.reduce((s, v) => s + v, 0);
+    const scaled = rawToScaled[ageGroup][raw];
+    showResults(scaled);
+  }
+
+  function showResults(score) {
+    const idx = bands.findIndex(b => score >= b.min && score <= b.max);
+    const band = bands[idx];
+    const fb = feedback[idx];
+
+    document.getElementById('score-number').textContent = score;
+    document.getElementById('score-band').textContent = band.name;
+    document.getElementById('score-band').style.background = band.color;
+    document.getElementById('score-context').innerHTML =
+      `On a 0&ndash;100 scale. Range for this band: ${band.min}&ndash;${band.max}`;
+
+    document.getElementById('feedback-title').textContent = fb.title;
+    document.getElementById('feedback-body').innerHTML = fb.body;
+    document.getElementById('cta-body').innerHTML = fb.cta;
+
+    goTo('step-results');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function restart() {
+    answers = new Array(items.length).fill(null);
+    document.querySelectorAll('input[type=radio]').forEach(r => r.checked = false);
+    document.querySelectorAll('.choice.selected').forEach(c => c.classList.remove('selected'));
+    updateProgress();
+    goTo('step-intro');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function goTo(stepId) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById(stepId).classList.add('active');
+  }
+
+  // Age toggle wire-up
+  document.getElementById('age-toggle').addEventListener('change', (e) => {
+    if (e.target.name === 'age') {
+      ageGroup = e.target.value;
+      document.querySelectorAll('#age-toggle label').forEach(l => l.classList.remove('selected'));
+      e.target.closest('label').classList.add('selected');
+    }
+  });
+  // Initialize age toggle selected state
+  document.querySelector('#age-toggle input[checked]').closest('label').classList.add('selected');
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, c => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[c]));
+  }
+
+  renderQuestions();
+
+  // Wire buttons via addEventListener so we don't depend on inline onclick,
+  // which is blocked by Canvas's Content Security Policy on file previews.
+  document.querySelectorAll('[data-goto]').forEach(btn => {
+    btn.addEventListener('click', () => goTo(btn.getAttribute('data-goto')));
+  });
+  document.getElementById('btn-submit').addEventListener('click', submitAnswers);
+  document.getElementById('btn-print').addEventListener('click', () => window.print());
+  document.getElementById('btn-restart').addEventListener('click', restart);
+</script>
+</body>
+</html>
