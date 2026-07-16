@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects: Andrea Pellegrini</title>
+  <title>Financial Wellness Self-Assessments: Andrea Pellegrini</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -335,83 +335,138 @@
 
 <div class="stars" aria-hidden="true"></div>
 
+
 <main id="main">
 
   <!-- Page header -->
   <div class="page-header-band">
     <div class="page-header-inner">
-      <div class="s-kicker" aria-hidden="true">Projects</div>
-      <h1>Ongoing <span class="hl">Work</span></h1>
-      <p class="s-lead" style="margin-bottom:0;">A mix of educational outreach, interactive tools, and applied research. Some years in the making, some still evolving.</p>
+      <div class="s-kicker" aria-hidden="true">Self-Assessments</div>
+      <h1>Financial <span class="hl">Wellness</span> Self-Assessments</h1>
+      <p class="s-lead" style="margin-bottom:0;">Two tools built around the same north star &mdash; helping people notice, name, and act on their financial well-being &mdash; but designed for very different moments and audiences.</p>
     </div>
   </div>
 
-  <!-- Outreach Projects -->
-  <div class="band band-card" aria-labelledby="h-outreach">
+  <!-- Two tools, side by side -->
+  <div class="band band-card" aria-labelledby="h-tools">
     <div class="band-inner">
-      <div class="s-kicker" aria-hidden="true">Outreach</div>
-      <h2 id="h-outreach">Educational <span class="hl">Outreach</span></h2>
-      <p class="s-lead">Long-running programs bringing financial education to students, educators, and the public across Illinois and beyond.</p>
+      <div class="s-kicker" aria-hidden="true">Two Assessments</div>
+      <h2 id="h-tools">Pick the <span class="hl">right</span> tool</h2>
+      <p class="s-lead">Each of these assessments does something the other doesn't. Neither is a replacement for the other, and they're often useful in sequence.</p>
 
       <div class="research-grid">
-        <div class="card" id="webinar">
-          <div class="card-kicker">Webinar Series · 2013–Present</div>
-          <h3>Get Savvy: Grow Your Green Stuff</h3>
-          <p>A free, public statewide webinar series coordinated with financial educators across Illinois, updated each academic year. Live sessions held Wednesdays at 12:00 PM CT via Zoom, with recordings available on YouTube.</p>
-          <p>Produced in collaboration with partners across state government, higher education, and financial regulation.</p>
-          <a href="https://go.uillinois.edu/getsavvywebinars" target="_blank" rel="noopener noreferrer" class="card-link">Register for upcoming webinars</a>
-          <br>
-          <a href="https://www.youtube.com/ILStudentMoney" target="_blank" rel="noopener noreferrer" class="card-link">Watch recordings on YouTube</a>
-        </div>
 
-        <div class="card" id="podcast">
-          <div class="card-kicker">Podcast · 2020–Present</div>
-          <h3>Making Cents of Money</h3>
-          <p>Co-host of over 100 episodes of the Making Cents of Money podcast, produced through a partnership between the Illinois Department of Financial &amp; Professional Regulation and the University of Illinois System. Covers financial topics relevant to Illinois consumers.</p>
-          <a href="https://www.studentmoney.uillinois.edu/podcasts" target="_blank" rel="noopener noreferrer" class="card-link">All episodes</a>
-          <div class="podcast-platforms">
-            <a href="http://soundcloud.com/idfpr" target="_blank" rel="noopener noreferrer" class="platform-btn soundcloud" aria-label="Listen on SoundCloud"><i class="fa-brands fa-soundcloud"></i></a>
-            <a href="https://podcasts.apple.com/us/podcast/making-cents-of-money/id1529891389" target="_blank" rel="noopener noreferrer" class="platform-btn apple" aria-label="Listen on Apple Podcasts"><i class="fa-brands fa-apple"></i></a>
-            <a href="https://open.spotify.com/show/6ZE7y9V85mBSB1dDbeaR1l?si=BGl99FAHTCeVa3xuwL89QA&dl_branch=1" target="_blank" rel="noopener noreferrer" class="platform-btn spotify" aria-label="Listen on Spotify"><i class="fa-brands fa-spotify"></i></a>
+        <div class="card" id="checkup">
+          <div class="card-kicker">Comprehensive · Personal</div>
+          <h3>Financial Wellness Checkup</h3>
+          <p>A multi-dimensional self-assessment that walks a person through their whole financial picture &mdash; goals, confidence, net worth, cash flow, emergency savings, and retirement readiness &mdash; and returns a personalized action plan grounded in Federal Reserve data and retirement-readiness research.</p>
+          <p>Built in Streamlit. Best for someone who wants a deeper, one-time diagnostic they can work through on their own time (roughly 10&ndash;15 minutes) and use to prioritize what to change next.</p>
+          <dl class="dis-meta" style="margin-top: 1.2rem;">
+            <div>
+              <dt>Format</dt>
+              <dd>Interactive Streamlit app, opens in its own tab</dd>
+            </div>
+            <div>
+              <dt>Time</dt>
+              <dd>10&ndash;15 minutes</dd>
+            </div>
+            <div>
+              <dt>Best for</dt>
+              <dd>Individuals doing a personal financial deep-dive</dd>
+            </div>
+          </dl>
+          <div class="card-ctas">
+            <a href="https://financialwellnesscheckup.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn btn-filled">Take the checkup</a>
           </div>
         </div>
+
+        <div class="card" id="cfpb-scale">
+          <div class="card-kicker">Brief · Embeddable · CFPB Scale</div>
+          <h3>CFPB Financial Well-Being Scale Activity</h3>
+          <p>A short, embeddable 10-question activity built around the U.S. Consumer Financial Protection Bureau's validated Financial Well-Being Scale (public domain, 2015 / 2017). The activity auto-scores using the CFPB's own scoring tables, shows the participant's score band, and offers tailored, non-prescriptive next steps.</p>
+          <p>Designed to drop into a Canvas course, a first-year orientation module, an advising session, or any other educational experience via a simple iframe. All scoring and interpretation come directly from the CFPB; this is an educational wrapper around their work, not a replacement or reinterpretation.</p>
+          <dl class="dis-meta" style="margin-top: 1.2rem;">
+            <div>
+              <dt>Format</dt>
+              <dd>Self-contained HTML page, iframe-friendly</dd>
+            </div>
+            <div>
+              <dt>Time</dt>
+              <dd>About 3 minutes</dd>
+            </div>
+            <div>
+              <dt>Best for</dt>
+              <dd>Course activities, orientations, embedded check-ins, and repeated measurement over time</dd>
+            </div>
+          </dl>
+          <div class="card-ctas">
+            <a href="cfpb-financial-wellbeing-scale.html" class="btn btn-filled">Take the activity</a>
+            <a href="cfpb-financial-wellbeing-scale.html#embed" class="btn btn-ghost">Embed in your course</a>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 
-  <!-- Interactive Tools -->
-  <div class="band" aria-labelledby="h-tools">
+  <!-- When to use which -->
+  <div class="band" aria-labelledby="h-when">
     <div class="band-inner">
-      <div class="s-kicker" aria-hidden="true">Tools</div>
-      <h2 id="h-tools">Interactive <span class="hl-sage">Tools</span></h2>
-      <p class="s-lead">Practical tools built to make financial concepts more accessible, informed by years of financial education practice and research.</p>
+      <div class="s-kicker" aria-hidden="true">Choosing</div>
+      <h2 id="h-when">When to <span class="hl-sage">use each</span></h2>
+      <p class="s-lead">A quick heuristic for picking between them &mdash; or using both.</p>
 
-      <div class="projects-grid">
-        <div class="proj-card" id="calculator">
-          <span class="proj-icon" aria-hidden="true">🏦</span>
-          <h3>Compound Interest Calculator</h3>
-          <p>An interactive visualization tool designed to make compound interest intuitive, directly informed by my dissertation research on how visual media affects learning in financial education.</p>
-          <a href="compound-interest-calculator.html" class="card-link">Try the calculator</a>
+      <div class="research-grid">
+
+        <div class="card">
+          <h3>Reach for the Checkup when&hellip;</h3>
+          <p>&hellip; a person wants a personal, one-time deep-dive across their whole financial life. It's the right tool if the goal is prioritizing next actions across budgeting, debt, savings, and retirement all at once.</p>
+          <p>It's less useful when the goal is a quick pulse-check, when the person will only spend a couple of minutes, or when you need a comparable number for pre/post measurement.</p>
         </div>
 
-        <div class="proj-card" id="checkup">
-          <span class="proj-icon" aria-hidden="true">✅</span>
-          <h3>Financial Wellness Self-Assessments</h3>
-          <p>Two self-assessments serving different needs: a comprehensive multi-dimensional Financial Wellness Checkup, and a short, embeddable activity built on the CFPB Financial Well-Being Scale for use in courses and orientation modules.</p>
-          <a href="financial-wellness.html" class="card-link">See both assessments</a>
+        <div class="card">
+          <h3>Reach for the CFPB Scale Activity when&hellip;</h3>
+          <p>&hellip; you need a brief, validated, standardized measure that can sit inside a course or program. It's the right tool for a first-week baseline, a semester-end reflection, or any moment where "the CFPB score" itself is the useful number.</p>
+          <p>It's less useful as a standalone financial diagnostic &mdash; the score is a snapshot of how someone feels, not a plan for what to do next. Pair it with follow-up conversation or content.</p>
         </div>
 
-        <div class="proj-card" id="loan-wizard">
-          <span class="proj-icon" aria-hidden="true">🎓</span>
-          <h3>Student Loan Repayment Wizard</h3>
-          <p>A step-by-step wizard to help students and borrowers navigate repayment options, forgiveness programs, and refinancing decisions, built on years of student loan education research.</p>
-          <a href="https://apelleg3.github.io/Federal_Loan_Repayment_Guide/" target="_blank" rel="noopener noreferrer" class="card-link">Launch the wizard</a>
-        </div>
       </div>
+
+      <p class="s-lead" style="margin-top: 2rem; margin-bottom: 0;">Using both can also work well: the CFPB scale as a repeated pulse-check over the term, and the Checkup once or twice a year as the deeper cross-sectional look. They measure related but distinct things.</p>
+    </div>
+  </div>
+
+  <!-- Credit + about -->
+  <div class="band band-card" aria-labelledby="h-credit">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">Credits</div>
+      <h2 id="h-credit">Credit where <span class="hl">credit</span> is due</h2>
+
+      <div class="research-grid">
+
+        <div class="card">
+          <div class="card-kicker">Underlying Scale</div>
+          <h3>Consumer Financial Protection Bureau</h3>
+          <p>The 10-item Financial Well-Being Scale, its response options, and the age- and administration-mode-specific scoring tables were developed by the CFPB and published in <em>Financial Well-Being: The Goal of Financial Education</em> (2015) and the <em>CFPB Financial Well-Being Scale: Scale Development Technical Report</em> (2017). The scale is in the public domain and free to use.</p>
+          <p>The CFPB Scale Activity on this site follows the CFPB's published scoring exactly &mdash; nothing about the measurement itself is my work.</p>
+          <a href="https://www.consumerfinance.gov/consumer-tools/financial-well-being/" target="_blank" rel="noopener noreferrer" class="card-link">Learn about the CFPB scale</a>
+        </div>
+
+        <div class="card">
+          <div class="card-kicker">Ongoing Support Referral</div>
+          <h3>Student Money Management Center</h3>
+          <p>The activity's call-to-action points to the University of Illinois System's Student Money Management Center (SMMC), a unit of University Bursar that provides free financial education to students, parents, employees, and alumni across the U of I System's Urbana, Chicago, and Springfield campuses. SMMC offers bi-weekly e-newsletters, live and recorded webinars, the Financial Literacy Badges Program, and the <em>Making Cents of Money</em> podcast.</p>
+          <p>SMMC is where I do this work day-to-day &mdash; but the scale itself is CFPB's, not SMMC's.</p>
+          <a href="https://www.studentmoney.uillinois.edu/" target="_blank" rel="noopener noreferrer" class="card-link">Visit SMMC</a>
+        </div>
+
+      </div>
+
     </div>
   </div>
 
 </main>
+
 
 <footer>
   <div class="footer-inner">
