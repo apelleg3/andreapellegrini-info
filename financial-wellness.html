@@ -287,7 +287,77 @@
       .proj-card { padding: 1.1rem; }
       .stat-num { font-size: 2rem; }
       .cv-content { padding: 1.5rem 1rem 3rem; }
-      .page-header-inner { padding: 2rem 1rem 2rem; }
+    }
+
+    /* Page-specific: embed section */
+    .code-wrap {
+      background: #050309;
+      border: 1px solid var(--purple-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 1.5rem 0 2rem;
+    }
+    .code-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.6rem 1.1rem;
+      background: rgba(167,139,250,0.06);
+      border-bottom: 1px solid var(--purple-border);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+    }
+    .code-lang { color: var(--purple-bright); }
+    .code-hint { color: var(--text-muted); letter-spacing: 0.12em; }
+    .code-body {
+      padding: 1.1rem 1.25rem;
+      overflow-x: auto;
+      font-family: ui-monospace, 'SF Mono', 'Menlo', 'Consolas', monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: var(--text-soft);
+      margin: 0;
+    }
+    .code-body .tag  { color: var(--purple-bright); }
+    .code-body .attr { color: var(--sage); }
+    .code-body .val  { color: #f0edf8; }
+
+    .callout {
+      display: flex; gap: 1rem;
+      background: rgba(240,176,98,0.08);
+      border: 1px solid rgba(240,176,98,0.28);
+      border-left: 4px solid #f0b062;
+      border-radius: var(--radius);
+      padding: 1.15rem 1.35rem;
+      margin: 2rem 0 1.25rem;
+    }
+    .callout-icon {
+      flex: 0 0 auto;
+      width: 28px; height: 28px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(240,176,98,0.18);
+      border-radius: 50%;
+      color: #f0b062;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .callout-body { flex: 1; font-size: 0.9rem; color: var(--text-soft); line-height: 1.7; }
+    .callout-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #f0b062;
+      margin-bottom: 0.5rem;
+    }
+    .callout-body p { margin: 0 0 0.65rem; }
+    .callout-body p:last-child { margin-bottom: 0; }
+    .callout-body strong { color: var(--text); }
+
+    .tip {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 1.5rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--border);
     }
   </style>
   <!-- Google tag (gtag.js) -->
@@ -336,44 +406,34 @@
 <div class="stars" aria-hidden="true"></div>
 
 
+
+
 <main id="main">
 
   <!-- Page header -->
   <div class="page-header-band">
     <div class="page-header-inner">
-      <div class="s-kicker" aria-hidden="true">Self-Assessments</div>
-      <h1>Financial <span class="hl">Wellness</span> Self-Assessments</h1>
-      <p class="s-lead" style="margin-bottom:0;">Two tools built around the same north star &mdash; helping people notice, name, and act on their financial well-being &mdash; but designed for very different moments and audiences.</p>
+      <div class="s-kicker" aria-hidden="true">Financial Wellness</div>
+      <h1>Two <span class="hl">assessments</span></h1>
+      <p class="s-lead" style="margin-bottom:0;">Same goal, different moments &mdash; one deep and personal, one brief and embeddable.</p>
     </div>
   </div>
 
-  <!-- Two tools, side by side -->
+  <!-- The two tools, side by side -->
   <div class="band band-card" aria-labelledby="h-tools">
     <div class="band-inner">
-      <div class="s-kicker" aria-hidden="true">Two Assessments</div>
-      <h2 id="h-tools">Pick the <span class="hl">right</span> tool</h2>
-      <p class="s-lead">Each of these assessments does something the other doesn't. Neither is a replacement for the other, and they're often useful in sequence.</p>
+      <div class="s-kicker" aria-hidden="true">Assessments</div>
+      <h2 id="h-tools">Two <span class="hl">options</span></h2>
 
       <div class="research-grid">
 
         <div class="card" id="checkup">
-          <div class="card-kicker">Comprehensive · Personal</div>
+          <div class="card-kicker">Comprehensive · Streamlit</div>
           <h3>Financial Wellness Checkup</h3>
-          <p>A multi-dimensional self-assessment that walks a person through their whole financial picture &mdash; goals, confidence, net worth, cash flow, emergency savings, and retirement readiness &mdash; and returns a personalized action plan grounded in Federal Reserve data and retirement-readiness research.</p>
-          <p>Built in Streamlit. Best for someone who wants a deeper, one-time diagnostic they can work through on their own time (roughly 10&ndash;15 minutes) and use to prioritize what to change next.</p>
-          <dl class="dis-meta" style="margin-top: 1.2rem;">
-            <div>
-              <dt>Format</dt>
-              <dd>Interactive Streamlit app, opens in its own tab</dd>
-            </div>
-            <div>
-              <dt>Time</dt>
-              <dd>10&ndash;15 minutes</dd>
-            </div>
-            <div>
-              <dt>Best for</dt>
-              <dd>Individuals doing a personal financial deep-dive</dd>
-            </div>
+          <p>A multi-dimensional self-assessment covering goals, cash flow, savings, debt, and retirement readiness. Returns a personalized action plan grounded in Federal Reserve data and retirement-readiness research.</p>
+          <dl class="dis-meta" style="margin-top: 1.1rem;">
+            <div><dt>Time</dt><dd>10&ndash;15 minutes</dd></div>
+            <div><dt>Best for</dt><dd>A personal deep-dive across the whole picture</dd></div>
           </dl>
           <div class="card-ctas">
             <a href="https://financialwellnesscheckup.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn btn-filled">Take the checkup</a>
@@ -381,27 +441,16 @@
         </div>
 
         <div class="card" id="cfpb-scale">
-          <div class="card-kicker">Brief · Embeddable · CFPB Scale</div>
+          <div class="card-kicker">Brief · CFPB Scale</div>
           <h3>CFPB Financial Well-Being Scale Activity</h3>
-          <p>A short, embeddable 10-question activity built around the U.S. Consumer Financial Protection Bureau's validated Financial Well-Being Scale (public domain, 2015 / 2017). The activity auto-scores using the CFPB's own scoring tables, shows the participant's score band, and offers tailored, non-prescriptive next steps.</p>
-          <p>Designed to drop into a Canvas course, a first-year orientation module, an advising session, or any other educational experience via a simple iframe. All scoring and interpretation come directly from the CFPB; this is an educational wrapper around their work, not a replacement or reinterpretation.</p>
-          <dl class="dis-meta" style="margin-top: 1.2rem;">
-            <div>
-              <dt>Format</dt>
-              <dd>Self-contained HTML page, iframe-friendly</dd>
-            </div>
-            <div>
-              <dt>Time</dt>
-              <dd>About 3 minutes</dd>
-            </div>
-            <div>
-              <dt>Best for</dt>
-              <dd>Course activities, orientations, embedded check-ins, and repeated measurement over time</dd>
-            </div>
+          <p>A 10-question activity using the Consumer Financial Protection Bureau's validated Financial Well-Being Scale (public domain). Auto-scored, shows the participant's score band, and points to ongoing support through the University of Illinois System's Student Money Management Center.</p>
+          <dl class="dis-meta" style="margin-top: 1.1rem;">
+            <div><dt>Time</dt><dd>About 3 minutes</dd></div>
+            <div><dt>Best for</dt><dd>Course activities, orientations, pre/post measurement</dd></div>
           </dl>
           <div class="card-ctas">
             <a href="cfpb-financial-wellbeing-scale.html" class="btn btn-filled">Take the activity</a>
-            <a href="cfpb-financial-wellbeing-scale.html#embed" class="btn btn-ghost">Embed in your course</a>
+            <a href="#embed" class="btn btn-ghost">Embed in your course</a>
           </div>
         </div>
 
@@ -409,59 +458,47 @@
     </div>
   </div>
 
-  <!-- When to use which -->
-  <div class="band" aria-labelledby="h-when">
+  <!-- Embed instructions -->
+  <div class="band" aria-labelledby="h-embed" id="embed">
     <div class="band-inner">
-      <div class="s-kicker" aria-hidden="true">Choosing</div>
-      <h2 id="h-when">When to <span class="hl-sage">use each</span></h2>
-      <p class="s-lead">A quick heuristic for picking between them &mdash; or using both.</p>
+      <div class="s-kicker" aria-hidden="true">Embed</div>
+      <h2 id="h-embed">Use it in <span class="hl-sage">your course</span></h2>
+      <p class="s-lead">Drop this iframe into any LMS page. The activity lives on this domain, so its scoring and buttons run without sandboxing.</p>
 
-      <div class="research-grid">
-
-        <div class="card">
-          <h3>Reach for the Checkup when&hellip;</h3>
-          <p>&hellip; a person wants a personal, one-time deep-dive across their whole financial life. It's the right tool if the goal is prioritizing next actions across budgeting, debt, savings, and retirement all at once.</p>
-          <p>It's less useful when the goal is a quick pulse-check, when the person will only spend a couple of minutes, or when you need a comparable number for pre/post measurement.</p>
+      <div class="code-wrap">
+        <div class="code-header">
+          <span class="code-lang">HTML</span>
+          <span class="code-hint">Paste into your LMS's HTML editor</span>
         </div>
-
-        <div class="card">
-          <h3>Reach for the CFPB Scale Activity when&hellip;</h3>
-          <p>&hellip; you need a brief, validated, standardized measure that can sit inside a course or program. It's the right tool for a first-week baseline, a semester-end reflection, or any moment where "the CFPB score" itself is the useful number.</p>
-          <p>It's less useful as a standalone financial diagnostic &mdash; the score is a snapshot of how someone feels, not a plan for what to do next. Pair it with follow-up conversation or content.</p>
-        </div>
-
+        <pre class="code-body" aria-label="Iframe embed code"><span class="tag">&lt;iframe</span>
+  <span class="attr">src</span>=<span class="val">"https://andreapellegrini.info/cfpb-financial-wellbeing-scale.html"</span>
+  <span class="attr">width</span>=<span class="val">"100%"</span>
+  <span class="attr">height</span>=<span class="val">"100vh"</span>
+  <span class="attr">style</span>=<span class="val">"min-height:600px; border:0;"</span>
+  <span class="attr">title</span>=<span class="val">"Financial Well-Being Check-In"</span><span class="tag">&gt;&lt;/iframe&gt;</span></pre>
       </div>
 
-      <p class="s-lead" style="margin-top: 2rem; margin-bottom: 0;">Using both can also work well: the CFPB scale as a repeated pulse-check over the term, and the Checkup once or twice a year as the deeper cross-sectional look. They measure related but distinct things.</p>
+      <div class="callout" role="note">
+        <span class="callout-icon" aria-hidden="true">!</span>
+        <div class="callout-body">
+          <div class="callout-title">Canvas gotcha</div>
+          <p>Do <strong>not</strong> upload the HTML file to Canvas <em>Files</em> and iframe it from there. Canvas applies a Content Security Policy to file previews that silently blocks the activity's JavaScript &mdash; the intro renders, but the Start button does nothing.</p>
+          <p>Embedding from this domain (the snippet above) avoids that entirely. If you'd rather not embed, link directly instead:</p>
+          <p><a href="cfpb-financial-wellbeing-scale.html" target="_blank" rel="noopener" class="btn btn-ghost" style="font-size: 0.7rem; margin-top: 0.25rem;">Open the activity in a new tab</a></p>
+        </div>
+      </div>
+
+      <p class="tip">On mobile, iframes can feel cramped inside an LMS page. Pairing the iframe with a plain &ldquo;open in new tab&rdquo; link is the most forgiving pattern.</p>
     </div>
   </div>
 
-  <!-- Credit + about -->
+  <!-- Credits -->
   <div class="band band-card" aria-labelledby="h-credit">
     <div class="band-inner">
       <div class="s-kicker" aria-hidden="true">Credits</div>
       <h2 id="h-credit">Credit where <span class="hl">credit</span> is due</h2>
-
-      <div class="research-grid">
-
-        <div class="card">
-          <div class="card-kicker">Underlying Scale</div>
-          <h3>Consumer Financial Protection Bureau</h3>
-          <p>The 10-item Financial Well-Being Scale, its response options, and the age- and administration-mode-specific scoring tables were developed by the CFPB and published in <em>Financial Well-Being: The Goal of Financial Education</em> (2015) and the <em>CFPB Financial Well-Being Scale: Scale Development Technical Report</em> (2017). The scale is in the public domain and free to use.</p>
-          <p>The CFPB Scale Activity on this site follows the CFPB's published scoring exactly &mdash; nothing about the measurement itself is my work.</p>
-          <a href="https://www.consumerfinance.gov/consumer-tools/financial-well-being/" target="_blank" rel="noopener noreferrer" class="card-link">Learn about the CFPB scale</a>
-        </div>
-
-        <div class="card">
-          <div class="card-kicker">Ongoing Support Referral</div>
-          <h3>Student Money Management Center</h3>
-          <p>The activity's call-to-action points to the University of Illinois System's Student Money Management Center (SMMC), a unit of University Bursar that provides free financial education to students, parents, employees, and alumni across the U of I System's Urbana, Chicago, and Springfield campuses. SMMC offers bi-weekly e-newsletters, live and recorded webinars, the Financial Literacy Badges Program, and the <em>Making Cents of Money</em> podcast.</p>
-          <p>SMMC is where I do this work day-to-day &mdash; but the scale itself is CFPB's, not SMMC's.</p>
-          <a href="https://www.studentmoney.uillinois.edu/" target="_blank" rel="noopener noreferrer" class="card-link">Visit SMMC</a>
-        </div>
-
-      </div>
-
+      <p class="s-lead">The Financial Well-Being Scale &mdash; its items, response options, and scoring tables &mdash; is the work of the <a href="https://www.consumerfinance.gov/consumer-tools/financial-well-being/" target="_blank" rel="noopener noreferrer" style="color: var(--purple-bright);">Consumer Financial Protection Bureau</a>, released in the public domain (2015 / 2017). The activity here is an educational wrapper that follows the CFPB's own scoring exactly.</p>
+      <p class="s-lead" style="margin-bottom: 0;">The call-to-action inside the activity points to the <a href="https://www.studentmoney.uillinois.edu/" target="_blank" rel="noopener noreferrer" style="color: var(--purple-bright);">Student Money Management Center</a> (SMMC) at the University of Illinois System &mdash; free financial education for students, parents, employees, and alumni. That's where I do this work day to day.</p>
     </div>
   </div>
 
