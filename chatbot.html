@@ -91,17 +91,14 @@
     .demo-card:hover{transform:translateY(-2px);}
     .demo-card.claude-card{border-color:rgba(167,139,250,0.3);}
     .demo-card.claude-card:hover{border-color:var(--purple-mid);}
+    .demo-card.gpt-card{border-color:rgba(134,184,154,0.25);}
+    .demo-card.gpt-card:hover{border-color:var(--sage);}
     .demo-card-label{font-family:'Josefin Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);}
     .demo-card h3{font-family:'Josefin Sans',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text);margin:0;}
     .demo-card p{font-size:0.86rem;color:var(--text-soft);line-height:1.7;margin:0;}
     .demo-note{font-size:0.8rem;color:var(--text-muted);margin-top:1.5rem;line-height:1.65;}
     .demo-note a{color:var(--purple-bright);text-decoration:none;}
     .demo-note a:hover{text-decoration:underline;}
-    .demo-launch-note{margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--border);}
-    .demo-launch-note p{font-size:0.88rem;color:var(--text-soft);line-height:1.7;margin-bottom:1rem;}
-    .demo-launch-links{display:flex;gap:1.5rem;flex-wrap:wrap;}
-    .demo-text-link{font-family:'Josefin Sans',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple-bright);text-decoration:none;transition:opacity 0.15s;}
-    .demo-text-link:hover{opacity:0.75;}
 
     /* ── Two-col ── */
     .two-col{display:grid;grid-template-columns:1.1fr 1fr;gap:3rem;align-items:start;}
@@ -184,6 +181,7 @@
     <li><a href="about.html">About</a></li>
     <li><a href="cv.html">CV</a></li>
     <li><a href="research.html">Research</a></li>
+    <li><a href="teaching.html">Teaching</a></li>
     <li><a href="projects.html">Projects</a></li>
     <li><a href="blog.html">Blog</a></li>
     <li><a href="art.html">Art</a></li>
@@ -198,6 +196,7 @@
   <a href="about.html">About</a>
   <a href="cv.html">CV</a>
   <a href="research.html">Research</a>
+  <a href="teaching.html">Teaching</a>
   <a href="projects.html">Projects</a>
   <a href="blog.html">Blog</a>
   <a href="art.html">Art</a>
@@ -211,38 +210,30 @@
   <!-- Page Header -->
   <div class="page-header-band">
     <div class="page-header-inner">
-      <div class="s-kicker" aria-hidden="true">Dissertation Methods · ITEL Showcase 2026</div>
+      <div class="s-kicker" aria-hidden="true">Dissertation Methods · Archive</div>
       <h1>AI <span class="hl">Interview</span> Chatbot</h1>
       <p class="s-lead" style="margin-bottom:1.5rem;">An AI-enabled qualitative interview chatbot built by modifying <a href="https://github.com/friedrichgeiecke/interviews" target="_blank" rel="noopener noreferrer" style="color:var(--purple-bright);text-decoration:none;">Geiecke &amp; Jaravel's open-source code</a> to explore how visual media affects self-regulated learning, interest development, and engagement in financial education.</p>
       <a href="research.html" class="btn btn-ghost" style="font-size:0.72rem;">← Back to Research</a>
     </div>
   </div>
 
-  <!-- DEMO: first thing after header -->
-  <div class="demo-band" aria-labelledby="h-demo">
+  <!-- ARCHIVE — first thing after header -->
+  <div class="demo-band" aria-labelledby="h-archive">
     <div class="demo-inner">
-      <div class="s-kicker" aria-hidden="true">Try It · ITEL Showcase Demo</div>
-      <h2 id="h-demo">Experience the <span class="hl">Chatbot</span></h2>
-      <p class="s-lead">This showcase version will ask you about your experience at the ITEL Future Learning Technologies Showcase on May 11, 2026.</p>
+      <div class="s-kicker" aria-hidden="true">Code &amp; Documentation</div>
+      <h2 id="h-archive">Dissertation <span class="hl">Archive</span></h2>
+      <p class="s-lead">The interview platform used in the dissertation study is archived on GitHub with its code, configuration files, and documentation. The hosted version has been retired, so there is no live demo.</p>
 
-      <div style="margin-top:1.75rem;display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;">
-        <div>
-          <div style="font-family:'Josefin Sans',sans-serif;font-size:0.6rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.4rem;">ITEL Showcase Version</div>
-          <a href="https://itel-chatbot-claude.onrender.com" class="btn btn-filled" target="_blank" rel="noopener noreferrer">Launch Showcase Chatbot ↗</a>
-        </div>
-        <div>
-          <div style="font-family:'Josefin Sans',sans-serif;font-size:0.6rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.4rem;">Original Dissertation Version</div>
-          <a href="https://aiqual2.onrender.com/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Launch Dissertation Chatbot ↗</a>
-        </div>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.75rem;">
+        <a href="https://github.com/apelleg3/AI_Chatbot_Dissertation_Archive" class="btn btn-filled" target="_blank" rel="noopener noreferrer">View the Archive on GitHub ↗</a>
+        <a href="https://mediaspace.illinois.edu/media/1_w95i2ba6" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Watch the IT Pro Forum Talk ↗</a>
       </div>
 
-      <div class="demo-launch-note">
-        <p>The chatbot uses a structured interview protocol and asks one question at a time. Your responses in this demo are not connected to any prior research data.</p>
-        <div class="demo-launch-links">
-          <a href="https://github.com/apelleg3/ITEL_ChatBot_Claude" target="_blank" rel="noopener noreferrer" class="demo-text-link">Source code on GitHub ↗</a>
-          <a href="https://itel.education.illinois.edu/home/future-learning-technologies-showcase" target="_blank" rel="noopener noreferrer" class="demo-text-link">ITEL Showcase ↗</a>
-        </div>
-      </div>
+      <p class="demo-note">
+        <strong>Talks:</strong>
+        <a href="https://itproforum.illinois.edu/eventdesc/past-events/2-spring2026/2-2pm/the-droids-youre-looking-for-using-ai-chatbots-for-qualitative-research-with-caveats/" target="_blank" rel="noopener noreferrer"><em>The Droids You're Looking For? Using AI Chatbots for Qualitative Research (With Caveats)</em></a>, IT Professionals Forum, University of Illinois, June 4, 2026 (recording available)
+        &nbsp;·&nbsp; Presented at the <a href="https://itel.education.illinois.edu/home/future-learning-technologies-showcase" target="_blank" rel="noopener noreferrer">ITEL Future Learning Technologies Showcase</a>, University of Illinois, May 2026
+      </p>
     </div>
   </div>
 
@@ -252,12 +243,46 @@
       <div class="s-kicker" aria-hidden="true">Background</div>
       <h2 id="h-about">About the <span class="hl">Chatbot</span></h2>
 
-      <div class="prose" style="max-width:760px;">
-        <p>This chatbot is a modification of open-source code developed by Geiecke &amp; Jaravel for AI-enabled qualitative interviewing. The original code was adapted to focus specifically on how visual media (data visualizations, visual metaphors, and interactive graphs) influences self-regulated learning, interest development, and engagement in the context of financial education.</p>
-        <p>In the dissertation study, participants completed an online intervention on compound interest and were then immediately interviewed by the chatbot. The interview covered five areas: their learning experience with visual aids, how visuals affected engagement and interest, how visuals supported comprehension and self-regulated learning, their personal preferences for different visual formats, and practical applications and ideal design characteristics.</p>
-        <p>The chatbot was configured to ask one question at a time, follow up on participant responses, and stay on topic. It is powered by Anthropic's Claude.</p>
-        <div class="attr-note" style="margin-top:1.75rem;">
-          <strong>Attribution:</strong> Based on open-source code by Geiecke &amp; Jaravel. Modified by Andrea Pellegrini for dissertation research at the University of Illinois Urbana-Champaign. &nbsp;<a href="https://github.com/apelleg3/ITEL_ChatBot_Claude" target="_blank" rel="noopener noreferrer">View source on GitHub ↗</a>
+      <div class="two-col">
+        <div class="prose">
+          <p>This chatbot is a modification of open-source code developed by Geiecke &amp; Jaravel for AI-enabled qualitative interviewing. The original code was adapted to focus specifically on how visual media — including data visualizations, visual metaphors, and interactive graphs — influences self-regulated learning, interest development, and engagement in the context of financial education.</p>
+          <p>In the dissertation study, participants completed an online intervention on compound interest and were then immediately interviewed by the chatbot. The interview covered five areas: their learning experience with visual aids, how visuals affected engagement and interest, how visuals supported comprehension and self-regulated learning, their personal preferences for different visual formats, and practical applications and ideal design characteristics.</p>
+          <p>The chatbot was configured to ask one question at a time, follow up on participant responses, and stay on topic. During development I tested Anthropic's Claude Sonnet 3.5 against OpenAI's GPT-4o mini over several months. Both models occasionally repeated questions, but Claude followed the interview guidance more consistently. When the Claude models I had been using were deprecated in October 2025, I switched to Claude Sonnet 4 and retested without comparing other models. The IRB-approved study yielded 132 interviews, which I coded manually in MAXQDA rather than with AI.</p>
+
+          <div class="attr-note" style="margin-top:1.75rem;">
+            <strong>Attribution:</strong> Based on open-source code by Geiecke &amp; Jaravel. Modified by Andrea Pellegrini for dissertation research at the University of Illinois Urbana-Champaign. &nbsp;<a href="https://github.com/apelleg3/AI_Chatbot_Dissertation_Archive" target="_blank" rel="noopener noreferrer">View the archive on GitHub ↗</a>
+          </div>
+        </div>
+
+        <div class="spec-panel">
+          <div class="spec-item">
+            <div class="spec-label">Based On</div>
+            <div class="spec-value"><a href="https://github.com/friedrichgeiecke/interviews" target="_blank" rel="noopener noreferrer">Geiecke &amp; Jaravel open-source code</a></div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Modifications</div>
+            <div class="spec-value">Protocol adapted for visual media, self-regulated learning, interest development, and engagement in financial education</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Models</div>
+            <div class="spec-value">Development testing: Claude Sonnet 3.5 vs. OpenAI GPT-4o mini · Study: Claude Sonnet 4</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Interview Structure</div>
+            <div class="spec-value">5-part adaptive protocol · one question at a time · closes with participant-validated summary + rating</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Interview Analysis</div>
+            <div class="spec-value">132 interviews · coded manually in MAXQDA (no AI-assisted coding)</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Dissertation</div>
+            <div class="spec-value"><em>Goal Framing &amp; Visualizations' Influence on SRL of Compound Interest</em>, PhD Educational Psychology, UIUC, Defended April 2026</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Archived Code</div>
+            <div class="spec-value"><a href="https://github.com/apelleg3/AI_Chatbot_Dissertation_Archive" target="_blank" rel="noopener noreferrer">github.com/apelleg3/AI_Chatbot_Dissertation_Archive</a></div>
+          </div>
         </div>
       </div>
     </div>
@@ -285,7 +310,7 @@
           <ul>
             <li><strong>Researcher coding bias:</strong> The interview protocol was designed by the researcher, meaning the framing and scope of what gets asked reflects researcher decisions. This is a form of bias worth acknowledging even when in-the-moment reactivity is reduced.</li>
             <li><strong>Repeated questions:</strong> Despite coded safeguards designed to prevent it, the chatbot occasionally repeated questions across the interview.</li>
-            <li><strong>Learning styles myth:</strong> In a small number of cases the chatbot reinforced the "learning styles" myth in its responses, an artifact of the underlying model rather than the interview design.</li>
+            <li><strong>Learning styles myth:</strong> In a small number of cases the chatbot reinforced the "learning styles" myth in its responses — an artifact of the underlying model rather than the interview design.</li>
             <li><strong>Tradeoffs with depth:</strong> The tool trades some relational sensitivity and flexibility for scale and consistency. Those tradeoffs need to be weighed against the research question.</li>
           </ul>
         </div>
@@ -298,7 +323,7 @@
     <div class="band-inner" style="padding-top:3rem;padding-bottom:3rem;">
       <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
         <a href="research.html" class="btn btn-ghost">← Back to Research</a>
-        <a href="https://github.com/apelleg3/ITEL_ChatBot_Claude" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">View Source ↗</a>
+        <a href="https://github.com/apelleg3/AI_Chatbot_Dissertation_Archive" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">View Archive ↗</a>
         <a href="contact.html" class="btn btn-ghost">Get in Touch</a>
       </div>
     </div>
@@ -313,6 +338,7 @@
       <li><a href="about.html">About</a></li>
       <li><a href="cv.html">CV</a></li>
       <li><a href="research.html">Research</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
       <li><a href="projects.html">Projects</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="art.html">Art</a></li>

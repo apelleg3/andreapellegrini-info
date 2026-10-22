@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teaching: Andrea Pellegrini</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:#0d0a14;--bg-card:#16112a;--bg-lift:#1d1635;
+      --purple-bright:#c4b5fd;--purple-mid:#a78bfa;--purple-soft:#7c5cbf;
+      --purple-dim:rgba(167,139,250,0.12);--purple-border:rgba(167,139,250,0.22);
+      --sage:#86b89a;--sage-dim:rgba(134,184,154,0.1);--sage-border:rgba(134,184,154,0.2);
+      --text:#f0edf8;--text-soft:#c8c2dc;--text-muted:#8a82a0;
+      --border:rgba(196,181,253,0.16);--radius:6px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Raleway',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+
+    .stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+    .stars::before{content:'';position:absolute;inset:0;background-image:
+      radial-gradient(1.2px 1.2px at 8% 12%,rgba(255,255,255,0.55) 0%,transparent 100%),
+      radial-gradient(1px 1px at 22% 5%,rgba(255,255,255,0.35) 0%,transparent 100%),
+      radial-gradient(1.5px 1.5px at 38% 22%,rgba(196,181,253,0.5) 0%,transparent 100%),
+      radial-gradient(1px 1px at 66% 8%,rgba(255,255,255,0.4) 0%,transparent 100%),
+      radial-gradient(1.5px 1.5px at 80% 28%,rgba(196,181,253,0.45) 0%,transparent 100%),
+      radial-gradient(1px 1px at 30% 85%,rgba(255,255,255,0.3) 0%,transparent 100%);}
+    .stars::after{content:'';position:absolute;inset:0;background:
+      radial-gradient(ellipse 60% 40% at 75% 20%,rgba(124,92,191,0.08) 0%,transparent 70%),
+      radial-gradient(ellipse 40% 50% at 20% 70%,rgba(134,184,154,0.05) 0%,transparent 70%);}
+
+    .skip-link{position:absolute;top:-100%;left:1rem;background:var(--purple-mid);color:var(--bg);font-weight:700;padding:0.5rem 1rem;border-radius:4px;z-index:9999;text-decoration:none;font-size:0.85rem;}
+    .skip-link:focus{top:1rem;}
+
+    nav{position:fixed;inset:0 0 auto 0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(13,10,20,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .nav-brand{text-decoration:none;line-height:1.2;}
+    .nav-brand-name{font-family:'Josefin Sans',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text);display:block;}
+    .nav-brand-sub{font-size:0.62rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple-bright);display:block;}
+    .nav-links{list-style:none;display:flex;gap:0.15rem;}
+    .nav-links a{text-decoration:none;font-family:'Josefin Sans',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;color:var(--text-soft);padding:0.35rem 0.7rem;border-radius:4px;transition:background 0.15s,color 0.15s;}
+    .nav-links a:hover,.nav-links a:focus-visible{color:var(--purple-bright);background:var(--purple-dim);outline:none;}
+    .nav-links a[aria-current="page"]{color:var(--purple-bright);}
+
+    .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:0.4rem;border-radius:4px;transition:background 0.15s;}
+    .nav-hamburger:hover{background:var(--purple-dim);}
+    .nav-hamburger:focus-visible{outline:3px solid var(--purple-bright);outline-offset:3px;}
+    .nav-hamburger span{display:block;width:22px;height:2px;background:var(--text-soft);border-radius:2px;transition:transform 0.2s,opacity 0.2s;}
+    .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav-hamburger.open span:nth-child(2){opacity:0;}
+    .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(13,10,20,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:199;padding:1rem 1.25rem 1.5rem;flex-direction:column;gap:0.25rem;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{text-decoration:none;font-family:'Josefin Sans',sans-serif;font-size:0.88rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-soft);padding:0.65rem 0.75rem;border-radius:4px;transition:background 0.15s,color 0.15s;}
+    .mobile-menu a:hover,.mobile-menu a:focus-visible{color:var(--purple-bright);background:var(--purple-dim);outline:none;}
+    .mobile-menu a[aria-current="page"]{color:var(--purple-bright);}
+
+    .band{position:relative;z-index:1;}
+    .band-inner{max-width:1140px;margin:0 auto;padding:5rem 2.5rem;}
+    .band-card{background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+
+    .page-header-band{position:relative;z-index:1;padding-top:64px;}
+    .page-header-inner{max-width:1140px;margin:0 auto;padding:4rem 2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+    .s-kicker{display:inline-flex;align-items:center;gap:0.5rem;font-family:'Josefin Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--purple-bright);margin-bottom:0.6rem;}
+    .s-kicker::before{content:'✦';font-size:0.54rem;opacity:0.7;}
+
+    h1{font-family:'Josefin Sans',sans-serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text);line-height:1.1;margin-bottom:0.75rem;}
+    h1 .hl{color:var(--purple-bright);}
+    h2{font-family:'Josefin Sans',sans-serif;font-size:clamp(1.8rem,2.8vw,2.4rem);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text);line-height:1.2;margin-bottom:0.85rem;}
+    h2 .hl{color:var(--purple-bright);}
+    h2 .hl-sage{color:var(--sage);}
+    .s-lead{font-size:1rem;color:var(--text-soft);max-width:680px;margin-bottom:3rem;line-height:1.8;}
+
+    .btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.65rem 1.4rem;font-family:'Josefin Sans',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:100px;transition:transform 0.15s,background 0.15s,border-color 0.15s;}
+    .btn:focus-visible{outline:3px solid var(--purple-bright);outline-offset:3px;}
+    .btn-filled{background:var(--purple-mid);color:#0d0a14;border:1.5px solid transparent;}
+    .btn-filled:hover{background:var(--purple-bright);transform:translateY(-1px);}
+    .btn-ghost{background:transparent;border:1.5px solid var(--purple-border);color:var(--purple-bright);}
+    .btn-ghost:hover{background:var(--purple-dim);border-color:var(--purple-mid);transform:translateY(-1px);}
+
+    .research-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+    .card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;transition:border-color 0.2s,transform 0.2s;}
+    .card:hover{border-color:var(--purple-soft);transform:translateY(-2px);}
+    .card.featured{grid-column:1/-1;display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;background:linear-gradient(135deg,var(--bg-card),var(--bg-lift));border-color:rgba(167,139,250,0.3);padding:2.25rem;}
+    .card-kicker{font-family:'Josefin Sans',sans-serif;font-size:0.64rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple-mid);margin-bottom:0.6rem;}
+    h3{font-family:'Josefin Sans',sans-serif;font-size:1.08rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text);line-height:1.35;margin-bottom:0.65rem;}
+    .card p{font-size:0.9rem;color:var(--text-soft);line-height:1.8;margin-bottom:0.6rem;}
+    .card p:last-child{margin-bottom:0;}
+    .card-link{display:inline-flex;align-items:center;gap:0.35rem;font-family:'Josefin Sans',sans-serif;font-size:0.78rem;font-weight:700;color:var(--purple-bright);text-decoration:none;margin-top:0.5rem;transition:gap 0.15s;}
+    .card-link:hover{gap:0.6rem;}
+    .card-link:focus-visible{outline:2px solid var(--purple-bright);border-radius:2px;}
+    .card-link::after{content:'→';}
+
+    .dis-meta{display:flex;flex-direction:column;gap:1.1rem;padding-top:0.25rem;}
+    .dis-meta dt{font-family:'Josefin Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.2rem;}
+    .dis-meta dd{font-size:0.88rem;color:var(--text-soft);line-height:1.65;}
+    .dis-meta dd strong{color:var(--text);font-weight:600;}
+
+    .pub-entry{margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(196,181,253,0.07);}
+    .pub-entry:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+    .pub-year:empty{display:none;}
+    .pub-year{font-family:'Josefin Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.25rem;}
+    .pub-citation{font-size:0.87rem;color:var(--text-soft);line-height:1.75;}
+    .pub-citation em{font-style:italic;color:var(--text);}
+    .pub-citation strong{color:var(--purple-bright);font-weight:600;}
+    .pub-citation a{color:var(--purple-bright);text-decoration:none;font-size:0.8rem;}
+    .pub-citation a:hover{color:var(--text);}
+
+    .future-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+    .future-card{background:var(--bg-card);border:1px solid var(--sage-border);border-radius:var(--radius);padding:1.5rem;transition:border-color 0.2s,transform 0.2s;}
+    .future-card:hover{border-color:var(--sage);transform:translateY(-2px);}
+    .future-card .card-kicker{color:var(--sage);}
+    .future-card h3{font-size:0.95rem;}
+    .future-card p{font-size:0.86rem;}
+
+    footer{position:relative;z-index:1;background:var(--bg-card);border-top:1px solid var(--border);padding:3rem 2.5rem;}
+    .footer-inner{max-width:1140px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;}
+    .footer-brand{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text);}
+    .footer-brand span{display:block;font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple-bright);margin-top:0.25rem;}
+    .footer-links{list-style:none;display:flex;flex-wrap:wrap;gap:0.2rem;}
+    .footer-links a{text-decoration:none;font-family:'Josefin Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.06em;color:var(--text-muted);padding:0.25rem 0.6rem;border-radius:4px;transition:color 0.15s,background 0.15s;}
+    .footer-links a:hover{color:var(--purple-bright);background:var(--purple-dim);}
+    .footer-copy{font-size:0.72rem;color:var(--text-muted);}
+
+    @media(max-width:960px){
+      nav{padding:0 1.25rem;}
+      .page-header-inner{padding:3rem 1.25rem 2.5rem;}
+      .band-inner{padding:4rem 1.25rem;}
+      .research-grid{grid-template-columns:1fr;}
+      .card.featured{grid-template-columns:1fr;gap:2rem;}
+      .future-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:768px){
+      .nav-links{display:none;}
+      .nav-hamburger{display:flex;}
+    }
+    @media(max-width:600px){
+      .future-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:480px){
+      body{font-size:0.95rem;}
+      h1{font-size:1.8rem !important;}
+      h2{font-size:1.4rem !important;}
+      h3{font-size:0.95rem !important;}
+      .s-lead{font-size:0.92rem;}
+      .band-inner{padding:3rem 1rem;}
+      .card{padding:1.25rem;}
+    }
+
+    .session-list{display:flex;flex-direction:column;gap:1.25rem;}
+    .session{display:grid;grid-template-columns:90px 1fr;gap:1.75rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;}
+    .session-num{font-family:'Josefin Sans',sans-serif;font-weight:700;color:var(--purple-bright);line-height:1;}
+    .session-num small{display:block;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.35rem;}
+    .session-num span{font-size:2.6rem;}
+    .session h3{margin-bottom:0.5rem;}
+    .session p{font-size:0.9rem;color:var(--text-soft);line-height:1.8;margin-bottom:0.7rem;}
+    .session ul{list-style:none;margin-top:0.4rem;}
+    .session li{font-size:0.86rem;color:var(--text-soft);line-height:1.7;padding-left:1.1rem;position:relative;margin-bottom:0.3rem;}
+    .session li::before{content:'✦';position:absolute;left:0;top:0.28rem;font-size:0.5rem;color:var(--sage);}
+    .obj-label{font-family:'Josefin Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-top:0.6rem;}
+    .status-chip{display:inline-block;font-family:'Josefin Sans',sans-serif;font-size:0.66rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--sage);background:var(--sage-dim);border:1px solid var(--sage-border);border-radius:100px;padding:0.3rem 0.9rem;margin-bottom:1.1rem;}
+    .crumb{font-family:'Josefin Sans',sans-serif;font-size:0.74rem;font-weight:600;letter-spacing:0.08em;margin-bottom:1.25rem;}
+    .crumb a{color:var(--purple-bright);text-decoration:none;}
+    .crumb a:hover{color:var(--text);}
+    .crumb span{color:var(--text-muted);}
+    .prompt-box{background:var(--bg-lift);border:1px solid var(--purple-border);border-radius:var(--radius);padding:1.5rem 1.75rem;max-width:760px;}
+    .prompt-box p{font-size:0.92rem;color:var(--text-soft);line-height:1.8;}
+    .prompt-box p + p{margin-top:0.6rem;}
+    .three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+    @media(max-width:960px){.three-grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:700px){.session{grid-template-columns:1fr;gap:0.75rem;padding:1.25rem;}.session-num span{font-size:2rem;}.three-grid{grid-template-columns:1fr;}}
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBZP1CDF77"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FBZP1CDF77');
+  </script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav aria-label="Main navigation">
+  <a href="index.html" class="nav-brand" aria-label="Andrea Pellegrini – home">
+    <span class="nav-brand-name">Andrea Pellegrini</span>
+    <span class="nav-brand-sub">Educator · Researcher · Wizard</span>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="teaching.html" aria-current="page">Teaching</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="art.html">Art</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button type="button" class="nav-hamburger" id="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu" onclick="(function(){var m=document.getElementById('mobile-menu');var b=document.getElementById('nav-toggle');var o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');})();">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="cv.html">CV</a>
+  <a href="research.html">Research</a>
+  <a href="teaching.html" aria-current="page">Teaching</a>
+  <a href="projects.html">Projects</a>
+  <a href="blog.html">Blog</a>
+  <a href="art.html">Art</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div class="stars" aria-hidden="true"></div>
+
+<main id="main">
+
+  <div class="page-header-band">
+    <div class="page-header-inner">
+      <div class="s-kicker" aria-hidden="true">Teaching</div>
+      <h1>Teaching &amp; <span class="hl">Learning Design</span></h1>
+      <p class="s-lead" style="margin-bottom:0;">I teach as a facilitator and mentor, grounded in constructivist learning theory and cognitive science. Most of my teaching has happened in practice: supervising student interns, running live webinars, and designing self-paced modules and podcasts for adult learners who choose to be there.</p>
+    </div>
+  </div>
+
+  <!-- Featured course -->
+  <div class="band" aria-labelledby="h-course">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">Upcoming Course</div>
+      <h2 id="h-course">Now <span class="hl-sage">Teaching</span></h2>
+
+      <div class="research-grid">
+        <div class="card featured">
+          <div>
+            <div class="card-kicker">Parkland College Community Education · Scheduled January 2027</div>
+            <h3>Critical Thinking in the Age of Data &amp; AI</h3>
+            <p>Charts, dashboards, and AI-generated content are everywhere, but how do you know what to trust? A six-session course for small business owners and working professionals on asking better questions of the data you see at work and in everyday life. No technical experience required.</p>
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.25rem;">
+              <a href="teaching-critical-thinking-data-ai.html" class="btn btn-filled">Course Details</a>
+            </div>
+          </div>
+          <dl class="dis-meta">
+            <div><dt>Audience</dt><dd>Working professionals and small business owners, no data or AI background needed</dd></div>
+            <div><dt>Format</dt><dd>Six sessions, in person, with discussion and participant-supplied examples</dd></div>
+            <div><dt>You will learn to</dt><dd>Spot misleading charts · Describe visualizations accessibly · Use commercial AI tools without leaking sensitive data</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Philosophy -->
+  <div class="band band-card" aria-labelledby="h-philosophy">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">Approach</div>
+      <h2 id="h-philosophy">Teaching <span class="hl">Philosophy</span></h2>
+      <p class="s-lead">I help learners reflect on their own knowledge gaps and goals, so intrinsic motivation can drive self-regulated learning that transfers from the classroom to professional practice and individual need.</p>
+
+      <div class="research-grid">
+        <div class="card">
+          <div class="card-kicker">Role</div>
+          <h3>Facilitator &amp; Mentor</h3>
+          <p>I build environments where learners engage actively with material, collaborate on real problems, and develop their own understanding through guided inquiry.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Experience</div>
+          <h3>Structured Experiential Learning</h3>
+          <p>Over 13 years I have supervised 150+ student interns and employees through hands-on projects, weekly training sessions on technical skills and research methods, and reflective practice: written reports, weekly presentations, and structured reflections on process and collaboration.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Design</div>
+          <h3>Multimodal &amp; Accessible Delivery</h3>
+          <p>My online modules combine video, narrative text with embedded visualizations, quizzes, and interactive elements so learners can engage in more than one way. As my unit's IT accessibility liaison, I build materials to meet and exceed WCAG standards, and treat accessibility as an equity issue as well as a compliance one.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Ethics</div>
+          <h3>Decision Frameworks, Not Tool Lists</h3>
+          <p>Tools change quickly, so I teach learners to make informed choices about data privacy, bias, consent, and the appropriate use of generative AI, including attribution and licensing, rather than memorizing a list of products.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Assessment</div>
+          <h3>Aligned, Formative, Authentic</h3>
+          <p>Low-stakes quizzes with feedback, drafts and peer feedback, project deliverables and stakeholder presentations, reflection activities, and rubrics co-created with learners. I also gather early and mid-course feedback to adjust while a course is still running.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Link to Research</div>
+          <h3>Teaching Informed by Evidence</h3>
+          <p>My dissertation research on visualizations and self-regulated learning shapes how I sequence content, pair visuals with narration, and ask learners to explain what they see.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Programs -->
+  <div class="band" aria-labelledby="h-programs">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">Practice</div>
+      <h2 id="h-programs">Learning Programs <span class="hl-sage">I've Built</span></h2>
+      <p class="s-lead">Much of my teaching is informal and at scale, for adults who need to learn on their own time.</p>
+
+      <div class="three-grid">
+        <div class="future-card">
+          <div class="card-kicker">Live</div>
+          <h3>Statewide Webinar Series</h3>
+          <p>A live webinar series for statewide audiences, running since 2013.</p>
+        </div>
+        <div class="future-card">
+          <div class="card-kicker">Audio</div>
+          <h3>Financial Education Podcast</h3>
+          <p>A podcast produced in partnership with the Illinois Department of Financial and Professional Regulation.</p>
+        </div>
+        <div class="future-card">
+          <div class="card-kicker">Self-Paced</div>
+          <h3>Digital Badges &amp; Online Modules</h3>
+          <p>A financial literacy digital badge program with more than 20,000 international participants, plus self-paced online modules.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ready to teach -->
+  <div class="band band-card" aria-labelledby="h-ready">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">Topics</div>
+      <h2 id="h-ready">Ready to <span class="hl">Teach</span></h2>
+      <p class="s-lead">Courses where my research and practice meet.</p>
+
+      <div class="three-grid">
+        <div class="card">
+          <div class="card-kicker">Methods</div>
+          <h3>User Experience Research</h3>
+          <p>Needs assessment and years of user research for educational program improvement.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Design</div>
+          <h3>Information Visualization</h3>
+          <p>Design work plus research on how visualizations support engagement and learning with complex information.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Design</div>
+          <h3>Human-Centered Design</h3>
+          <p>Empathetic, iterative design with accessibility as a core principle.</p>
+        </div>
+      </div>
+      <div style="margin-top:2rem;display:flex;gap:1.5rem;flex-wrap:wrap;">
+        <a href="cv.html" class="card-link">Full CV</a>
+        <a href="research.html" class="card-link">Research</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Andrea Pellegrini<span>Educator · Researcher · Wizard</span></div>
+    <ul class="footer-links" role="list">
+      <li><a href="about.html">About</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="art.html">Art</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="mailto:apelleg3@illinois.edu">Email</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 Andrea Pellegrini &middot; Champaign, Illinois</p>
+  </div>
+</footer>
+</body>
+</html>
