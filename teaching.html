@@ -172,7 +172,7 @@
     .three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
     @media(max-width:960px){.three-grid{grid-template-columns:1fr 1fr;}}
     @media(max-width:700px){.session{grid-template-columns:1fr;gap:0.75rem;padding:1.25rem;}.session-num span{font-size:2rem;}.three-grid{grid-template-columns:1fr;}}
-    .video-embed{position:relative;width:100%;max-width:760px;aspect-ratio:16/9;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:#000;}
+    .video-embed{position:relative;width:100%;max-width:820px;aspect-ratio:16/11;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:#000;}
     .video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
   </style>
   <!-- Google tag (gtag.js) -->
@@ -267,9 +267,12 @@
 
       <div id="webinar-recordings" style="margin-top:3rem;text-align:center;">
         <h3>Watch the Webinars</h3>
-        <p class="s-lead" style="margin:0 auto 1.25rem;font-size:0.9rem;">Recordings from the Get Savvy series play below. Use the playlist button in the player to browse every session, or <a href="https://go.uillinois.edu/getsavvy" target="_blank" rel="noopener noreferrer" style="color:var(--purple-bright);">open the full playlist on YouTube</a>.</p>
+        <p class="s-lead" style="margin:0 auto 1.25rem;font-size:0.9rem;">Recordings from the Get Savvy series play below. Use the playlist button in the top corner of the player to browse every session.</p>
         <div class="video-embed" style="margin:0 auto;">
           <iframe src="https://www.youtube.com/embed/videoseries?si=bKG8xo7smS_puUuV&amp;list=PLc0xo-6von5Sc31gTbXgkDUDCqPzGZ5ab" title="Get Savvy webinar recordings (YouTube playlist)" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div style="margin-top:1.25rem;">
+          <a href="https://go.uillinois.edu/getsavvy" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Full Playlist on YouTube ↗</a>
         </div>
       </div>
     </div>
