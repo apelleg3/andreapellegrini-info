@@ -158,6 +158,27 @@
     .post-note{display:block;font-size:0.8rem;color:var(--text-muted);margin-top:0.2rem;}
     .post-go{color:var(--purple-bright);font-size:0.9rem;}
     @media(max-width:700px){.post{grid-template-columns:1fr;gap:0.4rem;padding:1.1rem;}.post-go{display:none;}}
+    .post-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;}
+    .post-card{display:block;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;text-decoration:none;transition:border-color 0.2s,transform 0.2s;}
+    .post-card:hover,.post-card:focus-visible{border-color:var(--purple-soft);transform:translateY(-2px);outline:none;}
+    .post-card img{display:block;width:100%;height:auto;aspect-ratio:2000/875;object-fit:cover;}
+    .post-meta{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:0.85rem 1.15rem;}
+    .post-meta .post-date{margin:0;}
+    .post-meta .post-note{margin:0;font-size:0.76rem;}
+    .ep-theme{margin-top:2.25rem;}
+    .ep-theme:first-of-type{margin-top:0;}
+    .ep-theme h3{color:var(--sage);font-size:0.8rem;letter-spacing:0.18em;margin-bottom:1rem;}
+    .ep-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
+    .ep{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color 0.2s,transform 0.2s;}
+    .ep:hover{border-color:var(--purple-soft);transform:translateY(-2px);}
+    .ep img{display:block;width:100%;height:auto;aspect-ratio:2000/875;object-fit:cover;}
+    .ep-body{padding:0.85rem 1.15rem 1rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.3rem 1rem;}
+    .ep-num{font-family:'Josefin Sans',sans-serif;font-size:0.66rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);}
+    .ep-guest{font-size:0.8rem;color:var(--text-soft);flex:1 1 auto;}
+    .ep-links{display:flex;flex-wrap:wrap;gap:0.3rem 1rem;width:100%;}
+    .ep-links a{font-family:'Josefin Sans',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;color:var(--purple-bright);text-decoration:none;}
+    .ep-links a:hover{color:var(--text);}
+    @media(max-width:760px){.post-grid,.ep-grid{grid-template-columns:1fr;}}
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBZP1CDF77"></script>
@@ -221,56 +242,46 @@
       <div class="s-kicker" aria-hidden="true">Student Money Management Center</div>
       <h2 id="h-smmc">Featured <span class="hl">Posts</span></h2>
       <p class="s-lead">Selected posts I wrote for the SMMC News &amp; Events blog on student loans, budgeting, banking, retirement, and more.</p>
-      <div class="post-list">
-        <a class="post" href="https://blogs.uofi.uillinois.edu/view/7550/530425576" target="_blank" rel="noopener noreferrer">
-          <span class="post-date">May 27, 2026</span>
-          <span><span class="post-title">From Save to Forgiveness: A PSLF Guide for Federal Borrowers</span></span>
-          <span class="post-go" aria-hidden="true">↗</span>
+      <div class="post-grid">
+        <a class="post-card" href="https://blogs.uofi.uillinois.edu/view/7550/530425576" target="_blank" rel="noopener noreferrer">
+          <img src="assets/blog/pslf.jpg" alt="From Save to Forgiveness: A PSLF Guide for Federal Borrowers" loading="lazy" width="960" height="420" />
+          <span class="post-meta"><span class="post-date">May 27, 2026</span><span class="post-go" aria-hidden="true">↗</span></span>
         </a>
-        <a class="post" href="https://blogs.uofi.uillinois.edu/view/7550/1287368252" target="_blank" rel="noopener noreferrer">
-          <span class="post-date">Mar 31, 2026</span>
-          <span><span class="post-title">Federal Student Loan Repayment Wizard</span></span>
-          <span class="post-go" aria-hidden="true">↗</span>
+        <a class="post-card" href="https://blogs.uofi.uillinois.edu/view/7550/1287368252" target="_blank" rel="noopener noreferrer">
+          <img src="assets/blog/repayment-wizard.jpg" alt="Federal Student Loan Repayment Wizard" loading="lazy" width="960" height="420" />
+          <span class="post-meta"><span class="post-date">Mar 31, 2026</span><span class="post-go" aria-hidden="true">↗</span></span>
         </a>
-        <a class="post" href="https://blogs.uofi.uillinois.edu/view/7550/2037919254" target="_blank" rel="noopener noreferrer">
-          <span class="post-date">Jan 30, 2026</span>
-          <span><span class="post-title">Financial Feedback: Calculating Net Worth</span></span>
-          <span class="post-go" aria-hidden="true">↗</span>
+        <a class="post-card" href="https://blogs.uofi.uillinois.edu/view/7550/2037919254" target="_blank" rel="noopener noreferrer">
+          <img src="assets/blog/net-worth.jpg" alt="Financial Feedback: Calculating Net Worth" loading="lazy" width="960" height="420" />
+          <span class="post-meta"><span class="post-date">Jan 30, 2026</span><span class="post-go" aria-hidden="true">↗</span></span>
         </a>
-        <a class="post" href="https://blogs.uofi.uillinois.edu/view/7550/54213092" target="_blank" rel="noopener noreferrer">
-          <span class="post-date">Jan 26, 2026</span>
-          <span><span class="post-title">Comparing Private Student Loans</span></span>
-          <span class="post-go" aria-hidden="true">↗</span>
+        <a class="post-card" href="https://blogs.uofi.uillinois.edu/view/7550/54213092" target="_blank" rel="noopener noreferrer">
+          <img src="assets/blog/private-loans.jpg" alt="Comparing Private Student Loans" loading="lazy" width="960" height="420" />
+          <span class="post-meta"><span class="post-date">Jan 26, 2026</span><span class="post-go" aria-hidden="true">↗</span></span>
         </a>
-        <a class="post" href="https://blogs.uofi.uillinois.edu/view/7550/1768869035" target="_blank" rel="noopener noreferrer">
-          <span class="post-date">Jan 22, 2026</span>
-          <span><span class="post-title">Increasing ROI for a College Degree</span></span>
-          <span class="post-go" aria-hidden="true">↗</span>
+        <a class="post-card" href="https://blogs.uofi.uillinois.edu/view/7550/1768869035" target="_blank" rel="noopener noreferrer">
+          <img src="assets/blog/roi.jpg" alt="Increasing ROI for a College Degree" loading="lazy" width="960" height="420" />
+          <span class="post-meta"><span class="post-date">Jan 22, 2026</span><span class="post-go" aria-hidden="true">↗</span></span>
         </a>
-        <a class="post" href="https://blogs.uofi.uillinois.edu/view/7550/496099576" target="_blank" rel="noopener noreferrer">
-          <span class="post-date">Oct 31, 2025</span>
-          <span><span class="post-title">SNAP Disruption: Where to Find Food Now</span></span>
-          <span class="post-go" aria-hidden="true">↗</span>
+        <a class="post-card" href="https://blogs.uofi.uillinois.edu/view/7550/496099576" target="_blank" rel="noopener noreferrer">
+          <img src="assets/blog/snap.jpg" alt="SNAP Disruption: Where to Find Food Now" loading="lazy" width="960" height="420" />
+          <span class="post-meta"><span class="post-date">Oct 31, 2025</span><span class="post-go" aria-hidden="true">↗</span></span>
         </a>
-        <a class="post" href="https://blogs.uofi.uillinois.edu/view/7550/862829868" target="_blank" rel="noopener noreferrer">
-          <span class="post-date">Jun 26, 2025</span>
-          <span><span class="post-title">Before You Give or Take Financial Advice, Read This</span></span>
-          <span class="post-go" aria-hidden="true">↗</span>
+        <a class="post-card" href="https://blogs.uofi.uillinois.edu/view/7550/862829868" target="_blank" rel="noopener noreferrer">
+          <img src="assets/blog/financial-advice.jpg" alt="Before You Give or Take Financial Advice, Read This" loading="lazy" width="960" height="420" />
+          <span class="post-meta"><span class="post-date">Jun 26, 2025</span><span class="post-go" aria-hidden="true">↗</span></span>
         </a>
-        <a class="post" href="https://blogs.uofi.uillinois.edu/view/7550/102950315" target="_blank" rel="noopener noreferrer">
-          <span class="post-date">Jun 17, 2025</span>
-          <span><span class="post-title">Opening a Bank Account in the United States</span></span>
-          <span class="post-go" aria-hidden="true">↗</span>
+        <a class="post-card" href="https://blogs.uofi.uillinois.edu/view/7550/102950315" target="_blank" rel="noopener noreferrer">
+          <img src="assets/blog/bank-account.jpg" alt="Opening a Bank Account in the United States" loading="lazy" width="960" height="420" />
+          <span class="post-meta"><span class="post-date">Jun 17, 2025</span><span class="post-go" aria-hidden="true">↗</span></span>
         </a>
-        <a class="post" href="https://blogs.uofi.uillinois.edu/view/7550/565399263" target="_blank" rel="noopener noreferrer">
-          <span class="post-date">Jun 13, 2025</span>
-          <span><span class="post-title">13 Ways to Avoid Unlucky Losses in 2025</span></span>
-          <span class="post-go" aria-hidden="true">↗</span>
+        <a class="post-card" href="https://blogs.uofi.uillinois.edu/view/7550/565399263" target="_blank" rel="noopener noreferrer">
+          <img src="assets/blog/13-ways.jpg" alt="13 Ways to Avoid Unlucky Losses in 2025" loading="lazy" width="960" height="420" />
+          <span class="post-meta"><span class="post-date">Jun 13, 2025</span><span class="post-go" aria-hidden="true">↗</span></span>
         </a>
-        <a class="post" href="https://blogs.uofi.uillinois.edu/view/7550/1975058643" target="_blank" rel="noopener noreferrer">
-          <span class="post-date">Apr 22, 2025</span>
-          <span><span class="post-title">Roth vs. Traditional Retirement Plans: What's the Difference?</span><span class="post-note">Co-authored with Richard Owusu-Cyrus</span></span>
-          <span class="post-go" aria-hidden="true">↗</span>
+        <a class="post-card" href="https://blogs.uofi.uillinois.edu/view/7550/1975058643" target="_blank" rel="noopener noreferrer">
+          <img src="assets/blog/roth-traditional.jpg" alt="Roth vs. Traditional Retirement Plans: What's the Difference?" loading="lazy" width="960" height="420" />
+          <span class="post-meta"><span class="post-date">Apr 22, 2025</span><span class="post-note">Co-authored with Richard Owusu-Cyrus</span></span>
         </a>
       </div>
       <div style="margin-top:2rem;">
@@ -279,7 +290,140 @@
     </div>
   </div>
 
-  <div class="band band-card" aria-labelledby="h-other">
+  <div class="band band-card" aria-labelledby="h-pod">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">Podcast</div>
+      <h2 id="h-pod">Making Cents <span class="hl">of Money</span></h2>
+      <p class="s-lead">I co-host this financial education podcast with the Illinois Department of Financial &amp; Professional Regulation. These episodes connect most closely to my research on learning, decision-making, and design.</p>
+      <div class="ep-theme">
+        <h3>Design, Data &amp; AI</h3>
+        <div class="ep-grid">
+          <div class="ep">
+            <a href="https://blogs.uofi.uillinois.edu/view/7550/714793803" target="_blank" rel="noopener noreferrer"><img src="assets/blog/ep-129.jpg" alt="Episode 129: How App Design Shapes Financial Behavior and Why It Works, Pt. 1: The Invisible Nudge" loading="lazy" width="960" height="420" /></a>
+            <div class="ep-body">
+              <span class="ep-num">Episode 129</span>
+              
+              <div class="ep-links"><a href="https://blogs.uofi.uillinois.edu/view/7550/714793803" target="_blank" rel="noopener noreferrer" aria-label="Episode 129 page on the SMMC blog">Episode page</a><a href="https://podcasts.apple.com/us/podcast/episode-129-how-app-design-shapes-financial-behavior/id1529891389?i=1000776282098" target="_blank" rel="noopener noreferrer" aria-label="Episode 129 on Apple Podcasts">Apple</a><a href="https://open.spotify.com/episode/3aXSZKIuHeePvaHBFskefj" target="_blank" rel="noopener noreferrer" aria-label="Episode 129 on Spotify">Spotify</a><a href="https://soundcloud.com/idfpr/episode-129-how-app-design" target="_blank" rel="noopener noreferrer" aria-label="Episode 129 on SoundCloud">SoundCloud</a></div>
+            </div>
+          </div>
+          <div class="ep">
+            <a href="https://blogs.uofi.uillinois.edu/view/7550/1699717670" target="_blank" rel="noopener noreferrer"><img src="assets/blog/ep-130.jpg" alt="Episode 130: How App Design Shapes Financial Behavior and Why It Works, Pt. 2: Designed to Spend" loading="lazy" width="960" height="420" /></a>
+            <div class="ep-body">
+              <span class="ep-num">Episode 130</span>
+              
+              <div class="ep-links"><a href="https://blogs.uofi.uillinois.edu/view/7550/1699717670" target="_blank" rel="noopener noreferrer" aria-label="Episode 130 page on the SMMC blog">Episode page</a><a href="https://podcasts.apple.com/us/podcast/episode-130-how-app-design-shapes-financial-behavior/id1529891389?i=1000778723988" target="_blank" rel="noopener noreferrer" aria-label="Episode 130 on Apple Podcasts">Apple</a><a href="https://open.spotify.com/episode/5N4zidf4ERzUedvQS1fLwE" target="_blank" rel="noopener noreferrer" aria-label="Episode 130 on Spotify">Spotify</a><a href="https://soundcloud.com/idfpr/episode-130-how-app-design" target="_blank" rel="noopener noreferrer" aria-label="Episode 130 on SoundCloud">SoundCloud</a></div>
+            </div>
+          </div>
+          <div class="ep">
+            <a href="https://blogs.uofi.uillinois.edu/view/7550/1995793425" target="_blank" rel="noopener noreferrer"><img src="assets/blog/ep-131.jpg" alt="Episode 131: How App Design Shapes Financial Behavior and Why It Works, Pt. 3: Know the Game" loading="lazy" width="960" height="420" /></a>
+            <div class="ep-body">
+              <span class="ep-num">Episode 131</span>
+              
+              <div class="ep-links"><a href="https://blogs.uofi.uillinois.edu/view/7550/1995793425" target="_blank" rel="noopener noreferrer" aria-label="Episode 131 page on the SMMC blog">Episode page</a><a href="https://podcasts.apple.com/us/podcast/episode-131-how-app-design-shapes-financial-behavior/id1529891389?i=1000787903360" target="_blank" rel="noopener noreferrer" aria-label="Episode 131 on Apple Podcasts">Apple</a><a href="https://open.spotify.com/episode/6ed56fJQyctlVPkBa3f4v5" target="_blank" rel="noopener noreferrer" aria-label="Episode 131 on Spotify">Spotify</a><a href="https://soundcloud.com/idfpr/episode-131-how-app-design" target="_blank" rel="noopener noreferrer" aria-label="Episode 131 on SoundCloud">SoundCloud</a></div>
+            </div>
+          </div>
+          <div class="ep">
+            <a href="https://blogs.uofi.uillinois.edu/view/7550/600393175" target="_blank" rel="noopener noreferrer"><img src="assets/blog/ep-127.jpg" alt="Episode 127: What Happens to the Data You Feed LLMs?" loading="lazy" width="960" height="420" /></a>
+            <div class="ep-body">
+              <span class="ep-num">Episode 127</span>
+              <span class="ep-guest">Guest: Emmy Tither</span>
+              <div class="ep-links"><a href="https://blogs.uofi.uillinois.edu/view/7550/600393175" target="_blank" rel="noopener noreferrer" aria-label="Episode 127 page on the SMMC blog">Episode page</a><a href="https://open.spotify.com/episode/17hola5vsMqQ7oxUc7xwQy" target="_blank" rel="noopener noreferrer" aria-label="Episode 127 on Spotify">Spotify</a><a href="https://soundcloud.com/idfpr/episode-127-what-happens-to" target="_blank" rel="noopener noreferrer" aria-label="Episode 127 on SoundCloud">SoundCloud</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ep-theme">
+        <h3>Stress, Behavior &amp; Well-Being</h3>
+        <div class="ep-grid">
+          <div class="ep">
+            <a href="https://blogs.uofi.uillinois.edu/view/7550/707020852" target="_blank" rel="noopener noreferrer"><img src="assets/blog/ep-115.jpg" alt="Episode 115: The Money-Stress Habit Cycle" loading="lazy" width="960" height="420" /></a>
+            <div class="ep-body">
+              <span class="ep-num">Episode 115</span>
+              
+              <div class="ep-links"><a href="https://blogs.uofi.uillinois.edu/view/7550/707020852" target="_blank" rel="noopener noreferrer" aria-label="Episode 115 page on the SMMC blog">Episode page</a><a href="https://podcasts.apple.com/us/podcast/episode-115-the-money-stress-habit-cycle/id1529891389?i=1000726914840" target="_blank" rel="noopener noreferrer" aria-label="Episode 115 on Apple Podcasts">Apple</a><a href="https://open.spotify.com/episode/3nh2EO7wTuiDIKE1zmtAPO" target="_blank" rel="noopener noreferrer" aria-label="Episode 115 on Spotify">Spotify</a><a href="https://soundcloud.com/idfpr/episode-115-the-money-stress-habit-cycle" target="_blank" rel="noopener noreferrer" aria-label="Episode 115 on SoundCloud">SoundCloud</a></div>
+            </div>
+          </div>
+          <div class="ep">
+            <a href="https://blogs.uofi.uillinois.edu/view/7550/1827367272" target="_blank" rel="noopener noreferrer"><img src="assets/blog/ep-105.jpg" alt="Episode 105: Stages of Financial Behavior Change" loading="lazy" width="960" height="420" /></a>
+            <div class="ep-body">
+              <span class="ep-num">Episode 105</span>
+              <span class="ep-guest">Guest: Emily Harmon</span>
+              <div class="ep-links"><a href="https://blogs.uofi.uillinois.edu/view/7550/1827367272" target="_blank" rel="noopener noreferrer" aria-label="Episode 105 page on the SMMC blog">Episode page</a><a href="https://podcasts.apple.com/us/podcast/episode-105-stages-of-financial-behavior-change/id1529891389?i=1000698612572" target="_blank" rel="noopener noreferrer" aria-label="Episode 105 on Apple Podcasts">Apple</a><a href="https://open.spotify.com/episode/4QnN2BztCBHv0GDanFve6i" target="_blank" rel="noopener noreferrer" aria-label="Episode 105 on Spotify">Spotify</a></div>
+            </div>
+          </div>
+          <div class="ep">
+            <a href="https://blogs.uofi.uillinois.edu/view/7550/576928944" target="_blank" rel="noopener noreferrer"><img src="assets/blog/ep-120.jpg" alt="Episode 120: Money and Happiness" loading="lazy" width="960" height="420" /></a>
+            <div class="ep-body">
+              <span class="ep-num">Episode 120</span>
+              <span class="ep-guest">Guest: Donovan Sanchez</span>
+              <div class="ep-links"><a href="https://blogs.uofi.uillinois.edu/view/7550/576928944" target="_blank" rel="noopener noreferrer" aria-label="Episode 120 page on the SMMC blog">Episode page</a><a href="https://podcasts.apple.com/us/podcast/episode-120-money-and-happiness/id1529891389?i=1000742046105" target="_blank" rel="noopener noreferrer" aria-label="Episode 120 on Apple Podcasts">Apple</a><a href="https://open.spotify.com/episode/30ZwjbefbwbF5OBoZHF96p" target="_blank" rel="noopener noreferrer" aria-label="Episode 120 on Spotify">Spotify</a><a href="https://soundcloud.com/idfpr/moneyandhappiness" target="_blank" rel="noopener noreferrer" aria-label="Episode 120 on SoundCloud">SoundCloud</a></div>
+            </div>
+          </div>
+          <div class="ep">
+            <a href="https://blogs.uofi.uillinois.edu/view/7550/809294503" target="_blank" rel="noopener noreferrer"><img src="assets/blog/ep-106.jpg" alt="Episode 106: Neurodiversity and Financial Strategies" loading="lazy" width="960" height="420" /></a>
+            <div class="ep-body">
+              <span class="ep-num">Episode 106</span>
+              
+              <div class="ep-links"><a href="https://blogs.uofi.uillinois.edu/view/7550/809294503" target="_blank" rel="noopener noreferrer" aria-label="Episode 106 page on the SMMC blog">Episode page</a><a href="https://podcasts.apple.com/us/podcast/episode-106-neurodiversity-and-financial-strategies/id1529891389?i=1000701108467" target="_blank" rel="noopener noreferrer" aria-label="Episode 106 on Apple Podcasts">Apple</a><a href="https://open.spotify.com/episode/1Nyp2kfmR34wRMPSQS4cFn" target="_blank" rel="noopener noreferrer" aria-label="Episode 106 on Spotify">Spotify</a></div>
+            </div>
+          </div>
+          <div class="ep">
+            <a href="https://blogs.uofi.uillinois.edu/view/7550/1303982086" target="_blank" rel="noopener noreferrer"><img src="assets/blog/ep-119.jpg" alt="Episode 119: Prioritizing Your Paid Time Off" loading="lazy" width="960" height="420" /></a>
+            <div class="ep-body">
+              <span class="ep-num">Episode 119</span>
+              
+              <div class="ep-links"><a href="https://blogs.uofi.uillinois.edu/view/7550/1303982086" target="_blank" rel="noopener noreferrer" aria-label="Episode 119 page on the SMMC blog">Episode page</a><a href="https://podcasts.apple.com/us/podcast/prioritizing-your-paid-time-off/id1529891389?i=1000738344700" target="_blank" rel="noopener noreferrer" aria-label="Episode 119 on Apple Podcasts">Apple</a><a href="https://open.spotify.com/episode/5KGZF2RCrd6otWty9kUQx9" target="_blank" rel="noopener noreferrer" aria-label="Episode 119 on Spotify">Spotify</a><a href="https://soundcloud.com/idfpr/prioritizing-your-paid-time-off" target="_blank" rel="noopener noreferrer" aria-label="Episode 119 on SoundCloud">SoundCloud</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ep-theme">
+        <h3>Family, Advice &amp; Everyday Needs</h3>
+        <div class="ep-grid">
+          <div class="ep">
+            <a href="https://blogs.uofi.uillinois.edu/view/7550/1342187809" target="_blank" rel="noopener noreferrer"><img src="assets/blog/ep-99.jpg" alt="Episode 99: Financial Socialization" loading="lazy" width="960" height="420" /></a>
+            <div class="ep-body">
+              <span class="ep-num">Episode 99</span>
+              
+              <div class="ep-links"><a href="https://blogs.uofi.uillinois.edu/view/7550/1342187809" target="_blank" rel="noopener noreferrer" aria-label="Episode 99 page on the SMMC blog">Episode page</a><a href="https://podcasts.apple.com/us/podcast/episode-99-financial-socialization/id1529891389?i=1000679240258" target="_blank" rel="noopener noreferrer" aria-label="Episode 99 on Apple Podcasts">Apple</a><a href="https://open.spotify.com/episode/4WmBhxIowz7zQSC7IemzEa" target="_blank" rel="noopener noreferrer" aria-label="Episode 99 on Spotify">Spotify</a></div>
+            </div>
+          </div>
+          <div class="ep">
+            <a href="https://blogs.uofi.uillinois.edu/view/7550/1480942732" target="_blank" rel="noopener noreferrer"><img src="assets/blog/ep-121.jpg" alt="Episode 121: Before You Give or Take Financial Advice, Listen to This..." loading="lazy" width="960" height="420" /></a>
+            <div class="ep-body">
+              <span class="ep-num">Episode 121</span>
+              
+              <div class="ep-links"><a href="https://blogs.uofi.uillinois.edu/view/7550/1480942732" target="_blank" rel="noopener noreferrer" aria-label="Episode 121 page on the SMMC blog">Episode page</a><a href="https://podcasts.apple.com/us/podcast/episode-121-before-you-give-or-take-financial-advice/id1529891389?i=1000745922324" target="_blank" rel="noopener noreferrer" aria-label="Episode 121 on Apple Podcasts">Apple</a><a href="https://open.spotify.com/episode/5XTyh5PlkrtORNUpKmQhIJ" target="_blank" rel="noopener noreferrer" aria-label="Episode 121 on Spotify">Spotify</a><a href="https://soundcloud.com/idfpr/episode-121-before-you-give-or-take-financial-advice-listen-to-this" target="_blank" rel="noopener noreferrer" aria-label="Episode 121 on SoundCloud">SoundCloud</a></div>
+            </div>
+          </div>
+          <div class="ep">
+            <a href="https://blogs.uofi.uillinois.edu/view/7550/131743671" target="_blank" rel="noopener noreferrer"><img src="assets/blog/ep-94.jpg" alt="Episode 94: Cost of Living" loading="lazy" width="960" height="420" /></a>
+            <div class="ep-body">
+              <span class="ep-num">Episode 94</span>
+              
+              <div class="ep-links"><a href="https://blogs.uofi.uillinois.edu/view/7550/131743671" target="_blank" rel="noopener noreferrer" aria-label="Episode 94 page on the SMMC blog">Episode page</a><a href="https://podcasts.apple.com/us/podcast/episode-94-cost-of-living/id1529891389?i=1000670538914" target="_blank" rel="noopener noreferrer" aria-label="Episode 94 on Apple Podcasts">Apple</a><a href="https://open.spotify.com/episode/5KXxXvUp81SXty7VjLVhtR" target="_blank" rel="noopener noreferrer" aria-label="Episode 94 on Spotify">Spotify</a></div>
+            </div>
+          </div>
+          <div class="ep">
+            <a href="https://blogs.uofi.uillinois.edu/view/7550/1363852375" target="_blank" rel="noopener noreferrer"><img src="assets/blog/ep-95.jpg" alt="Episode 95: Basic Needs &amp; Needs Insecurity" loading="lazy" width="960" height="420" /></a>
+            <div class="ep-body">
+              <span class="ep-num">Episode 95</span>
+              
+              <div class="ep-links"><a href="https://blogs.uofi.uillinois.edu/view/7550/1363852375" target="_blank" rel="noopener noreferrer" aria-label="Episode 95 page on the SMMC blog">Episode page</a><a href="https://podcasts.apple.com/us/podcast/episode-95-basic-needs-and-needs-insecurity/id1529891389?i=1000672240471" target="_blank" rel="noopener noreferrer" aria-label="Episode 95 on Apple Podcasts">Apple</a><a href="https://open.spotify.com/episode/51MlJ0sQZU4GRaiAnT0nAt" target="_blank" rel="noopener noreferrer" aria-label="Episode 95 on Spotify">Spotify</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:2rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <a href="https://www.studentmoney.uillinois.edu/podcasts" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">All Episodes ↗</a>
+        <a href="https://podcasts.apple.com/us/podcast/making-cents-of-money/id1529891389" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Apple Podcasts ↗</a>
+        <a href="https://open.spotify.com/show/6ZE7y9V85mBSB1dDbeaR1l" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Spotify ↗</a>
+        <a href="http://soundcloud.com/idfpr" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">SoundCloud ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="band" aria-labelledby="h-other">
     <div class="band-inner">
       <div class="s-kicker" aria-hidden="true">Elsewhere</div>
       <h2 id="h-other">Other <span class="hl-sage">Writing</span></h2>
