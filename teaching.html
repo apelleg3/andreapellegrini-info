@@ -172,6 +172,8 @@
     .three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
     @media(max-width:960px){.three-grid{grid-template-columns:1fr 1fr;}}
     @media(max-width:700px){.session{grid-template-columns:1fr;gap:0.75rem;padding:1.25rem;}.session-num span{font-size:2rem;}.three-grid{grid-template-columns:1fr;}}
+    .video-embed{position:relative;width:100%;max-width:760px;aspect-ratio:16/9;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:#000;}
+    .video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBZP1CDF77"></script>
@@ -226,15 +228,58 @@
     <div class="page-header-inner">
       <div class="s-kicker" aria-hidden="true">Teaching</div>
       <h1>Teaching &amp; <span class="hl">Learning Design</span></h1>
-      <p class="s-lead" style="margin-bottom:0;">I teach as a facilitator and mentor, grounded in constructivist learning theory and cognitive science. Most of my teaching has happened in practice: supervising student interns, running live webinars, and designing self-paced modules and podcasts for adult learners who choose to be there.</p>
+      <p class="s-lead" style="margin-bottom:0;">I teach as a facilitator and mentor, grounded in constructivist learning theory and cognitive science. Most of my teaching happens in practice: supervising student interns, running live webinars and learning campaigns, and designing self-paced modules and a podcast for adult learners who choose to be there.</p>
+    </div>
+  </div>
+
+  <!-- Programs -->
+  <div class="band" aria-labelledby="h-programs">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">This Semester</div>
+      <h2 id="h-programs">Currently <span class="hl-sage">Teaching</span></h2>
+      <p class="s-lead">Through the University of Illinois System's Student Money Management Center, I teach adults and students who choose to be there, through live sessions, online campaigns, and audio.</p>
+
+      <div class="three-grid">
+        <div class="future-card">
+          <div class="card-kicker">Live</div>
+          <h3>Get Savvy Webinar Series</h3>
+          <p>A statewide webinar series I coordinate with financial educators across Illinois, running since 2013, with monthly live sessions each fall and spring and recordings afterward.</p>
+          <a href="https://www.studentmoney.uillinois.edu/events/webinars" class="card-link" target="_blank" rel="noopener noreferrer">Webinar page</a>
+        </div>
+        <div class="future-card">
+          <div class="card-kicker">Campaigns</div>
+          <h3>Understand Your Refund &amp; Know What You Owe</h3>
+          <p>Two semiannual learning campaigns built on the Financial Literacy Digital Badges Program. Students work through short online lessons on managing a student account refund and on finding accurate student loan information, then check what they learned.</p>
+          <a href="https://studentmoney.uillinois.edu/events/campaigns" class="card-link" target="_blank" rel="noopener noreferrer">Campaigns page</a>
+        </div>
+        <div class="future-card">
+          <div class="card-kicker">Audio</div>
+          <h3>Making Cents of Money</h3>
+          <p>A financial education podcast produced in partnership with the Illinois Department of Financial and Professional Regulation.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;">
+            <a href="https://www.studentmoney.uillinois.edu/podcasts" class="card-link" target="_blank" rel="noopener noreferrer">Podcast page</a>
+            <a href="https://podcasts.apple.com/us/podcast/making-cents-of-money/id1529891389" class="card-link" target="_blank" rel="noopener noreferrer">Apple Podcasts</a>
+            <a href="https://open.spotify.com/show/6ZE7y9V85mBSB1dDbeaR1l" class="card-link" target="_blank" rel="noopener noreferrer">Spotify</a>
+            <a href="http://soundcloud.com/idfpr" class="card-link" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:2.5rem;">
+        <h3>Watch the Webinars</h3>
+        <p class="s-lead" style="margin-bottom:1rem;font-size:0.9rem;">Recordings from the statewide webinar series.</p>
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/videoseries?si=bKG8xo7smS_puUuV&amp;list=PLc0xo-6von5Sc31gTbXgkDUDCqPzGZ5ab" title="Statewide financial wellness webinar recordings (YouTube playlist)" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- Featured course -->
-  <div class="band" aria-labelledby="h-course">
+  <div class="band band-card" aria-labelledby="h-course">
     <div class="band-inner">
       <div class="s-kicker" aria-hidden="true">Upcoming Course</div>
-      <h2 id="h-course">Now <span class="hl-sage">Teaching</span></h2>
+      <h2 id="h-course">Coming <span class="hl-sage">January 2027</span></h2>
 
       <div class="research-grid">
         <div class="card featured">
@@ -257,69 +302,42 @@
   </div>
 
   <!-- Philosophy -->
-  <div class="band band-card" aria-labelledby="h-philosophy">
+  <div class="band" aria-labelledby="h-philosophy">
     <div class="band-inner">
       <div class="s-kicker" aria-hidden="true">Approach</div>
       <h2 id="h-philosophy">Teaching <span class="hl">Philosophy</span></h2>
-      <p class="s-lead">I help learners reflect on their own knowledge gaps and goals, so intrinsic motivation can drive self-regulated learning that transfers from the classroom to professional practice and individual need.</p>
+      <p class="s-lead">Students learn best when they actively construct knowledge through experiences that combine multimodal resources with the chance to apply that knowledge to a real situation. My training in human resource development and in the Cognitive Science of Teaching &amp; Learning shapes how I design those experiences.</p>
 
       <div class="research-grid">
         <div class="card">
           <div class="card-kicker">Role</div>
-          <h3>Facilitator &amp; Mentor</h3>
-          <p>I build environments where learners engage actively with material, collaborate on real problems, and develop their own understanding through guided inquiry.</p>
+          <h3>Facilitator &amp; Co-Investigator</h3>
+          <p>I co-construct knowledge with learners rather than transmit fixed answers, treating their questions, experiences, and instincts as legitimate intellectual resources.</p>
         </div>
         <div class="card">
           <div class="card-kicker">Experience</div>
           <h3>Structured Experiential Learning</h3>
-          <p>Over 13 years I have supervised 150+ student interns and employees through hands-on projects, weekly training sessions on technical skills and research methods, and reflective practice: written reports, weekly presentations, and structured reflections on process and collaboration.</p>
+          <p>I have supervised more than 150 student interns and employees through hands-on projects tied to real institutional needs, weekly training on research methods and professional skills, and reflective deliverables such as written reports, process reflections, and public-facing content. When learners design for a real audience, the stakes change, and that accountability supports learning that transfers.</p>
         </div>
         <div class="card">
           <div class="card-kicker">Design</div>
           <h3>Multimodal &amp; Accessible Delivery</h3>
-          <p>My online modules combine video, narrative text with embedded visualizations, quizzes, and interactive elements so learners can engage in more than one way. As my unit's IT accessibility liaison, I build materials to meet and exceed WCAG standards, and treat accessibility as an equity issue as well as a compliance one.</p>
+          <p>My webinars, self-paced modules, and podcast episodes combine video, narrative text, embedded visualizations, quizzes, and interactive elements. As my unit's IT Accessibility Liaison, I build materials to meet and exceed WCAG standards, and I treat accessibility as an equity question: whose voice a system was built to carry, and whose it excludes.</p>
         </div>
         <div class="card">
-          <div class="card-kicker">Ethics</div>
-          <h3>Decision Frameworks, Not Tool Lists</h3>
-          <p>Tools change quickly, so I teach learners to make informed choices about data privacy, bias, consent, and the appropriate use of generative AI, including attribution and licensing, rather than memorizing a list of products.</p>
+          <div class="card-kicker">AI &amp; Ethics</div>
+          <h3>AI as Tool and Ethical Problem</h3>
+          <p>I teach generative AI as both a tool and a subject of critical inquiry: whose disclosure it invites, what it does to trust, and what consent means when the one asking questions is not human. I also sequence it deliberately, so learners build foundational skills before AI enters the work and the tool extends capability rather than replacing thinking.</p>
         </div>
         <div class="card">
           <div class="card-kicker">Assessment</div>
-          <h3>Aligned, Formative, Authentic</h3>
-          <p>Low-stakes quizzes with feedback, drafts and peer feedback, project deliverables and stakeholder presentations, reflection activities, and rubrics co-created with learners. I also gather early and mid-course feedback to adjust while a course is still running.</p>
+          <h3>Aligned, Formative, Hard to Shortcut</h3>
+          <p>Low-stakes quizzes, peer feedback, drafts, stakeholder presentations, and reflection track metacognitive growth alongside content mastery. Because AI can produce a polished artifact with little learner effort, I also assess process documentation, oral defense of design decisions, and in-person critique.</p>
         </div>
         <div class="card">
           <div class="card-kicker">Link to Research</div>
           <h3>Teaching Informed by Evidence</h3>
-          <p>My dissertation research on visualizations and self-regulated learning shapes how I sequence content, pair visuals with narration, and ask learners to explain what they see.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Programs -->
-  <div class="band" aria-labelledby="h-programs">
-    <div class="band-inner">
-      <div class="s-kicker" aria-hidden="true">Practice</div>
-      <h2 id="h-programs">Learning Programs <span class="hl-sage">I've Built</span></h2>
-      <p class="s-lead">Much of my teaching is informal and at scale, for adults who need to learn on their own time.</p>
-
-      <div class="three-grid">
-        <div class="future-card">
-          <div class="card-kicker">Live</div>
-          <h3>Statewide Webinar Series</h3>
-          <p>A live webinar series for statewide audiences, running since 2013.</p>
-        </div>
-        <div class="future-card">
-          <div class="card-kicker">Audio</div>
-          <h3>Financial Education Podcast</h3>
-          <p>A podcast produced in partnership with the Illinois Department of Financial and Professional Regulation.</p>
-        </div>
-        <div class="future-card">
-          <div class="card-kicker">Self-Paced</div>
-          <h3>Digital Badges &amp; Online Modules</h3>
-          <p>A financial literacy digital badge program with more than 20,000 international participants, plus self-paced online modules.</p>
+          <p>My research on visualizations, engagement, and self-regulated learning shapes how I sequence content, pair visuals with narration, and ask learners to explain what they see.</p>
         </div>
       </div>
     </div>
@@ -347,6 +365,21 @@
           <div class="card-kicker">Design</div>
           <h3>Human-Centered Design</h3>
           <p>Empathetic, iterative design with accessibility as a core principle.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Methods</div>
+          <h3>Mixed-Methods &amp; AI-Facilitated Qualitative Research</h3>
+          <p>Graduate methods drawing directly on my dissertation methodology.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Technology</div>
+          <h3>AI &amp; Communication Technology</h3>
+          <p>Conversational agents, AI-mediated communication, and the ethics of disclosure and consent.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Literacy</div>
+          <h3>Consumer &amp; Financial Literacy</h3>
+          <p>Persuasion, deceptive design, and financial decision-making for general audiences.</p>
         </div>
       </div>
       <div style="margin-top:2rem;display:flex;gap:1.5rem;flex-wrap:wrap;">
