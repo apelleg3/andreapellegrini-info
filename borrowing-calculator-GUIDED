@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Compare paying student loan interest while in school, waiting until repayment, and borrowing less. Uses actual dates and daily simple interest."><title>Compare Your Borrowing Strategies | SMMC</title><style>body{margin:0;padding:20px;background:#f8f9fa}
+.kwyo-loan{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:16px;line-height:1.6;color:#13294b;background:#fff;max-width:1200px;margin:0 auto;border:1px solid #e1e6ec;border-radius:8px;overflow:hidden;box-shadow:0 2px 10px #13294b12}.kwyo-loan *{box-sizing:border-box}.kwyo-loan [hidden]{display:none!important}.kwyo-loan .lc-header{background:#13294b;color:#fff;padding:24px;text-align:center}.kwyo-loan h2{font-size:28px;line-height:1.25;margin:0 0 8px;color:inherit}.kwyo-loan h3{font-size:19px;line-height:1.35;margin:10px 0;color:#13294b}.kwyo-loan p{margin:0 0 14px}.kwyo-loan .lc-content{padding:26px}.kwyo-loan .lc-inputs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;background:#e8e9ea;padding:22px;border-radius:8px}.kwyo-loan label{display:block;font-size:15px;font-weight:650;margin-bottom:6px}.kwyo-loan input,.kwyo-loan select{width:100%;font:inherit;color:#13294b;background:#fff;border:2px solid #a5a8aa;border-radius:6px;padding:10px;min-height:48px}.kwyo-loan input:focus,.kwyo-loan select:focus,.kwyo-loan button:focus-visible,.kwyo-loan summary:focus-visible{outline:3px solid #e5a223;outline-offset:3px}.kwyo-loan small,.kwyo-loan .lc-muted{font-size:14px;color:#46576a}.kwyo-loan small{display:block;margin-top:5px}.kwyo-loan .lc-wide{grid-column:1/-1}.kwyo-loan .lc-actions{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}.kwyo-loan button{border:0;border-radius:6px;padding:12px 18px;font:600 16px 'Segoe UI',sans-serif;cursor:pointer;background:#0455a4;color:white;min-height:46px}.kwyo-loan button.lc-secondary{background:#e8eef4;color:#13294b;border:1px solid #8ca0b8}.kwyo-loan .lc-error{color:#9c1d20;font-weight:600}.kwyo-loan .lc-stale{color:#714600;background:#fff4db;padding:12px}.kwyo-loan .lc-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:22px 0}.kwyo-loan .lc-card{border:1px solid #ccd7e2;border-top:4px solid #0455a4;border-radius:6px;padding:18px;min-width:0}.kwyo-loan .lc-pill{font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:#0455a4}.kwyo-loan .lc-big{font-size:28px;font-weight:750;color:#0455a4;margin:14px 0 0;font-variant-numeric:tabular-nums}.kwyo-loan dl{font-size:14px;margin:18px 0}.kwyo-loan dt{padding-top:9px;color:#46576a}.kwyo-loan dd{margin:0;font-weight:650}.kwyo-loan .lc-foot{border-top:1px solid #dfe5ec;padding-top:12px;font-size:14px}.kwyo-loan .lc-insight{background:#eef3d9;border-left:4px solid #0455a4;padding:18px;margin:22px 0}.kwyo-loan .lc-chart{border:1px solid #dce4eb;border-radius:6px;padding:20px}.kwyo-loan .lc-bar-row{margin:0 0 18px}.kwyo-loan .lc-bar-label{display:flex;justify-content:space-between;gap:12px;font-size:14px;margin-bottom:6px}.kwyo-loan .lc-bar{display:flex;width:100%;height:28px;background:#f1f3f6;border-radius:4px;overflow:hidden}.kwyo-loan .lc-bar span{display:block;height:100%}.kwyo-loan .lc-principal{background:#13294b}.kwyo-loan .lc-before{background:#0455a4}.kwyo-loan .lc-after{background:#0d605e}.kwyo-loan .lc-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}.kwyo-loan .lc-key{display:inline-block;width:12px;height:12px;margin-right:5px}.kwyo-loan details{margin:20px 0;border-top:1px solid #dce4eb;padding-top:14px}.kwyo-loan summary{cursor:pointer;font-weight:650;color:#0455a4}.kwyo-loan .lc-scroll{overflow:auto;margin:16px 0}.kwyo-loan table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}.kwyo-loan th,.kwyo-loan td{padding:9px;border-bottom:1px solid #dce4eb;text-align:right}.kwyo-loan th{background:#13294b;color:#fff}.kwyo-loan tr:nth-child(even){background:#f7f9fb}.kwyo-loan a{color:#0455a4;text-decoration:underline}.kwyo-loan .lc-note{font-size:14px;background:#f7f9fb;padding:16px;border-radius:6px;margin:18px 0}.kwyo-loan ul{padding-left:22px}@media(max-width:760px){.kwyo-loan .lc-inputs{grid-template-columns:repeat(2,minmax(0,1fr))}.kwyo-loan .lc-cards{grid-template-columns:1fr}.kwyo-loan .lc-content{padding:16px}.kwyo-loan h2{font-size:24px}}@media(max-width:440px){.kwyo-loan .lc-inputs{grid-template-columns:1fr;padding:14px}.kwyo-loan .lc-bar-label{display:block}}@media print{.kwyo-loan .lc-inputs,.kwyo-loan .lc-actions,.kwyo-loan button{display:none}.kwyo-loan{box-shadow:none;border:0}.kwyo-loan .lc-cards{display:block}.kwyo-loan .lc-card{break-inside:avoid;margin-bottom:14px}}
+
+.kwyo-loan .lc-bar{overflow:visible}
+.kwyo-loan .lc-bar .lc-segment{position:relative;border-right:2px solid white;min-width:0}
+.kwyo-loan .lc-bar .lc-tooltip{display:none;position:absolute;z-index:5;bottom:calc(100% + 8px);left:0;width:230px;height:auto;background:#13294b;color:#fff;padding:8px;border-radius:4px;font-size:14px;box-shadow:0 2px 8px #0003}
+.kwyo-loan .lc-segment:last-child .lc-tooltip{left:auto;right:0}
+.kwyo-loan .lc-segment:hover .lc-tooltip,.kwyo-loan .lc-segment:focus .lc-tooltip{display:block}
+.kwyo-loan .lc-segment:focus{outline:3px solid #b26400;outline-offset:3px;z-index:6}
+.kwyo-loan .lc-before{background:repeating-linear-gradient(135deg,#0455a4 0 5px,#3278bb 5px 7px)}
+.kwyo-loan .lc-after{background:repeating-linear-gradient(90deg,#0d605e 0 5px,#33817f 5px 7px)}
+.kwyo-loan .lc-breakdown{display:flex;gap:8px 22px;flex-wrap:wrap;padding:0;list-style:none;font-size:14px;margin:10px 0 24px}
+.kwyo-loan .lc-breakdown li{margin:0}
+@media(max-width:440px){.kwyo-loan .lc-bar-label>span,.kwyo-loan .lc-bar-label>strong{display:block}.kwyo-loan .lc-bar-label>strong{margin-top:4px}}
+.kwyo-loan .lc-segment:nth-child(2) .lc-tooltip{left:50%;transform:translateX(-50%)}
+
+.kwyo-loan #lc-interest-estimate{background:#eaf3fb;border:2px solid #0455a4;border-left:8px solid #0455a4;padding:24px;margin:8px 0}
+.kwyo-loan #lc-interest-estimate .lc-interest-title{font-size:21px;line-height:1.4;margin:0 0 12px}
+.kwyo-loan #lc-interest-estimate .lc-interest-amount{font-size:48px;line-height:1.15;font-weight:800;color:#0455a4;margin:0 0 18px;font-variant-numeric:tabular-nums}
+.kwyo-loan #lc-interest-estimate .lc-interest-amount span{display:block;font-size:20px;font-weight:600;margin-top:6px}
+.kwyo-loan #lc-interest-estimate .lc-interest-detail{font-size:17px;line-height:1.6;color:#13294b;margin:0 0 12px}
+.kwyo-loan #lc-interest-estimate .lc-interest-detail:last-child{margin-bottom:0}
+@media(max-width:440px){.kwyo-loan #lc-interest-estimate{padding:18px}.kwyo-loan #lc-interest-estimate .lc-interest-amount{font-size:42px}}
+
+.kwyo-loan .lc-step-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.kwyo-loan .lc-step h3{font-size:24px;margin:0 0 20px}
+.kwyo-loan .lc-step-fields>div:only-child{grid-column:1/-1}
+.kwyo-loan .lc-plan-question{border:0;padding:0;margin:0 0 18px}
+.kwyo-loan .lc-plan-question legend{font-size:18px;font-weight:650;margin-bottom:12px}
+.kwyo-loan .lc-plan-question label{display:flex;gap:12px;align-items:center;font-size:16px;font-weight:400;padding:8px 0}
+.kwyo-loan .lc-plan-question input{width:22px;min-height:22px;flex:0 0 22px}
+.kwyo-loan [data-step-progress]{font-weight:650}
+@media(max-width:760px){.kwyo-loan .lc-step-fields{grid-template-columns:1fr}}
+
+/* Consistent reading sizes; the key monthly amount remains prominent. */
+.kwyo-loan small,.kwyo-loan .lc-muted,.kwyo-loan .lc-note,.kwyo-loan label,.kwyo-loan .lc-foot,.kwyo-loan dl,.kwyo-loan .lc-bar-label,.kwyo-loan .lc-breakdown,.kwyo-loan .lc-legend{font-size:16px;line-height:1.6}
+.kwyo-loan #lc-interest-estimate .lc-interest-title{font-size:20px}
+.kwyo-loan #lc-interest-estimate .lc-interest-detail,.kwyo-loan #lc-interest-estimate .lc-interest-amount span{font-size:16px;line-height:1.6}
+.kwyo-loan .lc-step>h3{font-size:24px}
+.kwyo-loan #lc-interest-estimate .lc-interest-amount{font-size:44px}
+.kwyo-loan .lc-step-fields{align-items:start}
+
+.kwyo-loan .lc-tier-change{border:2px solid #0455a4;border-left:8px solid #0455a4;background:#eaf3fb;padding:20px;margin:18px 0;font-size:16px}
+.kwyo-loan .lc-tier-change h3{font-size:24px;margin:0 0 12px}
+.kwyo-loan .lc-tier-change p:last-child{margin-bottom:0}
+.kwyo-loan .lc-tier-change ul{margin:12px 0}
+
+.kwyo-loan .lc-timeline{border:1px solid #ccd7e2;border-radius:6px;padding:20px;margin:22px 0;background:#fff;min-width:0}
+.kwyo-loan .lc-timeline>select{max-width:680px}
+.kwyo-loan .lc-timeline-scroll{max-width:100%;overflow-x:auto;margin-top:16px}
+.kwyo-loan .lc-timeline-scroll svg{display:block;max-width:none}
+.kwyo-loan .lc-timeline svg .lc-year-pair:focus{outline:none}
+.kwyo-loan .lc-timeline svg .lc-year-pair:focus .lc-year-highlight{stroke:#a35e00;stroke-width:3}
+.kwyo-loan .lc-year-pair{cursor:pointer}
+@media(max-width:440px){.kwyo-loan .lc-timeline{padding:12px}}
+.kwyo-loan .lc-step{min-width:0;max-width:100%}
+
+.kwyo-loan [data-chart-legend]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;margin:14px 0}
+.kwyo-loan [data-chart-legend] .lc-key{width:18px;height:18px;border:1px solid #46576a;vertical-align:middle}
+@media(max-width:600px){.kwyo-loan [data-chart-legend]{grid-template-columns:1fr}}
+.kwyo-loan .lc-disclaimer{border-top:1px solid #ccd7e2;padding-top:20px;margin-top:24px;font-size:16px;line-height:1.6;color:#46576a}.kwyo-loan .lc-disclaimer p:last-child{margin-bottom:0}
+</style></head><body>
+<div class="kwyo-loan" id="kwyo-loan-calculator">
+ <header class="lc-header"><h2>Compare Your Borrowing Strategies</h2><p>See how paying interest now, waiting, or borrowing less changes your loan costs.</p></header>
+ <div class="lc-content"><p style="font-size:14px;font-weight:600;color:#46576a">Version: guided calculator · revision 17</p><noscript><p role="alert">This preview shows the default example. Open this file in a web browser with JavaScript enabled to use the steps and update calculations.</p></noscript>
+ 
+ <p data-step-progress="" aria-live="polite">Six steps, with borrowing less explored after the interest-payment comparison.</p><div class="lc-inputs"><section class="lc-step lc-wide" data-step="0"><h3 tabindex="-1">Step 1: Your borrowing</h3><p><strong>A simplified comparison of one disbursement.</strong> Loans commonly arrive in semester or term installments. Enter one disbursement and its date; this model does not add later loans.</p><div class="lc-step-fields"><div><label for="lc-start">Loan disbursement date</label><input id="lc-start" data-input="startDate" type="date" value="2026-08-15" required=""><small>The date this amount was or will be paid to your school—not the date a refund reaches you.</small></div><div><label for="lc-amount">Principal for this disbursement ($)</label><input id="lc-amount" data-input="amount" type="number" value="20000" min="0" max="10000000" step="0.01" required=""><small>The loan amount before fees are deducted. Using a full year’s borrowing on one date may overstate interest.</small></div><div class="lc-wide"><fieldset class="lc-plan-question"><legend>Have you received, or will you receive, any new Direct Loan first disbursed on or after July 1, 2026?</legend><label><input type="radio" name="lc-new-loan" value="yes"> Yes</label><label><input type="radio" name="lc-new-loan" value="no"> No — all my Direct Loans were first disbursed before that date</label><label><input type="radio" name="lc-new-loan" value="unsure"> I’m not sure</label><label><input type="radio" name="lc-new-loan" value="other"> I’m comparing a private or consolidation loan</label></fieldset><div data-direct-total="" hidden=""><label for="lc-direct-total">Total Direct Loan principal expected at plan entry ($)</label><input id="lc-direct-total" required="" type="number" min="0" max="10000000" step="0.01" value="20000"><small>Include this disbursement and your other Direct Loans. Include capitalized interest; exclude interest still kept separate.</small></div><div class="lc-note" data-plan-guide="" aria-live="polite">Choose an answer to see which fixed-payment plan may apply. You can still compare a personal payoff target.</div><p class="lc-muted"><a href="https://edfinancial.studentaid.gov/lower-payment-options" target="_blank" rel="noopener">Repayment term rules</a>. This calculator covers student Direct Loans; consolidation or private loans need their own terms.</p></div><div class="lc-wide"><label for="lc-years">Comparison term (years)</label><input id="lc-years" data-input="years" type="number" value="10" min="1" max="50" step="1" required=""><small>Enter a term from your loan documents, or choose an explicit illustration if your plan is unknown.</small></div></div></section><section class="lc-step lc-wide" data-step="1"><h3 tabindex="-1">Step 2: Your interest rate</h3><div class="lc-step-fields"><div><label for="lc-rate">Annual interest rate (%)</label><input id="lc-rate" data-input="rate" type="number" value="6.5" min="0" max="40" step="0.01" required=""><small>Use the fixed rate for the loan you are comparing.</small><p><a href="https://studentaid.gov/understand-aid/types/loans/interest-rates" target="_blank" rel="noopener">Look up federal student loan interest rates</a></p><p class="lc-muted">Use the rate for your loan type and first disbursement date. The 6.5% example is illustrative. This tool models a loan that accrues interest while you are in school, such as a Direct Unsubsidized Loan; it does not model interest subsidies.</p></div></div></section><section class="lc-step lc-wide" data-step="2"><h3 tabindex="-1">Step 3: Time before repayment</h3><div class="lc-step-fields"><div><label for="lc-school">Months remaining at least half-time in school</label><input id="lc-school" data-input="school" type="number" value="48" min="0" max="120" step="1" required=""></div><div><label for="lc-grace-choice">Will you have six months before repayment after leaving school or dropping below half-time?</label><select id="lc-grace-choice"><option value="6">Yes — six months</option><option value="0">No — no additional months</option><option value="custom">Another period — enter months</option></select><input id="lc-grace" data-input="grace" type="hidden" value="6"><div data-custom-grace="" hidden=""><label for="lc-custom-grace">Additional months before repayment</label><input id="lc-custom-grace" type="number" min="0" max="36" step="1" value="6"></div><p class="lc-muted">Direct Subsidized and Unsubsidized loans generally have a six-month grace period. A previously used grace period may affect your loan. PLUS and consolidation loans do not have the same grace-period rules; graduate PLUS loans may have a six-month post-enrollment deferment. Confirm your loan’s timing with your servicer. Interest continues in this model.</p></div></div></section><section class="lc-step lc-wide" data-step="3"><h3 tabindex="-1">Step 4: What would interest-only payments cost?</h3><div class="lc-step-fields"><div class="lc-wide lc-note" id="lc-interest-estimate" data-interest-estimate="" aria-live="polite" aria-atomic="true"><h3 class="lc-interest-title">Monthly interest-only payment while in school</h3><p class="lc-interest-amount">$108.33<span> / month on average</span></p><p class="lc-interest-detail">To cover all interest as it accrues. Actual monthly payments: <strong>$99.66–$110.34</strong>.<br>First monthly interest-only payment: <strong>$110.34</strong>.</p><p class="lc-interest-detail">During the additional 6 months before repayment: <strong>$109.15/month on average</strong>.</p><div class="lc-interest-detail"><strong>How this amount is calculated</strong><p>Daily interest: $20,000.00 × 6.5% ÷ 365.25 = $3.56/day (rounded).</p><p>First month: $20,000.00 × 6.5% ÷ 365.25 × 31 days = $110.34.</p><p>School-month average: $5,200.00 total interest ÷ 48 months = $108.33/month.</p></div></div></div></section><section class="lc-step lc-wide" data-step="4"><h3 tabindex="-1">Step 5: Compare paying interest with waiting</h3><p>Compare paying interest as it accrues with waiting, using your identified repayment term.</p><div class="lc-step-fields"><div class="lc-wide lc-note" data-plan-summary="" aria-live="polite"></div></div></section><section class="lc-step lc-wide" data-step="5"><h3 tabindex="-1">Step 6: Could you reduce or cancel borrowing?</h3><p>If you do not need all your loan funds, consider reducing an upcoming disbursement or cancelling part of a recent one. Less principal means less interest.</p><p>For federal Direct Loans, funds returned within <strong>120 days of each disbursement</strong> can be treated as a cancellation, adjusting the related loan fee and interest. The deadline is not the end of the semester or year. Ask your school or servicer how to process it. <a href="https://edfinancial.studentaid.gov/how-payments-are-applied" target="_blank" rel="noopener">Federal loan cancellation guidance</a>.</p><div class="lc-step-fields"><div class="lc-wide"><label for="lc-reduction">Principal you could avoid borrowing or cancel ($)</label><input id="lc-reduction" data-input="reduction" type="number" value="0" min="0" step="0.01" required=""></div></div><p class="lc-muted">Reduced borrowing is treated as removed from the original principal, with no early interest payments. For Tiered Standard, the term is recalculated if your total principal falls into a lower tier. Origination-fee savings are not included.</p></section><section class="lc-step lc-wide" data-step="6"><h3 tabindex="-1">Step 7: What if you pay more each month?</h3><p>Even with a 25-year Tiered Standard term, you can pay more than the required monthly amount. Extra monthly payments can shorten payoff and reduce interest. Federal student loans have no prepayment penalty. <a href="https://edfinancial.studentaid.gov/payments-interest-and-fees" target="_blank" rel="noopener">Extra-payment guidance</a>.</p><div class="lc-step-fields"><div><label for="lc-extra-source">Borrowing strategy to compare</label><select id="lc-extra-source"><option value="wait">Original borrowing — wait until repayment</option><option value="pay">Original borrowing — pay interest during school</option><option value="reduce">Reduced or cancelled borrowing — wait until repayment</option></select></div><div><label for="lc-extra">Extra each month after repayment begins ($)</label><input id="lc-extra" type="number" min="0" max="10000000" step="0.01" value="100" required=""><small>This is in addition to the estimated scheduled payment.</small></div></div><p class="lc-note" data-extra-plan=""></p><button type="button" class="lc-secondary" data-extra-ten="">Show payment for a 10-year payoff</button><p class="lc-error" data-extra-error="" role="alert"></p><div data-extra-output="" aria-live="polite"></div><section class="lc-timeline" data-timeline hidden><h3>Repayment over time</h3><label for="lc-chart-view">What would you like to see?</label><select id="lc-chart-view"><option value="payments">Payments each year — principal and interest paid</option><option value="balance">Debt still owed — principal and unpaid interest</option></select><p class="lc-muted" data-chart-help></p><div class="lc-legend" data-chart-legend></div><p class="lc-muted">Each pair: blue S = scheduled; orange E = extra payments. Solid = principal; striped = interest. Hover, tap, or use Tab for exact amounts. Scroll for later years.</p><div class="lc-timeline-scroll" data-chart-svg></div><p class="lc-note" data-chart-detail aria-live="polite"></p><details><summary>View chart amounts as a table</summary><div class="lc-scroll" data-chart-table></div></details></section><p class="lc-muted">Amounts cover only the disbursement modeled here. Your servicer determines your actual required payment. Keep paying monthly and check how your servicer applies extra payments.</p></section></div>
+ <div class="lc-actions"><button type="button" data-calculate="">Compare strategies</button><button type="button" class="lc-secondary" data-reset="">Reset example</button></div>
+ <p class="lc-error" data-error="" role="alert"></p>
+ <section data-results="" aria-label="Strategy comparison results">
+  <p class="lc-muted" data-period=""></p><div class="lc-note lc-tier-change" data-tier-change="" hidden="" aria-live="polite"></div><div class="lc-cards" data-cards=""></div>
+  <div class="lc-chart"><h3>What makes up the total loan payments?</h3><div data-bars=""></div><div class="lc-legend"><span><i class="lc-key lc-principal"></i>Original borrowing</span><span><i class="lc-key lc-before"></i>Interest before repayment</span><span><i class="lc-key lc-after"></i>Interest during repayment</span></div></div>
+  <div class="lc-insight"><h3>Put the comparison in context</h3><p data-insight="" aria-live="polite"></p></div>
+  
+  <details><summary>View monthly interest and payments before repayment</summary><div class="lc-scroll"><table><caption>Interest accrued and paid each month before repayment</caption><thead><tr><th scope="col">Date</th><th scope="col">Interest accrued</th><th scope="col">Full-interest payment</th></tr></thead><tbody data-before-body=""></tbody></table></div></details><details><summary>View a monthly repayment schedule</summary><div class="lc-actions"><div><label for="lc-schedule">Strategy to inspect</label><select id="lc-schedule" data-schedule-select=""><option value="pay">Pay all interest as it accrues</option><option value="wait">Wait until repayment</option><option value="reduce">Reduce or cancel borrowing</option></select></div><button type="button" class="lc-secondary" data-download="">Download this schedule</button></div><div class="lc-scroll"><table><caption>Months after repayment begins; amounts rounded for display</caption><thead><tr><th scope="col">Month</th><th scope="col">Payment date</th><th scope="col">Days</th><th scope="col">Payment</th><th scope="col">To interest</th><th scope="col">To principal</th><th scope="col">Principal left</th><th scope="col">Unpaid interest</th><th scope="col">Total balance</th></tr></thead><tbody data-schedule-body=""></tbody></table></div></details>
+ </section><div class="lc-wide"><p data-step-error="" class="lc-error" role="alert"></p><div class="lc-actions"><button type="button" class="lc-secondary" data-step-back="">Back</button><button type="button" data-step-next="">Continue</button></div></div>
+ <details><summary>How this estimate works</summary>
+ <ul><li>Interest accrues daily: outstanding principal × (annual rate ÷ 365.25) × actual days.</li><li>The pay-interest strategy pays all accrued interest on each monthly date during school and grace. Waiting makes no early payments. The reduced-borrowing comparison also makes no early payments, with a smaller starting principal.</li><li>During repayment, interest is computed for the actual days between the repayment start and each calendar-month payment date. Payments cover accrued interest first, then principal. A fixed payment is estimated to clear the balance over the term entered.</li><li>At specified events, such as the end of an unsubsidized loan’s deferment, unpaid interest may be capitalized (added to principal). Future interest then accrues on that larger principal. Loan rules determine these events; borrowers do not choose them. This calculator keeps unpaid interest separate and excludes capitalization events, so it may understate costs when they apply. <a href="https://studentaid.gov/understand-aid/types/loans/interest-rates#capitalization" target="_blank" rel="noopener">Federal Student Aid: When does interest capitalize?</a></li><li>No origination fees, variable rates, rate discounts, subsidies, taxes, forgiveness, missed payments, or additional borrowing are modeled. This is an educational comparison, not a simulation of RAP or a guarantee of an official repayment-plan payment.</li><li>The original Standard comparison uses 10 years for nonconsolidated student Direct Loans. Tiered Standard uses total outstanding Direct Loan principal at plan entry: below $25,000 = 10 years; $25,000–below $50,000 = 15; $50,000–below $100,000 = 20; $100,000 or more = 25. Reducing principal may change the tier. Unknown or other loan types use an explicitly entered term.</li><li>Reduced borrowing represents an amount never disbursed or properly cancelled with its associated interest adjustment. Returning funds outside applicable cancellation deadlines is a payment, not the cancellation modeled here. Origination-fee adjustments are not included in the totals.</li></ul>
+ <p>Check <a href="https://studentaid.gov/understand-aid/types/loans/interest-rates" target="_blank" rel="noopener">Federal Student Aid’s interest explanation</a> and your loan’s terms. Explore <a href="https://blogs.uofi.uillinois.edu/view/7550/1768869035" target="_blank" rel="noopener">Increasing ROI for a College Degree</a> (Andrea Pellegrini, January 22, 2026).</p>
+ <p>This tool works in your browser. It does not send or save your entries.</p>
+ </details>
+<footer class="lc-disclaimer" aria-label="Creator and calculator disclaimer"><p>Created by <a href="https://andreapellegrini.info/about.html" target="_blank" rel="noopener">Andrea Pellegrini</a> with assistance from ChatGPT GPT-6.1 Sol, based on student loan repayment information available in November 2026.</p><p>This simplified tool helps borrowers explore financial decisions during school and repayment. Estimates may contain errors and differ from actual loan costs. Consult your loan servicer or a financial professional for detailed calculations and personalized planning.</p></footer>
+ </div>
+</div><script>
+function parseLoanDate(value){
+ if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value))throw Error('Enter a valid borrowing date.');
+ const d=new Date(value+'T00:00:00Z');if(!Number.isFinite(d.getTime())||d.toISOString().slice(0,10)!==value)throw Error('Enter a valid borrowing date.');return d;
+}
+function dateText(d){return d.toISOString().slice(0,10);}
+function addLoanMonths(date,months){
+ const year=date.getUTCFullYear(),month=date.getUTCMonth()+months,day=date.getUTCDate();
+ const last=new Date(Date.UTC(year,month+1,0)).getUTCDate();return new Date(Date.UTC(year,month,Math.min(day,last)));
+}
+function elapsedLoanDays(a,b){return Math.round((b.getTime()-a.getTime())/86400000);}
+function dailyAccrued(principal,annualRate,from,to){return principal*annualRate/365.25*elapsedLoanDays(from,to);}
+function loanSchedule(principal,unpaid,rate,months,payment,details=false,repaymentStart='2031-02-15'){
+ const start=typeof repaymentStart==='string'?parseLoanDate(repaymentStart):repaymentStart;
+ let p=principal,i=unpaid,total=0,newInterest=0,rows=[],previous=start;
+ for(let m=1;m<=months;m++){
+  const due=addLoanMonths(start,m),days=elapsedLoanDays(previous,due),opening=p+i;
+  const accrual=p*rate/365.25*days;i+=accrual;newInterest+=accrual;
+  const paid=Math.min(payment,p+i),toInterest=Math.min(i,paid);i-=toInterest;
+  const toPrincipal=Math.min(p,Math.max(0,paid-toInterest));p-=toPrincipal;total+=paid;
+  if(p<1e-8)p=0;if(i<1e-8)i=0;
+  if(details)rows.push({month:m,date:dateText(due),days,opening,interest:accrual,payment:paid,interestPaid:toInterest,principalPaid:toPrincipal,principal:p,unpaidInterest:i,balance:p+i});
+  previous=due;
+ }return {remaining:p+i,total,newInterest,rows};
+}
+function fixedPayment(principal,unpaid,rate,months,repaymentStart='2031-02-15'){
+ if(principal+unpaid===0)return 0;if(rate===0)return(principal+unpaid)/months;
+ let lo=0,hi=(principal+unpaid)*(1+rate);
+ for(let k=0;k<85;k++){const mid=(lo+hi)/2;if(loanSchedule(principal,unpaid,rate,months,mid,false,repaymentStart).remaining>1e-7)lo=mid;else hi=mid;}return hi;
+}
+function beforeRepayment(principal,rate,first,school,grace,budget){
+ const schoolEnd=addLoanMonths(first,school),end=addLoanMonths(schoolEnd,grace);
+ let previous=first,unpaid=0,cash=0,rows=[];
+ for(let m=1;m<=school+grace;m++){
+  const due=m<=school?addLoanMonths(first,m):addLoanMonths(schoolEnd,m-school);
+  const interest=dailyAccrued(principal,rate,previous,due);
+  unpaid+=interest;
+  const paid=Math.min(unpaid,budget===null?unpaid:budget);
+  unpaid-=paid;cash+=paid;
+  rows.push({date:dateText(due),interest,payment:paid,unpaidInterest:unpaid});
+  previous=due;
+ }
+ return {unpaid,cash,rows,end};
+}
+function tieredLoanYears(p){return p<25000?10:p<50000?15:p<100000?20:25;}
+function compareLoans(x){
+ const {amount,rate,school,grace,years,reduction,startDate='2026-08-15'}=x;
+ if(![amount,rate,school,grace,years,reduction].every(Number.isFinite)||amount<0||amount>10000000||rate<0||rate>40||!Number.isInteger(school)||school<0||school>120||!Number.isInteger(grace)||grace<0||grace>36||!Number.isInteger(years)||years<1||years>50||reduction<0||reduction>amount)throw Error('Check each entry. Amounts must be nonnegative, reduction cannot exceed borrowing, and time values must be within the displayed ranges.');
+ const first=parseLoanDate(startDate),schoolEnd=addLoanMonths(first,school),repay=addLoanMonths(schoolEnd,grace),before=school+grace,n=years*12;
+ return [{key:'pay',name:'Pay all interest as it accrues',borrowed:amount,budget:null,reduction:0},{key:'wait',name:'Wait until repayment',borrowed:amount,budget:0,reduction:0},{key:'reduce',name:'Reduce or cancel borrowing',borrowed:amount-reduction,budget:0,reduction}].map(s=>{
+  const pre=beforeRepayment(s.borrowed,rate/100,first,school,grace,s.budget);
+  const schoolInterest=dailyAccrued(s.borrowed,rate/100,first,schoolEnd),graceInterest=dailyAccrued(s.borrowed,rate/100,schoolEnd,repay),interestBefore=schoolInterest+graceInterest;
+  const cashBefore=pre.cash,unpaid=pre.unpaid,principal=s.borrowed;
+  const scenarioYears=x.planType==='tiered'?tieredLoanYears(Math.max(0,x.totalPrincipal-s.reduction)):years;
+  const scenarioMonths=scenarioYears*12;
+  const planLabel=x.planType==='tiered'?'Tiered Standard':x.planType==='standard'?'Standard':'Entered comparison term';
+  const payment=fixedPayment(principal,unpaid,rate/100,scenarioMonths,repay),schedule=loanSchedule(principal,unpaid,rate/100,scenarioMonths,payment,true,repay);
+  return {...s,payNow:cashBefore>0,schoolInterest,graceInterest,interestBefore,cashBefore,monthlyBefore:before?cashBefore/before:0,entryPrincipal:principal,entryUnpaid:unpaid,entryBalance:principal+unpaid,monthly:payment,repaymentPaid:schedule.total,totalPaid:cashBefore+schedule.total,repaymentInterest:schedule.newInterest,totalInterest:interestBefore+schedule.newInterest,rows:schedule.rows,beforeRows:pre.rows,endingBalance:schedule.remaining,monthsBefore:before,daysBefore:elapsedLoanDays(first,repay),repaymentMonths:scenarioMonths,planLabel,scenarioYears,startDate,repaymentStart:dateText(repay)};
+ });
+}
+
+function loanTimelinePoints(base,extraRows){
+ const points=[{year:0,scheduledPrincipal:base.entryPrincipal,scheduledInterest:base.entryUnpaid,extraPrincipal:base.entryPrincipal,extraInterest:base.entryUnpaid,scheduledPrincipalPaid:0,scheduledInterestPaid:0,extraPrincipalPaid:0,extraInterestPaid:0}];
+ for(let year=1;year<=Math.ceil(base.repaymentMonths/12);year++){
+  const s=base.rows.slice((year-1)*12,year*12),e=extraRows.slice((year-1)*12,year*12);
+  const lastS=s[s.length-1],lastE=e[e.length-1],sum=(rows,key)=>rows.reduce((total,row)=>total+row[key],0);
+  points.push({year,scheduledPrincipal:lastS?.principal||0,scheduledInterest:lastS?.unpaidInterest||0,extraPrincipal:lastE?.principal||0,extraInterest:lastE?.unpaidInterest||0,scheduledPrincipalPaid:sum(s,'principalPaid'),scheduledInterestPaid:sum(s,'interestPaid'),extraPrincipalPaid:sum(e,'principalPaid'),extraInterestPaid:sum(e,'interestPaid')});
+ }return points;
+}
+
+function initLoanCalculator(root){
+ if(!root||root.dataset.ready)return;root.dataset.ready='true';const q=s=>root.querySelector(s);
+ const money=v=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(Math.abs(v)<0.005?0:v);
+ const ids=['startDate','amount','rate','school','grace','years','reduction' ];let last=null;
+ function inputs(){const x={};for(const id of ids)x[id]=id==='startDate'?q('[data-input="'+id+'"]').value:Number(q('[data-input="'+id+'"]').value);x.planType=root.dataset.planType||'custom';x.totalPrincipal=Number(q('#lc-direct-total').value);return x;}
+ function updateInterestEstimate(){
+  const box=q('[data-interest-estimate]');
+  try{
+   const required=['startDate','amount','rate','school','grace'];
+   if(required.some(id=>q('[data-input="'+id+'"]').value.trim()===''))throw Error('incomplete');
+   const x=inputs(),first=parseLoanDate(x.startDate);
+   if(![x.amount,x.rate,x.school,x.grace].every(Number.isFinite)||x.amount<0||x.amount>10000000||x.rate<0||x.rate>40||!Number.isInteger(x.school)||x.school<0||x.school>120||!Number.isInteger(x.grace)||x.grace<0||x.grace>36)throw Error('invalid');
+   const pre=beforeRepayment(x.amount,x.rate/100,first,x.school,x.grace,null);
+   const schoolRows=pre.rows.slice(0,x.school),graceRows=pre.rows.slice(x.school);
+   let text='<h3 class="lc-interest-title">Monthly interest-only payment while in school</h3>';
+   if(schoolRows.length){
+    const amounts=schoolRows.map(row=>row.interest),total=amounts.reduce((a,b)=>a+b,0);
+    text+='<p class="lc-interest-amount">'+money(total/schoolRows.length)+'<span> / month on average</span></p><p class="lc-interest-detail">To cover all interest as it accrues. Actual monthly payments: <strong>'+money(Math.min(...amounts))+'–'+money(Math.max(...amounts))+'</strong>.<br>First monthly interest-only payment: <strong>'+money(amounts[0])+'</strong>.</p>';
+   }else{text+='No in-school months entered, so no in-school interest payments are modeled.';}
+   if(graceRows.length){
+    const amounts=graceRows.map(row=>row.interest);
+    text+='<p class="lc-interest-detail">During the additional '+x.grace+' months before repayment: <strong>'+money(amounts.reduce((a,b)=>a+b,0)/amounts.length)+'/month on average</strong>.</p>';
+   }
+   text+='<div class="lc-interest-detail"><strong>How this amount is calculated</strong><p>Daily interest: '+money(x.amount)+' × '+x.rate+'% ÷ 365.25 = '+money(x.amount*x.rate/100/365.25)+'/day (rounded).</p><p>First month: '+money(x.amount)+' × '+x.rate+'% ÷ 365.25 × '+elapsedLoanDays(first,addLoanMonths(first,1))+' days = '+money(dailyAccrued(x.amount,x.rate/100,first,addLoanMonths(first,1)))+'.</p>'+(schoolRows.length?'<p>School-month average: '+money(schoolRows.reduce((sum,row)=>sum+row.interest,0))+' total interest ÷ '+schoolRows.length+' months = '+money(schoolRows.reduce((sum,row)=>sum+row.interest,0)/schoolRows.length)+'/month.</p>':'')+'</div>';
+   box.innerHTML=text;
+  }catch(e){box.textContent='Enter a valid borrowing date, amount, interest rate, and time in school to see the interest-only monthly payment estimate to see the estimate.';}
+ }
+ function render(){
+  updateInterestEstimate();
+  const error=q('[data-error]');error.textContent='';
+  try{
+   const empty=ids.filter(id=>(id!=='reduction'||root.dataset.reduceEnabled==='true')&&id!=='capitalization'&&q('[data-input="'+id+'"]').value.trim()==='');if(empty.length)throw Error('Enter a value in every field. Use 0 where appropriate.');
+   const x=inputs();if(root.dataset.reduceEnabled!=='true')x.reduction=0;const r=compareLoans(x);last={x,r};const visibleResults=root.dataset.reduceEnabled==='true'?r:r.filter(s=>s.key!=='reduce');q('[data-results]').hidden=false;const baseline=r.find(s=>s.key==="wait");const max=Math.max(1,...visibleResults.map(s=>s.totalPaid));
+   q('[data-cards]').innerHTML=visibleResults.map((s,i)=>'<article class="lc-card"><span class="lc-pill">Strategy '+(i+1)+'</span><h3>'+s.name+'</h3><p class="lc-big">'+money(s.totalPaid)+'</p><p class="lc-muted">Total loan payments, including interest paid before repayment</p><dl><dt>Repayment plan and term</dt><dd>'+s.planLabel+' — '+s.scenarioYears+' years</dd><dt>Originally borrowed</dt><dd>'+money(s.borrowed)+'</dd><dt>Average interest payment before repayment</dt><dd>'+money(s.monthlyBefore)+'/mo</dd><dt>All payments before repayment</dt><dd>'+money(s.cashBefore)+'</dd><dt>Unpaid interest when repayment begins</dt><dd>'+money(s.entryUnpaid)+'</dd><dt>Balance when repayment begins</dt><dd>'+money(s.entryBalance)+'</dd><dt>Estimated repayment payment</dt><dd>'+money(s.monthly)+'/mo</dd><dt>Total interest over both periods</dt><dd>'+money(s.totalInterest)+'</dd></dl><p class="lc-foot">'+(s.reduction?'Requires '+money(s.reduction)+' less cost or other funding.':s.payNow?'Uses available cash during school and any grace period.':'No modeled payments before repayment begins.')+'</p></article>').join('');
+   q('[data-bars]').innerHTML=visibleResults.map(s=>{
+    const parts=[['principal','Principal originally borrowed',s.borrowed],['before','Interest accrued before repayment',s.interestBefore],['after','Interest accrued during repayment',s.repaymentInterest]];
+    return '<div class="lc-bar-row"><div class="lc-bar-label"><span>'+s.name+'</span><strong>Total paid: '+money(s.totalPaid)+'</strong></div><div class="lc-bar" role="group" aria-label="'+s.name+' payment breakdown">'+parts.map(([cls,label,value])=>'<span class="lc-segment lc-'+cls+'" tabindex="0" role="img" aria-label="'+label+': '+money(value)+'" style="width:'+value/max*100+'%"><span class="lc-tooltip">'+label+': '+money(value)+'</span></span>').join('')+'</div><ul class="lc-breakdown">'+parts.map(([cls,label,value])=>'<li><i aria-hidden="true" class="lc-key lc-'+cls+'"></i>'+label+': <strong>'+money(value)+'</strong></li>').join('')+'</ul></div>';
+   }).join('');
+   const full=r[0];
+   const accrued=full.beforeRows.map(row=>row.interest);
+   q('[data-before-body]').innerHTML=full.beforeRows.map(row=>'<tr><td>'+row.date+'</td><td>'+money(row.interest)+'</td><td>'+money(row.payment)+'</td></tr>').join('');
+
+   const reduced=r.find(s=>s.key==='reduce'),tierBox=q('[data-tier-change]');
+   const tierChanged=x.planType==='tiered'&&reduced.scenarioYears!==baseline.scenarioYears;
+   tierBox.hidden=root.dataset.reduceEnabled!=='true'||x.planType!=='tiered'||x.reduction<=0;
+   if(!tierBox.hidden){
+    if(tierChanged){
+     const oldTermPayment=fixedPayment(reduced.entryPrincipal,reduced.entryUnpaid,x.rate/100,baseline.repaymentMonths,reduced.repaymentStart);
+     const sameTerm=loanSchedule(reduced.entryPrincipal,reduced.entryUnpaid,x.rate/100,baseline.repaymentMonths,oldTermPayment,false,reduced.repaymentStart);
+     const principalEffect=baseline.totalPaid-sameTerm.total,termEffect=sameTerm.total-reduced.totalPaid;
+     tierBox.innerHTML='<h3>Tier changes: '+baseline.scenarioYears+' → '+reduced.scenarioYears+' years</h3><p>Your total Direct Loan principal falls from <strong>'+money(x.totalPrincipal)+'</strong> to <strong>'+money(Math.max(0,x.totalPrincipal-x.reduction))+'</strong>, moving into a shorter Tiered Standard term.</p><p>For the disbursement modeled here, the monthly repayment estimate changes from <strong>'+money(baseline.monthly)+'</strong> to <strong>'+money(reduced.monthly)+'</strong>.'+(reduced.monthly>baseline.monthly?' The shorter term raises the monthly payment, even though you borrow less.':'')+'</p><details><summary>See what drives the total-payment difference</summary><ul><li>Smaller principal, keeping the original '+baseline.scenarioYears+'-year term: <strong>'+money(principalEffect)+' less</strong>.</li><li>Then shortening to '+reduced.scenarioYears+' years: <strong>'+money(termEffect)+' less</strong>.</li></ul><p>The first amount includes the principal avoided and related interest savings. The second is additional interest savings from the shorter term. This is a sequential comparison; fee adjustments are excluded.</p></details>';
+    }else{
+     tierBox.innerHTML='<h3>Tier unchanged: '+baseline.scenarioYears+' years</h3><p>Total Direct Loan principal falls from '+money(x.totalPrincipal)+' to '+money(Math.max(0,x.totalPrincipal-x.reduction))+', staying within the same tier. The payment difference comes from reducing principal, with the term unchanged.</p>';
+    }
+   }
+   const same=money(r[0].cashBefore),savingPay=baseline.totalPaid-r[0].totalPaid,savingReduce=baseline.totalPaid-r.find(s=>s.key==='reduce').totalPaid;
+   q('[data-insight]').textContent=root.dataset.reduceEnabled==='true'?'Reducing or cancelling '+money(x.reduction)+' of principal lowers modeled total loan payments by '+money(savingReduce)+' compared with waiting on the original amount. '+(tierChanged?'This includes both the smaller principal and the shorter term. ':'')+'Origination-fee adjustments are not included.':'Compared with waiting, paying all interest before repayment lowers total loan payments by '+money(savingPay)+'.';
+
+   q('[data-period]').textContent=(x.school+x.grace)+' calendar months before repayment ('+x.school+' school + '+x.grace+' grace; '+r[0].daysBefore+' actual days), then '+Math.round(x.years*12)+' monthly payments for the original borrowing. Each strategy’s term is shown below.';
+   renderSchedule();
+  }catch(e){last=null;q('[data-results]').hidden=true;error.textContent=e.message;}
+ }
+ function renderSchedule(){if(!last)return;const s=last.r.find(s=>s.key===q('[data-schedule-select]').value);q('[data-schedule-body]').innerHTML=s.rows.map(row=>'<tr><td>'+row.month+'</td><td>'+row.date+'</td><td>'+row.days+'</td><td>'+money(row.payment)+'</td><td>'+money(row.interestPaid)+'</td><td>'+money(row.principalPaid)+'</td><td>'+money(row.principal)+'</td><td>'+money(row.unpaidInterest)+'</td><td>'+money(row.balance)+'</td></tr>').join('');}
+ q('[data-calculate]').addEventListener('click',render);
+
+ q('[data-reset]').addEventListener('click',()=>{for(const [id,value]of Object.entries({startDate:'2026-08-15',amount:20000,rate:6.5,school:48,grace:6,years:10,reduction:0}))q('[data-input="'+id+'"]').value=value;render();});
+ for(const id of ids)q('[data-input="'+id+'"]').addEventListener('input',()=>{updateInterestEstimate();q('[data-results]').hidden=true;last=null;});
+ q('[data-schedule-select]').addEventListener('change',renderSchedule);
+ q('[data-download]').addEventListener('click',()=>{if(!last)return;const s=last.r.find(s=>s.key===q('[data-schedule-select]').value);const meta=[['Scenario',s.name],['Borrowing date',s.startDate],['Repayment start',s.repaymentStart],['Day count basis',365.25],['Originally borrowed',s.borrowed],['Annual rate percent',last.x.rate],['School months',last.x.school],['Grace months',last.x.grace],['Repayment plan',s.planLabel],['Repayment months',s.repaymentMonths],['Interest modeling','Separate unpaid interest; capitalization events not modeled'],['Payments before repayment',s.cashBefore],['Months below are repayment months','']];const hdr=['Month','Payment date','Elapsed days','Opening balance','New interest','Payment','Paid to interest','Paid to principal','Remaining principal','Unpaid interest','Total balance'];const rows=s.rows.map(v=>[v.month,v.date,v.days,...[v.opening,v.interest,v.payment,v.interestPaid,v.principalPaid,v.principal,v.unpaidInterest,v.balance].map(n=>n.toFixed(2))]);const csv=[...meta,[],hdr,...rows].map(row=>row.join(',')).join('\r\n');const a=document.createElement('a'),url=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.href=url;a.download='loan-strategy-'+s.key+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+ render();
+}
+
+
+function initGuidedLoan(root){
+ const q=s=>root.querySelector(s),steps=[...root.querySelectorAll('[data-step]')];
+ let current=0,totalEdited=false;
+ const total=q('#lc-direct-total'),years=q('#lc-years'),results=q('[data-results]'),actions=q('[data-calculate]').parentElement;
+ const money=v=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(v);
+ function invalidate(){results.hidden=true;}
+ function plan(){
+  const answer=q('input[name="lc-new-loan"]:checked')?.value,amount=Number(q('#lc-amount').value),p=Number(total.value);
+  years.parentElement.hidden=answer!=='unsure'&&answer!=='other';
+  q('[data-direct-total]').hidden=answer!=='yes';total.min=String(Math.max(0,amount));
+  root.dataset.planType='custom';years.readOnly=false;
+  let term=null,message='';
+  if(answer==='yes'){
+   if(total.value.trim()===''||!Number.isFinite(p)||p<amount||p>10000000)message='Enter total Direct Loan principal at least as large as the amount modeled above.';
+   else{
+    term=tieredLoanYears(p);root.dataset.planType='tiered';
+    message='Tiered Standard — '+term+' years. Your '+money(p)+' total principal falls in the '+(p<25000?'below $25,000':p<50000?'$25,000–below $50,000':p<100000?'$50,000–below $100,000':'$100,000 or more')+' tier.';
+   }
+  }else if(answer==='no'){
+   if(q('#lc-start').value>='2026-07-01')message='The borrowing date is on or after July 1, 2026. Check the date or new Direct Loan answer before assigning a Standard term.';
+   else{term=10;root.dataset.planType='standard';message='Original Standard Plan — 10 years for nonconsolidated student Direct Loans. ';}
+  }else if(answer==='unsure')message='Check your first-disbursement dates in StudentAid.gov. To proceed without a confirmed plan, explicitly enter an illustrative term below.';
+  else if(answer==='other')message='Enter the repayment term from your private or consolidation loan documents below. This tool does not determine that plan’s term.';
+  else message='Choose an answer to determine the repayment plan and term.';
+  if(term!==null){years.value=term;years.readOnly=true;}
+  else if(answer==='yes'||answer==='no'||!answer){years.value='';years.readOnly=true;}
+  q('[data-plan-guide]').textContent=message;
+  q('[data-plan-summary]').textContent=term!==null?(root.dataset.planType==='tiered'?'Tiered Standard':'Standard')+' — '+term+' years, used in the payment estimates below.':'Entered comparison term — '+(years.value||'not entered')+' years; repayment-plan eligibility is unconfirmed.';
+ }
+
+ function extraScenario(){
+  const x={};
+  for(const id of ['amount','rate','school','grace','years','reduction'])x[id]=Number(q('[data-input="'+id+'"]').value);
+  x.startDate=q('#lc-start').value;x.planType=root.dataset.planType;x.totalPrincipal=Number(total.value);
+  return {x,base:compareLoans(x).find(s=>s.key===q('#lc-extra-source').value)};
+ }
+ function payoffDuration(months){return months===0?'No balance':Math.floor(months/12)+' years'+(months%12?' '+months%12+' months':'');}
+
+ let timelineState=null;
+ function renderTimeline(){
+  if(!timelineState)return;
+  const {base,schedule}=timelineState,mode=q('#lc-chart-view').value;
+  const all=loanTimelinePoints(base,schedule.rows),points=mode==='payments'?all.slice(1):all;
+  const fields=mode==='payments'?['scheduledPrincipalPaid','scheduledInterestPaid','extraPrincipalPaid','extraInterestPaid']:['scheduledPrincipal','scheduledInterest','extraPrincipal','extraInterest'];
+  const max=Math.max(1,...points.map(p=>Math.max(p[fields[0]]+p[fields[1]],p[fields[2]]+p[fields[3]])));
+  const plotHeight=260,left=100,top=24,bottom=top+plotHeight,width=Math.max(720,left+points.length*68+25),height=350;
+  const scaled=v=>v/max*plotHeight,short=v=>new Intl.NumberFormat('en-US',{notation:'compact',maximumFractionDigits:1}).format(v);
+  const qualifier=mode==='payments'?' paid':' remaining';
+  const description=p=>(p.year===0?'At repayment start':'End of repayment year '+p.year)+'. Scheduled: principal'+qualifier+' '+money(p[fields[0]])+', interest'+qualifier+' '+money(p[fields[1]])+'. Extra payments: principal'+qualifier+' '+money(p[fields[2]])+', interest'+qualifier+' '+money(p[fields[3]])+'.';
+  const yearDescription=p=>mode==='payments'?description(p).replace('End of repayment year','Payments during repayment year'):description(p);
+  let svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+width+'" height="'+height+'" viewBox="0 0 '+width+' '+height+'" role="group" aria-label="'+(mode==='payments'?'Annual principal and interest payments':'Principal and unpaid interest remaining')+' over repayment years"><defs><pattern id="lc-timeline-scheduled-interest" width="7" height="7" patternUnits="userSpaceOnUse"><rect width="7" height="7" fill="#c6dbee"/><path d="M-2,2 L2,-2 M0,7 L7,0 M5,9 L9,5" stroke="#245585" stroke-width="2"/></pattern><pattern id="lc-timeline-extra-interest" width="7" height="7" patternUnits="userSpaceOnUse"><rect width="7" height="7" fill="#ffe0b2"/><path d="M-2,2 L2,-2 M0,7 L7,0 M5,9 L9,5" stroke="#a44b00" stroke-width="2"/></pattern></defs>';
+  for(let tick=0;tick<=4;tick++){
+   const y=bottom-tick/4*plotHeight;
+   svg+='<line x1="'+left+'" x2="'+(width-15)+'" y1="'+y+'" y2="'+y+'" stroke="#dce4eb"/><text x="'+(left-12)+'" y="'+(y+5)+'" text-anchor="end" font-family="Segoe UI,sans-serif" font-size="14" fill="#13294b">$'+short(max*tick/4)+'</text>';
+  }
+  points.forEach((p,i)=>{
+   const x=left+i*68+12;
+   svg+='<g class="lc-year-pair" tabindex="0" role="img" data-year-index="'+i+'" aria-label="'+yearDescription(p)+'"><title>'+yearDescription(p)+'</title><rect class="lc-year-highlight" x="'+(x-5)+'" y="'+(top-5)+'" width="61" height="'+(plotHeight+58)+'" fill="transparent"/>';
+   for(let j=0;j<2;j++){
+    const principal=p[fields[j*2]],interest=p[fields[j*2+1]],barX=x+j*27,principalH=scaled(principal),interestH=scaled(interest);
+    svg+='<rect x="'+barX+'" y="'+(bottom-principalH)+'" width="22" height="'+principalH+'" data-component="principal" data-scenario="'+(j?'extra':'scheduled')+'" fill="'+(j?'#b65d00':'#13294b')+'"/><rect x="'+barX+'" y="'+(bottom-principalH-interestH)+'" width="22" height="'+interestH+'" data-component="interest" data-scenario="'+(j?'extra':'scheduled')+'" fill="url(#lc-timeline-'+(j?'extra':'scheduled')+'-interest)" stroke="#fff" stroke-width=".5"/><text x="'+(barX+11)+'" y="'+(bottom+17)+'" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="13" fill="#13294b">'+(j?'E':'S')+'</text>';
+   }
+   svg+='<text x="'+(x+24)+'" y="'+(bottom+39)+'" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="14" fill="#13294b">'+p.year+'</text></g>';
+  });
+  svg+='<text x="'+(width/2)+'" y="345" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="14" fill="#13294b">Years after repayment begins</text></svg>';
+  q('[data-chart-svg]').innerHTML=svg;
+  q('[data-chart-help]').textContent=mode==='payments'?'Bars show principal and interest paid during each repayment year. Interest continues until payoff; the final year may include fewer payments.':'Bars show debt still owed at year-end. The striped amount is interest still unpaid—not interest charged or paid during the year. It can reach zero while new monthly interest continues to accrue and is paid. Year 0 is repayment start.';
+  q('[data-chart-legend]').innerHTML='<span><i class="lc-key" style="background:#13294b" aria-hidden="true"></i>Scheduled: principal'+qualifier+'</span><span><i class="lc-key" style="background:#b65d00" aria-hidden="true"></i>Extra payments: principal'+qualifier+'</span><span><i class="lc-key" style="background:repeating-linear-gradient(135deg,#c6dbee 0 4px,#245585 4px 6px)" aria-hidden="true"></i>Scheduled: interest'+qualifier+' (striped)</span><span><i class="lc-key" style="background:repeating-linear-gradient(135deg,#ffe0b2 0 4px,#a44b00 4px 6px)" aria-hidden="true"></i>Extra payments: interest'+qualifier+' (striped)</span>';
+
+  q('[data-chart-detail]').textContent=points.length?yearDescription(points[0]):'No repayment balance.';
+  q('[data-chart-table]').innerHTML='<table><caption>'+(mode==='payments'?'Payments made during each repayment year':'Balances remaining at each year-end')+'</caption><thead><tr><th scope="col">Year</th><th scope="col">Scheduled: principal</th><th scope="col">Scheduled: interest</th><th scope="col">Extra: principal</th><th scope="col">Extra: interest</th></tr></thead><tbody>'+points.map(p=>'<tr><th scope="row">'+p.year+'</th>'+fields.map(f=>'<td>'+money(p[f])+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+  q('[data-chart-svg]').querySelectorAll('[data-year-index]').forEach(el=>{
+   const show=()=>q('[data-chart-detail]').textContent=yearDescription(points[Number(el.dataset.yearIndex)]);
+   el.addEventListener('focus',show);el.addEventListener('pointerenter',show);el.addEventListener('click',show);
+  });
+  q('[data-timeline]').hidden=false;
+ }
+ q('#lc-chart-view').addEventListener('change',renderTimeline);
+
+ function renderExtra(){
+  q('[data-extra-error]').textContent='';
+  try{
+   const input=q('#lc-extra');
+   if(input.value.trim()===''||!input.checkValidity())throw Error('Enter a nonnegative extra monthly amount within the displayed range.');
+   const {x,base}=extraScenario(),extra=Number(input.value),higher=base.monthly+extra;
+   const schedule=loanSchedule(base.entryPrincipal,base.entryUnpaid,x.rate/100,base.repaymentMonths,higher,true,base.repaymentStart);
+   const paidRows=schedule.rows.filter(row=>row.payment>1e-6),months=paidRows.length,payoffDate=paidRows.length?paidRows[paidRows.length-1].date:base.repaymentStart;
+   const newTotal=base.cashBefore+schedule.total,saving=Math.max(0,base.totalPaid-newTotal),newInterest=base.interestBefore+schedule.newInterest;
+   q('[data-extra-plan]').textContent=base.name+': '+base.planLabel+' — '+base.scenarioYears+' years. Estimated scheduled payment: '+money(base.monthly)+'/month.';
+   q('[data-extra-ten]').hidden=base.scenarioYears<=10||base.entryBalance===0;
+   q('[data-extra-output]').innerHTML='<div class="lc-scroll"><table><caption>Scheduled payment versus paying more each month</caption><thead><tr><th scope="col">Comparison</th><th scope="col">Scheduled payment</th><th scope="col">With extra payments</th></tr></thead><tbody><tr><th scope="row">Monthly payment</th><td>'+money(base.monthly)+'</td><td>'+money(higher)+'</td></tr><tr><th scope="row">Time in repayment</th><td>'+payoffDuration(base.entryBalance?base.repaymentMonths:0)+'</td><td>'+payoffDuration(months)+'</td></tr><tr><th scope="row">Total interest, including before repayment</th><td>'+money(base.totalInterest)+'</td><td>'+money(newInterest)+'</td></tr><tr><th scope="row">Total loan payments</th><td>'+money(base.totalPaid)+'</td><td>'+money(newTotal)+'</td></tr></tbody></table></div><div class="lc-insight"><h3>'+money(saving)+' less interest</h3><p>Paying '+money(extra)+' extra each month pays this loan off '+(base.entryBalance?base.repaymentMonths-months:0)+' months sooner. Estimated final payment date: '+payoffDate+'.</p></div><p class="lc-muted">Payments start on the same date in both columns. The final payment may be smaller. No additional capitalization events are included.</p>';
+   timelineState={base,schedule};renderTimeline();
+  }catch(e){timelineState=null;q('[data-timeline]').hidden=true;q('[data-extra-output]').innerHTML='';q('[data-extra-error]').textContent=e.message;}
+ }
+ q('#lc-extra').addEventListener('input',renderExtra);
+ q('#lc-extra-source').addEventListener('change',renderExtra);
+ q('[data-extra-ten]').addEventListener('click',()=>{
+  const {x,base}=extraScenario();
+  const target=fixedPayment(base.entryPrincipal,base.entryUnpaid,x.rate/100,120,base.repaymentStart);
+  q('#lc-extra').value=(Math.ceil(Math.max(0,target-base.monthly)*100)/100).toFixed(2);
+  renderExtra();
+ });
+ function show(){
+  root.dataset.reduceEnabled=current===5?'true':'false';
+  steps.forEach((s,i)=>s.hidden=i!==current);
+  q('[data-step-progress]').textContent='Step '+(current+1)+' of '+steps.length;
+  q('[data-step-back]').hidden=current===0;q('[data-step-next]').hidden=current===steps.length-1;
+  q('[data-step-next]').textContent=current===4?'Next: explore reducing borrowing':current===5?'Next: compare higher monthly payments':'Continue';
+  actions.hidden=current<4||current===6;results.hidden=true;
+  q('[data-calculate]').textContent=current===5?'Compare reduced borrowing':'Compare interest-payment choices';
+  const opt=q('[data-schedule-select] option[value="reduce"]');opt.hidden=current!==5;
+  if(current!==5&&q('[data-schedule-select]').value==='reduce')q('[data-schedule-select]').value='wait';
+  q('[data-step-error]').textContent='';q('[data-error]').textContent='';
+  if(current===4||current===5)q('[data-calculate]').click();
+  if(current===6)renderExtra();
+ }
+ function valid(){
+  if(current===0){
+   const answer=q('input[name="lc-new-loan"]:checked')?.value;
+   if(!answer){q('[data-step-error]').textContent='Choose a new Direct Loan answer to determine the term.';return false;}
+   if((answer==='yes'||answer==='no')&&root.dataset.planType==='custom'){q('[data-step-error]').textContent=q('[data-plan-guide]').textContent;return false;}
+  }
+  for(const input of steps[current].querySelectorAll('input:not([type="hidden"]),select')){
+   if(input.closest('[hidden]'))continue;
+   if(!input.checkValidity()){q('[data-step-error]').textContent='Check the highlighted entry before continuing.';input.reportValidity();return false;}
+  }return true;
+ }
+ q('[data-step-next]').addEventListener('click',()=>{if(valid()){if(current===4||current===5){q('[data-calculate]').click();if(results.hidden)return;}current++;show();steps[current].querySelector('h3').focus();}});
+ q('[data-step-back]').addEventListener('click',()=>{current--;show();steps[current].querySelector('h3').focus();});
+ function grace(){
+  const custom=q('#lc-grace-choice').value==='custom';q('[data-custom-grace]').hidden=!custom;
+  q('#lc-grace').value=custom?q('#lc-custom-grace').value:q('#lc-grace-choice').value;
+  q('#lc-grace').dispatchEvent(new Event('input',{bubbles:true}));
+ }
+ q('#lc-grace-choice').addEventListener('change',grace);q('#lc-custom-grace').addEventListener('input',grace);
+ root.querySelectorAll('input[name="lc-new-loan"]').forEach(el=>el.addEventListener('change',()=>{years.value='';plan();invalidate();}));
+ total.addEventListener('input',()=>{totalEdited=true;plan();invalidate();});
+ q('#lc-amount').addEventListener('input',()=>{if(!totalEdited)total.value=q('#lc-amount').value;plan();});
+ q('#lc-start').addEventListener('input',plan);years.addEventListener('input',plan);
+ q('[data-reset]').addEventListener('click',()=>{
+  q('#lc-extra').value='100';q('#lc-extra-source').value='wait';
+  q('#lc-grace-choice').value='6';q('#lc-custom-grace').value='6';total.value='20000';totalEdited=false;
+  root.querySelectorAll('input[name="lc-new-loan"]').forEach(el=>el.checked=false);
+  q('[data-custom-grace]').hidden=true;current=0;plan();show();
+ });
+ q('[data-calculate]').addEventListener('click',()=>{if(!valid())results.hidden=true;});
+ root.addEventListener('input',()=>{if(current===4||current===5)q('[data-calculate]').click();else if(current===6)renderExtra();});
+ plan();show();results.hidden=true;
+}
+
+initLoanCalculator(document.getElementById("kwyo-loan-calculator"));
+initGuidedLoan(document.getElementById("kwyo-loan-calculator"));</script></body></html>
