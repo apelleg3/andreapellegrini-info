@@ -240,6 +240,14 @@
             color: white;
         }
     </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBZP1CDF77"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FBZP1CDF77');
+</script>
 </head>
 <body>
     <div class="container">
@@ -684,5 +692,27 @@
             calculateAndVisualize();
         });
     </script>
+<!-- Google Analytics usage events: no entered amounts are sent -->
+<script>
+(function () {
+  function track(name, params) { try { if (window.gtag) gtag('event', name, params || {}); } catch (e) {} }
+  var modeEl = document.getElementById('calculatorMode');
+  modeEl.addEventListener('change', function () {
+    track('compound_calc_mode_change', { calc_mode: this.value });
+  });
+  document.querySelector('.calculate-btn').addEventListener('click', function () {
+    track('compound_calc_calculate', { calc_mode: modeEl.value });
+  });
+  document.querySelector('.toggle-btn').addEventListener('click', function () {
+    track('compound_calc_toggle_table');
+  });
+  var used = false;
+  document.querySelectorAll('.input-section input').forEach(function (el) {
+    el.addEventListener('change', function () {
+      if (!used) { used = true; track('compound_calc_first_input', { field: el.id }); }
+    });
+  });
+})();
+</script>
 </body>
 </html>

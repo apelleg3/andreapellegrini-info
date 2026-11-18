@@ -65,7 +65,15 @@
 .kwyo-loan [data-bars] svg{display:block;width:100%;min-width:640px;height:auto}
 .kwyo-loan .lc-total-segment:focus{outline:3px solid #b26400;outline-offset:3px}
 .kwyo-loan .lc-total-segment{cursor:pointer}
-</style></head><body>
+</style><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBZP1CDF77"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FBZP1CDF77');
+</script>
+</head><body>
 <div class="kwyo-loan" id="kwyo-loan-calculator">
  <header class="lc-header"><h2>Compare Your Borrowing Strategies</h2><p>See how paying interest now, waiting, or borrowing less changes your loan costs.</p></header>
  <div class="lc-content"><p style="font-size:14px;font-weight:600;color:#46576a">Version: guided calculator · revision 19</p><noscript><p role="alert">This preview shows the default example. Open this file in a web browser with JavaScript enabled to use the steps and update calculations.</p></noscript>
@@ -408,4 +416,37 @@ function initGuidedLoan(root){
 }
 
 initLoanCalculator(document.getElementById("kwyo-loan-calculator"));
-initGuidedLoan(document.getElementById("kwyo-loan-calculator"));</script></body></html>
+initGuidedLoan(document.getElementById("kwyo-loan-calculator"));</script><!-- Google Analytics usage events: no loan amounts, rates, or dates are sent -->
+<script>
+(function () {
+  function track(name, params) { try { if (window.gtag) gtag('event', name, params || {}); } catch (e) {} }
+  var root = document.getElementById('kwyo-loan-calculator');
+  if (!root) return;
+  var q = function (s) { return root.querySelector(s); };
+  var maxStep = 1;
+  function stepNumber() {
+    var m = /Step (\d+)/.exec(q('[data-step-progress]').textContent || '');
+    return m ? Number(m[1]) : null;
+  }
+  function stepChanged() {
+    // Runs after the calculator's own handler, so the progress text is already updated.
+    var n = stepNumber();
+    if (n && n > maxStep) { maxStep = n; track('borrowing_calc_step', { step_number: n }); }
+  }
+  q('[data-step-next]').addEventListener('click', stepChanged);
+  // The calculator clicks this button itself on every keystroke; count only real clicks.
+  q('[data-calculate]').addEventListener('click', function (e) {
+    if (e.isTrusted) track('borrowing_calc_compare', { step_number: stepNumber() });
+  });
+  q('[data-download]').addEventListener('click', function () {
+    track('borrowing_calc_download_schedule', { strategy: q('[data-schedule-select]').value });
+  });
+  q('[data-extra-ten]').addEventListener('click', function () {
+    track('borrowing_calc_ten_year_payoff');
+  });
+  function reset(e) { if (e.isTrusted) { maxStep = 1; track('borrowing_calc_reset'); } }
+  q('[data-reset]').addEventListener('click', reset);
+  q('[data-reset-last]').addEventListener('click', reset);
+})();
+</script>
+</body></html>

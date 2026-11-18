@@ -249,6 +249,14 @@
     .card { border: 1px solid #ccc; box-shadow: none; break-inside: avoid; }
   }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBZP1CDF77"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FBZP1CDF77');
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -268,7 +276,7 @@
     </div>
 
     <p class="footnote">
-      Your responses stay in your browser. Nothing is sent anywhere. If you need a record of your results &mdash; for a course, a coaching session, or your own reference &mdash; use the &ldquo;Save as PDF / Print&rdquo; button on the results screen.
+      Your answers and score stay in your browser and are never sent anywhere. This page uses Google Analytics only to count visits and completed check-ins. If you need a record of your results &mdash; for a course, a coaching session, or your own reference &mdash; use the &ldquo;Save as PDF / Print&rdquo; button on the results screen.
     </p>
 
     <details style="margin-top: 16px;">
@@ -624,6 +632,29 @@
   document.getElementById('btn-submit').addEventListener('click', submitAnswers);
   document.getElementById('btn-print').addEventListener('click', () => window.print());
   document.getElementById('btn-restart').addEventListener('click', restart);
+</script>
+<!-- Google Analytics usage events: answers, age group, and scores are never sent -->
+<script>
+(function () {
+  function track(name, params) { try { if (window.gtag) gtag('event', name, params || {}); } catch (e) {} }
+  var embedded = 'no';
+  try { embedded = window.self !== window.top ? 'yes' : 'no'; } catch (e) { embedded = 'yes'; }
+  document.querySelector('#step-intro [data-goto="step-age"]').addEventListener('click', function () {
+    track('wellbeing_scale_start', { embedded: embedded });
+  });
+  document.getElementById('btn-submit').addEventListener('click', function () {
+    // Runs after submitAnswers(); the results step is active only if all 10 items were answered.
+    if (document.getElementById('step-results').classList.contains('active')) {
+      track('wellbeing_scale_complete', { embedded: embedded });
+    }
+  });
+  document.getElementById('btn-print').addEventListener('click', function () {
+    track('wellbeing_scale_print');
+  });
+  document.getElementById('btn-restart').addEventListener('click', function () {
+    track('wellbeing_scale_restart');
+  });
+})();
 </script>
 </body>
 </html>

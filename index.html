@@ -1,712 +1,803 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Andrea Pellegrini: Educator, Researcher, Wizard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg:        #0d0a14;
-      --bg-card:   #16112a;
-      --bg-lift:   #1d1635;
-      --purple-bright:  #c4b5fd;
-      --purple-mid:     #a78bfa;
-      --purple-soft:    #7c5cbf;
-      --purple-dim:     rgba(167,139,250,0.12);
-      --purple-border:  rgba(167,139,250,0.22);
-      --sage:       #86b89a;
-      --sage-dim:   rgba(134,184,154,0.1);
-      --sage-border:rgba(134,184,154,0.2);
-      --text:       #f0edf8;
-      --text-soft:  #c8c2dc;
-      --text-muted: #8a82a0;
-      --border:     rgba(196,181,253,0.16);
-      --radius: 6px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>40 Years of Giant Highlights - 1986 to 2026</title>
+    <meta name="description" content="A curated list of events catering to a nostalgic appreciation of music, history, and more.">
+    <meta property="og:title" content="40 Years of Giant Highlights - 1986 to 2026">
+    <meta property="og:description" content="A curated list of events catering to a nostalgic appreciation of music, history, and more.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="40 Years of Giant Highlights - 1986 to 2026">
+    <meta name="twitter:description" content="A curated list of events catering to a nostalgic appreciation of music, history, and more.">
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    <!--
+      ============================================================
+        HOW TO PERSONALIZE THIS TIMELINE
+      ============================================================
+      1. EVENTS: scroll down to the `events` array in the <script>.
+         Each card is one object. Copy one to add a new event.
 
-    body {
-      font-family: 'Raleway', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
+      2. CATEGORIES / COLORS: see the `categories` object. Add or
+         recolor freely — the accent flows automatically into the
+         dot, tag, and link icons.
 
-    .stars {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .stars::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(1.2px 1.2px at  8% 12%, rgba(255,255,255,0.55) 0%, transparent 100%),
-        radial-gradient(1px   1px   at 22%  5%, rgba(255,255,255,0.35) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 38% 22%, rgba(196,181,253,0.5)  0%, transparent 100%),
-        radial-gradient(1px   1px   at 51% 40%, rgba(255,255,255,0.25) 0%, transparent 100%),
-        radial-gradient(1px   1px   at 66%  8%, rgba(255,255,255,0.4)  0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 80% 28%, rgba(196,181,253,0.45) 0%, transparent 100%),
-        radial-gradient(1px   1px   at 92% 15%, rgba(255,255,255,0.3)  0%, transparent 100%),
-        radial-gradient(1px   1px   at 14% 55%, rgba(255,255,255,0.3)  0%, transparent 100%),
-        radial-gradient(1px   1px   at 45% 68%, rgba(255,255,255,0.2)  0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 72% 62%, rgba(196,181,253,0.35) 0%, transparent 100%),
-        radial-gradient(1px   1px   at 88% 75%, rgba(255,255,255,0.25) 0%, transparent 100%),
-        radial-gradient(1px   1px   at 30% 85%, rgba(255,255,255,0.3)  0%, transparent 100%),
-        radial-gradient(1px   1px   at 60% 90%, rgba(255,255,255,0.2)  0%, transparent 100%),
-        radial-gradient(1px   1px   at  5% 90%, rgba(196,181,253,0.25) 0%, transparent 100%);
-    }
-    .stars::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 40% at 75% 20%, rgba(124,92,191,0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 50% at 20% 70%, rgba(134,184,154,0.05) 0%, transparent 70%);
-    }
+      3. LINKS: every event has a `links` object with four optional
+         slots: wikipedia, maps, notion, photos.
+           - Put a real URL to show that icon.
+           - Leave it as ''  (empty)  to hide it.
+           - Put the word 'ADD' to show a dashed "add link" chip
+             (handy reminder for travel cards you'll fill in later).
+         So for a place he's visited / wants to visit, paste your
+         Notion page, Google Maps pin, and Google Photos album URLs
+         straight into notion / maps / photos.
+      ============================================================
+    -->
 
-    /* Skip link */
-    .skip-link {
-      position: absolute;
-      top: -100%;
-      left: 1rem;
-      background: var(--purple-mid);
-      color: var(--bg);
-      font-weight: 700;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      z-index: 9999;
-      text-decoration: none;
-      font-size: 0.85rem;
-    }
-    .skip-link:focus { top: 1rem; }
+    <style>
+        :root {
+            --bg-dark: #0B0B0E;
+            --card-bg: #16161C;
+            --text-light: #FFFFFF;
+            --text-muted: #D6D6DC;            /* ~11:1 on card bg */
+            --hairline: rgba(255,255,255,0.10);
+            --hairline-strong: rgba(255,255,255,0.30);
+        }
 
-    /* Nav */
-    nav {
-      position: fixed;
-      inset: 0 0 auto 0;
-      z-index: 200;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2.5rem;
-      background: rgba(13,10,20,0.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-brand { text-decoration: none; line-height: 1.2; }
-    .nav-brand-name {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text);
-      display: block;
-    }
-    .nav-brand-sub {
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--purple-bright);
-      display: block;
-    }
-    .nav-links { list-style: none; display: flex; gap: 0.15rem; }
-    .nav-links a {
-      text-decoration: none;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--text-soft);
-      padding: 0.35rem 0.7rem;
-      border-radius: 4px;
-      transition: background 0.15s, color 0.15s;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus-visible {
-      color: var(--purple-bright);
-      background: var(--purple-dim);
-      outline: none;
-    }
+        * { box-sizing: border-box; margin: 0; padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
 
-    /* Hero */
-    .hero {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 80px 2.5rem 4rem;
-    }
-    .hero-inner {
-      max-width: 1140px;
-      margin: 0 auto;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 5rem;
-      align-items: center;
-    }
-    .hero-text { animation: fadeUp 0.7s ease both; }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            background-image:
+                linear-gradient(rgba(255, 85, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 194, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            padding-bottom: 5rem;
+        }
 
-    .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--purple-bright);
-      margin-bottom: 1.25rem;
-    }
-    .hero-kicker::before { content: '✦'; font-size: 0.58rem; opacity: 0.7; }
+        .visually-hidden {
+            position: absolute; width: 1px; height: 1px; padding: 0;
+            margin: -1px; overflow: hidden; clip: rect(0 0 0 0);
+            white-space: nowrap; border: 0;
+        }
 
-    h1 {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: clamp(2.6rem, 4.5vw, 3.8rem);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 1.4rem;
-    }
-    h1 .hl { color: var(--purple-bright); }
+        /* Visible keyboard focus everywhere */
+        a:focus-visible, button:focus-visible, input:focus-visible {
+            outline: 3px solid #FFFFFF;
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
 
-    .hero-bio {
-      font-size: 1.05rem;
-      color: var(--text-soft);
-      max-width: 520px;
-      line-height: 1.85;
-      margin-bottom: 2rem;
-    }
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.25rem; }
-    .tag {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.85rem;
-      border-radius: 100px;
-    }
-    .tag-purple { background: var(--purple-dim); border: 1px solid var(--purple-border); color: var(--purple-bright); }
-    .tag-sage   { background: var(--sage-dim);   border: 1px solid var(--sage-border);   color: var(--sage); }
+        /* Skip link */
+        .skip-link {
+            position: absolute; left: 1rem; top: -3rem;
+            background: #fff; color: #000; padding: 0.6rem 1rem;
+            border-radius: 8px; font-weight: 700; z-index: 10;
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus { top: 1rem; }
 
-    .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        header {
+            text-align: center;
+            padding: 4.5rem 1.5rem 2rem;
+            position: relative;
+        }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.7rem 1.5rem;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      border-radius: 100px;
-      transition: transform 0.15s, background 0.15s, border-color 0.15s;
-    }
-    .btn:focus-visible { outline: 3px solid var(--purple-bright); outline-offset: 3px; }
-    .btn-filled { background: var(--purple-mid); color: #0d0a14; border: 1.5px solid transparent; }
-    .btn-filled:hover { background: var(--purple-bright); transform: translateY(-1px); }
-    .btn-ghost  { background: transparent; border: 1.5px solid var(--purple-border); color: var(--purple-bright); }
-    .btn-ghost:hover  { background: var(--purple-dim); border-color: var(--purple-mid); transform: translateY(-1px); }
-    .btn-sage   { background: transparent; border: 1.5px solid var(--sage-border); color: var(--sage); }
-    .btn-sage:hover   { background: var(--sage-dim); border-color: var(--sage); transform: translateY(-1px); }
+        header h1 {
+            font-size: clamp(2.2rem, 6vw, 4.2rem);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            line-height: 1.05;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FF5500, #FF4D9D, #B624FF, #4DD0FF, #00F0C2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
 
-    /* Photo */
-    .hero-photo-wrap { animation: fadeUp 0.7s 0.12s ease both; flex-shrink: 0; }
-    .photo-ring { position: relative; width: 320px; height: 320px; }
-    .photo-ring::before {
-      content: '';
-      position: absolute;
-      inset: -14px;
-      border-radius: 50%;
-      border: 1.5px dashed rgba(196,181,253,0.28);
-      animation: spin 25s linear infinite;
-    }
-    .photo-ring::after {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      background: conic-gradient(
-        from 110deg,
-        var(--purple-soft) 0deg 70deg,
-        transparent 70deg 190deg,
-        var(--sage) 190deg 230deg,
-        transparent 230deg 360deg
-      );
-      opacity: 0.45;
-      mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #fff 0);
-      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #fff 0);
-    }
-    .photo-ring img {
-      width: 320px; height: 320px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      border: 3px solid var(--bg-lift);
-    }
+        header p {
+            color: var(--text-muted);
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            max-width: 720px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
 
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+        /* Color/category legend (text labels, never color alone) */
+        .legend {
+            list-style: none;
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 0.5rem 1.1rem;
+            max-width: 760px;
+            margin: 1.75rem auto 0;
+            padding: 0 1rem;
+        }
+        .legend li {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.82rem; color: var(--text-muted); font-weight: 600;
+        }
+        .legend .dot {
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--accent); flex: none;
+            box-shadow: 0 0 8px var(--accent);
+        }
 
-    /* Bands */
-    .band { position: relative; z-index: 1; }
-    .band-inner { max-width: 1140px; margin: 0 auto; padding: 5rem 2.5rem; }
+        /* Controls */
+        .controls {
+            display: flex; justify-content: center; align-items: center;
+            gap: 0.6rem; margin: 2.5rem auto 3.5rem;
+            flex-wrap: wrap; padding: 0 1rem; max-width: 940px;
+        }
+        .search-wrap { flex: 1 1 280px; max-width: 360px; }
+        .search-bar {
+            padding: 0.75rem 1.1rem; border-radius: 10px;
+            border: 2px solid #B624FF; background: #000;
+            color: #fff; font-size: 1rem; width: 100%; outline: none;
+        }
+        .search-bar::placeholder { color: #9a9aa3; }
+        .search-bar:focus { border-color: #FF5500; box-shadow: 0 0 0 3px rgba(255,85,0,0.3); }
 
-    .stats-band { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; text-align: center; max-width: 620px; margin: 0 auto; }
-    .stat-num {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 2.6rem;
-      font-weight: 800;
-      color: var(--purple-bright);
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-    .stat-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+        .filter-group { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+        .filter-btn {
+            padding: 0.6rem 1rem; border-radius: 999px;
+            border: 2px solid var(--hairline); background: var(--card-bg);
+            color: #fff; cursor: pointer; font-weight: 700;
+            text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.5px;
+            transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+            display: inline-flex; align-items: center; gap: 0.45rem;
+        }
+        .filter-btn .swatch {
+            width: 9px; height: 9px; border-radius: 50%; background: var(--accent);
+        }
+        .filter-btn:hover { border-color: var(--hairline-strong); }
+        .filter-btn[aria-pressed="true"] {
+            background: #fff; color: var(--bg-dark); border-color: #fff;
+        }
+        .filter-btn[aria-pressed="true"] .swatch { box-shadow: 0 0 0 2px rgba(0,0,0,0.15); }
 
-    /* Section header */
-    .s-kicker {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: 'Josefin Sans', sans-serif; font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.22em; text-transform: uppercase; color: var(--purple-bright);
-      margin-bottom: 0.6rem;
-    }
-    .s-kicker::before { content: '✦'; font-size: 0.54rem; opacity: 0.7; }
+        /* Timeline */
+        .timeline-container {
+            position: relative; max-width: 920px; margin: 0 auto;
+            padding: 0 1.5rem; list-style: none;
+        }
+        .timeline-container::after {
+            content: ''; position: absolute; width: 4px;
+            background: linear-gradient(to bottom, #FF5500, #FF4D9D, #B624FF, #4DD0FF, #00F0C2);
+            top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 4px;
+        }
+        .timeline-container.is-empty::after { display: none; }
 
-    h2 {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: clamp(1.8rem, 2.8vw, 2.4rem);
-      font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text); line-height: 1.2; margin-bottom: 0.85rem;
-    }
-    h2 .hl { color: var(--purple-bright); }
-    h2 .hl-sage { color: var(--sage); }
+        .timeline-item {
+            padding: 20px 0; position: relative; width: 50%;
+            opacity: 0; transform: translateY(28px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .timeline-item.visible { opacity: 1; transform: translateY(0); }
+        .timeline-item.left  { left: 0;   padding-right: 42px; text-align: right; }
+        .timeline-item.right { left: 50%; padding-left: 42px;  text-align: left; }
+        .timeline-item.left .year-header,
+        .timeline-item.left .link-row { justify-content: flex-end; }
 
-    .s-lead { font-size: 1rem; color: var(--text-soft); max-width: 580px; margin-bottom: 3rem; line-height: 1.8; }
+        /* Category-colored node */
+        .timeline-item::after {
+            content: ''; position: absolute; width: 17px; height: 17px;
+            background-color: var(--bg-dark); border: 4px solid var(--accent);
+            top: 35px; border-radius: 50%; z-index: 2;
+            box-shadow: 0 0 10px var(--accent);
+        }
+        .timeline-item.left::after  { right: -8.5px; }
+        .timeline-item.right::after { left: -8.5px; }
 
-    /* Cards */
-    .card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.75rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .card:hover { border-color: var(--purple-soft); transform: translateY(-2px); }
-    .card.featured {
-      grid-column: 1/-1;
-      display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem;
-      background: linear-gradient(135deg, var(--bg-card), var(--bg-lift));
-      border-color: rgba(167,139,250,0.3); padding: 2.25rem;
-    }
-    .card-kicker {
-      font-family: 'Josefin Sans', sans-serif; font-size: 0.64rem; font-weight: 700;
-      letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-mid); margin-bottom: 0.6rem;
-    }
-    h3 {
-      font-family: 'Josefin Sans', sans-serif; font-size: 1.08rem; font-weight: 700;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--text); line-height: 1.35; margin-bottom: 0.65rem;
-    }
-    .card p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.8; margin-bottom: 0.6rem; }
+        .content-card {
+            background: var(--card-bg); padding: 1.6rem 1.7rem; border-radius: 14px;
+            border: 1px solid var(--hairline); position: relative; text-align: left;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        .content-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 
-    .card-link {
-      display: inline-flex; align-items: center; gap: 0.35rem;
-      font-family: 'Josefin Sans', sans-serif; font-size: 0.78rem; font-weight: 700;
-      color: var(--purple-bright); text-decoration: none; margin-top: 0.5rem;
-      transition: gap 0.15s;
-    }
-    .card-link:hover { gap: 0.6rem; }
-    .card-link:focus-visible { outline: 2px solid var(--purple-bright); border-radius: 2px; }
-    .card-link::after { content: '→'; }
+        .year-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.85rem; flex-wrap: wrap; }
+        .year-badge { font-size: 1.55rem; font-weight: 900; line-height: 1; }
+        .month-badge {
+            display: inline-block; font-size: 0.72rem; font-weight: 800; letter-spacing: 1px;
+            text-transform: uppercase; color: var(--accent); margin-right: 0.4rem; vertical-align: 0.18em;
+        }
+        .tag {
+            font-size: 0.7rem; text-transform: uppercase; padding: 0.28rem 0.65rem;
+            border-radius: 5px; font-weight: 800; letter-spacing: 0.5px;
+            background: var(--accent); color: #000;   /* black text -> AA contrast on all accents */
+        }
 
-    .dis-meta { display: flex; flex-direction: column; gap: 1.1rem; padding-top: 0.25rem; }
-    .dis-meta dt { font-family: 'Josefin Sans', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
-    .dis-meta dd { font-size: 0.88rem; color: var(--text-soft); line-height: 1.65; }
-    .dis-meta dd strong { color: var(--text); font-weight: 600; }
+        .content-card h3 { font-size: 1.18rem; margin-bottom: 0.6rem; line-height: 1.3; }
+        .content-card h3 .emoji { margin-right: 0.45rem; font-style: normal; }
+        .content-card p.desc { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; margin-bottom: 1.1rem; }
 
-    .research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+        /* Link icon row */
+        .link-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .link-chip {
+            width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 11px; border: 1px solid var(--hairline);
+            background: rgba(255,255,255,0.02); color: var(--text-muted);
+            cursor: pointer; transition: all 0.18s ease; text-decoration: none;
+        }
+        .link-chip svg { width: 21px; height: 21px; }
+        .link-chip:hover { color: #000; background: var(--accent); border-color: var(--accent); }
+        .link-chip.ghost { border-style: dashed; opacity: 0.7; }
+        .link-chip.ghost:hover { opacity: 1; color: var(--accent); background: rgba(255,255,255,0.04); border-color: var(--accent); }
 
-    /* Projects */
-    .projects-band { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
-    .proj-card {
-      background: var(--bg); border: 1px solid var(--sage-border);
-      border-radius: var(--radius); padding: 1.5rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .proj-card:hover { border-color: var(--sage); transform: translateY(-2px); }
-    .proj-icon { font-size: 1.6rem; margin-bottom: 0.85rem; display: block; line-height: 1; }
-    .proj-card .card-kicker { color: var(--sage); }
-    .proj-card h3 { font-size: 1rem; }
-    .proj-card p { font-size: 0.85rem; }
-    .proj-card .card-link { color: var(--sage); }
-    .proj-card .card-link:focus-visible { outline-color: var(--sage); }
+        .hint {
+            margin-top: 0.85rem; font-size: 0.82rem; line-height: 1.5;
+            color: var(--text-muted); background: rgba(255,255,255,0.04);
+            border-left: 3px solid var(--accent); padding: 0.6rem 0.8rem; border-radius: 6px;
+        }
+        .hint code { background: rgba(255,255,255,0.08); padding: 0.05rem 0.3rem; border-radius: 4px; }
 
-    /* Art */
-    .art-band { border-top: 1px solid var(--border); }
-    .art-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .art-text p { font-size: 0.95rem; color: var(--text-soft); line-height: 1.8; margin-bottom: 1.5rem; }
-    .art-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .art-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-    .art-swatch {
-      aspect-ratio: 1; border-radius: var(--radius);
-      overflow: hidden; display: block;
-      border: 1px solid var(--sage-border);
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .art-swatch:hover { border-color: var(--sage); transform: translateY(-2px); }
-    .art-swatch img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .empty-state {
+            text-align: center; color: var(--text-muted); padding: 3rem 1rem;
+            font-size: 1.05rem; line-height: 1.6;
+        }
+        .empty-state strong { color: #fff; }
 
-    /* Footer */
-    footer { position: relative; z-index: 1; background: var(--bg-card); border-top: 1px solid var(--border); padding: 3rem 2.5rem; }
-    .footer-inner { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
-    .footer-brand { font-family: 'Josefin Sans', sans-serif; font-weight: 800; font-size: 1rem; color: var(--text); }
-    .footer-brand span { display: block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-bright); margin-top: 0.25rem; }
-    .footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 0.2rem; }
-    .footer-links a { text-decoration: none; font-family: 'Josefin Sans', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); padding: 0.25rem 0.6rem; border-radius: 4px; transition: color 0.15s, background 0.15s; }
-    .footer-links a:hover { color: var(--purple-bright); background: var(--purple-dim); }
-    .footer-copy { font-size: 0.72rem; color: var(--text-muted); }
+        /* Mobile: single column */
+        @media screen and (max-width: 760px) {
+            .timeline-container::after { left: 18px; }
+            .timeline-item { width: 100%; padding-left: 46px; padding-right: 0; text-align: left; }
+            .timeline-item.right { left: 0; }
+            .timeline-item.left { left: 0; text-align: left; }
+            .timeline-item.left .year-header, .timeline-item.left .link-row { justify-content: flex-start; }
+            .timeline-item.left::after, .timeline-item.right::after { left: 10px; right: auto; }
+        }
 
-    /* Responsive */
-    @media (max-width: 960px) {
-      nav { padding: 0 1.25rem; }
-      .hero { padding: 80px 1.25rem 3rem; }
-      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .hero-photo-wrap { order: -1; display: flex; justify-content: center; }
-      .photo-ring, .photo-ring img { width: 240px; height: 240px; }
-      .hero-text { text-align: center; }
-      .hero-tags, .hero-ctas { justify-content: center; }
-      .hero-bio { margin: 0 auto 2rem; }
-      .band-inner { padding: 4rem 1.25rem; }
-      .stats-grid { grid-template-columns: repeat(2,1fr); }
-      .research-grid { grid-template-columns: 1fr; }
-      .card.featured { grid-template-columns: 1fr; gap: 2rem; }
-      .projects-grid { grid-template-columns: 1fr 1fr; }
-      .art-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    }
-    
+        /* Respect reduced-motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+            .timeline-item { opacity: 1; transform: none; }
+            .skip-link { transition: none; }
+        }
 
-    /* ── Hamburger nav ── */
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.4rem;
-      border-radius: 4px;
-      transition: background 0.15s;
-    }
-    .nav-hamburger { -webkit-appearance: none; }
-    .nav-hamburger:hover { background: var(--purple-dim); }
-    .nav-hamburger:focus-visible { outline: 3px solid var(--purple-bright); outline-offset: 3px; }
-    .nav-hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--text-soft);
-      border-radius: 2px;
-      transition: transform 0.2s, opacity 0.2s;
-    }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        /* Spotify playlist embed */
+        .playlist-section {
+            max-width: 720px; margin: 0 auto 3rem; padding: 0 1.5rem;
+            text-align: center;
+        }
+        .playlist-section h2 {
+            font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted); font-weight: 800; margin-bottom: 0.9rem;
+        }
+        .playlist-embed-wrap {
+            border-radius: 12px; overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            border: 1px solid var(--hairline);
+        }
+        .playlist-embed-wrap iframe { display: block; width: 100%; }
 
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 64px;
-      left: 0;
-      right: 0;
-      background: rgba(13,10,20,0.97);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      z-index: 199;
-      padding: 1rem 1.25rem 1.5rem;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-    .mobile-menu.open { display: flex; }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-    }
-    .mobile-menu a {
-      text-decoration: none;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-soft);
-      padding: 0.65rem 0.75rem;
-      border-radius: 4px;
-      transition: background 0.15s, color 0.15s;
-    }
-    .mobile-menu a:hover,
-    .mobile-menu a:focus-visible { color: var(--purple-bright); background: var(--purple-dim); outline: none; }
-    .mobile-menu a[aria-current="page"] { color: var(--purple-bright); }
-
-    /* ── Mobile font & spacing fixes ── */
-    @media (max-width: 480px) {
-      body { font-size: 0.95rem; }
-      h1 { font-size: 1.8rem !important; }
-      h2 { font-size: 1.4rem !important; }
-      h3 { font-size: 0.95rem !important; }
-      .s-lead { font-size: 0.92rem; }
-      .hero-bio { font-size: 0.95rem; }
-      .band-inner { padding: 3rem 1rem; }
-      .card { padding: 1.25rem; }
-      .proj-card { padding: 1.1rem; }
-      .stat-num { font-size: 2rem; }
-      .cv-content { padding: 1.5rem 1rem 3rem; }
-      .page-header-inner { padding: 2rem 1rem 2rem; }
-    }
-  </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBZP1CDF77"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-FBZP1CDF77');
-  </script>
+        /* Photo album gallery */
+        .albums-section {
+            max-width: 1080px; margin: 4rem auto 2rem; padding: 0 1.5rem;
+            text-align: center;
+        }
+        .albums-section h2 {
+            font-size: 1.6rem; font-weight: 900; margin-bottom: 0.5rem;
+        }
+        .albums-section > p {
+            color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem;
+        }
+        .albums-grid {
+            display: grid; gap: 1rem; text-align: left;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+        .album-card {
+            background: var(--card-bg); border: 1px solid var(--hairline);
+            border-radius: 14px; padding: 1.3rem 1.4rem;
+            display: flex; flex-direction: column; gap: 0.6rem;
+            text-decoration: none; color: var(--text-light);
+            transition: border-color 0.2s ease, transform 0.2s ease;
+            border-left: 4px solid var(--accent);
+        }
+        .album-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .album-card .album-emoji { font-size: 1.7rem; line-height: 1; }
+        .album-card .album-title { font-weight: 800; font-size: 1.02rem; line-height: 1.3; }
+        .album-card .album-note { font-size: 0.8rem; color: var(--text-muted); }
+        .album-card .album-cta {
+            margin-top: auto; display: inline-flex; align-items: center; gap: 0.4rem;
+            font-size: 0.78rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.5px; color: var(--accent);
+        }
+        .album-card .album-cta svg { width: 16px; height: 16px; }
+    </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBZP1CDF77"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FBZP1CDF77');
+</script>
 </head>
 <body>
 
-<a href="#main" class="skip-link">Skip to main content</a>
+    <a href="#timeline" class="skip-link">Skip to the timeline</a>
 
-<nav aria-label="Main navigation">
-  <a href="index.html" class="nav-brand" aria-label="Andrea Pellegrini – home">
-    <span class="nav-brand-name">Andrea Pellegrini</span>
-    <span class="nav-brand-sub">Educator · Researcher · Wizard</span>
-  </a>
-  <ul class="nav-links" role="list">
-    <li><a href="index.html" aria-current="page">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="cv.html">CV</a></li>
-    <li><a href="research.html">Research</a></li>
-    <li><a href="teaching.html">Teaching</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="art.html">Art</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <button type="button" class="nav-hamburger" id="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu" onclick="(function(){var m=document.getElementById('mobile-menu');var b=document.getElementById('nav-toggle');var o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');})();">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
-  <a href="index.html" aria-current="page">Home</a>
-  <a href="about.html">About</a>
-  <a href="cv.html">CV</a>
-  <a href="research.html">Research</a>
-  <a href="teaching.html">Teaching</a>
-  <a href="projects.html">Projects</a>
-  <a href="blog.html">Blog</a>
-  <a href="art.html">Art</a>
-  <a href="contact.html">Contact</a>
-</div>
+    <header>
+        <h1>40 Years of Giant Highlights - 1986 to 2026</h1>
+        <p>A curated list of events catering to a nostalgic appreciation of music, history, and more.</p>
+        <ul class="legend" id="legend" aria-label="What the colors mean"></ul>
+    </header>
 
-<div class="stars" aria-hidden="true"></div>
+    <section class="playlist-section" aria-label="The soundtrack for this timeline">
+        <h2>The Soundtrack</h2>
+        <div class="playlist-embed-wrap">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4KR0D9uteTh16XMDbfQJto?utm_source=generator&amp;theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="40th birthday playlist on Spotify"></iframe>
+        </div>
+    </section>
 
-<main id="main">
+    <section class="controls" aria-label="Search and filter the timeline">
+        <div class="search-wrap">
+            <label for="search" class="visually-hidden">Filter events by artist, year, place or keyword</label>
+            <input type="text" id="search" class="search-bar" placeholder="Search artist, year, place…" autocomplete="off">
+        </div>
+        <div class="filter-group" role="group" aria-label="Filter by category" id="filters"></div>
+    </section>
 
-  <!-- Hero -->
-  <section class="hero" aria-labelledby="hero-h">
-    <div class="hero-inner">
-      <div class="hero-text">
-        <div class="hero-kicker" aria-hidden="true">andreapellegrini.info</div>
-        <h1 id="hero-h">Hello, I'm<br><span class="hl">Andrea Pellegrini.</span></h1>
-        <p class="hero-bio">I have a lot of interests, and I like using them and my broad skill set to help others, whether through education, advocacy, or research.</p>
-        <div class="hero-tags" role="list" aria-label="Areas of focus">
-          <span class="tag tag-purple" role="listitem">Higher Education</span>
-          <span class="tag tag-purple" role="listitem">Educational Psychology</span>
-          <span class="tag tag-purple" role="listitem">PhD 2026</span>
-          <span class="tag tag-sage" role="listitem">Financial Literacy</span>
-          <span class="tag tag-sage" role="listitem">Instructional Design</span>
-          <span class="tag tag-sage" role="listitem">Data Visualization</span>
-        </div>
-        <div class="hero-ctas">
-          <a href="cv.html" class="btn btn-filled">View My CV</a>
-          <a href="research.html" class="btn btn-ghost">My Research</a>
-          <a href="projects.html" class="btn btn-ghost">Projects</a>
-        </div>
-      </div>
-      <div class="hero-photo-wrap">
-        <div class="photo-ring">
-          <img src="assets/andrea-pellegrini.jpg" alt="Andrea Pellegrini, educator and researcher" />
-        </div>
-      </div>
-    </div>
-  </section>
+    <p id="status" class="visually-hidden" role="status" aria-live="polite"></p>
 
-  <!-- Stats -->
-  <div class="band stats-band">
-    <div class="band-inner" style="padding-top:3.5rem;padding-bottom:3.5rem;">
-      <div class="stats-grid">
-        <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Years in Higher Ed</div></div>
-        <div class="stat"><div class="stat-num">150+</div><div class="stat-label">Webinars Coordinated</div></div>
-        <div class="stat"><div class="stat-num">130+</div><div class="stat-label">Podcast Episodes</div></div>
-      </div>
-    </div>
-  </div>
+    <main>
+        <ol class="timeline-container" id="timeline" aria-label="Timeline of events from 1986 to 2026"></ol>
+    </main>
 
-  <!-- Research -->
-  <div class="band" aria-labelledby="research-h">
-    <div class="band-inner">
-      <div class="s-kicker" aria-hidden="true">Research</div>
-      <h2 id="research-h">PhD Work &amp; <span class="hl">Dissertation</span></h2>
-      <p class="s-lead">My research connects cognitive science, visual media, and adult financial education, specifically how self-regulated learning is supported when visuals are part of the experience and design is intentional.</p>
+    <section class="albums-section" aria-label="Photo album gallery">
+        <h2>The Photo Albums</h2>
+        <p>The full picture, sorted by vibe instead of by year.</p>
+        <div class="albums-grid">
+            <a class="album-card" style="--accent:#00F0C2" href="https://photos.app.goo.gl/pMfdKTYgnP1UcNp97" target="_blank" rel="noopener noreferrer" aria-label="Open Special Moments with Mom & Dad album on Google Photos (opens in a new tab)">
+                <span class="album-emoji" aria-hidden="true">💛</span>
+                <span class="album-title">Special Moments with Mom & Dad</span>
+                
+                <span class="album-cta"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16.5l-5-5-4 4-2-2-4 4"/></svg> View album</span>
+            </a>
+            <a class="album-card" style="--accent:#FF4D9D" href="https://photos.app.goo.gl/3Xc4AZFcVVevTRPM9" target="_blank" rel="noopener noreferrer" aria-label="Open Celebrations album on Google Photos (opens in a new tab)">
+                <span class="album-emoji" aria-hidden="true">🎉</span>
+                <span class="album-title">Celebrations</span>
+                
+                <span class="album-cta"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16.5l-5-5-4 4-2-2-4 4"/></svg> View album</span>
+            </a>
+            <a class="album-card" style="--accent:#C8FF1A" href="https://photos.app.goo.gl/aWynUY2EM6XTYmCB9" target="_blank" rel="noopener noreferrer" aria-label="Open Luke Obsessions album on Google Photos (opens in a new tab)">
+                <span class="album-emoji" aria-hidden="true">🐿️</span>
+                <span class="album-title">Luke Obsessions</span>
+                <div class="album-note">(39 photos — needs squirrels)</div>
+                <span class="album-cta"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16.5l-5-5-4 4-2-2-4 4"/></svg> View album</span>
+            </a>
+            <a class="album-card" style="--accent:#5B8CFF" href="https://photos.app.goo.gl/U2bTZoFkyWsj49Jp6" target="_blank" rel="noopener noreferrer" aria-label="Open Family Moments album on Google Photos (opens in a new tab)">
+                <span class="album-emoji" aria-hidden="true">👪</span>
+                <span class="album-title">Family Moments</span>
+                
+                <span class="album-cta"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16.5l-5-5-4 4-2-2-4 4"/></svg> View album</span>
+            </a>
+            <a class="album-card" style="--accent:#4DD0FF" href="https://photos.app.goo.gl/1MtS4Wesiu1P3HuL6" target="_blank" rel="noopener noreferrer" aria-label="Open Essence of Luke album on Google Photos (opens in a new tab)">
+                <span class="album-emoji" aria-hidden="true">✨</span>
+                <span class="album-title">Essence of Luke</span>
+                
+                <span class="album-cta"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16.5l-5-5-4 4-2-2-4 4"/></svg> View album</span>
+            </a>
+            <a class="album-card" style="--accent:#FF9E3D" href="https://photos.app.goo.gl/s4RYmEBEEzw5RyZh9" target="_blank" rel="noopener noreferrer" aria-label="Open With Animals album on Google Photos (opens in a new tab)">
+                <span class="album-emoji" aria-hidden="true">🐾</span>
+                <span class="album-title">With Animals</span>
+                
+                <span class="album-cta"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16.5l-5-5-4 4-2-2-4 4"/></svg> View album</span>
+            </a>
+            <a class="album-card" style="--accent:#FF5500" href="https://photos.app.goo.gl/tkCs3SdnDXfyBWbE9" target="_blank" rel="noopener noreferrer" aria-label="Open 40 Faces of Luke album on Google Photos (opens in a new tab)">
+                <span class="album-emoji" aria-hidden="true">😀</span>
+                <span class="album-title">40 Faces of Luke</span>
+                
+                <span class="album-cta"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16.5l-5-5-4 4-2-2-4 4"/></svg> View album</span>
+            </a>
+        </div>
+    </section>
 
-      <div class="research-grid">
-        <div class="card featured">
-          <div>
-            <div class="card-kicker">Dissertation · Defended April 2026</div>
-            <h3>Goal Framing &amp; Visualizations' Influence on Self-Regulated Learning of Compound Interest: An Explanatory Mixed Methods Study</h3>
-            <p>My research examines how framing and visual media affects self-regulated learning in adult financial education, using an explanatory mixed-methods design with an LLM to conduct participant interviews.</p>
-            <a href="research.html" class="card-link">Read more about my research</a>
-          </div>
-          <dl class="dis-meta">
-            <div><dt>Research Interests</dt><dd>Cognitive science of learning and decision-making in personal finance · Self-regulated learning and data visualization · Human–AI interaction, including generative AI in learning and research · Interpersonal and organizational communication around personal finance · Game-based and interactive tools for financial education · Instructional design &amp; user experience</dd></div>
-            <div><a href="cv.html#publications" class="card-link">View publications</a></div>
-          </dl>
-        </div>
+    <script>
+        /* ----------  CATEGORIES (label + accent color)  ---------- */
+        const categories = {
+            hiphop:    { label: 'Hip-Hop',     accent: '#FF5500' },
+            indie:     { label: 'Indie',       accent: '#4DD0FF' },
+            music:     { label: 'Music',       accent: '#B624FF' },
+            pop:       { label: 'Pop Culture', accent: '#FF4D9D' },
+            midwest:   { label: 'Midwest',     accent: '#5B8CFF' },
+            space:     { label: 'Space',       accent: '#FFD23F' },
+            nuclear:   { label: 'Nuclear',     accent: '#C8FF1A' },
+            urbex:     { label: 'Abandoned',   accent: '#FF9E3D' },
+            milestone: { label: 'Personal',    accent: '#00F0C2' },
+        };
 
-        <div class="card">
-          <div class="card-kicker">Publications</div>
-          <h3>Publications &amp; Presentations</h3>
-          <p>Peer-reviewed proceedings, a public comment, conference presentations, and invited talks are listed on my CV.</p>
-          <a href="cv.html#publications" class="card-link">See my CV</a>
-        </div>
+        /* ----------  EVENTS  ----------
+           links slots: wikipedia / maps / notion / photos
+             - real URL  = shows that icon
+             - ''        = hidden
+             - 'ADD'     = dashed "add your link" reminder chip       */
+        const events = [
+            { year: 1986, month: 4, type: 'nuclear',
+              title: 'Reactor 4 Melts Down at Chernobyl',
+              desc: 'On April 26 the No. 4 reactor explodes, scattering fallout across Europe and freezing the city of Pripyat in time \u2014 the defining nuclear event of his birth year.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Chernobyl_disaster', maps: 'https://www.google.com/maps/search/?api=1&query=Pripyat%2C+Ukraine', notion: '', photos: '' } },
+            { year: 1986, month: 7, type: 'hiphop',
+              title: 'Run-D.M.C. Crosses Over With "Walk This Way"',
+              desc: 'Teaming with Aerosmith, Run-D.M.C. break down racial and sonic barriers, exploding hip-hop onto mainstream pop charts and global radio.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Walk_This_Way#Run-D.M.C._version', maps: '', notion: '', photos: '' } },
+            { year: 1988, month: 8, type: 'hiphop',
+              title: 'N.W.A Map Out West Coast Gangsta Rap',
+              desc: '"Straight Outta Compton" lands, dragging the genre\u2019s center of gravity from New York to California with raw socio-political commentary.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Straight_Outta_Compton', maps: '', notion: '', photos: '' } },
+            { year: 1989, month: 2, type: 'music',
+              title: 'The First Rap Grammy Is Awarded',
+              desc: 'DJ Jazzy Jeff & The Fresh Prince take the inaugural Best Rap Performance award for "Parents Just Don\u2019t Understand," cementing the genre\u2019s legitimacy.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Grammy_Award_for_Best_Rap_Performance', maps: '', notion: '', photos: '' } },
+            { year: 1991, month: 9, type: 'music',
+              title: 'Nirvana\u2019s "Nevermind" Detonates Grunge',
+              desc: 'Seattle\u2019s scruffy answer to the slick \u201980s rips up the charts; alt-rock becomes the new mainstream and the eclectic record collection starts here.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Nevermind', maps: '', notion: '', photos: '' } },
+            { year: 1992, month: 12, type: 'hiphop',
+              title: 'Dr. Dre Drops "The Chronic" & Defines G-Funk',
+              desc: 'Dre unleashes his masterwork, launching Snoop Dogg and building the funky, synth-soaked sound that ruled \u201990s hip-hop production.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/The_Chronic', maps: '', notion: '', photos: '' } },
+            { year: 1992, month: 3, type: 'pop',
+              title: 'The Civilian Hummer Hits the Market',
+              desc: 'AM General puts a street-legal version of the military Humvee up for sale as the Hummer, after Arnold Schwarzenegger \u2014 smitten by one on a film set \u2014 personally lobbied the company to build it. He buys the first two.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Hummer_H1', maps: '', notion: '', photos: '' } },
+            { year: 1992, type: 'urbex',
+              title: 'Centralia Is Condemned to the Fire Below',
+              desc: 'Pennsylvania seizes the whole town by eminent domain as an unstoppable coal-seam fire \u2014 burning since 1962 \u2014 hollows it out. The ZIP code is wiped off the map by 2002.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Centralia,_Pennsylvania', maps: 'https://www.google.com/maps/search/?api=1&query=Centralia%2C+Pennsylvania', notion: '', photos: '' } },
+            { year: 1993, month: 7, type: 'midwest',
+              title: 'The Great Flood of 1993 Swallows the Midwest',
+              desc: 'From spring into fall, the Mississippi and Missouri rivers burst their banks across nine states \u2014 one of the most destructive floods in U.S. history and a defining Midwest memory.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Great_Flood_of_1993', maps: '', notion: '', photos: '' } },
+            { year: 1994, month: 4, type: 'music',
+              title: 'The Golden-Age Masterpiece: "Illmatic"',
+              desc: 'Nas releases his legendary debut, defining lyricism and the East Coast sound profile for a whole generation.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Illmatic', maps: '', notion: '', photos: '' } },
+            { year: 1996, month: 2, type: 'hiphop',
+              title: '2Pac & Jay-Z Anchor a Legendary Year',
+              desc: '2Pac releases "All Eyez on Me" while Jay-Z steps up with "Reasonable Doubt" \u2014 a competitive peak for American rhyme-craft.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/All_Eyez_on_Me', maps: '', notion: '', photos: '' } },
+            { year: 1996, month: 9, type: 'hiphop',
+              title: 'Tupac Shakur Is Shot in Las Vegas',
+              desc: 'On September 7, Tupac is shot in a drive-by after a Mike Tyson fight, riding with Death Row\u2019s Suge Knight. He dies six days later at 25 \u2014 one of hip-hop\u2019s most consequential, still-unsolved losses.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Murder_of_Tupac_Shakur', maps: '', notion: '', photos: '' } },
+            { year: 1998, month: 8, type: 'music',
+              title: 'Lauryn Hill\u2019s Historic Grammy Sweep',
+              desc: '"The Miseducation of Lauryn Hill" fuses neo-soul and sharp rap verses, reshaping R&B and earning five Grammys in a single night.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/The_Miseducation_of_Lauryn_Hill', maps: '', notion: '', photos: '' } },
+            { year: 1999, month: 6, type: 'pop',
+              title: 'Napster Cracks the Music Industry Open',
+              desc: 'Peer-to-peer file sharing rewires how a generation finds, hoards and trades music \u2014 kicking off two decades of format wars.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Napster', maps: '', notion: '', photos: '' } },
+            { year: 2001, month: 1, type: 'pop',
+              title: 'Wikipedia Goes Live',
+              desc: 'On January 15, the first edit lands on a quirky little wiki meant to be Nupedia\u2019s scrappy draft space. It quickly outgrows its parent project and becomes the encyclopedia everyone actually uses \u2014 the perfect rabbit hole for chasing down any interest, nuclear or otherwise.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/History_of_Wikipedia', maps: '', notion: '', photos: '' } },
+            { year: 2001, month: 10, type: 'pop',
+              title: '"1,000 Songs in Your Pocket"',
+              desc: 'Apple\u2019s iPod arrives in October and the whole library goes mobile \u2014 the road from burned CDs to the streaming era begins.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/IPod', maps: '', notion: '', photos: '' } },
+            { year: 2003, month: 9, type: 'hiphop',
+              title: 'The OutKast Double-Album Phenomenon',
+              desc: '"Speakerboxxx/The Love Below" goes cross-genre ubiquitous, gives the world "Hey Ya!", and shows just how vast Southern hip-hop can be.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Speakerboxxx/The_Love_Below', maps: '', notion: '', photos: '' } },
+            { year: 2008, month: 10, type: 'pop',
+              title: 'Spotify Launches the Streaming Age',
+              desc: 'Ownership gives way to access; suddenly every genre is one tap away \u2014 the perfect engine for an ever more eclectic palate.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Spotify', maps: '', notion: '', photos: '' } },
+            { year: 2010, month: 8, type: 'indie',
+              title: 'Arcade Fire\u2019s "The Suburbs" Takes Indie Mainstream',
+              desc: 'The Montreal collective\u2019s sprawling third album wins Album of the Year, hauling indie rock into the bright lights.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/The_Suburbs', maps: '', notion: '', photos: '' } },
+            { year: 2011, month: 3, type: 'nuclear',
+              title: 'The Fukushima Daiichi Disaster',
+              desc: 'A March 11 earthquake and tsunami trigger meltdowns at three reactors, reshaping global nuclear policy and reigniting the safety debate.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Fukushima_nuclear_accident', maps: 'https://www.google.com/maps/search/?api=1&query=Fukushima+Daiichi+Nuclear+Power+Plant', notion: '', photos: '' } },
+            { year: 2012, month: 10, type: 'urbex',
+              title: 'Battleship Island Goes Global',
+              desc: 'Japan\u2019s abandoned Hashima (Gunkanjima) mining island stars as the villain\u2019s lair in "Skyfall"; it becomes a UNESCO World Heritage site in 2015.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Hashima_Island', maps: 'https://www.google.com/maps/search/?api=1&query=Hashima+Island+Japan', notion: '', photos: '' } },
+            { year: 2015, month: 3, type: 'hiphop',
+              title: 'Kendrick Lamar Redefines Protest Art',
+              desc: '"To Pimp a Butterfly" blends jazz, funk and spoken word; the track "Alright" becomes a generational civil-rights rallying cry.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/To_Pimp_a_Butterfly', maps: '', notion: '', photos: '' } },
+            { year: 2015, month: 7, type: 'indie',
+              title: 'Tame Impala\u2019s "Currents" Reboots Indie',
+              desc: 'Kevin Parker swaps fuzz for synths and melancholy; the dreamy, danceable sound comes to define late-2010s indie crossover.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Currents_(Tame_Impala_album)', maps: '', notion: '', photos: '' } },
+            { year: 2016, month: 9, type: 'indie',
+              title: 'Bon Iver Fractures the Format With "22, A Million"',
+              desc: 'Glitchy, sample-warped folk pushes indie into strange new shapes \u2014 peak era for the headphones-on, late-night listener.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/22,_a_Million', maps: '', notion: '', photos: '' } },
+            { year: 2018, month: 4, type: 'music',
+              title: 'Hip-Hop\u2019s First Pulitzer Prize',
+              desc: 'Kendrick Lamar wins the Pulitzer Prize for Music for "DAMN." \u2014 the first time a non-classical, non-jazz artist takes the honor.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Damn_(Kendrick_Lamar_album)', maps: '', notion: '', photos: '' } },
+            { year: 2019, month: 5, type: 'urbex',
+              title: 'Dark Tourism Surges Into the Zone',
+              desc: 'HBO\u2019s "Chernobyl" sends visitors flocking to the Exclusion Zone and Pripyat, turning a sealed disaster site into a bucket-list pilgrimage.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Chernobyl_Exclusion_Zone', maps: 'https://www.google.com/maps/search/?api=1&query=Chernobyl+Exclusion+Zone', notion: '', photos: '' } },
+            { year: 2022, month: 12, type: 'nuclear',
+              title: 'Fusion Hits "Ignition" for the First Time',
+              desc: 'On December 5, Lawrence Livermore\u2019s National Ignition Facility gets more energy out than its lasers put in \u2014 the long-promised breakeven, finally real.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/National_Ignition_Facility', maps: '', notion: '', photos: '' } },
+            { year: 2023, month: 7, type: 'nuclear',
+              title: 'America Switches On a New Reactor',
+              desc: 'Plant Vogtle Unit 3 in Georgia enters commercial operation on July 31 \u2014 the first newly built U.S. reactor in over 30 years. Unit 4 follows in 2024.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Vogtle_Electric_Generating_Plant', maps: 'https://www.google.com/maps/search/?api=1&query=Plant+Vogtle+Waynesboro+Georgia', notion: '', photos: '' } },
+            { year: 2024, month: 5, type: 'hiphop',
+              title: 'The Great Lyric Battle Era',
+              desc: 'The high-stakes showdown between Kendrick Lamar and Drake grips global pop culture, generating chart-topping, multi-platinum diss tracks.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Drake%E2%80%93Kendrick_Lamar_feud', maps: '', notion: '', photos: '' } },
+            { year: 2026, type: 'milestone',
+              title: 'Cheers to 40 Years of the Good Stuff',
+              desc: 'Four decades of iconic rhythm, world-changing sound, splitting atoms and beautifully abandoned places. The best chapter starts now.',
+              links: { wikipedia: '', maps: '', notion: 'ADD', photos: 'ADD' } },
 
-        <div class="card">
-          <div class="card-kicker">Presentations</div>
-          <h3>Conference &amp; Invited Speaker</h3>
-          <p>Presented at AFCPE, NACUBO, NASFAA, Higher Education Financial Wellness Summit, and other national venues since 2012.</p>
-          <a href="cv.html#presentations" class="card-link">Full presentations list</a>
-        </div>
-      </div>
-    </div>
-  </div>
+            { year: 1986, month: 1, type: 'music',
+              title: 'Rock & Roll Hall of Fame Inducts Its First Class',
+              desc: 'The very first induction ceremony, January 23 at NYC\u2019s Waldorf-Astoria, honors rock\u2019s founders \u2014 Chuck Berry, Elvis, Little Richard, Ray Charles and James Brown among them.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Rock_and_Roll_Hall_of_Fame', maps: '', notion: '', photos: '' } },
+            { year: 1986, month: 1, type: 'space',
+              title: 'Voyager 2 Sweeps Past Uranus',
+              desc: 'On January 24, Voyager 2 makes humanity\u2019s first \u2014 and still only \u2014 close flyby of Uranus, returning the first detailed images of the ice giant and its moons.',
+              links: { link: 'https://science.nasa.gov/mission/voyager/timeline/' } },
+            { year: 2010, month: 3, type: 'music',
+              title: 'Ana\u00EFs Mitchell Releases the \u201CHadestown\u201D Folk Opera',
+              desc: 'The concept album reworking the Orpheus myth \u2014 with guest turns from Justin Vernon and Ani DiFranco \u2014 arrives March 9, long before it conquers Broadway.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Hadestown_(album)', maps: '', notion: '', photos: '' } },
+            { year: 2012, month: 8, type: 'space',
+              title: 'Voyager 2 Becomes the Longest-Running Mission',
+              desc: 'In August, Voyager 2 \u2014 launched back in 1977 \u2014 becomes NASA\u2019s longest continuously operating spacecraft, still phoning home from the solar system\u2019s edge.',
+              links: { link: 'https://science.nasa.gov/mission/voyager/timeline/' } },
+            { year: 2017, month: 10, type: 'milestone',
+              title: 'Got Tattoos',
+              desc: 'Got coordinated tattoos of the Little Dipper and Big Dipper.',
+              links: { wikipedia: '', maps: '', notion: '', photos: 'https://photos.app.goo.gl/9o7WME2rf467JwRh7' } },
+            { year: 2026, month: 2, type: 'music',
+              title: 'Bad Bunny Headlines the Super Bowl LX Halftime Show',
+              desc: 'On February 8 at Levi\u2019s Stadium, Bad Bunny becomes the first solo Latino, Spanish-language artist to headline the Super Bowl halftime show.',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Super_Bowl_LX_halftime_show', maps: '', notion: '', photos: '' } },
 
-  <!-- Projects -->
-  <div class="band projects-band" aria-labelledby="projects-h">
-    <div class="band-inner">
-      <div class="s-kicker" aria-hidden="true">Projects</div>
-      <h2 id="projects-h">Ongoing <span class="hl">Work</span></h2>
-      <p class="s-lead">Educational outreach, interactive tools, and applied research spanning financial wellness, higher education, and technology.</p>
+            { year: 2004, month: 4, type: 'nuclear',
+              title: 'Blue Peacock: The Chicken-Powered Nuke Declassified',
+              desc: 'On April 1, 2004 — yes, really — the UK National Archives releases files on a 1950s Cold War plan to bury ten-kiloton nuclear land mines across West Germany. The best part: engineers seriously proposed sealing live chickens inside the casings to keep the electronics warm. The archivist had to assure the press: “The Civil Service does not do jokes.”',
+              links: { wikipedia: 'https://en.wikipedia.org/wiki/Blue_Peacock',
+                       maps: 'https://www.google.com/maps/search/?api=1&query=Fort+Halstead+Kent+UK',
+                       notion: '', photos: '' } },
+            /* ----------  PREVIOUS TRIPS (personal events)  ---------- */
+            { year: 2014, month: 10, type: 'milestone', emoji: '\uD83C\uDF32', title: 'Seattle to Portland',
+              desc: 'Meandered from Seattle, WA to Portland, OR stopping for rainforests and old growth giants along the Pacific North-west coast.',
+              links: { wikipedia: '', maps: 'ADD', notion: 'https://app.notion.com/p/Seattle-to-Portland-2014-bc84ab204ef44dd386457271d574bec1?source=copy_link', photos: 'https://photos.app.goo.gl/EGaWyan5buC3a9bz8' } },
+            { year: 2014, month: 10, type: 'milestone', emoji: '\uD83C\uDFDB\uFE0F', title: 'DC Trip',
+              desc: 'Explored what Washington, DC had to offer, including the friendliest of sea lions at the National Zoo and unique cuisines.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Washington%2C+DC', notion: '', photos: 'https://photos.app.goo.gl/uG52NnQAJNmmhDnh6' } },
+            { year: 2015, month: 10, type: 'milestone', emoji: '\uD83E\uDDE1', title: 'HoneyMoon Acadia',
+              desc: 'Drove Indiana, Ohio, Pennsylvania, New York, Massachusetts, New Hampshire, Maine... all to get to Acadia National Park on Mount Desert Island.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Acadia+National+Park', notion: 'https://app.notion.com/p/HoneyMoon-Acadia-2015-bace84da3f91475e859de912c829a458?source=copy_link', photos: 'https://photos.app.goo.gl/tB2LSmTbnc3Spy2R9' } },
+            { year: 2016, month: 5, type: 'milestone', emoji: '\uD83C\uDFDD\uFE0F', title: 'Puerto Rico Trip',
+              desc: 'Flew for a visit with Uncle Jim as a wedding gift.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Puerto+Rico', notion: 'https://app.notion.com/p/Puerto-Rico-Trip-May-2016-2884c964dd80800187d8dafd80314d9d?source=copy_link', photos: 'https://photos.app.goo.gl/XiRTFK3W9j76MHWs8' } },
+            { year: 2016, month: 10, type: 'milestone', emoji: '\uD83E\uDD9E', title: 'Acadia Roadtrip',
+              desc: 'Took Unity to visit the very dog-friendly Bar Harbor and show her the ultimate sniffari.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Acadia+National+Park', notion: 'https://app.notion.com/p/Acadia-National-Park-Trip-October-2016-bf471884580b475088c7460a7e48169b?source=copy_link', photos: 'https://photos.app.goo.gl/gbskPozjMexKw8xX6' } },
+            { year: 2017, month: 9, type: 'milestone', emoji: '\uD83C\uDF35', title: 'Santa Fe Roadtrip',
+              desc: 'Took Route 66 to Santa Fe, NM for the nuptials of Jess & Jeremy.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Santa+Fe%2C+New+Mexico', notion: 'https://app.notion.com/p/Santa-Fe-Trip-September-2017-42b5ccd896484fb39042cd4ddb01202f?source=copy_link', photos: 'https://photos.app.goo.gl/eoajPp8ULuAVs1k9A' } },
+            { year: 2017, month: 10, type: 'milestone', emoji: '\uD83D\uDDA4', title: 'Got Tattoos',
+              desc: 'Got coordinated tattoos of the Little Dipper and Big Dipper.',
+              links: { wikipedia: '', maps: '', notion: '', photos: 'https://photos.app.goo.gl/9o7WME2rf467JwRh7' } },
+            { year: 2018, month: 7, type: 'milestone', emoji: '\uD83D\uDCBC', title: 'Oregon Trail Roadtrip',
+              desc: 'More like #OregonTail Trip. Took a road trip from Illinois to Oregon, similar to the route taken by Oregon Trail settlers.',
+              links: { wikipedia: '', maps: 'ADD', notion: 'https://app.notion.com/p/Portland-for-HEFW-Summit-July-2018-d410309dde8e4d7bb128aa32d69888d1?source=copy_link', photos: 'https://photos.app.goo.gl/AUqHNbpZZru5nXvt6' } },
+            { year: 2019, month: 3, type: 'milestone', emoji: '\uD83C\uDFD4\uFE0F', title: 'Denver Roadtrip',
+              desc: 'Traversed across Illinois, Missouri, Kansas, and Colorado to visit Denver, CO.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Denver%2C+Colorado', notion: 'https://app.notion.com/p/Denver-Trip-March-2019-a4997353171148829d106f0c51289a1e?source=copy_link', photos: 'https://photos.app.goo.gl/VSu7egpUrw5F5PrJA' } },
+            { year: 2019, month: 10, type: 'milestone', emoji: '\uD83C\uDF42', title: 'Southern Illinois Adventure',
+              desc: 'Tried to tent camp at Middle Fork Forest Preserve but ended up heading home at 5 AM, eating brunch at Black Dog, and booking an AirBnB for Southern Illinois hikes with our dogter instead.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Southern+Illinois', notion: '', photos: 'https://photos.app.goo.gl/CpBAYkXAZbobRT1K9' } },
+            { year: 2020, month: 1, type: 'milestone', emoji: '\uD83C\uDF33', title: 'TreeHouse Weekend in Shawnee National Forest',
+              desc: 'Our last family trip before the pandemic kept us mostly home. Glad we explored the Garden of the Gods and got to sleep in a treehouse.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Shawnee+National+Forest', notion: 'https://app.notion.com/p/TreeHouse-Weekend-in-Shawnee-National-Forest-January-2020-75ec90a635984f3fb6ecf0aac223f3bd?source=copy_link', photos: 'https://photos.app.goo.gl/8tRVG1J3xRsjRpxe7' } },
+            { year: 2021, month: 5, type: 'milestone', emoji: '\u26FA', title: 'Pikeville, TN Roadtrip',
+              desc: 'Settled into the mountains near Pikeville after a stop in Paducah, KY \u2014 white-knuckled some scary-steep gravel roads, hit Rock City Gardens on Lookout Mountain, and cut the trip a day short to dodge more storms.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Pikeville%2C+Tennessee', notion: 'https://app.notion.com/p/Pikeville-TN-Trip-May-2021-48a9b588d9d8417ea8d96ef2fa60a2f0?source=copy_link', photos: 'https://photos.app.goo.gl/XctZMvZqLygA4bvf9' } },
+            { year: 2021, month: 10, type: 'milestone', emoji: '\uD83C\uDFD5\uFE0F', title: 'South Dakota Roadtrip',
+              desc: 'A Badlands-and-Black-Hills loop: astrophotography in the Badlands on a rainy day, bison everywhere at Custer State Park and Wind Cave, an overpriced bison burger at Wall Drug, and scenic drives along Needles Highway and the Wildlife Loop Road.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Badlands+National+Park', notion: 'https://app.notion.com/p/Badlands-Trip-October-2021-e935114b5a6b4a3095d260141c7c6c09?source=copy_link', photos: 'https://photos.app.goo.gl/kzPFitN7eMfuX2Cd9' } },
+            { year: 2022, month: 1, type: 'milestone', emoji: '\uD83D\uDE99', title: 'Virginia Roadtrip',
+              desc: 'Drove down to visit Jackie & Joe and the Ellis family near Williamsburg, stopping through Huntington, WV along the way, then settled into a VRBO in Gloucester Point for the week.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Virginia', notion: 'https://app.notion.com/p/Virginia-Trip-January-2022-d931307529754d9582866665956e369e?source=copy_link', photos: 'https://photos.app.goo.gl/oKqDuKMN2uKfznTAA' } },
+            { year: 2022, month: 5, type: 'milestone', emoji: '\u2601\uFE0F', title: 'Michigan Mitten Roadtrip',
+              desc: 'A ten-day loop up the mitten and across the Mackinac Bridge \u2014 the Tunnel of Trees, astrophotography at Headlands Dark Sky Park, the Besser Museum in Alpena, a string of small-town coffee shops, and visits with family in Novi on the way home.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Michigan', notion: 'https://evanescent-smell-3d2.notion.site/Michigan-Trip-May-2022-128cb1a1f7764409abefe4d6f2c5ec5a?source=copy_link', photos: 'https://photos.app.goo.gl/9eBq7b5NSfwZB7U1A' } },
+            { year: 2022, month: 10, type: 'milestone', emoji: '\uD83C\uDF0C', title: 'Maine Roadtrip',
+              desc: 'Two weeks through New England to Bar Harbor for their anniversary \u2014 daily Down East Deli lobster rolls, Acadia hikes with Uni, astrophotography by Long Pond, popovers at Jordan Pond House, and a wrong-turn detour through Salem during Haunted Happenings on the way home.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Maine', notion: 'https://evanescent-smell-3d2.notion.site/Maine-Trip-October-2022-5b78b5f82e5b4519b66aa838db7c9016?source=copy_link', photos: 'https://photos.app.goo.gl/yyex4xnVpHvbXeoY6' } },
+            { year: 2023, month: 5, type: 'milestone', emoji: '\uD83D\uDC04', title: 'Florida Roadtrip for Alli\u2019s Graduation',
+              desc: 'Drove down to Winter Haven for Alli\u2019s college graduation \u2014 a backyard party, Bok Tower Gardens, days of remote work woven between family time, and the big ceremony at Polk State, with Aunt Maria visits in Georgia bookending the drive.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Florida', notion: 'https://app.notion.com/p/Florida-Trip-for-Alli-s-Graduation-May-2023-6f014bd7e5b54b69978ff35f822d69cd?source=copy_link', photos: 'https://photos.app.goo.gl/Emy4zPpDpxdaYihq8' } },
+            { year: 2023, month: 10, type: 'milestone', emoji: '\uD83C\uDF41', title: 'Michigan Roadtrip for Uni',
+              desc: 'A fall-colors loop up to Northern Michigan \u2014 sunset beach time with Uni at Warren Dunes, a drive through endless apple orchards to grab server hardware, infrared star trail photography, the Tunnel of Trees in peak color, and a sunset photo session back at the lake whenever Uni\u2019s sore feet called it an early day.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Michigan', notion: 'https://app.notion.com/p/Michigan-Trip-October-2023-0c28a31dc0b7436cafec9dcbfb8175de?source=copy_link', photos: 'https://photos.app.goo.gl/wbMURX8NMExAtmV5A' } },
+            { year: 2024, month: 4, type: 'milestone', emoji: '\uD83C\uDD98', title: 'Flagstaff, AZ',
+              desc: 'A rescue mission to help the parents navigate a health issue \u2014 arrived to 70-degree weather and woke up the next morning to a snow-covered, slushy scape.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Flagstaff%2C+Arizona', notion: 'https://app.notion.com/p/Flagstaff-AZ-April-2024-2814c964dd8080c0adf3de152ea9f5e1?source=copy_link', photos: 'https://photos.app.goo.gl/XoLsvAhMFTPvyjf9A' } },
+            { year: 2024, month: 10, type: 'milestone', emoji: '\uD83C\uDF0C', title: 'U.P. Michigan Roadtrip',
+              desc: 'Kicked things off helping prep for the parents\u2019 40th wedding anniversary party in Fort Atkinson, then headed up to Michigan\u2019s Upper Peninsula chasing adventures \u2014 and a stretch of surprise aurora.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Michigan', notion: 'https://app.notion.com/p/Michigan-Trip-October-2024-c0cb24a7b80647bd9a070e740f6646df?source=copy_link', photos: 'https://photos.app.goo.gl/qXRsAtZQ9ZLpV7sp8' } },
+            { year: 2025, month: 1, type: 'milestone', emoji: '\uD83C\uDF4A', title: 'Southeastern US Roadtrip',
+              desc: 'Rang in the New Year with the Ellis family in Virginia \u2014 meeting their new puppy Nutmeg and driving through a soggy, thankfully ice-free mountain pass \u2014 before continuing the swing further into the Southeast.',
+              links: { wikipedia: '', maps: 'ADD', notion: 'https://app.notion.com/p/Southeastern-US-Roadtrip-January-2025-1514c964dd80804e9335ea2a9da26fe8?source=copy_link', photos: 'https://photos.app.goo.gl/8njJhGmDHTKR674p7' } },
+            { year: 2025, month: 6, type: 'milestone', emoji: '\u2601\uFE0F', title: 'Utah Trip',
+              desc: 'A wonderful trip celebrating Bebe\u2019s birthday, plus exploring the mountains.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Utah', notion: 'https://app.notion.com/p/Utah-Trip-June-2025-18fc7009826e48ae8c233c8d9cc2570d?source=copy_link', photos: 'https://photos.app.goo.gl/xYF12fesMUbi1ejx8' } },
+            { year: 2025, month: 10, type: 'milestone', emoji: '\uD83D\uDC96', title: 'Midcoast Maine 10th Anniversary Trip',
+              desc: 'Ten years in, back to Maine \u2014 a redemption lobster roll at Claws after a rough start, the Coastal Maine Botanical Gardens, a nerve-wracking first-ever ski lift ride at Camden Snow Bowl, astrophotography outside the AirBnB, a lobster pot rescued and returned at Seawall, and a sunset at Mt. Battie Tower before flying home from Bangor.',
+              links: { wikipedia: '', maps: 'https://www.google.com/maps/search/?api=1&query=Maine', notion: 'https://app.notion.com/p/Maine-10th-Anniversary-Trip-October-2025-2814c964dd808026a333dd5e9752f77d?source=copy_link', photos: 'https://photos.app.goo.gl/mf85wyKNy1hBZFZV6' } }
+        ];
 
-      <div class="projects-grid">
-        <div class="proj-card">
-          <span class="proj-icon" aria-hidden="true">🎙️</span>
-          <div class="card-kicker">Podcast · 2020–Present</div>
-          <h3>Making Cents of Money</h3>
-          <p>Co-host of a 100+ episode podcast produced as a partnership between the Illinois Department of Financial &amp; Professional Regulation and the University of Illinois System.</p>
-          <a href="projects.html#podcast" class="card-link">Learn more</a>
-        </div>
-        <div class="proj-card">
-          <span class="proj-icon" aria-hidden="true">📡</span>
-          <div class="card-kicker">Webinar Series · 2013–Present</div>
-          <h3>Get Savvy: Grow Your Green Stuff</h3>
-          <p>Statewide webinar series for consumers across Illinois: free, public, and updated with new topics each academic year.</p>
-          <a href="projects.html#webinar" class="card-link">Learn more</a>
-        </div>
-        <div class="proj-card">
-          <span class="proj-icon" aria-hidden="true">🏦</span>
-          <h3>Compound Interest Calculator</h3>
-          <p>An interactive visualization tool designed to make compound interest intuitive, informed by my dissertation research on visual media in financial education.</p>
-          <a href="compound-interest-calculator.html" class="card-link">Try the tool</a>
-        </div>
-        <div class="proj-card">
-          <span class="proj-icon" aria-hidden="true">✅</span>
-          <h3>Financial Wellness Checkup</h3>
-          <p>A guided self-assessment to help users evaluate and reflect on their financial health across multiple dimensions.</p>
-          <a href="https://financialwellnesscheckup.streamlit.app/" target="_blank" rel="noopener noreferrer" class="card-link">Try the tool</a>
-        </div>
-        <div class="proj-card">
-          <span class="proj-icon" aria-hidden="true">🎓</span>
-          <h3>Student Loan Repayment Wizard</h3>
-          <p>A step-by-step wizard to help students navigate repayment options from materials by AccessLex and help from Claude Sonnet 4.0.</p>
-          <a href="https://apelleg3.github.io/Federal_Loan_Repayment_Guide/" target="_blank" rel="noopener noreferrer" class="card-link">Try the tool</a>
-        </div>
-      </div>
-    </div>
-  </div>
+        /* ----------  ICONS  ---------- */
+        const ICONS = {
+            wikipedia: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/><text x="12" y="16.4" text-anchor="middle" font-size="12.5" font-family="Georgia, serif" font-weight="700" fill="currentColor">W</text></svg>',
+            maps:   '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+            notion: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg>',
+            photos: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.7"/><path d="M21 16.5l-5-5-4 4-2-2-4 4"/></svg>',
+            link:   '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18c-2.6-2.7-2.6-15.3 0-18z"/></svg>'
+        };
+        const LINK_ORDER = [
+            { key: 'wikipedia', name: 'Wikipedia' },
+            { key: 'link',      name: 'source page' },
+            { key: 'maps',      name: 'Google Maps' },
+            { key: 'notion',    name: 'Notion notes' },
+            { key: 'photos',    name: 'photo album' }
+        ];
 
-  <!-- Art -->
-  <div class="band art-band" aria-labelledby="art-h">
-    <div class="band-inner">
-      <div class="art-inner">
-        <div class="art-text">
-          <div class="s-kicker" aria-hidden="true">Art</div>
-          <h2 id="art-h">A Creative <span class="hl-sage">Side</span></h2>
-          <p>Alongside my work in education and research, I make art. Prints and products available through my Redbubble shop.</p>
-          <div class="art-ctas">
-            <a href="art.html" class="btn btn-ghost">View Gallery</a>
-            <a href="https://www.redbubble.com/people/sillylittletpot/" target="_blank" rel="noopener noreferrer" class="btn btn-sage">Shop on Redbubble ↗</a>
-          </div>
-        </div>
-        <div class="art-gallery" aria-label="Art preview thumbnails">
-          <a href="art.html" class="art-swatch"><img src="assets/art/art-06.jpg" alt="Night Swimmer's Sky" /></a>
-          <a href="art.html" class="art-swatch"><img src="assets/art/art-07.jpg" alt="Saguaro Cacti Lines" /></a>
-          <a href="art.html" class="art-swatch"><img src="assets/art/art-02.jpg" alt="Big Moon Over Pines" /></a>
-          <a href="art.html" class="art-swatch"><img src="assets/art/art-01.jpg" alt="Rainbow Cheetah" /></a>
-        </div>
-        </div>
-      </div>
-    </div>
+        const timeline = document.getElementById('timeline');
+        const statusEl = document.getElementById('status');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const MONTHS = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-</main>
+        /* ----------  Build legend + filter buttons from categories  ---------- */
+        const legendEl = document.getElementById('legend');
+        const filtersEl = document.getElementById('filters');
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      Andrea Pellegrini
-      <span>Educator · Researcher · Wizard</span>
-    </div>
-    <ul class="footer-links" role="list">
-      <li><a href="about.html">About</a></li>
-      <li><a href="cv.html">CV</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="teaching.html">Teaching</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="art.html">Art</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="mailto:apelleg3@illinois.edu">Email</a></li>
-    </ul>
-    <p class="footer-copy">&copy; 2026 Andrea Pellegrini &middot; Champaign, Illinois</p>
-  </div>
-</footer>
+        Object.values(categories).forEach(c => {
+            const li = document.createElement('li');
+            li.style.setProperty('--accent', c.accent);
+            li.innerHTML = `<span class="dot" aria-hidden="true"></span>${c.label}`;
+            legendEl.appendChild(li);
+        });
+
+        const filterDefs = [{ id: 'all', label: 'All Eras', accent: '#FFFFFF' },
+            ...Object.entries(categories).map(([id, c]) => ({ id, label: c.label, accent: c.accent }))];
+
+        filterDefs.forEach((f, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.dataset.filter = f.id;
+            btn.style.setProperty('--accent', f.accent);
+            btn.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+            const swatch = f.id === 'all' ? '' : '<span class="swatch" aria-hidden="true"></span>';
+            btn.innerHTML = `${swatch}${f.label}`;
+            filtersEl.appendChild(btn);
+        });
+
+        /* ----------  State + rendering  ---------- */
+        let state = { filter: 'all', query: '' };
+
+        function escapeAttr(s) { return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;'); }
+
+        function buildLinks(ev, idx) {
+            let chips = '';
+            LINK_ORDER.forEach(({ key, name }) => {
+                const val = ev.links ? ev.links[key] : '';
+                if (!val) return;
+                const icon = ICONS[key];
+                if (val === 'ADD') {
+                    chips += `<button type="button" class="link-chip ghost" data-hint="${idx}"
+                        aria-label="Add a ${name} link for ${escapeAttr(ev.title)}" title="Add ${name}">${icon}</button>`;
+                } else {
+                    chips += `<a class="link-chip" href="${escapeAttr(val)}" target="_blank" rel="noopener noreferrer"
+                        aria-label="Open ${name} for ${escapeAttr(ev.title)} (opens in a new tab)" title="${name}">${icon}</a>`;
+                }
+            });
+            return chips;
+        }
+
+        function render(list) {
+            timeline.innerHTML = '';
+            timeline.classList.toggle('is-empty', list.length === 0);
+
+            if (list.length === 0) {
+                const li = document.createElement('li');
+                li.className = 'empty-state';
+                li.innerHTML = '<strong>No events match that.</strong><br>Try another era or clear the search.';
+                timeline.appendChild(li);
+                statusEl.textContent = `No events match. ${events.length} total.`;
+                return;
+            }
+
+            list.forEach((ev, index) => {
+                const cat = categories[ev.type] || { label: ev.type, accent: '#fff' };
+                const side = index % 2 === 0 ? 'left' : 'right';
+                const headingId = `event-${ev.year}-${index}`;
+
+                const li = document.createElement('li');
+                li.className = `timeline-item ${side}`;
+                li.style.setProperty('--accent', cat.accent);
+                li.innerHTML = `
+                    <article class="content-card" aria-labelledby="${headingId}">
+                        <div class="year-header">
+                            <span class="year-badge">${ev.month ? `<span class="month-badge">${MONTHS[ev.month]}</span>` : ''}${ev.year}</span>
+                            <span class="tag">${cat.label}</span>
+                        </div>
+                        <h3 id="${headingId}">${ev.emoji ? `<span class="emoji" aria-hidden="true">${ev.emoji}</span>` : ''}${ev.title}</h3>
+                        ${ev.desc ? `<p class="desc">${ev.desc}</p>` : ''}
+                        <div class="link-row">${buildLinks(ev, index)}</div>
+                        <p class="hint" hidden>To wire this up, open the file, find the
+                            <code>"${escapeAttr(ev.title)}"</code> card and paste your URL into its
+                            <code>links</code> (Notion page, Google Maps pin, or Google Photos album).</p>
+                    </article>`;
+                timeline.appendChild(li);
+            });
+
+            // Reveal animation (skipped when reduced motion is on)
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.timeline-item').forEach(item => item.classList.add('visible'));
+            });
+
+            const label = state.filter === 'all' ? '' : ` in ${categories[state.filter]?.label || state.filter}`;
+            statusEl.textContent = `Showing ${list.length} of ${events.length} events${label}.`;
+        }
+
+        function applyFilters() {
+            const q = state.query.trim().toLowerCase();
+            const filtered = events.filter(ev => {
+                const matchType = state.filter === 'all' || ev.type === state.filter;
+                const matchText = !q ||
+                    ev.title.toLowerCase().includes(q) ||
+                    ev.desc.toLowerCase().includes(q) ||
+                    String(ev.year).includes(q) ||
+                    (categories[ev.type]?.label || '').toLowerCase().includes(q);
+                return matchType && matchText;
+            });
+            render(filtered);
+        }
+
+        /* ----------  Events  ---------- */
+        document.getElementById('search').addEventListener('input', e => {
+            state.query = e.target.value;
+            applyFilters();
+        });
+
+        filtersEl.addEventListener('click', e => {
+            const btn = e.target.closest('.filter-btn');
+            if (!btn) return;
+            state.filter = btn.dataset.filter;
+            filtersEl.querySelectorAll('.filter-btn').forEach(b =>
+                b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+            applyFilters();
+        });
+
+        // Toggle the "how to add a link" hint on ghost chips
+        timeline.addEventListener('click', e => {
+            const ghost = e.target.closest('.ghost');
+            if (!ghost) return;
+            const hint = ghost.closest('.content-card').querySelector('.hint');
+            const nowHidden = hint.hasAttribute('hidden');
+            if (nowHidden) hint.removeAttribute('hidden'); else hint.setAttribute('hidden', '');
+            ghost.setAttribute('aria-expanded', String(nowHidden));
+        });
+
+        events.sort((a, b) => (a.year - b.year) || ((a.month || 13) - (b.month || 13)));
+        applyFilters();
+    </script>
 </body>
 </html>
