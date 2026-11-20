@@ -178,7 +178,12 @@
     .ep-links{display:flex;flex-wrap:wrap;gap:0.3rem 1rem;width:100%;}
     .ep-links a{font-family:'Josefin Sans',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;color:var(--purple-bright);text-decoration:none;}
     .ep-links a:hover{color:var(--text);}
-    @media(max-width:760px){.post-grid,.ep-grid{grid-template-columns:1fr;}}
+    .post-feature{display:grid;grid-template-columns:1.3fr 1fr;align-items:center;}
+    .post-feature img{aspect-ratio:1600/700;}
+    .post-feature-body{display:block;padding:1.5rem 1.75rem;}
+    .post-feature .post-title{display:block;font-size:1.2rem;letter-spacing:0.08em;text-transform:uppercase;}
+    .post-feature .post-note{font-size:0.92rem;color:var(--text-soft);line-height:1.7;margin-top:0.5rem;}
+    @media(max-width:760px){.post-grid,.ep-grid,.post-feature{grid-template-columns:1fr;}}
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBZP1CDF77"></script>
@@ -233,7 +238,23 @@
     <div class="page-header-inner">
       <div class="s-kicker" aria-hidden="true">Blog</div>
       <h1>Writing &amp; <span class="hl">Updates</span></h1>
-      <p class="s-lead" style="margin-bottom:0;">Posts on financial education, learning design, and the data and AI tools shaping how people make money decisions. Most are written for the University of Illinois System's Student Money Management Center.</p>
+      <p class="s-lead" style="margin-bottom:0;">Posts on financial education, learning design, data visualization, and the data and AI tools shaping how people make money decisions. Most are written for the University of Illinois System's Student Money Management Center; independent writing is at the top.</p>
+    </div>
+  </div>
+
+  <div class="band band-card" aria-labelledby="h-design">
+    <div class="band-inner">
+      <div class="s-kicker" aria-hidden="true">Independent Writing</div>
+      <h2 id="h-design">Design &amp; <span class="hl">Research</span></h2>
+      <p class="s-lead">Articles written for this site on design, visual metaphor, and data visualization in my research.</p>
+      <a class="post-card post-feature" href="blog/snowballs-turtles-bar-charts.html">
+        <img src="assets/blog/snowballs-turtles-bar-charts.jpg" alt="Snowballs, Turtles, and Bar Charts" width="1600" height="700" />
+        <span class="post-feature-body">
+          <span class="post-kicker">Design · Visual Metaphor · Data Visualization</span>
+          <span class="post-note">Visual metaphor was an integrated but subtle part of my dissertation study on compound interest. Illustrations, bar charts, and visual displays from the study.</span>
+          <span class="post-date" style="display:block;margin-top:0.75rem;">Nov 20, 2026 <span class="post-go" aria-hidden="true">→</span></span>
+        </span>
+      </a>
     </div>
   </div>
 
@@ -244,7 +265,7 @@
       <p class="s-lead">Selected posts I wrote for the SMMC News &amp; Events blog on student loans, budgeting, banking, retirement, and more.</p>
       <div class="post-grid">
         <a class="post-card" href="https://blogs.uofi.uillinois.edu/view/7550/1296577111" target="_blank" rel="noopener noreferrer">
-          <img src="assets/blog/college-funding-plan.jpg" alt="Map Your College Funding Plan and Be Ready to Recalculate" loading="lazy" width="960" height="420" />
+          <img src="assets/blog/college-funding-plan.jpg.png" alt="Map Your College Funding Plan and Be Ready to Recalculate" loading="lazy" width="960" height="420" />
           <span class="post-meta"><span class="post-date">Nov 20, 2026</span><span class="post-go" aria-hidden="true">↗</span></span>
         </a>
         <a class="post-card" href="https://blogs.uofi.uillinois.edu/view/7550/530425576" target="_blank" rel="noopener noreferrer">
@@ -419,14 +440,6 @@
         <a href="https://open.spotify.com/show/6ZE7y9V85mBSB1dDbeaR1l" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Spotify ↗</a>
         <a href="http://soundcloud.com/idfpr" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">SoundCloud ↗</a>
       </div>
-    </div>
-  </div>
-
-  <div class="band" aria-labelledby="h-other">
-    <div class="band-inner">
-      <div class="s-kicker" aria-hidden="true">Elsewhere</div>
-      <h2 id="h-other">Other <span class="hl-sage">Writing</span></h2>
-      <p class="s-lead" style="margin-bottom:0;">Independent articles and posts from earlier blogs will be added here. For scholarly work, see my <a href="cv.html#publications" style="color:var(--purple-bright);">publications</a>.</p>
     </div>
   </div>
 

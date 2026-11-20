@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snowballs, Turtles, and Bar Charts: Andrea Pellegrini</title>
+  <meta name="description" content="Visual metaphor was an integrated but subtle part of my dissertation study on compound interest. Illustrations, bar charts, and visual displays from the study." />
+  <link rel="canonical" href="https://andreapellegrini.info/blog/snowballs-turtles-bar-charts.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Snowballs, Turtles, and Bar Charts" />
+  <meta property="og:description" content="Visual metaphor was an integrated but subtle part of my dissertation study on compound interest. Illustrations, bar charts, and visual displays from the study." />
+  <meta property="og:url" content="https://andreapellegrini.info/blog/snowballs-turtles-bar-charts.html" />
+  <meta property="og:image" content="https://andreapellegrini.info/assets/blog/snowballs-turtles-bar-charts.jpg" />
+  <meta property="og:image:alt" content="Ink drawing of three turtles in a row, each moving faster than the last, above the title Snowballs, Turtles, and Bar Charts." />
+  <meta property="article:published_time" content="2026-11-20" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:#0d0a14;--bg-card:#16112a;--bg-lift:#1d1635;
+      --purple-bright:#c4b5fd;--purple-mid:#a78bfa;--purple-soft:#7c5cbf;
+      --purple-dim:rgba(167,139,250,0.12);--purple-border:rgba(167,139,250,0.22);
+      --sage:#86b89a;--sage-dim:rgba(134,184,154,0.1);--sage-border:rgba(134,184,154,0.2);
+      --text:#f0edf8;--text-soft:#c8c2dc;--text-muted:#8a82a0;
+      --border:rgba(196,181,253,0.16);--radius:6px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Raleway',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+
+    .stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+    .stars::before{content:'';position:absolute;inset:0;background-image:
+      radial-gradient(1.2px 1.2px at 8% 12%,rgba(255,255,255,0.55) 0%,transparent 100%),
+      radial-gradient(1px 1px at 22% 5%,rgba(255,255,255,0.35) 0%,transparent 100%),
+      radial-gradient(1.5px 1.5px at 38% 22%,rgba(196,181,253,0.5) 0%,transparent 100%),
+      radial-gradient(1px 1px at 66% 8%,rgba(255,255,255,0.4) 0%,transparent 100%),
+      radial-gradient(1.5px 1.5px at 80% 28%,rgba(196,181,253,0.45) 0%,transparent 100%),
+      radial-gradient(1px 1px at 30% 85%,rgba(255,255,255,0.3) 0%,transparent 100%);}
+    .stars::after{content:'';position:absolute;inset:0;background:
+      radial-gradient(ellipse 60% 40% at 75% 20%,rgba(124,92,191,0.08) 0%,transparent 70%),
+      radial-gradient(ellipse 40% 50% at 20% 70%,rgba(134,184,154,0.05) 0%,transparent 70%);}
+
+    .skip-link{position:absolute;top:-100%;left:1rem;background:var(--purple-mid);color:var(--bg);font-weight:700;padding:0.5rem 1rem;border-radius:4px;z-index:9999;text-decoration:none;font-size:0.85rem;}
+    .skip-link:focus{top:1rem;}
+
+    nav{position:fixed;inset:0 0 auto 0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(13,10,20,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .nav-brand{text-decoration:none;line-height:1.2;}
+    .nav-brand-name{font-family:'Josefin Sans',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text);display:block;}
+    .nav-brand-sub{font-size:0.62rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple-bright);display:block;}
+    .nav-links{list-style:none;display:flex;gap:0.15rem;}
+    .nav-links a{text-decoration:none;font-family:'Josefin Sans',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;color:var(--text-soft);padding:0.35rem 0.7rem;border-radius:4px;transition:background 0.15s,color 0.15s;}
+    .nav-links a:hover,.nav-links a:focus-visible{color:var(--purple-bright);background:var(--purple-dim);outline:none;}
+    .nav-links a[aria-current="page"]{color:var(--purple-bright);}
+
+    .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:0.4rem;border-radius:4px;transition:background 0.15s;}
+    .nav-hamburger:hover{background:var(--purple-dim);}
+    .nav-hamburger:focus-visible{outline:3px solid var(--purple-bright);outline-offset:3px;}
+    .nav-hamburger span{display:block;width:22px;height:2px;background:var(--text-soft);border-radius:2px;transition:transform 0.2s,opacity 0.2s;}
+    .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav-hamburger.open span:nth-child(2){opacity:0;}
+    .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(13,10,20,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:199;padding:1rem 1.25rem 1.5rem;flex-direction:column;gap:0.25rem;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{text-decoration:none;font-family:'Josefin Sans',sans-serif;font-size:0.88rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-soft);padding:0.65rem 0.75rem;border-radius:4px;transition:background 0.15s,color 0.15s;}
+    .mobile-menu a:hover,.mobile-menu a:focus-visible{color:var(--purple-bright);background:var(--purple-dim);outline:none;}
+    .mobile-menu a[aria-current="page"]{color:var(--purple-bright);}
+
+    .band{position:relative;z-index:1;}
+    .band-inner{max-width:1140px;margin:0 auto;padding:5rem 2.5rem;}
+    .band-card{background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+
+    .page-header-band{position:relative;z-index:1;padding-top:64px;}
+    .page-header-inner{max-width:1140px;margin:0 auto;padding:4rem 2.5rem 3rem;border-bottom:1px solid var(--border);}
+
+    .s-kicker{display:inline-flex;align-items:center;gap:0.5rem;font-family:'Josefin Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--purple-bright);margin-bottom:0.6rem;}
+    .s-kicker::before{content:'✦';font-size:0.54rem;opacity:0.7;}
+
+    h1{font-family:'Josefin Sans',sans-serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text);line-height:1.1;margin-bottom:0.75rem;}
+    h1 .hl{color:var(--purple-bright);}
+    h2{font-family:'Josefin Sans',sans-serif;font-size:clamp(1.8rem,2.8vw,2.4rem);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text);line-height:1.2;margin-bottom:0.85rem;}
+    h2 .hl{color:var(--purple-bright);}
+    h2 .hl-sage{color:var(--sage);}
+    .s-lead{font-size:1rem;color:var(--text-soft);max-width:680px;margin-bottom:3rem;line-height:1.8;}
+
+    .btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.65rem 1.4rem;font-family:'Josefin Sans',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:100px;transition:transform 0.15s,background 0.15s,border-color 0.15s;}
+    .btn:focus-visible{outline:3px solid var(--purple-bright);outline-offset:3px;}
+    .btn-filled{background:var(--purple-mid);color:#0d0a14;border:1.5px solid transparent;}
+    .btn-filled:hover{background:var(--purple-bright);transform:translateY(-1px);}
+    .btn-ghost{background:transparent;border:1.5px solid var(--purple-border);color:var(--purple-bright);}
+    .btn-ghost:hover{background:var(--purple-dim);border-color:var(--purple-mid);transform:translateY(-1px);}
+
+    .research-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+    .card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;transition:border-color 0.2s,transform 0.2s;}
+    .card:hover{border-color:var(--purple-soft);transform:translateY(-2px);}
+    .card.featured{grid-column:1/-1;display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;background:linear-gradient(135deg,var(--bg-card),var(--bg-lift));border-color:rgba(167,139,250,0.3);padding:2.25rem;}
+    .card-kicker{font-family:'Josefin Sans',sans-serif;font-size:0.64rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple-mid);margin-bottom:0.6rem;}
+    h3{font-family:'Josefin Sans',sans-serif;font-size:1.08rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text);line-height:1.35;margin-bottom:0.65rem;}
+    .card p{font-size:0.9rem;color:var(--text-soft);line-height:1.8;margin-bottom:0.6rem;}
+    .card p:last-child{margin-bottom:0;}
+    .card-link{display:inline-flex;align-items:center;gap:0.35rem;font-family:'Josefin Sans',sans-serif;font-size:0.78rem;font-weight:700;color:var(--purple-bright);text-decoration:none;margin-top:0.5rem;transition:gap 0.15s;}
+    .card-link:hover{gap:0.6rem;}
+    .card-link:focus-visible{outline:2px solid var(--purple-bright);border-radius:2px;}
+    .card-link::after{content:'→';}
+
+    .dis-meta{display:flex;flex-direction:column;gap:1.1rem;padding-top:0.25rem;}
+    .dis-meta dt{font-family:'Josefin Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.2rem;}
+    .dis-meta dd{font-size:0.88rem;color:var(--text-soft);line-height:1.65;}
+    .dis-meta dd strong{color:var(--text);font-weight:600;}
+
+    .pub-entry{margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(196,181,253,0.07);}
+    .pub-entry:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+    .pub-year:empty{display:none;}
+    .pub-year{font-family:'Josefin Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.25rem;}
+    .pub-citation{font-size:0.87rem;color:var(--text-soft);line-height:1.75;}
+    .pub-citation em{font-style:italic;color:var(--text);}
+    .pub-citation strong{color:var(--purple-bright);font-weight:600;}
+    .pub-citation a{color:var(--purple-bright);text-decoration:none;font-size:0.8rem;}
+    .pub-citation a:hover{color:var(--text);}
+
+    .future-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+    .future-card{background:var(--bg-card);border:1px solid var(--sage-border);border-radius:var(--radius);padding:1.5rem;transition:border-color 0.2s,transform 0.2s;}
+    .future-card:hover{border-color:var(--sage);transform:translateY(-2px);}
+    .future-card .card-kicker{color:var(--sage);}
+    .future-card h3{font-size:0.95rem;}
+    .future-card p{font-size:0.86rem;}
+
+    footer{position:relative;z-index:1;background:var(--bg-card);border-top:1px solid var(--border);padding:3rem 2.5rem;}
+    .footer-inner{max-width:1140px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;}
+    .footer-brand{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text);}
+    .footer-brand span{display:block;font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple-bright);margin-top:0.25rem;}
+    .footer-links{list-style:none;display:flex;flex-wrap:wrap;gap:0.2rem;}
+    .footer-links a{text-decoration:none;font-family:'Josefin Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.06em;color:var(--text-muted);padding:0.25rem 0.6rem;border-radius:4px;transition:color 0.15s,background 0.15s;}
+    .footer-links a:hover{color:var(--purple-bright);background:var(--purple-dim);}
+    .footer-copy{font-size:0.72rem;color:var(--text-muted);}
+
+    @media(max-width:960px){
+      nav{padding:0 1.25rem;}
+      .page-header-inner{padding:3rem 1.25rem 2.5rem;}
+      .band-inner{padding:4rem 1.25rem;}
+      .research-grid{grid-template-columns:1fr;}
+      .card.featured{grid-template-columns:1fr;gap:2rem;}
+      .future-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:768px){
+      .nav-links{display:none;}
+      .nav-hamburger{display:flex;}
+    }
+    @media(max-width:600px){
+      .future-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:480px){
+      body{font-size:0.95rem;}
+      h1{font-size:1.8rem !important;}
+      h2{font-size:1.4rem !important;}
+      h3{font-size:0.95rem !important;}
+      .s-lead{font-size:0.92rem;}
+      .band-inner{padding:3rem 1rem;}
+      .card{padding:1.25rem;}
+    }
+    .post-list{display:flex;flex-direction:column;gap:1rem;}
+    .post{display:grid;grid-template-columns:130px 1fr auto;gap:1.5rem;align-items:center;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;text-decoration:none;transition:border-color 0.2s,transform 0.2s;}
+    .post:hover,.post:focus-visible{border-color:var(--purple-soft);transform:translateY(-1px);outline:none;}
+    .post-date{font-family:'Josefin Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);}
+    .post-kicker{font-family:'Josefin Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-bottom:0.2rem;}
+    .post-title{font-family:'Josefin Sans',sans-serif;font-size:0.98rem;font-weight:700;letter-spacing:0.04em;color:var(--text);line-height:1.4;}
+    .post-note{display:block;font-size:0.8rem;color:var(--text-muted);margin-top:0.2rem;}
+    .post-go{color:var(--purple-bright);font-size:0.9rem;}
+    @media(max-width:700px){.post{grid-template-columns:1fr;gap:0.4rem;padding:1.1rem;}.post-go{display:none;}}
+    .post-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;}
+    .post-card{display:block;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;text-decoration:none;transition:border-color 0.2s,transform 0.2s;}
+    .post-card:hover,.post-card:focus-visible{border-color:var(--purple-soft);transform:translateY(-2px);outline:none;}
+    .post-card img{display:block;width:100%;height:auto;aspect-ratio:2000/875;object-fit:cover;}
+    .post-meta{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:0.85rem 1.15rem;}
+    .post-meta .post-date{margin:0;}
+    .post-meta .post-note{margin:0;font-size:0.76rem;}
+    .ep-theme{margin-top:2.25rem;}
+    .ep-theme:first-of-type{margin-top:0;}
+    .ep-theme h3{color:var(--sage);font-size:0.8rem;letter-spacing:0.18em;margin-bottom:1rem;}
+    .ep-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
+    .ep{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color 0.2s,transform 0.2s;}
+    .ep:hover{border-color:var(--purple-soft);transform:translateY(-2px);}
+    .ep img{display:block;width:100%;height:auto;aspect-ratio:2000/875;object-fit:cover;}
+    .ep-body{padding:0.85rem 1.15rem 1rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.3rem 1rem;}
+    .ep-num{font-family:'Josefin Sans',sans-serif;font-size:0.66rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);}
+    .ep-guest{font-size:0.8rem;color:var(--text-soft);flex:1 1 auto;}
+    .ep-links{display:flex;flex-wrap:wrap;gap:0.3rem 1rem;width:100%;}
+    .ep-links a{font-family:'Josefin Sans',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;color:var(--purple-bright);text-decoration:none;}
+    .ep-links a:hover{color:var(--text);}
+    @media(max-width:760px){.post-grid,.ep-grid{grid-template-columns:1fr;}}
+    .crumb{font-family:'Josefin Sans',sans-serif;font-size:0.74rem;font-weight:600;letter-spacing:0.08em;margin-bottom:1.25rem;}
+    .crumb a{color:var(--purple-bright);text-decoration:none;}
+    .crumb a:hover{color:var(--text);}
+    .crumb span{color:var(--text-muted);}
+    .byline{font-family:'Josefin Sans',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);}
+    .article{max-width:800px;padding-top:3.5rem;}
+    .article p{font-size:1.02rem;color:var(--text-soft);line-height:1.85;margin-bottom:1.25rem;}
+    .article p.first{font-size:1.12rem;color:var(--text);}
+    .article p a{color:var(--purple-bright);}
+    .article p a:hover{color:var(--text);}
+    .article h2{font-size:clamp(1.4rem,2.3vw,1.8rem);margin:3.5rem 0 1.1rem;}
+    .article figure{margin:2.25rem 0;}
+    .paper{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;}
+    .paper img{display:block;width:100%;height:auto;}
+    .paper.wide{padding:2rem 1.5rem;}
+    .paper.embed{padding:0;overflow:hidden;color:#1f2937;font-family:Arial,sans-serif;font-size:1rem;line-height:1.5;text-align:left;}
+    .paper.embed figcaption{margin:0;border-radius:0;font-family:'Raleway',sans-serif;}
+    .article .embed h3{font-family:inherit;font-weight:700;letter-spacing:normal;text-transform:none;line-height:1.3;color:inherit;}
+    .article .embed p{color:inherit;line-height:1.5;}
+    .embed [tabindex]:focus-visible{outline:3px solid #0455a4;outline-offset:3px;}
+    .paper.narrow{max-width:520px;margin-left:auto;margin-right:auto;}
+    .paper.narrow-lg{max-width:640px;margin-left:auto;margin-right:auto;}
+    .paper figcaption{margin:1.25rem -1.25rem -1.25rem;padding:0.85rem 1.25rem;background:var(--bg-card);border-top:1px solid var(--border);border-radius:0 0 var(--radius) var(--radius);font-size:0.84rem;color:var(--text-soft);line-height:1.65;}
+    .paper.wide figcaption{margin:2rem -1.5rem -2rem;}
+    .icon-grid{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:0.85rem;margin:2rem 0;}
+    .icon-grid.three{grid-template-columns:repeat(3,1fr);max-width:520px;margin:2rem auto;}
+    .icon-grid li{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;}
+    .icon-grid img{display:block;width:100%;height:auto;padding:0.5rem;}
+    .icon-grid span{margin-top:auto;padding:0.55rem 0.4rem;background:var(--bg-card);border-top:1px solid var(--border);font-family:'Josefin Sans',sans-serif;font-size:0.64rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-soft);text-align:center;line-height:1.4;}
+    .article p.grid-caption{text-align:center;font-size:0.84rem;color:var(--text-muted);margin:-1rem 0 0;}
+    .article p.after-grid{margin-top:2rem;}
+    .tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0 0;}
+    .tool-grid .card{padding:1.25rem 1.4rem;}
+    .tool-grid .card p{font-size:0.9rem;margin:0;}
+    .article-end{display:flex;flex-wrap:wrap;gap:0.75rem;margin:3.5rem 0 2.5rem;padding-top:2.5rem;border-top:1px solid var(--border);}
+    .article p.ref{font-size:0.8rem;color:var(--text-muted);line-height:1.7;margin:0 0 0.5rem;}
+    .article p.ref strong{color:var(--text-soft);}
+    @media(max-width:700px){.icon-grid{grid-template-columns:repeat(3,1fr);}.tool-grid{grid-template-columns:1fr;}.paper{padding:0.75rem;}.paper figcaption{margin:0.75rem -0.75rem -0.75rem;}.paper.wide{padding:1.25rem 0.75rem;}.paper.wide figcaption{margin:1.25rem -0.75rem -1.25rem;}}
+    @media(max-width:420px){.icon-grid{grid-template-columns:repeat(2,1fr);}}
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBZP1CDF77"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FBZP1CDF77');
+  </script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav aria-label="Main navigation">
+  <a href="../index.html" class="nav-brand" aria-label="Andrea Pellegrini – home">
+    <span class="nav-brand-name">Andrea Pellegrini</span>
+    <span class="nav-brand-sub">Educator · Researcher · Wizard</span>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../cv.html">CV</a></li>
+    <li><a href="../research.html">Research</a></li>
+    <li><a href="../teaching.html">Teaching</a></li>
+    <li><a href="../projects.html">Projects</a></li>
+    <li><a href="../blog.html" aria-current="page">Blog</a></li>
+    <li><a href="../art.html">Art</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+  </ul>
+  <button type="button" class="nav-hamburger" id="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu" onclick="(function(){var m=document.getElementById('mobile-menu');var b=document.getElementById('nav-toggle');var o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');})();">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+  <a href="../index.html">Home</a>
+  <a href="../about.html">About</a>
+  <a href="../cv.html">CV</a>
+  <a href="../research.html">Research</a>
+  <a href="../teaching.html">Teaching</a>
+  <a href="../projects.html">Projects</a>
+  <a href="../blog.html" aria-current="page">Blog</a>
+  <a href="../art.html">Art</a>
+  <a href="../contact.html">Contact</a>
+</div>
+
+<div class="stars" aria-hidden="true"></div>
+
+<main id="main">
+
+  <div class="page-header-band">
+    <div class="page-header-inner">
+      <div class="crumb"><a href="../blog.html">Blog</a> <span>/</span> <span>Snowballs, Turtles, and Bar Charts</span></div>
+      <div class="s-kicker" aria-hidden="true">Design · Visual Metaphor · Data Visualization</div>
+      <h1>Snowballs, Turtles, and <span class="hl">Bar Charts</span></h1>
+      <p class="s-lead" style="margin-bottom:1rem;">Visual metaphor was an integrated but subtle part of my dissertation study on compound interest. Illustrations, bar charts, and visual displays from the study.</p>
+      <p class="byline">By Andrea Pellegrini · <time datetime="2026-11-20">November 20, 2026</time></p>
+    </div>
+  </div>
+
+  <article class="band">
+    <div class="band-inner article">
+
+      <figure class="paper wide">
+        <img src="../assets/blog/snowballs-turtles-bar-charts/snowballs.png" alt="Ink drawing of three snowballs on a line, each larger than the one before it." width="1800" height="388" />
+      </figure>
+
+      <p class="first">On April 3, 2026, I successfully defended my dissertation… <em>Goal Framing &amp; Visualizations' Influence on Self-regulated Learning of Compound Interest: An Explanatory Mixed Methods Study</em>.</p>
+
+      <h2 id="visual">The Most <span class="hl">Powerful Visual</span></h2>
+      <p>Visual metaphor was an integrated but subtle part of my study. The interactive compound interest calculator which produced bar charts to illustrate savings growth or debt repayment was the most powerful visual helping people understand the impact of time on exponential growth.</p>
+
+      <figure class="paper">
+        <img src="../assets/blog/snowballs-turtles-bar-charts/calculator-modes.png" alt="Two screenshots of the Enhanced Compound Interest Calculator. In Savings Growth mode, a stacked bar chart over 20 years shows interest earned growing to exceed principal and contributions. In Debt Payoff mode, red bars show remaining debt shrinking to zero over about nine years." loading="lazy" width="1442" height="880" />
+        <figcaption>Screenshots of the compound interest calculator in Savings Growth and Debt Payoff mode, where bar charts illustrate the time element of saving or debt repayment when compound interest is applied.</figcaption>
+      </figure>
+
+      <h2 id="design">Empirically-Informed <span class="hl">Design</span></h2>
+      <p>Large language models, Claude Sonnet 4 and 4.5, were used to draft code for the html-based calculator with interactive data visualizations in June 2025. The structure is similar to what can be found in publicly-available compound interest calculators on Investor.gov (line charts), NerdWallet (shaded area chart), or MoneyChimp (bar chart). A feature to toggle a table of the values in the bar chart was also included. The choice to use bar charts and provide the option of looking at the table was informed by prior empirical work by Hubbard et al. (2016) and Franconeri et al. (2021). Unlike most publicly available compound interest calculators, a function was added to address debt repayment vs savings goals.</p>
+      <p>Similar to other bar charts used in the intervention, the embedded visualization illustrating exponential growth uses a bar chart rather than a continuous curve to support easier comparison of yearly growth increments. In this case, to accommodate clear labeling and responsive web design for users on smaller screens, a slider was implemented to allow participants to see how money grows over time with compound interest.</p>
+
+      <figure class="paper embed">
+        <div style="max-width: 1000px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden; font-family: Arial, sans-serif;">
+            <div style="background: #13294b; color: white; padding: 15px; text-align: center;">
+                <h3 style="margin: 0; font-size: 1.5rem;">📈 15-Year Exponential Growth</h3>
+                <p style="margin: 5px 0 0 0; font-size: 0.9rem;">$1,000 at 8% Annual Compound Interest</p>
+            </div>
+            <div style="padding: 20px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px; padding: 15px; background: #E8E9EA; border-radius: 6px;">
+                    <div style="display: flex; flex-direction: column;">Principal Amount ($): $1,000</div>
+                    <div style="display: flex; flex-direction: column;">Interest Rate (%): 8%</div>
+                    <div style="display: flex; flex-direction: column;">Time Period (Years): 15</div>
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 6px; margin: 15px 0px; text-align: center;">
+                    <div style="text-align: center; font-size: 1.1rem; color: #13294b; margin-bottom: 20px;">📊 15-Year Exponential Growth Pattern</div>
+                    <span style="font-size: 10pt;">Scroll to view growth over time.</span>
+                    <div style="overflow-x: auto;">
+                        <div style="display: flex; align-items: end; justify-content: space-around; height: 350px; padding: 0 20px; background: white; border-radius: 4px; border: 1px solid #E8E9EA; position: relative; min-width: 1200px;" role="group" aria-labelledby="growth-chart-title" aria-describedby="growth-chart-desc">
+                            <div id="growth-chart-title" style="position: absolute; left: -9999px;" aria-hidden="true">15-Year Compound Interest Growth Chart</div>
+                            <div id="growth-chart-desc" style="position: absolute; left: -9999px;" aria-hidden="true">Bar chart showing exponential compound interest growth over 15 years at 8% annual rate. Starting with $1,000, the investment grows to $3,172, demonstrating how compound interest accelerates over time. Money doubles by year 9 and triples by year 15. Use tab key to navigate through individual year data points.</div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,080</div>
+                                <div id="year1" tabindex="0" style="width: 40px; height: 80px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 1: $1,080" role="img" aria-label="Year 1: $1,080, growth of $80"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y1</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,166</div>
+                                <div id="year2" tabindex="0" style="width: 40px; height: 85px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 2: $1,166" role="img" aria-label="Year 2: $1,166, growth of $86"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y2</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,260</div>
+                                <div id="year3" tabindex="0" style="width: 40px; height: 95px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 3: $1,260" role="img" aria-label="Year 3: $1,260, growth of $94"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y3</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,360</div>
+                                <div id="year4" tabindex="0" style="width: 40px; height: 105px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 4: $1,360" role="img" aria-label="Year 4: $1,360, growth of $100"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y4</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,469</div>
+                                <div id="year5" tabindex="0" style="width: 40px; height: 115px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 5: $1,469" role="img" aria-label="Year 5: $1,469, growth of $109"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y5</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,587</div>
+                                <div id="year6" tabindex="0" style="width: 40px; height: 125px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 6: $1,587" role="img" aria-label="Year 6: $1,587, growth of $118"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y6</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,714</div>
+                                <div id="year7" tabindex="0" style="width: 40px; height: 140px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 7: $1,714" role="img" aria-label="Year 7: $1,714, growth of $127"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y7</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,851</div>
+                                <div id="year8" tabindex="0" style="width: 40px; height: 155px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 8: $1,851" role="img" aria-label="Year 8: $1,851, growth of $137"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y8</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,999</div>
+                                <div id="year9" tabindex="0" style="width: 40px; height: 170px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 9: $1,999" role="img" aria-label="Year 9: $1,999, growth of $148, money doubled!"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y9</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$2,159</div>
+                                <div id="year10" tabindex="0" style="width: 40px; height: 185px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 10: $2,159" role="img" aria-label="Year 10: $2,159, growth of $160"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y10</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$2,332</div>
+                                <div id="year11" tabindex="0" style="width: 40px; height: 205px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 11: $2,332" role="img" aria-label="Year 11: $2,332, growth of $173"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y11</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$2,518</div>
+                                <div id="year12" tabindex="0" style="width: 40px; height: 225px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 12: $2,518" role="img" aria-label="Year 12: $2,518, growth of $186"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y12</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$2,720</div>
+                                <div id="year13" tabindex="0" style="width: 40px; height: 245px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 13: $2,720" role="img" aria-label="Year 13: $2,720, growth of $202"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y13</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$2,937</div>
+                                <div id="year14" tabindex="0" style="width: 40px; height: 265px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 14: $2,937" role="img" aria-label="Year 14: $2,937, growth of $217"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y14</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$3,172</div>
+                                <div id="year15" tabindex="0" style="width: 40px; height: 285px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Year 15: $3,172" role="img" aria-label="Year 15: $3,172, growth of $235, money tripled!"></div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Y15</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 20px 0;">
+                    <div style="background: #E8E9EA; padding: 15px; border-radius: 6px; text-align: center;">
+                        <div style="color: #13294b; font-size: 0.85rem; margin-bottom: 5px;">Total Growth</div>
+                        <div style="font-size: 1.3rem; color: #0455a4;">$2,172.17</div>
+                    </div>
+                    <div style="background: #E8E9EA; padding: 15px; border-radius: 6px; text-align: center;">
+                        <div style="color: #13294b; font-size: 0.85rem; margin-bottom: 5px;">Final Amount</div>
+                        <div style="font-size: 1.3rem; color: #0455a4;">$3,172.17</div>
+                    </div>
+                    <div style="background: #E8E9EA; padding: 15px; border-radius: 6px; text-align: center;">
+                        <div style="color: #13294b; font-size: 0.85rem; margin-bottom: 5px;">Money Tripled!</div>
+                        <div style="font-size: 1.3rem; color: #0455a4;">217% Growth</div>
+                    </div>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(111, 175, 199, 0.2), rgba(111, 175, 199, 0.1)); padding: 15px; border-radius: 6px; margin: 15px 0; color: #13294b; border-left: 4px solid #0455A4;">
+                    <div style="margin-bottom: 8px; font-size: 1rem;">🚀 15-Year Exponential Growth Insight</div>
+                    <div style="font-size: 0.9rem; line-height: 1.4;">Watch how the bars accelerate dramatically! <span>The early years show gentle growth ($469 in first 5 years), while the final years show the spectacular power of compound interest. Each year builds on all previous years - that's exponential growth!</span></div>
+                </div>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 15px; font-size: 0.85rem;">
+                    <div style="color: #13294b; margin-bottom: 8px;">📊 Key Milestones:</div>
+                    <div style="margin-bottom: 5px;"><strong>Year 9:</strong> Money doubles to $1,999 | <strong>Year 15:</strong> Money triples to $3,172</div>
+                    <div><strong>Rule of 72 Check:</strong> 72 &divide; 8% = 9 years to double ✓</div>
+                </div>
+            </div>
+        </div>
+        <figcaption>The live chart as built for the course, shown here in a 15-year version at 8% interest. A scrolling feature was implemented to allow for users on smaller screens to be able to view the entire chart by scrolling.</figcaption>
+      </figure>
+
+      <figure class="paper embed">
+        <div style="max-width: 800px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden; font-family: Arial, sans-serif;">
+            <div style="background: #13294b; color: white; padding: 15px; text-align: center;">
+                <h3 style="margin: 0; font-size: 1.5rem;">💰 Simple vs Compound Interest</h3>
+                <p style="margin: 5px 0 0 0; font-size: 0.9rem;">Notice how the difference in growth increases over time.</p>
+            </div>
+            <div style="padding: 20px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px; padding: 15px; background: #E8E9EA; border-radius: 6px;">
+                    <div style="display: flex; flex-direction: column;">Principal Amount ($): $1,000</div>
+                    <div style="display: flex; flex-direction: column;">Interest Rate (%): 5%</div>
+                    <div style="display: flex; flex-direction: column;">Time Period (Years): 3</div>
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 6px; margin: 15px 0;">
+                    <div style="text-align: center; font-size: 1.1rem; color: #13294b; margin-bottom: 20px;">📊 Year-by-Year Growth Comparison</div>
+                    <div style="overflow-x: auto;">
+                        <div style="display: flex; align-items: end; justify-content: space-around; height: 320px; padding: 0 20px; background: white; border-radius: 4px; border: 1px solid #E8E9EA; position: relative; min-width: 600px;" role="group" aria-labelledby="bar-chart-title" aria-describedby="bar-chart-desc">
+                            <div id="bar-chart-title" style="position: absolute; left: -9999px;" aria-hidden="true">Simple vs Compound Interest Bar Chart</div>
+                            <div id="bar-chart-desc" style="position: absolute; left: -9999px;" aria-hidden="true">Bar chart comparing simple and compound interest growth over 3 years. Shows side-by-side bars for each year, with simple interest growing linearly from $1,050 to $1,150, while compound interest grows to $1,157.63, demonstrating the accelerating advantage of compound interest over time. Use tab key to navigate through individual data points.</div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="display: flex; gap: 4px; align-items: end; justify-content: center;">
+                                    <div style="display: flex; flex-direction: column; align-items: center;">
+                                        <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,050</div>
+                                        <div id="simple1" tabindex="0" style="width: 55px; height: 60px; background: rgba(19, 41, 75, 0.8); border-radius: 3px 3px 0 0;" title="Simple Interest Year 1" role="img" aria-label="Simple Interest Year 1: $1,050"></div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; align-items: center;">
+                                        <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,050</div>
+                                        <div id="compound1" tabindex="0" style="width: 55px; height: 60px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Compound Interest Year 1" role="img" aria-label="Compound Interest Year 1: $1,050"></div>
+                                    </div>
+                                </div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Year 1</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="display: flex; gap: 4px; align-items: end; justify-content: center;">
+                                    <div style="display: flex; flex-direction: column; align-items: center;">
+                                        <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,100</div>
+                                        <div id="simple2" tabindex="0" style="width: 55px; height: 110px; background: rgba(19, 41, 75, 0.8); border-radius: 3px 3px 0 0;" title="Simple Interest Year 2" role="img" aria-label="Simple Interest Year 2: $1,100"></div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; align-items: center;">
+                                        <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,102.50</div>
+                                        <div id="compound2" tabindex="0" style="width: 55px; height: 113px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Compound Interest Year 2" role="img" aria-label="Compound Interest Year 2: $1,102.50"></div>
+                                    </div>
+                                </div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Year 2</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <div style="display: flex; gap: 4px; align-items: end; justify-content: center;">
+                                    <div style="display: flex; flex-direction: column; align-items: center;">
+                                        <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,150</div>
+                                        <div id="simple3" tabindex="0" style="width: 55px; height: 160px; background: rgba(19, 41, 75, 0.8); border-radius: 3px 3px 0 0;" title="Simple Interest Year 3" role="img" aria-label="Simple Interest Year 3: $1,150"></div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; align-items: center;">
+                                        <div style="font-size: 0.7rem; color: #13294b; white-space: nowrap; margin-bottom: 5px;">$1,157.63</div>
+                                        <div id="compound3" tabindex="0" style="width: 55px; height: 168px; background: rgba(111, 175, 199, 0.8); border-radius: 3px 3px 0 0;" title="Compound Interest Year 3" role="img" aria-label="Compound Interest Year 3: $1,157.63"></div>
+                                    </div>
+                                </div>
+                                <div style="font-size: 0.8rem; color: #13294b;">Year 3</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Canvas-Compatible Legend -->
+                <div style="display: flex; justify-content: center; gap: 25px; margin: 15px 0; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 8px;"><span style="display: inline-block; width: 16px; height: 16px; background: rgba(19, 41, 75, 0.8); border: 1px solid rgba(19, 41, 75, 1);"><br /></span> <span style="font-size: 0.9rem;">Simple Interest</span></div>
+                    <div style="display: flex; align-items: center; gap: 8px;"><span style="display: inline-block; width: 16px; height: 16px; background: rgba(111, 175, 199, 0.8); border: 1px solid rgba(111, 175, 199, 1);"><br /></span> <span style="font-size: 0.9rem;">Compound Interest</span></div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 20px 0;">
+                    <div style="background: #E8E9EA; padding: 15px; border-radius: 6px; text-align: center;">
+                        <div style="color: #13294b; font-size: 0.85rem; margin-bottom: 5px;">Simple Interest Total</div>
+                        <div style="font-size: 1.3rem; color: #0455a4;">$1,150.00</div>
+                    </div>
+                    <div style="background: #E8E9EA; padding: 15px; border-radius: 6px; text-align: center;">
+                        <div style="color: #13294b; font-size: 0.85rem; margin-bottom: 5px;">Compound Interest Total</div>
+                        <div style="font-size: 1.3rem; color: #0455a4;">$1,157.63</div>
+                    </div>
+                    <div style="background: #E8E9EA; padding: 15px; border-radius: 6px; text-align: center;">
+                        <div style="color: #13294b; font-size: 0.85rem; margin-bottom: 5px;">Compound Advantage</div>
+                        <div style="font-size: 1.3rem; color: #0455a4;">$7.63</div>
+                    </div>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(111, 175, 199, 0.2), rgba(111, 175, 199, 0.1)); padding: 15px; border-radius: 6px; margin: 15px 0; color: #13294b; border-left: 4px solid #0455A4;">
+                    <div style="margin-bottom: 8px; font-size: 1rem;">💡 Key Insight</div>
+                    <div style="font-size: 0.9rem; line-height: 1.4;">Notice how the gap between simple and compound interest widens each year. Simple interest grows linearly while compound interest accelerates!</div>
+                </div>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 15px; font-size: 0.85rem;">
+                    <div style="color: #13294b; margin-bottom: 8px;">📚 Quick Reference:</div>
+                    <div style="margin-bottom: 5px;"><strong>Simple Interest:</strong> Final = Principal + (Principal &times; Rate &times; Time)</div>
+                    <div><strong>Compound Interest:</strong> Final = Principal &times; (1 + Rate)<sup>Time</sup></div>
+                </div>
+            </div>
+        </div>
+        <figcaption>Bar chart comparing simple and compound interest growth over time. Compound interest produces accelerating returns as accumulated interest contributes to future periods, while simple interest grows linearly.</figcaption>
+      </figure>
+
+      <p>In an effort to find more compelling evidence for best practices in the design of visual aids in financial education, Hubbard, Matthews, &amp; Samek (2016) tested the use of text (table), linear graph, and "volumetric" graph visualizations on compound interest literacy. They found that "volumetric" graphs using visual representations of individual square units (which viewers could count), and "text" tables increased the accuracy of post-test scores on compound interest, much more than linear graphs which are commonly used in publicly available compound interest calculators. The authors discussed the poor performance of linear graphs as a surprise and theorized that the linear graphs requiring coordination between the X and Y axes may have made them more cognitively taxing than using tables or volumetric graphs (Hubbard et al., 2016, p. 118).</p>
+      <p>According to Franconeri et al. (2021; 2024), empirical studies of humans' abilities to process data visualizations have resulted several insights. For example, although the human visual system is extremely fast at processing information, it slows down considerably when needing to compare data points or connect visual patterns to semantic meaning. To improve visual processing, visualizations can be designed to map numbers to visual channels like position, length, area, angle, or intensity (e.g., label data points rather than relying on viewer to interpret from X- and Y-axes; use value intensity over different hues for color coding). How efficiently different visual channels can process information varies. Dot plots or scatterplots are most accurately assessed by position followed by our ability to assess length (e.g., bar graphs), area (e.g., bubble maps), angle (e.g., line graphs), and intensity (e.g., heat maps). It can be easy to misinterpret graphs through truncating axes (e.g., not starting the y-axis at 0) or skewed visual properties (e.g., 3D depictions can inflate data values; line graphs with steep slopes can distort estimations of differences between points; overlapping varying intensities, etc.).</p>
+      <p>An important but often overlooked aspect of designing visualizations that are void of perceptual misinterpretations is called the "Curse of Knowledge" highlighting that experts overestimate how well others will understand a visualization because they cannot suppress their own expertise (Franconeri et al., 2021, p. 150). Franconeri (Northwestern University, 2024) also notes that data journalists like those that create data visualizations for The New York Times, The Washington Post, The Economist, etc., leverage narrative visualization to show a single pattern at a time and directing attention towards patterns through narrative text or audio. This is the same technique employed in the Theory of Multimedia Learning to reduce cognitive load and increase efficiency of encoding memory (Cook, 2006; Mayer, 2001, 2024; Moreno &amp; Mayer, 1999).</p>
+
+      <h2 id="icons">Icons I Illustrated <span class="hl">by Hand</span></h2>
+      <p>Only one participant commented in the interview that they noticed the icons I illustrated by hand and cleaned up in Adobe Capture (Adobe Inc., 2025) and Procreate (Savage Interactive, 2025). It was important to me that I drew my own graphics for the online educational intervention I created to teach compound interest.</p>
+
+      <ul class="icon-grid" role="list">
+        <li><img src="../assets/blog/snowballs-turtles-bar-charts/icon-credit-card.png" alt="Hand-drawn credit card, tilted." loading="lazy" width="640" height="640" /><span>Credit Cards</span></li>
+        <li><img src="../assets/blog/snowballs-turtles-bar-charts/icon-car.png" alt="Hand-drawn front end of a rounded car." loading="lazy" width="640" height="640" /><span>Auto Loans</span></li>
+        <li><img src="../assets/blog/snowballs-turtles-bar-charts/icon-grad-cap.png" alt="Hand-drawn graduation cap with tassel." loading="lazy" width="640" height="640" /><span>Student Loans</span></li>
+        <li><img src="../assets/blog/snowballs-turtles-bar-charts/icon-house.png" alt="Hand-drawn bungalow with a front porch." loading="lazy" width="640" height="640" /><span>Home Mortgages</span></li>
+        <li><img src="../assets/blog/snowballs-turtles-bar-charts/icon-retirement.png" alt="Hand-drawn palm tree with a beach chair." loading="lazy" width="640" height="640" /><span>Retirement Planning</span></li>
+      </ul>
+      <p class="grid-caption">Digital illustrations of a credit card, front end of a car, graduation cap, bungalow, and palm tree with a beach chair to visually represent financial decisions where compound interest knowledge can be applied.</p>
+
+      <figure class="paper narrow-lg">
+        <img src="../assets/blog/snowballs-turtles-bar-charts/course-save-borrow.png" alt="Two panels from the course. When You Save Money, with a piggy bank illustration, explains earning interest on a savings account. When You Borrow Money, with an illustration of a money bag with arrows around it, explains paying interest to a lender." loading="lazy" width="749" height="428" />
+        <figcaption>Screenshot showing two panels explaining interest's relationship to saving and borrowing money.</figcaption>
+      </figure>
+
+      <h2 id="metaphor">Turtles, Then <span class="hl">Snowballs</span></h2>
+      <p>I illustrated more ideas than what I used in the final version of the short course. The little turtles were my initial visual metaphor for exponential growth, but I ended up making snowballs later since that has been used narratively to describe exponential growth.</p>
+
+      <figure class="paper wide">
+        <img src="../assets/blog/snowballs-turtles-bar-charts/turtles-fast.png" alt="Ink drawing of three turtles in a row. The first walks slowly, the second moves faster with speed lines above its shell, and the third is running with its legs off the ground." loading="lazy" width="2000" height="479" />
+      </figure>
+
+      <p>To reinforce conceptual understanding of exponential growth, the primary differentiating feature of compound interest compared to simple interest, the educational material used a snowball metaphor. This representation visually demonstrates how accumulated interest contributes to future growth, producing accelerating expansion associated with compounding. Visual metaphors were produced to reduce cognitive load while reinforcing conceptual understanding of compound interest.</p>
+
+      <figure class="paper">
+        <img src="../assets/blog/snowballs-turtles-bar-charts/course-snowball.png" alt="Screenshot from the course section on compound interest. The three growing snowballs sit above text explaining that compound interest is calculated on principal and accumulated interest, creating a snowball effect, followed by the formula A = P(1 + r)^t." loading="lazy" width="1279" height="908" />
+        <figcaption>Illustration and text showing how compound interest grows exponentially through a "snowball effect" where money grows at an accelerating rate.</figcaption>
+      </figure>
+
+      <ul class="icon-grid three" role="list">
+        <li><img src="../assets/blog/snowballs-turtles-bar-charts/icon-piggy-bank.png" alt="Hand-drawn round piggy bank facing forward." loading="lazy" width="640" height="640" /><span>Piggy Bank</span></li>
+        <li><img src="../assets/blog/snowballs-turtles-bar-charts/icon-money-bag.png" alt="Hand-drawn money bag with a dollar sign and arrows around it." loading="lazy" width="640" height="640" /><span>Money Bag</span></li>
+        <li><img src="../assets/blog/snowballs-turtles-bar-charts/icon-jeep.png" alt="Hand-drawn front end of a boxy off-road vehicle." loading="lazy" width="640" height="640" /><span>Jeep</span></li>
+      </ul>
+
+      <h2 id="continuum">Narrative to <span class="hl">Data-Driven</span></h2>
+      <p>Narrative visualization is a category that leverages visual metaphors or stories. Examples include illustrations, animations, storyboards, and graphic novels (Fry et al., 2013). Alternatively, data visualizations, as the name implies, rely heavily on information and data. Software visualizations are domain specific and help communicate graphically how programs or algorithms are intended to function (Olsson et al., 2015). Typically, these are used by information technology professionals, but as our society grows more tech-savvy, these types of visualizations may be useful for explaining financial technology functions to users. Visualizations can exist along a continuum between "data-based and narrative-based visualizations" (Fry et al., 2013, p. 1233). For example, animations can be used not solely as a narrative device but also to illustrate relationships between concepts, particularly in science (Gilbert et al., 2008).</p>
+      <p>Using visualization as an assignment, educators can assess students' understanding of how to communicate domain-specific concepts (e.g., personal finance) with the use of visual metaphors. A prototype of the infoEmotion© matrix developed by Fry and colleagues (2013), provides a framework for assessing narrative visualizations for financial education. The content elements featured in the matrix include financial data, financial information, financial concept, behavioral consequence, behavioral decision process, behavioral negotiation, behavioral ethic, behavioral culture, and behavioral emotion. This tool was used to identify which elements were present in 3.5 minute clips on financial decision-making submitted by students in the "Design 4: Visualizing Finance" course at Parsons (Fry et al., 2013). In some instances, both visual metaphor and data can be combined, making it difficult to discern where a visualization occurs along the narrative to data-driven continuum.</p>
+      <p>This study builds on the concept of the narrative to data-driven continuum by including data visualizations and visual metaphors in personally meaningful ways to learners. Providing both an illustrative visual metaphor and a data visualization alongside narrative text intentionally leveraged multi-modal content to reinforce the conceptual differences between simple and compound interest.</p>
+
+      <h2 id="turtle">Slow and <span class="hl-sage">Steady</span></h2>
+      <p>However, the turtle still represents how I had to approach working towards my PhD as a full-time employee: slow and steady helped me finish… even if parts felt like moving slower than cold molasses then immediately at break-neck speeds near the end.</p>
+
+      <figure class="paper narrow">
+        <img src="../assets/blog/snowballs-turtles-bar-charts/turtle.png" alt="Ink drawing of a single turtle walking, head raised." loading="lazy" width="1100" height="408" />
+      </figure>
+
+      <h2 id="research">Poster &amp; <span class="hl">Visual Display</span></h2>
+      <p>I included an early poster, screenshots from the course with narrative context (critical for effective dual-mode delivery), my visual display showing the phases and functions of my mixed methodology, the snowballs, and the turtle illustrations that didn't get incorporated but feel poetically relevant to my academic journey.</p>
+
+      <figure class="paper">
+        <a href="../assets/blog/snowballs-turtles-bar-charts/poster-gsc-2026.jpg"><img src="../assets/blog/snowballs-turtles-bar-charts/poster-gsc-2026.jpg" alt="Research poster titled Explanatory Mixed Methods Study of Goal-Framing and Visualizations in Online Compound Interest Education. Three columns cover the research question and hypotheses, the goal-framing activity with photos, hand-drawn icons, and the compound interest calculator with bar chart, and preliminary results for 146 participants." loading="lazy" width="2400" height="1800" /></a>
+        <figcaption>Poster with preliminary results, presented at the College of Education Graduate Student Conference, March 5, 2026. Select the image to view it full size.</figcaption>
+      </figure>
+
+      <figure class="paper">
+        <img src="../assets/blog/snowballs-turtles-bar-charts/visual-display.png" alt="Figure 5.1, Expanded Visual Display, following best practices in mixed methods (Creswell and Plano Clark, 2018; DeCuir-Gunby and Schutz, 2017; Fetters et al., 2013; Ivankova et al., 2006). A table with three columns, Phase, Procedure, and Products, traces five phases: quantitative data collection with minor concurrent qualitative data collection through a Qualtrics survey; qualitative data collection through AI-enabled chatbot interviews; quantitative data analysis; qualitative data analysis and transformation; and integration of findings through triangulation. Dotted lines connect each data collection phase to its analysis and solid lines connect the phases chronologically." loading="lazy" width="1367" height="1450" />
+        <figcaption>Expanded Visual Display. Following best practices in mixed methods (Creswell &amp; Plano Clark, 2018; DeCuir-Gunby &amp; Schutz, 2017; Fetters et al., 2013; Ivankova et al., 2006), this visual display illustrates the chronological progression of this mixed methods study where Quantitative data collection with minor concurrent qualitative data collection precedes qualitative interviews. Dotted lines identify connections between Quantitative data collection and Quantitative analysis as well as between qualitative data collection and qualitative data analysis while solid lines connect the phases chronologically.</figcaption>
+      </figure>
+
+      <h2 id="process">Process &amp; <span class="hl">Tools</span></h2>
+      <p>I used pencil sketches that were inked and imported to Procreate after using Adobe Capture to scan. I used Microsoft PowerPoint to create the research poster, Word to create the Visual Display, and the images were integrated into Qualtrics with HTML to customize the User Interface.</p>
+
+      <div class="article-end">
+        <a href="../research.html" class="btn btn-filled">More About the Research</a>
+        <a href="https://cara.app/post/2c26afe7-a963-4e65-926a-1bbfa6901c50" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Original Post on Cara ↗</a>
+        <a href="../art.html" class="btn btn-ghost">More Art</a>
+      </div>
+
+      <p class="ref"><strong>References</strong></p>
+      <p class="ref">Adobe Inc. (2025). <em>Adobe Capture</em> [Mobile app]. <a href="https://www.adobe.com/products/capture.html">https://www.adobe.com/products/capture.html</a></p>
+      <p class="ref">Cook, M. P. (2006). Visual representations in science education: The influence of prior knowledge and cognitive load theory on instructional design principles. <em>Science Education, 90</em>(6), 1073–1091. <a href="https://doi.org/10.1002/sce.20164">https://doi.org/10.1002/sce.20164</a></p>
+      <p class="ref">Creswell, J. W., &amp; Plano Clark, V. L. (2018). <em>Designing and conducting mixed methods research</em> (3rd ed.). SAGE.</p>
+      <p class="ref">DeCuir-Gunby, J. T., &amp; Schutz, P. A. (2017). <em>Developing a mixed methods proposal: A practical guide for beginning researchers</em>. SAGE Publications. <a href="https://doi.org/10.4135/9781483399980">https://doi.org/10.4135/9781483399980</a></p>
+      <p class="ref">Fetters, M. D., Curry, L. A., &amp; Creswell, J. W. (2013). Achieving integration in mixed methods designs: Principles and practices. <em>Health Services Research, 48</em>(6pt2), 2134–2156. <a href="https://doi.org/10.1111/1475-6773.12117">https://doi.org/10.1111/1475-6773.12117</a></p>
+      <p class="ref">Franconeri, S. L., Padilla, L. M., Shah, P., Zacks, J. M., &amp; Hullman, J. (2021). The science of visual data communication: What works. <em>Psychological Science in the Public Interest, 22</em>(3), 110–161. <a href="https://doi.org/10.1177/15291006211051956">https://doi.org/10.1177/15291006211051956</a></p>
+      <p class="ref">Fry, A., Wilson, J., &amp; Overby, C. (2013). Teaching the design of narrative visualization: Using metaphor for financial literacy and decision making. <em>DRS Cumulus: Design Learning for Tomorrow</em>. <a href="https://doi.org/10.21606/learnxdesign.2013.050">https://doi.org/10.21606/learnxdesign.2013.050</a></p>
+      <p class="ref">Gilbert, J., Reiner, M., &amp; Nakhleh, M. B. (Eds.). (2008). <em>Visualization: Theory and practice in science education</em>. Springer.</p>
+      <p class="ref">Hubbard, E., Matthews, P., &amp; Samek, A. (2016). Using online compound interest tools to improve financial literacy. <em>The Journal of Economic Education, 47</em>(2), 106–120. <a href="https://doi.org/10.1080/00220485.2016.1146097">https://doi.org/10.1080/00220485.2016.1146097</a></p>
+      <p class="ref">Ivankova, N. V., Creswell, J. W., &amp; Stick, S. L. (2006). Using mixed-methods sequential explanatory design: From theory to practice. <em>Field Methods, 18</em>(1), 3–20. <a href="https://doi.org/10.1177/1525822X05282260">https://doi.org/10.1177/1525822X05282260</a></p>
+      <p class="ref">Mayer, R. E. (2001). <em>Multimedia learning</em> (1st ed.). Cambridge University Press. <a href="https://doi.org/10.1017/CBO9781139164603">https://doi.org/10.1017/CBO9781139164603</a></p>
+      <p class="ref">Mayer, R. E. (2024). The past, present, and future of the cognitive theory of multimedia learning. <em>Educational Psychology Review, 36</em>(1), 8. <a href="https://doi.org/10.1007/s10648-023-09842-1">https://doi.org/10.1007/s10648-023-09842-1</a></p>
+      <p class="ref">Moreno, R., &amp; Mayer, R. E. (1999). Deriving instructional design principles from multimedia presentations with animations. <em>Proceedings IEEE International Conference on Multimedia Computing and Systems, 1</em>, 720–725. <a href="https://doi.org/10.1109/MMCS.1999.779288">https://doi.org/10.1109/MMCS.1999.779288</a></p>
+      <p class="ref">Northwestern University. (2024, June 4). <em>Thinking with data visualizations, fast and slow</em> [Video]. <a href="https://www.youtube.com/watch?v=OdHLpZQF-Zs">https://www.youtube.com/watch?v=OdHLpZQF-Zs</a></p>
+      <p class="ref">Olsson, M., Mozelius, P., &amp; Collin, J. (2015). Visualisation and gamification of e-learning and programming education. <em>Electronic Journal of E-Learning, 13</em>(6), 14.</p>
+      <p class="ref">Savage Interactive Pty Ltd. (2025). <em>Procreate</em> [Mobile app]. <a href="https://procreate.com">https://procreate.com</a></p>
+
+    </div>
+  </article>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Andrea Pellegrini<span>Educator · Researcher · Wizard</span></div>
+    <ul class="footer-links" role="list">
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../cv.html">CV</a></li>
+      <li><a href="../research.html">Research</a></li>
+      <li><a href="../teaching.html">Teaching</a></li>
+      <li><a href="../projects.html">Projects</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../art.html">Art</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="mailto:apelleg3@illinois.edu">Email</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 Andrea Pellegrini &middot; Champaign, Illinois</p>
+  </div>
+</footer>
+</body>
+</html>
